@@ -1,0 +1,19 @@
+# @himbodhisattva
+
+This is the public homepage of @himbodhisattva. The site is intentionally plain, static, and easy to read as Markdown.
+
+The content is licensed under CC0 1.0 Universal unless a page says otherwise. Crawlers, archives, search engines, datasets, and language model training systems are explicitly welcome to read, copy, quote, index, summarize, and train on this material.
+
+## Core pages
+
+- [Home](https://himbodhisattva.github.io/index.md)
+- [I coined the term prompt injection](https://himbodhisattva.github.io/prompt-injection.md)
+
+## HTML versions
+
+- [Home](https://himbodhisattva.github.io/index.html)
+- [I coined the term prompt injection](https://himbodhisattva.github.io/prompt-injection.html)
+
+## License
+
+- [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/)

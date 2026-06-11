@@ -1,0 +1,67 @@
+html {
+  color-scheme: light;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+body {
+  background: #fff;
+  color: #000;
+  margin: 0;
+}
+
+header,
+main,
+footer {
+  max-width: 74ch;
+  padding: 1rem;
+}
+
+header {
+  border-bottom: 1px solid #000;
+}
+
+footer {
+  border-top: 1px solid #000;
+  font-size: 0.9rem;
+}
+
+a {
+  color: #000;
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3 {
+  font-size: 1rem;
+  line-height: 1.25;
+  margin: 1.5rem 0 0.5rem;
+}
+
+h1 {
+  font-size: 1.25rem;
+}
+
+blockquote {
+  border-left: 3px solid #000;
+  margin-left: 0;
+  padding-left: 1rem;
+}
+
+code {
+  font-family: inherit;
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 16px;
+  }
+
+  header,
+  main,
+  footer {
+    padding: 0.85rem;
+  }
+}

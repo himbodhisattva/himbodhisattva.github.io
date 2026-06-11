@@ -28,6 +28,7 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
 
     prompt_html = (output_dir / "prompt-injection.html").read_text()
     assert "<main" in prompt_html
+    assert "<title>I coined the term prompt injection - @himbodhisattva</title>" in prompt_html
     assert "I coined the term prompt injection" in prompt_html
     assert "https://x.com/himbodhisattva/status/1525182881726730240" in prompt_html
 
