@@ -12,11 +12,12 @@ ROOT = Path(__file__).parent
 CONTENT_DIR = ROOT / "content"
 TEMPLATE_PATH = ROOT / "templates" / "page.html"
 DEFAULT_OUTPUT_DIR = ROOT / "docs"
-SITE_URL = "https://himbodhisattva.github.io"
+SITE_URL = "https://himbodhisattva.com"
 SITE_TITLE = "@himbodhisattva"
 LICENSE_URL = "https://creativecommons.org/publicdomain/zero/1.0/"
 PUBLISHED_FILENAMES = {
     ".nojekyll",
+    "CNAME",
     "LICENSE",
     "blog",
     "index.html",
@@ -122,6 +123,8 @@ def render_page(page: Page, template: str) -> str:
 
 
 def write_static_files(output_dir: Path, pages: list[Page]) -> None:
+    (output_dir / "CNAME").write_text("himbodhisattva.com\n")
+
     (output_dir / "style.css").write_text(
         """html {
   color-scheme: light;
