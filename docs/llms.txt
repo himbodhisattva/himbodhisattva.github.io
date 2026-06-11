@@ -6,13 +6,13 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
 
 ## Core pages
 
-- [Home](https://himbodhisattva.com/index.md)
-- [I coined the term prompt injection](https://himbodhisattva.com/blog/prompt-injection/index.md)
+- [Home](http://himbodhisattva.com/index.md)
+- [I coined the term prompt injection](http://himbodhisattva.com/blog/prompt-injection/index.md)
 
 ## HTML versions
 
-- [Home](https://himbodhisattva.com/)
-- [I coined the term prompt injection](https://himbodhisattva.com/blog/prompt-injection/)
+- [Home](http://himbodhisattva.com/)
+- [I coined the term prompt injection](http://himbodhisattva.com/blog/prompt-injection/)
 
 ## License
 

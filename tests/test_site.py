@@ -36,8 +36,8 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
     prompt_html = (output_dir / "blog/prompt-injection/index.html").read_text()
     assert "<main" in prompt_html
     assert "<title>I coined the term prompt injection - @himbodhisattva</title>" in prompt_html
-    assert '<link rel="canonical" href="https://himbodhisattva.com/blog/prompt-injection/">' in prompt_html
-    assert '<link rel="alternate" type="text/markdown" href="https://himbodhisattva.com/blog/prompt-injection/index.md">' in prompt_html
+    assert '<link rel="canonical" href="http://himbodhisattva.com/blog/prompt-injection/">' in prompt_html
+    assert '<link rel="alternate" type="text/markdown" href="http://himbodhisattva.com/blog/prompt-injection/index.md">' in prompt_html
     assert '<link rel="stylesheet" href="../../style.css">' in prompt_html
     assert "I coined the term prompt injection" in prompt_html
     assert "https://x.com/himbodhisattva/status/1525182881726730240" in prompt_html
@@ -46,8 +46,8 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
     assert "blog/prompt-injection/" in home_html
 
     llms = (output_dir / "llms.txt").read_text()
-    assert "https://himbodhisattva.com/blog/prompt-injection/index.md" in llms
-    assert "https://himbodhisattva.com/blog/prompt-injection/" in llms
+    assert "http://himbodhisattva.com/blog/prompt-injection/index.md" in llms
+    assert "http://himbodhisattva.com/blog/prompt-injection/" in llms
     assert "CC0 1.0" in llms
 
     robots = (output_dir / "robots.txt").read_text()
@@ -55,7 +55,7 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
     assert "Allow: /" in robots
 
     sitemap = (output_dir / "sitemap.xml").read_text()
-    assert "https://himbodhisattva.com/blog/prompt-injection/" in sitemap
+    assert "http://himbodhisattva.com/blog/prompt-injection/" in sitemap
 
     license_text = (output_dir / "LICENSE").read_text()
     assert "CC0 1.0 Universal" in license_text
