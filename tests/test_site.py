@@ -1,6 +1,3 @@
-from pathlib import Path
-
-
 def test_build_outputs_llm_friendly_static_site(tmp_path):
     import build
 
@@ -44,6 +41,15 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
 
     home_html = (output_dir / "index.html").read_text()
     assert "blog/prompt-injection/" in home_html
+    assert "blog/prompt-injection/index.md" in home_html
+    assert "I coined the term prompt injection" in home_html
+
+    home_markdown = (output_dir / "index.md").read_text()
+    assert "{{ pages }}" not in home_markdown
+    assert (
+        "- [I coined the term prompt injection](blog/prompt-injection/) ; "
+        "[markdown](blog/prompt-injection/index.md)"
+    ) in home_markdown
 
     llms = (output_dir / "llms.txt").read_text()
     assert "http://himbodhisattva.com/blog/prompt-injection/index.md" in llms

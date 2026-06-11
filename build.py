@@ -82,6 +82,16 @@ class Page:
         return "../../"
 
 
+def local_html_path(page: Page) -> str:
+    if page.is_home:
+        return "index.html"
+    return page.html_url_path
+
+
+def local_markdown_path(page: Page) -> str:
+    return page.markdown_url_path
+
+
 def parse_markdown(path: Path) -> Page:
     raw = path.read_text()
     metadata: dict[str, str] = {}
@@ -104,6 +114,22 @@ def parse_markdown(path: Path) -> Page:
         output_format="html5",
     )
     return Page(slug, title, description, body.strip() + "\n", html_body)
+
+
+def page_list_markdown(pages: list[Page]) -> str:
+    listed_pages = [page for page in pages if not page.is_home]
+    if not listed_pages:
+        return "none yet\n"
+    return "\n".join(
+        f"- [{page.title}]({local_html_path(page)}) ; [markdown]({local_markdown_path(page)})"
+        for page in listed_pages
+    ) + "\n"
+
+
+def expand_markdown(body: str, page: Page, pages: list[Page]) -> str:
+    if page.is_home:
+        return body.replace("{{ pages }}", page_list_markdown(pages).rstrip())
+    return body
 
 
 def render_page(page: Page, template: str) -> str:
@@ -283,10 +309,22 @@ def build_site(output_dir: Path = DEFAULT_OUTPUT_DIR, mirror_root: bool = False)
     pages = [parse_markdown(path) for path in sorted(CONTENT_DIR.glob("*.md"))]
 
     for page in pages:
+        rendered_markdown = expand_markdown(page.markdown, page, pages)
+        rendered_page = Page(
+            slug=page.slug,
+            title=page.title,
+            description=page.description,
+            markdown=rendered_markdown,
+            html_body=markdown.markdown(
+                rendered_markdown,
+                extensions=["extra", "sane_lists"],
+                output_format="html5",
+            ),
+        )
         page_dir = output_dir / page.output_dir
         page_dir.mkdir(parents=True, exist_ok=True)
-        (output_dir / page.markdown_output_path).write_text(page.markdown)
-        (output_dir / page.html_output_path).write_text(render_page(page, template))
+        (output_dir / page.markdown_output_path).write_text(rendered_page.markdown)
+        (output_dir / page.html_output_path).write_text(render_page(rendered_page, template))
 
     (output_dir / ".nojekyll").write_text("")
     write_static_files(output_dir, pages)
