@@ -1,0 +1,17 @@
+[project]
+name = "himbodhisattva-blog"
+version = "0.1.0"
+description = "Static homepage for @himbodhisattva."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "markdown>=3.8.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
