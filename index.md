@@ -4,8 +4,7 @@ this is the blog of twitter character [@himbodhisattva](https://x.com/himbodhisa
 
 ## pages
 
-- [I coined the term prompt injection](blog/prompt-injection/)
-- [markdown version](blog/prompt-injection/index.md)
+- [I coined the term prompt injection](blog/prompt-injection/) ; [markdown](blog/prompt-injection/index.md)
 
 ## machine-readable versions
 
