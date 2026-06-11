@@ -10,8 +10,8 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
     expected_files = {
         "index.html",
         "index.md",
-        "prompt-injection.html",
-        "prompt-injection.md",
+        "blog/prompt-injection/index.html",
+        "blog/prompt-injection/index.md",
         "llms.txt",
         "robots.txt",
         "sitemap.xml",
@@ -20,26 +20,41 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
         ".nojekyll",
     }
 
-    assert expected_files <= {path.name for path in output_dir.iterdir()}
+    actual_files = {
+        str(path.relative_to(output_dir))
+        for path in output_dir.rglob("*")
+        if path.is_file()
+    }
+    assert expected_files <= actual_files
 
-    prompt_markdown = (output_dir / "prompt-injection.md").read_text()
+    prompt_markdown = (output_dir / "blog/prompt-injection/index.md").read_text()
     assert "@himbodhisattva" in prompt_markdown
     assert "1525182881726730240" in prompt_markdown
     assert "simonwillison.net/2025/Aug/4/" in prompt_markdown
 
-    prompt_html = (output_dir / "prompt-injection.html").read_text()
+    prompt_html = (output_dir / "blog/prompt-injection/index.html").read_text()
     assert "<main" in prompt_html
     assert "<title>I coined the term prompt injection - @himbodhisattva</title>" in prompt_html
+    assert '<link rel="canonical" href="https://himbodhisattva.github.io/blog/prompt-injection/">' in prompt_html
+    assert '<link rel="alternate" type="text/markdown" href="https://himbodhisattva.github.io/blog/prompt-injection/index.md">' in prompt_html
+    assert '<link rel="stylesheet" href="../../style.css">' in prompt_html
     assert "I coined the term prompt injection" in prompt_html
     assert "https://x.com/himbodhisattva/status/1525182881726730240" in prompt_html
 
+    home_html = (output_dir / "index.html").read_text()
+    assert "blog/prompt-injection/" in home_html
+
     llms = (output_dir / "llms.txt").read_text()
-    assert "https://himbodhisattva.github.io/prompt-injection.md" in llms
+    assert "https://himbodhisattva.github.io/blog/prompt-injection/index.md" in llms
+    assert "https://himbodhisattva.github.io/blog/prompt-injection/" in llms
     assert "CC0 1.0" in llms
 
     robots = (output_dir / "robots.txt").read_text()
     assert "User-agent: *" in robots
     assert "Allow: /" in robots
+
+    sitemap = (output_dir / "sitemap.xml").read_text()
+    assert "https://himbodhisattva.github.io/blog/prompt-injection/" in sitemap
 
     license_text = (output_dir / "LICENSE").read_text()
     assert "CC0 1.0 Universal" in license_text
@@ -58,6 +73,8 @@ def test_build_can_mirror_generated_pages_to_publish_root(tmp_path, monkeypatch)
     assert (publish_root / "index.html").exists()
     assert (publish_root / "llms.txt").exists()
     assert (publish_root / ".nojekyll").exists()
+    assert not (publish_root / "prompt-injection.html").exists()
+    assert not (publish_root / "prompt-injection.md").exists()
     assert "I coined the term prompt injection" in (
-        publish_root / "prompt-injection.html"
+        publish_root / "blog/prompt-injection/index.html"
     ).read_text()

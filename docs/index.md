@@ -4,8 +4,8 @@ This is a plain personal homepage.
 
 ## Pages
 
-- [I coined the term prompt injection](prompt-injection.html)
-- [Markdown version](prompt-injection.md)
+- [I coined the term prompt injection](blog/prompt-injection/)
+- [Markdown version](blog/prompt-injection/index.md)
 
 ## Machine-readable versions
 

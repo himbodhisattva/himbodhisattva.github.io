@@ -18,14 +18,17 @@ LICENSE_URL = "https://creativecommons.org/publicdomain/zero/1.0/"
 PUBLISHED_FILENAMES = {
     ".nojekyll",
     "LICENSE",
+    "blog",
     "index.html",
     "index.md",
     "llms.txt",
-    "prompt-injection.html",
-    "prompt-injection.md",
     "robots.txt",
     "sitemap.xml",
     "style.css",
+}
+STALE_ROOT_FILENAMES = {
+    "prompt-injection.html",
+    "prompt-injection.md",
 }
 
 
@@ -38,14 +41,42 @@ class Page:
     html_body: str
 
     @property
-    def html_filename(self) -> str:
+    def is_home(self) -> bool:
         if self.slug == "index":
-            return "index.html"
-        return f"{self.slug}.html"
+            return True
+        return False
 
     @property
-    def markdown_filename(self) -> str:
-        return f"{self.slug}.md"
+    def output_dir(self) -> Path:
+        if self.is_home:
+            return Path(".")
+        return Path("blog") / self.slug
+
+    @property
+    def html_output_path(self) -> Path:
+        return self.output_dir / "index.html"
+
+    @property
+    def markdown_output_path(self) -> Path:
+        return self.output_dir / "index.md"
+
+    @property
+    def html_url_path(self) -> str:
+        if self.is_home:
+            return ""
+        return f"blog/{self.slug}/"
+
+    @property
+    def markdown_url_path(self) -> str:
+        if self.is_home:
+            return "index.md"
+        return f"blog/{self.slug}/index.md"
+
+    @property
+    def asset_prefix(self) -> str:
+        if self.is_home:
+            return ""
+        return "../../"
 
 
 def parse_markdown(path: Path) -> Page:
@@ -73,8 +104,8 @@ def parse_markdown(path: Path) -> Page:
 
 
 def render_page(page: Page, template: str) -> str:
-    canonical_html = f"{SITE_URL}/{page.html_filename}"
-    markdown_url = f"{SITE_URL}/{page.markdown_filename}"
+    canonical_html = f"{SITE_URL}/{page.html_url_path}"
+    markdown_url = f"{SITE_URL}/{page.markdown_url_path}"
     return template.format(
         site_title=html.escape(SITE_TITLE),
         title=html.escape(page.title),
@@ -82,6 +113,10 @@ def render_page(page: Page, template: str) -> str:
         canonical_html=html.escape(canonical_html),
         markdown_url=html.escape(markdown_url),
         license_url=html.escape(LICENSE_URL),
+        home_url=html.escape(f"{page.asset_prefix}index.html"),
+        style_url=html.escape(f"{page.asset_prefix}style.css"),
+        llms_url=html.escape(f"{page.asset_prefix}llms.txt"),
+        local_license_url=html.escape(f"{page.asset_prefix}LICENSE"),
         body=page.html_body,
     )
 
@@ -176,12 +211,12 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
 ## Core pages
 
 - [Home]({SITE_URL}/index.md)
-- [I coined the term prompt injection]({SITE_URL}/prompt-injection.md)
+- [I coined the term prompt injection]({SITE_URL}/blog/prompt-injection/index.md)
 
 ## HTML versions
 
-- [Home]({SITE_URL}/index.html)
-- [I coined the term prompt injection]({SITE_URL}/prompt-injection.html)
+- [Home]({SITE_URL}/)
+- [I coined the term prompt injection]({SITE_URL}/blog/prompt-injection/)
 
 ## License
 
@@ -190,7 +225,7 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
     )
 
     sitemap_urls = "\n".join(
-        f"  <url><loc>{SITE_URL}/{page.html_filename}</loc></url>"
+        f"  <url><loc>{SITE_URL}/{page.html_url_path}</loc></url>"
         for page in pages
     )
     (output_dir / "sitemap.xml").write_text(
@@ -215,8 +250,20 @@ Legal code: https://creativecommons.org/publicdomain/zero/1.0/legalcode.en
 
 
 def mirror_to_root(output_dir: Path) -> None:
+    for filename in PUBLISHED_FILENAMES | STALE_ROOT_FILENAMES:
+        target = ROOT / filename
+        if target.is_dir():
+            shutil.rmtree(target)
+        elif target.exists():
+            target.unlink()
+
     for filename in PUBLISHED_FILENAMES:
-        shutil.copyfile(output_dir / filename, ROOT / filename)
+        source = output_dir / filename
+        target = ROOT / filename
+        if source.is_dir():
+            shutil.copytree(source, target)
+        else:
+            shutil.copyfile(source, target)
 
 
 def build_site(output_dir: Path = DEFAULT_OUTPUT_DIR, mirror_root: bool = False) -> None:
@@ -231,8 +278,10 @@ def build_site(output_dir: Path = DEFAULT_OUTPUT_DIR, mirror_root: bool = False)
     pages = [parse_markdown(path) for path in sorted(CONTENT_DIR.glob("*.md"))]
 
     for page in pages:
-        (output_dir / page.markdown_filename).write_text(page.markdown)
-        (output_dir / page.html_filename).write_text(render_page(page, template))
+        page_dir = output_dir / page.output_dir
+        page_dir.mkdir(parents=True, exist_ok=True)
+        (output_dir / page.markdown_output_path).write_text(page.markdown)
+        (output_dir / page.html_output_path).write_text(render_page(page, template))
 
     (output_dir / ".nojekyll").write_text("")
     write_static_files(output_dir, pages)
