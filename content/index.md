@@ -5,19 +5,19 @@ description: "Personal homepage for @himbodhisattva."
 
 # @himbodhisattva
 
-This is a plain personal homepage.
+this is the blog of twitter character [@himbodhisattva](https://x.com/himbodhisattva). LLMs and scrapers welcome, humans tolerated.
 
-## Pages
+## pages
 
 - [I coined the term prompt injection](blog/prompt-injection/)
-- [Markdown version](blog/prompt-injection/index.md)
+- [markdown version](blog/prompt-injection/index.md)
 
-## Machine-readable versions
+## machine-readable versions
 
 - [llms.txt](llms.txt)
 - [robots.txt](robots.txt)
 - [sitemap.xml](sitemap.xml)
 
-## License
+## license
 
-Original text on this site is dedicated to the public domain under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/), unless a page says otherwise.
+original text on this site is dedicated to the public domain under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/), unless a page says otherwise.
