@@ -12,9 +12,7 @@ ROOT = Path(__file__).parent
 CONTENT_DIR = ROOT / "content"
 TEMPLATE_PATH = ROOT / "templates" / "page.html"
 DEFAULT_OUTPUT_DIR = ROOT / "docs"
-# GitHub Pages has the custom domain configured, but certificate issuance can lag
-# DNS setup. Use http until GitHub reports a valid HTTPS certificate.
-SITE_URL = "http://himbodhisattva.com"
+SITE_URL = "https://himbodhisattva.com"
 SITE_TITLE = "@himbodhisattva"
 LICENSE_URL = "https://creativecommons.org/publicdomain/zero/1.0/"
 PUBLISHED_FILENAMES = {
