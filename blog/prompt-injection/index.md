@@ -11,6 +11,22 @@ simon willison is usually credited with coining the term. on august 4,
 
 <https://simonwillison.net/2025/Aug/4/>
 
+## related threads
+
+riley goodside acknowledged that I proposed the current name in may
+2022:
+
+<https://x.com/goodside/status/1952368779788472548>
+
+simon replied later in that thread after quoting the original tweet on
+his blog:
+
+<https://x.com/simonw/status/1952409664848908470>
+
+the thread starts here:
+
+<https://x.com/TalBeerySec/status/1952356190182117690>
+
 ## context
 
 in may 2022 I was leading NLP at a startup that was an early adopter of
