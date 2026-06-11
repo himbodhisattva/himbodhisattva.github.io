@@ -217,6 +217,7 @@ def build_site(output_dir: Path = DEFAULT_OUTPUT_DIR) -> None:
         (output_dir / page.markdown_filename).write_text(page.markdown)
         (output_dir / page.html_filename).write_text(render_page(page, template))
 
+    (output_dir / ".nojekyll").write_text("")
     write_static_files(output_dir, pages)
 
 

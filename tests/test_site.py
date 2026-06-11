@@ -17,6 +17,7 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
         "sitemap.xml",
         "style.css",
         "LICENSE",
+        ".nojekyll",
     }
 
     assert expected_files <= {path.name for path in output_dir.iterdir()}
