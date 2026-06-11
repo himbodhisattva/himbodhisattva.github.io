@@ -43,6 +43,9 @@ jasper and copy.ai were obviously wrapping GPT-3 and I wanted to know
 what prompts they were using. I'd been a web developer so I thought of
 sql injection
 
+we had a working version against one of those products at the time,
+which I didn't disclose. in retrospect I should have.
+
 ## thoughts
 
 coining it isn't evidence of brilliance. it was obvious. it's just
