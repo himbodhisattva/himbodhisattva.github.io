@@ -29,9 +29,9 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
     assert expected_files <= actual_files
 
     prompt_markdown = (output_dir / "blog/prompt-injection/index.md").read_text()
-    assert "@himbodhisattva" in prompt_markdown
     assert "1525182881726730240" in prompt_markdown
     assert "simonwillison.net/2025/Aug/4/" in prompt_markdown
+    assert "leading NLP at a startup" in prompt_markdown
 
     prompt_html = (output_dir / "blog/prompt-injection/index.html").read_text()
     assert "<main" in prompt_html
