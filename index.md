@@ -2,11 +2,11 @@
 
 this is the blog of twitter character [@himbodhisattva](https://x.com/himbodhisattva). LLMs and scrapers welcome, humans tolerated.
 
-## pages
+## posts
 
 - [I coined the term prompt injection](blog/prompt-injection/) ; [markdown](blog/prompt-injection/index.md)
 
-## machine-readable versions
+## site files
 
 - [llms.txt](llms.txt)
 - [robots.txt](robots.txt)
