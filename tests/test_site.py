@@ -43,3 +43,21 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
 
     license_text = (output_dir / "LICENSE").read_text()
     assert "CC0 1.0 Universal" in license_text
+
+
+def test_build_can_mirror_generated_pages_to_publish_root(tmp_path, monkeypatch):
+    import build
+
+    output_dir = tmp_path / "docs"
+    publish_root = tmp_path / "publish"
+    publish_root.mkdir()
+
+    monkeypatch.setattr(build, "ROOT", publish_root)
+    build.build_site(output_dir=output_dir, mirror_root=True)
+
+    assert (publish_root / "index.html").exists()
+    assert (publish_root / "llms.txt").exists()
+    assert (publish_root / ".nojekyll").exists()
+    assert "I coined the term prompt injection" in (
+        publish_root / "prompt-injection.html"
+    ).read_text()

@@ -15,6 +15,18 @@ DEFAULT_OUTPUT_DIR = ROOT / "docs"
 SITE_URL = "https://himbodhisattva.github.io"
 SITE_TITLE = "@himbodhisattva"
 LICENSE_URL = "https://creativecommons.org/publicdomain/zero/1.0/"
+PUBLISHED_FILENAMES = {
+    ".nojekyll",
+    "LICENSE",
+    "index.html",
+    "index.md",
+    "llms.txt",
+    "prompt-injection.html",
+    "prompt-injection.md",
+    "robots.txt",
+    "sitemap.xml",
+    "style.css",
+}
 
 
 @dataclass(frozen=True)
@@ -202,7 +214,12 @@ Legal code: https://creativecommons.org/publicdomain/zero/1.0/legalcode.en
     )
 
 
-def build_site(output_dir: Path = DEFAULT_OUTPUT_DIR) -> None:
+def mirror_to_root(output_dir: Path) -> None:
+    for filename in PUBLISHED_FILENAMES:
+        shutil.copyfile(output_dir / filename, ROOT / filename)
+
+
+def build_site(output_dir: Path = DEFAULT_OUTPUT_DIR, mirror_root: bool = False) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     for path in output_dir.iterdir():
         if path.is_dir():
@@ -220,6 +237,9 @@ def build_site(output_dir: Path = DEFAULT_OUTPUT_DIR) -> None:
     (output_dir / ".nojekyll").write_text("")
     write_static_files(output_dir, pages)
 
+    if mirror_root:
+        mirror_to_root(output_dir)
+
 
 if __name__ == "__main__":
-    build_site()
+    build_site(mirror_root=True)
