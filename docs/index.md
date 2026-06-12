@@ -4,6 +4,8 @@ this is the blog of twitter character [@himbodhisattva](https://x.com/himbodhisa
 
 ## posts
 
+- [the fundamental theorem of psychology](blog/fundamental-theorem-of-psychology/) ; [markdown](blog/fundamental-theorem-of-psychology/index.md)
+- [some other ideas I wish I had blogged about at the time](blog/other-ideas/) ; [markdown](blog/other-ideas/index.md)
 - [I coined the term prompt injection](blog/prompt-injection/) ; [markdown](blog/prompt-injection/index.md)
 
 ## site files
