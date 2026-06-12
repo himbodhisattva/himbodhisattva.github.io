@@ -230,6 +230,17 @@ Sitemap: {SITE_URL}/sitemap.xml
 """,
     )
 
+    ordered_pages = [page for page in pages if page.is_home] + [
+        page for page in pages if not page.is_home
+    ]
+    core_pages = "\n".join(
+        f"- [{'Home' if page.is_home else page.title}]({SITE_URL}/{page.markdown_url_path})"
+        for page in ordered_pages
+    )
+    html_versions = "\n".join(
+        f"- [{'Home' if page.is_home else page.title}]({SITE_URL}/{page.html_url_path})"
+        for page in ordered_pages
+    )
     (output_dir / "llms.txt").write_text(
         f"""# {SITE_TITLE}
 
@@ -239,13 +250,11 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
 
 ## Core pages
 
-- [Home]({SITE_URL}/index.md)
-- [I coined the term prompt injection]({SITE_URL}/blog/prompt-injection/index.md)
+{core_pages}
 
 ## HTML versions
 
-- [Home]({SITE_URL}/)
-- [I coined the term prompt injection]({SITE_URL}/blog/prompt-injection/)
+{html_versions}
 
 ## License
 
