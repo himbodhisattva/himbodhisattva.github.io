@@ -7,6 +7,8 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
 ## Core pages
 
 - [Home](https://himbodhisattva.com/index.md)
+- [every cyclic polytope C_d(d+3) is circumscribable](https://himbodhisattva.com/blog/circumscribed-cyclic-polytopes/index.md)
+- [compatible triangulations: a theorem and an obstruction](https://himbodhisattva.com/blog/compatible-triangulations-proof-obstruction/index.md)
 - [an explicit counterexample to Zhao's Vanishing Conjecture](https://himbodhisattva.com/blog/explicit-zhao-vanishing-counterexample/index.md)
 - [the fundamental theorem of psychology](https://himbodhisattva.com/blog/fundamental-theorem-of-psychology/index.md)
 - [some other ideas I wish I had blogged about at the time](https://himbodhisattva.com/blog/other-ideas/index.md)
@@ -16,6 +18,8 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
 ## HTML versions
 
 - [Home](https://himbodhisattva.com/)
+- [every cyclic polytope C_d(d+3) is circumscribable](https://himbodhisattva.com/blog/circumscribed-cyclic-polytopes/)
+- [compatible triangulations: a theorem and an obstruction](https://himbodhisattva.com/blog/compatible-triangulations-proof-obstruction/)
 - [an explicit counterexample to Zhao's Vanishing Conjecture](https://himbodhisattva.com/blog/explicit-zhao-vanishing-counterexample/)
 - [the fundamental theorem of psychology](https://himbodhisattva.com/blog/fundamental-theorem-of-psychology/)
 - [some other ideas I wish I had blogged about at the time](https://himbodhisattva.com/blog/other-ideas/)

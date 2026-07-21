@@ -38,6 +38,7 @@ class Page:
     slug: str
     title: str
     description: str
+    section: str
     markdown: str
     html_body: str
 
@@ -106,16 +107,21 @@ def parse_markdown(path: Path) -> Page:
     slug = path.stem
     title = metadata.get("title", slug.replace("-", " ").title())
     description = metadata.get("description", title)
+    section = metadata.get("section", "posts")
     html_body = markdown.markdown(
         body,
         extensions=["extra", "sane_lists"],
         output_format="html5",
     )
-    return Page(slug, title, description, body.strip() + "\n", html_body)
+    return Page(slug, title, description, section, body.strip() + "\n", html_body)
 
 
-def page_list_markdown(pages: list[Page]) -> str:
-    listed_pages = [page for page in pages if not page.is_home]
+def page_list_markdown(pages: list[Page], section: str | None = None) -> str:
+    listed_pages = [
+        page
+        for page in pages
+        if not page.is_home and (section is None or page.section == section)
+    ]
     if not listed_pages:
         return "none yet\n"
     return "\n".join(
@@ -126,7 +132,11 @@ def page_list_markdown(pages: list[Page]) -> str:
 
 def expand_markdown(body: str, page: Page, pages: list[Page]) -> str:
     if page.is_home:
-        return body.replace("{{ pages }}", page_list_markdown(pages).rstrip())
+        return (
+            body.replace("{{ pages }}", page_list_markdown(pages).rstrip())
+            .replace("{{ proofs }}", page_list_markdown(pages, "proofs").rstrip())
+            .replace("{{ posts }}", page_list_markdown(pages, "posts").rstrip())
+        )
     return body
 
 
@@ -321,6 +331,7 @@ def build_site(output_dir: Path = DEFAULT_OUTPUT_DIR, mirror_root: bool = False)
             slug=page.slug,
             title=page.title,
             description=page.description,
+            section=page.section,
             markdown=rendered_markdown,
             html_body=markdown.markdown(
                 rendered_markdown,

@@ -7,9 +7,13 @@ description: "Personal homepage for @himbodhisattva."
 
 this is the blog of twitter character [@himbodhisattva](https://x.com/himbodhisattva). LLMs and scrapers welcome, humans tolerated.
 
+## proofs
+
+{{ proofs }}
+
 ## posts
 
-{{ pages }}
+{{ posts }}
 
 ## site files
 

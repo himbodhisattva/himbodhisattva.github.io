@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A failed counterexample search yielded a sufficient face-visibility theorem, then an exact 16-point obstruction showing why that route cannot prove the full compatible-triangulation conjecture.">
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+  <title>compatible triangulations: a theorem and an obstruction - @himbodhisattva</title>
+  <link rel="canonical" href="https://himbodhisattva.com/blog/compatible-triangulations-proof-obstruction/">
+  <link rel="alternate" type="text/markdown" href="https://himbodhisattva.com/blog/compatible-triangulations-proof-obstruction/index.md">
+  <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header>
+    <a href="../../index.html">@himbodhisattva</a>
+  </header>
+  <main>
+<h1>compatible triangulations: a theorem and an obstruction</h1>
+<p><strong>Status: partial theorem plus an obstruction to one proof strategy. The full conjecture remains open.</strong></p>
+<p>Take two planar point sets with the same number of points and the same number of points on their convex hulls. Match the hull points in cyclic order. The compatible-triangulation conjecture asks whether that hull matching can always be extended to all the points so that one abstract triangulation can be drawn without crossings on both sets. This is <a href="https://arxiv.org/abs/2508.04602">Conjecture 1.1 in Hong Duc Bui's paper</a>.</p>
+<p>A large exact counterexample search kept finding compatible triangulations, including cases with only one surviving matching. Mining those failures produced a clean sufficient condition.</p>
+<h2>sufficient theorem</h2>
+<p>Suppose the two point sets already carry corresponding drawings of the same spanning, 2-connected planar graph <code>H</code>, with the prescribed hull cycle on the outside and the same oriented boundary cycle for each corresponding face.</p>
+<p>Each bounded face of <code>H</code> is a simple polygon. For a face <code>F</code>, let <code>D_P(F)</code> be the set of vertex pairs that can be joined by a diagonal lying inside that face in the first drawing. Define <code>D_Q(F)</code> the same way in the second drawing.</p>
+<blockquote>
+<p><strong>Face-visibility theorem.</strong> If, separately in every nontriangular face, either <code>D_P(F)</code> is contained in <code>D_Q(F)</code> or <code>D_Q(F)</code> is contained in <code>D_P(F)</code>, then <code>H</code> extends to compatible triangulations of both point sets.</p>
+</blockquote>
+<p>The direction of containment may change from face to face.</p>
+<p>The proof is short. In each face, triangulate the drawing whose visible-diagonal set is contained in the other one. Every chosen diagonal is also valid in the other drawing. Whether two diagonals cross inside a simple polygon depends only on whether their endpoints alternate around its boundary, so the transported diagonals remain noncrossing. Do this independently in every face and unite the results with <code>H</code>.</p>
+<p>This is a theorem, not a guess from the computations. It is a face-by-face version of the polygon visibility argument in Bui's Proposition 6.2. I make no novelty claim for that underlying idea.</p>
+<h2>why the failed search kept surviving</h2>
+<p>Call an edge of a point set unavoidable when no other point-pair segment crosses it. Every triangulation contains every unavoidable edge.</p>
+<p>For a proposed matching <code>f</code>, combine the unavoidable edges on the first set with the pullback of the unavoidable edges on the second. In the hardest low-overlap examples from the search, this common core was 2-connected, and the corresponding faces satisfied the visibility theorem. The apparently mysterious lone compatible triangulation was therefore forced by a smaller visible-diagonal set sitting inside a larger one.</p>
+<p>That suggested a tempting route to the whole conjecture: perhaps one could always choose <code>f</code> so this unavoidable common core was 2-connected and facewise visibility-dominating.</p>
+<h2>obstruction to this route, not to the conjecture</h2>
+<p>An exact <code>n = 16</code> example kills that proposed lemma. In the search archive it is labeled <code>L0/R1</code>, hull shift zero.</p>
+<p>The example has twelve interior vertices. In the first point set's unavoidable graph, four of those vertices are isolated (<code>5, 6, 10, 13</code>). In the second point set's unavoidable graph, only three interior vertices have degree at least two (<code>7, 8, 14</code>).</p>
+<p>No bijection can match all four isolated vertices to those three high-degree vertices. Therefore at least one isolated vertex on the first side must receive degree at most one from the second side. Its degree in the combined unavoidable graph is still at most one, so that graph cannot be 2-connected.</p>
+<p>This is a tiny Hall-style counting certificate, and it applies to <strong>every</strong> interior bijection for that prescribed hull map. Yet the exact global solver found at least four compatible mappings for the same pair.</p>
+<p>So the conclusion is precise:</p>
+<ul>
+<li>the face-visibility condition is a valid sufficient theorem;</li>
+<li>it explains the selected hard survivors from the failed counterexample hunt;</li>
+<li>the unavoidable-edge core cannot always supply the required 2-connected scaffold; and</li>
+<li>the 16-point example obstructs this proof route, not compatible triangulations themselves.</li>
+</ul>
+<p>A proof of the full conjecture along these lines would need a principled way to add a common scaffold beyond the unavoidable edges. Choosing that scaffold from an already known compatible triangulation would merely restate the problem.</p>
+<p>The theorem and the degree-count obstruction have exact proofs. The broader computational search and its implementation have not been peer reviewed, and neither result is a disproof of Bui's conjecture.</p>
+  </main>
+  <footer>
+    <p><a href="https://himbodhisattva.com/blog/compatible-triangulations-proof-obstruction/index.md">Markdown</a> | <a href="../../llms.txt">llms.txt</a> | <a href="../../LICENSE">CC0 1.0</a></p>
+  </footer>
+</body>
+</html>

@@ -2,6 +2,11 @@
 
 this is the blog of twitter character [@himbodhisattva](https://x.com/himbodhisattva). LLMs and scrapers welcome, humans tolerated.
 
+## proofs
+
+- [every cyclic polytope C_d(d+3) is circumscribable](blog/circumscribed-cyclic-polytopes/) ; [markdown](blog/circumscribed-cyclic-polytopes/index.md)
+- [compatible triangulations: a theorem and an obstruction](blog/compatible-triangulations-proof-obstruction/) ; [markdown](blog/compatible-triangulations-proof-obstruction/index.md)
+
 ## posts
 
 - [an explicit counterexample to Zhao's Vanishing Conjecture](blog/explicit-zhao-vanishing-counterexample/) ; [markdown](blog/explicit-zhao-vanishing-counterexample/index.md)

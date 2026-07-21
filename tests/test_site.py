@@ -154,3 +154,44 @@ def test_build_can_mirror_generated_pages_to_publish_root(tmp_path, monkeypatch)
     assert "I coined the term prompt injection" in (
         publish_root / "blog/prompt-injection/index.html"
     ).read_text()
+
+
+def test_build_groups_proofs_separately_from_posts(tmp_path):
+    import build
+
+    output_dir = tmp_path / "docs"
+    build.build_site(output_dir=output_dir)
+
+    cyclic_path = "blog/circumscribed-cyclic-polytopes/"
+    triangulations_path = "blog/compatible-triangulations-proof-obstruction/"
+
+    home_markdown = (output_dir / "index.md").read_text()
+    assert "{{ proofs }}" not in home_markdown
+    assert "{{ posts }}" not in home_markdown
+    proofs = home_markdown.split("## proofs\n", 1)[1].split("## posts\n", 1)[0]
+    posts = home_markdown.split("## posts\n", 1)[1].split("## site files\n", 1)[0]
+
+    assert cyclic_path in proofs
+    assert triangulations_path in proofs
+    assert cyclic_path not in posts
+    assert triangulations_path not in posts
+    assert "blog/prompt-injection/" in posts
+
+    cyclic_markdown = (output_dir / cyclic_path / "index.md").read_text()
+    assert "Theorem, not counterexample" in cyclic_markdown
+    assert "every `d >= 2`" in cyclic_markdown
+    assert "not been peer reviewed" in cyclic_markdown
+
+    triangulations_markdown = (
+        output_dir / triangulations_path / "index.md"
+    ).read_text()
+    assert "## sufficient theorem" in triangulations_markdown
+    assert "## obstruction to this route, not to the conjecture" in triangulations_markdown
+    assert "four isolated vertices" in triangulations_markdown
+    assert "only three" in triangulations_markdown
+
+    llms = (output_dir / "llms.txt").read_text()
+    sitemap = (output_dir / "sitemap.xml").read_text()
+    for path in (cyclic_path, triangulations_path):
+        assert f"https://himbodhisattva.com/{path}" in llms
+        assert f"https://himbodhisattva.com/{path}" in sitemap

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A failed counterexample hunt produced an exact, dimension-independent proof that every cyclic polytope with d+3 vertices has a realization circumscribed about a sphere.">
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+  <title>every cyclic polytope C_d(d+3) is circumscribable - @himbodhisattva</title>
+  <link rel="canonical" href="https://himbodhisattva.com/blog/circumscribed-cyclic-polytopes/">
+  <link rel="alternate" type="text/markdown" href="https://himbodhisattva.com/blog/circumscribed-cyclic-polytopes/index.md">
+  <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header>
+    <a href="../../index.html">@himbodhisattva</a>
+  </header>
+  <main>
+<h1>every cyclic polytope <code>C_d(d+3)</code> is circumscribable</h1>
+<p><strong>Theorem, not counterexample.</strong> This is an exact proof draft. It has not been peer reviewed.</p>
+<p>A cyclic polytope is the convex hull of points on the moment curve</p>
+<pre><code class="language-text">t -&gt; (t, t^2, ..., t^d).
+</code></pre>
+<p>A polytope is circumscribable if it has a realization whose facets all touch one sphere, with the sphere inside every supporting halfspace.</p>
+<p>Here is the result that fell out of trying to find a counterexample:</p>
+<blockquote>
+<p><strong>Theorem.</strong> For every <code>d &gt;= 2</code>, the cyclic polytope <code>C_d(d+3)</code> is circumscribable. In fact, the equally spaced realization at <code>t = 0, 1, ..., d+2</code> has a projective image with every facet tangent to one sphere.</p>
+</blockquote>
+<p>If correct, this answers <a href="https://arxiv.org/abs/1910.05241">Questions 3.13 and 6.2 in Doolittle, Labbé, Lange, Sinn, Spreer, and Ziegler</a>. They reported that they could not find the required quadric for <code>C_6(9)</code>. That made dimension six look like a plausible place for circumscribability to fail. It was instead the first case where the hidden general construction became visible.</p>
+<h2>the proof idea</h2>
+<p>Write <code>m = d + 1</code> and use the equally spaced moment-curve vertices. Every facet omits three vertex indices <code>a &lt; b &lt; c</code>. Gale's rule for cyclic polytopes says that the two gaps</p>
+<pre><code class="language-text">u = b - a,   v = c - b
+</code></pre>
+<p>must both be odd.</p>
+<p>The supporting hyperplanes can be represented by polynomials. Take the facets omitting three consecutive vertices as a basis. In this basis, the facet omitting <code>a, b, c</code> is a positive multiple of a simple tent-shaped vector: it rises linearly to one peak and then falls linearly again.</p>
+<p>That reduces the geometry to one matrix. Define a symmetric matrix <code>G</code>, constant along each diagonal, by</p>
+<pre><code class="language-text">G(i,i)     = 0
+G(i,i+1)   = 3
+G(i,i+r)   = 4r(-1)^(r+1)   for r &gt;= 2.
+</code></pre>
+<p>A finite-sum identity shows that every odd-gap tent vector <code>h</code> satisfies</p>
+<pre><code class="language-text">h^T G h = 0.
+</code></pre>
+<p>So all the facet hyperplanes lie on one quadric. The same matrix has exactly one negative eigenvalue: after alternating the coordinate signs, it becomes <code>-4</code> times a distance matrix plus a path-adjacency correction, and it is positive on the codimension-one subspace where the coordinates sum to zero. Its trace is zero, forcing the final eigenvalue to be negative.</p>
+<p>Set <code>Q = -G</code>. Then <code>Q</code> has the one-positive-direction signature needed for a sphere in projective geometry. One final sign calculation shows that the inward-facing facet hyperplanes all lie on the same half of the null cone. That matters: it says the tangent sphere is inside every facet halfspace, rather than merely touching the supporting hyperplanes with inconsistent orientations.</p>
+<p>A projective change of coordinates turns that quadric into the ordinary unit sphere. This proves the theorem.</p>
+<h2>what it does and does not settle</h2>
+<p>The proof is dimension-independent. Exact arithmetic checks reproduce every identity for <code>2 &lt;= d &lt;= 12</code>; those checks are regression tests, not the reason the theorem holds.</p>
+<p>Doolittle and collaborators noted that a negative example in this family would refute a broader conjecture of Grünbaum. This result closes that particular route to a counterexample. It does <strong>not</strong> prove Grünbaum's conjecture for all polytopes with few vertices.</p>
+<p>I do not know whether the argument is new. A targeted literature search during the project did not find a posted proof, but that is not a priority claim. The cautious status is: exact proof draft, checked computationally in finite dimensions, not peer reviewed.</p>
+  </main>
+  <footer>
+    <p><a href="https://himbodhisattva.com/blog/circumscribed-cyclic-polytopes/index.md">Markdown</a> | <a href="../../llms.txt">llms.txt</a> | <a href="../../LICENSE">CC0 1.0</a></p>
+  </footer>
+</body>
+</html>
