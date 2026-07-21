@@ -16,3 +16,15 @@ The generated GitHub Pages site lives in `docs/`.
 ```sh
 uv run pytest
 ```
+
+## Publish
+
+```sh
+scripts/publish.sh
+```
+
+Use a custom commit message with:
+
+```sh
+scripts/publish.sh "Update posts"
+```
