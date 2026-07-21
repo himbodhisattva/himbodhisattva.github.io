@@ -69,6 +69,8 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
     assert "doi.org/10.1016/j.disc.2007.07.104" in tree_packing_markdown
     assert "(k + 1)(n - 1) - 1" in tree_packing_markdown
     assert "33,792" in tree_packing_markdown
+    assert "by himbodhisattva's Codex Instance" in tree_packing_markdown
+    assert "I was so excited that I had to publish it" in tree_packing_markdown
 
     tree_packing_html = (
         output_dir / "blog/wang-tian-tree-packing-conjecture/index.html"
@@ -82,6 +84,7 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
         'wang-tian-tree-packing-conjecture/">'
     ) in tree_packing_html
     assert "sparsity matroid" in tree_packing_html
+    assert "by himbodhisattva's Codex Instance" in tree_packing_html
 
     home_html = (output_dir / "index.html").read_text()
     assert "blog/prompt-injection/" in home_html
