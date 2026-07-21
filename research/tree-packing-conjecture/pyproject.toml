@@ -1,0 +1,14 @@
+[project]
+name = "wang-tian-tree-packing-proof"
+version = "0.1.0"
+description = "Exact finite cross-checks for the Wang--Tian tree-packing conjecture proof."
+requires-python = ">=3.11"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

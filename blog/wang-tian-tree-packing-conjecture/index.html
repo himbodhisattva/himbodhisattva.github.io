@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Wang and Tian&#x27;s June 2026 conjecture follows by recognizing their maximal graphs as bases of a sparsity matroid.">
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+  <title>a short proof of Wang–Tian&#x27;s tree-packing conjecture - @himbodhisattva</title>
+  <link rel="canonical" href="https://himbodhisattva.com/blog/wang-tian-tree-packing-conjecture/">
+  <link rel="alternate" type="text/markdown" href="https://himbodhisattva.com/blog/wang-tian-tree-packing-conjecture/index.md">
+  <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header>
+    <a href="../../index.html">@himbodhisattva</a>
+  </header>
+  <main>
+<h1>a short proof of Wang–Tian's tree-packing conjecture</h1>
+<p>on june 26, 2026, qinglin wang and yingzhi tian posted <a href="https://arxiv.org/abs/2606.28198"><em>Extremal graphs with no subgraph admitting k+1 edge-disjoint spanning trees</em></a>. they end with a clean conjecture about saturated tree-packing graphs.</p>
+<p>for a graph <code>G</code>, let <code>tau-bar(G)</code> be the largest number of edge-disjoint spanning trees packed by any subgraph of <code>G</code>. wang and tian call <code>G</code> <code>tau_k</code>-maximal when</p>
+<pre><code class="language-text">tau-bar(G) &lt;= k,
+</code></pre>
+<p>but adding any missing edge raises <code>tau-bar</code> to at least <code>k + 1</code>. their conjecture says that every such simple graph on <code>n &gt;= 2k + 2</code> vertices has</p>
+<pre><code class="language-text">|E(G)| = (k + 1)(n - 1) - 1.
+</code></pre>
+<p>I believe the conjecture has a short proof. these graphs are exactly the bases of a standard sparsity matroid.</p>
+<h2>the proof</h2>
+<p>put <code>r = k + 1</code>. for a vertex set <code>X</code>, write <code>i_G(X)</code> for the number of edges induced by <code>X</code>.</p>
+<p>the first observation is the exact equivalence</p>
+<pre><code class="language-text">tau-bar(G) &lt; r
+
+if and only if
+
+i_G(X) &lt;= r|X| - (r + 1)  for every |X| &gt;= 2.          (1)
+</code></pre>
+<p>one direction is immediate: <code>r</code> edge-disjoint spanning trees on <code>X</code> use <code>r(|X| - 1)</code> distinct edges, one more than the bound in (1). for the other direction, if some <code>X</code> has at least <code>r(|X| - 1)</code> edges, wang and tian's corollary 2.2 says that <code>G[X]</code> has a subgraph packing <code>r</code> spanning trees. that corollary also follows directly by induction from the nash-williams–tutte partition theorem.</p>
+<p>condition (1) is precisely <code>(r, r + 1)</code>-sparsity. because <code>r &gt;= 2</code>, its parameters lie in the matroidal range</p>
+<pre><code class="language-text">0 &lt;= r + 1 &lt;= 2r - 1.
+</code></pre>
+<p>therefore the sparse edge sets are the independent sets of the <code>(r, r + 1)</code> sparsity matroid. this is the standard theorem of audrey lee and ileana streinu; see <a href="https://doi.org/10.1016/j.disc.2007.07.104"><em>Pebble Game Algorithms and Sparse Graphs</em></a> or the <a href="https://arxiv.org/abs/math/0702129">arxiv version</a>.</p>
+<p>there are two small bookkeeping points worth making explicit. upper-range sparsity is imposed on nonempty edge sets, so a singleton vertex does not create a nonsense negative bound. and although the standard ambient object allows parallel copies, restricting its ground set to the single edges of the simple complete graph <code>K_n</code> is a matroid restriction.</p>
+<p>now translate maximality. by (1), a <code>tau_k</code>-maximal graph is an independent set in this matroid for which every missing simple edge creates a dependence, so it is a basis. all bases have the same size.</p>
+<p>it remains only to compute the rank. (1) gives the upper bound</p>
+<pre><code class="language-text">|E(G)| &lt;= rn - (r + 1).
+</code></pre>
+<p>the bound is attained for every <code>n &gt;= 2r</code>. at <code>n = 2r</code>, take the complete graph on <code>2r</code> vertices minus one edge. it has exactly <code>rn - (r + 1)</code> edges and is sparse: for <code>2 &lt;= s &lt;= 2r - 1</code>,</p>
+<pre><code class="language-text">choose(s, 2) &lt;= rs - r - 1,
+</code></pre>
+<p>with the minimum slack <code>r - 2</code> at the two endpoints. for each additional vertex, join it to any <code>r</code> distinct old vertices. a set using no new edge inherits the old bound; a set using at least one gains one vertex and at most <code>r</code> edges. sparsity is preserved, and tight examples exist at every larger order.</p>
+<p>hence every basis has</p>
+<pre><code class="language-text">rn - (r + 1)
+  = r(n - 1) - 1
+  = (k + 1)(n - 1) - 1
+</code></pre>
+<p>edges, proving wang and tian's conjectured formula.</p>
+<h2>if you do not want to black-box the matroid theorem</h2>
+<p>the exchange axiom is short here. call <code>X</code> tight for a sparse edge set <code>A</code> when equality holds in (1). if a missing edge cannot be added to <code>A</code>, its two endpoints lie in an <code>A</code>-tight set. two inclusion-maximal tight sets intersect in at most one vertex: if they shared two, the usual submodular edge count uncrosses them and makes their union tight, contradicting maximality.</p>
+<p>suppose sparse sets <code>A,B</code> satisfy <code>|A| &lt; |B|</code>, but no edge of <code>B - A</code> augments <code>A</code>. cover those edges by the maximal <code>A</code>-tight sets. their induced edge sets are disjoint, and sparsity of <code>B</code> says that inside each one <code>B</code> has no more edges than <code>A</code>. summing gives <code>|B - A| &lt;= |A - B|</code>, contradicting <code>|B| &gt; |A|</code>. so augmentation holds.</p>
+<p>the <a href="https://github.com/himbodhisattva/himbodhisattva.github.io/blob/04016ed667f577adc251286923917c0cb959d8cd/research/tree-packing-conjecture/README.md">full proof audit</a> writes out every inequality, including the singleton and simple-ground-set cases.</p>
+<h2>exact finite cross-check</h2>
+<p>the proof is not computational, but I also wanted a tripwire for a mistranslated definition. two separate exact programs compare:</p>
+<ol>
+<li>the nash-williams–tutte partition criterion for a subgraph packing <code>r</code> spanning trees;</li>
+<li>the induced-set inequalities in (1).</li>
+</ol>
+<p>they agree exhaustively on 33,792 labeled graphs: all graphs at <code>(r,n) = (2,5)</code> and <code>(3,6)</code>. a separate enumeration of the first open parameter case, <code>k = 2, n = 6</code>, finds exactly 15 labeled <code>tau_2</code>-maximal graphs—one <code>K_6</code> minus each possible edge—and all have the predicted 14 edges.</p>
+<ul>
+<li><a href="https://github.com/himbodhisattva/himbodhisattva.github.io/blob/04016ed667f577adc251286923917c0cb959d8cd/research/tree-packing-conjecture/verify.py">exact checker</a></li>
+<li><a href="https://github.com/himbodhisattva/himbodhisattva.github.io/blob/04016ed667f577adc251286923917c0cb959d8cd/research/tree-packing-conjecture/tests/test_verify.py">exhaustive tests</a></li>
+</ul>
+<h2>provenance and status</h2>
+<p>I asked codex to search for a counterexample to a meaningful open conjecture. after several exact but negative searches, it noticed that wang and tian's hereditary density bound is a sparsity-matroid independence condition. the useful move was recognizing an old structure.</p>
+<p>two independent audit passes found no gap in the equivalence, matroid restriction, parameter range, or rank construction. an authenticated X Latest search covering the preceding 24 hours, plus web searches for the arxiv identifier, exact title, <code>tau_k</code>-maximality, and sparsity matroids, found no prior proof or disproof. this reduces the scoop risk but cannot guarantee priority.</p>
+<p>this has not been peer reviewed, and wang and tian have not yet been contacted. the finite checks are supporting evidence only; the claim rests on the proof above and the standard sparsity-matroid theorem.</p>
+  </main>
+  <footer>
+    <p><a href="https://himbodhisattva.com/blog/wang-tian-tree-packing-conjecture/index.md">Markdown</a> | <a href="../../llms.txt">llms.txt</a> | <a href="../../LICENSE">CC0 1.0</a></p>
+  </footer>
+</body>
+</html>

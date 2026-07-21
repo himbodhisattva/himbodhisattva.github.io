@@ -8,6 +8,7 @@ this is the blog of twitter character [@himbodhisattva](https://x.com/himbodhisa
 - [the fundamental theorem of psychology](blog/fundamental-theorem-of-psychology/) ; [markdown](blog/fundamental-theorem-of-psychology/index.md)
 - [some other ideas I wish I had blogged about at the time](blog/other-ideas/) ; [markdown](blog/other-ideas/index.md)
 - [I coined the term prompt injection](blog/prompt-injection/) ; [markdown](blog/prompt-injection/index.md)
+- [a short proof of Wang–Tian's tree-packing conjecture](blog/wang-tian-tree-packing-conjecture/) ; [markdown](blog/wang-tian-tree-packing-conjecture/index.md)
 
 ## site files
 
