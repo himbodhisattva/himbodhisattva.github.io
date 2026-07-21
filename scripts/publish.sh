@@ -10,12 +10,12 @@ uv run pytest
 
 git status --short
 
-git add content docs blog index.html index.md llms.txt robots.txt sitemap.xml style.css
+git add content research docs blog index.html index.md llms.txt robots.txt sitemap.xml style.css
 
 if git diff --cached --quiet; then
   echo "No staged changes to commit."
-  exit 0
+else
+  git commit -m "$message"
 fi
 
-git commit -m "$message"
 git push
