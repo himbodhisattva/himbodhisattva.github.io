@@ -1,0 +1,75 @@
+name: final privacy history cleanup
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  actions: write
+  contents: read
+  deployments: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Delete final stale records
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const staleRunIds = [
+              29806343128,
+              29806306029,
+              29806305283,
+              29806242640,
+              29806241261,
+            ];
+            const staleDeploymentIds = [
+              5533673249,
+              5533666404,
+              5533654225,
+            ];
+
+            const {owner, repo} = context.repo;
+            const failures = [];
+
+            for (const deployment_id of staleDeploymentIds) {
+              try {
+                await github.request(
+                  "DELETE /repos/{owner}/{repo}/deployments/{deployment_id}",
+                  {owner, repo, deployment_id},
+                );
+              } catch (error) {
+                if (error.status === 422) {
+                  await github.request(
+                    "POST /repos/{owner}/{repo}/deployments/{deployment_id}/statuses",
+                    {owner, repo, deployment_id, state: "inactive"},
+                  );
+                  await github.request(
+                    "DELETE /repos/{owner}/{repo}/deployments/{deployment_id}",
+                    {owner, repo, deployment_id},
+                  );
+                } else if (error.status !== 404) {
+                  failures.push(`deployment ${deployment_id}: ${error.status}`);
+                }
+              }
+            }
+
+            for (const run_id of staleRunIds) {
+              try {
+                await github.request(
+                  "DELETE /repos/{owner}/{repo}/actions/runs/{run_id}",
+                  {owner, repo, run_id},
+                );
+              } catch (error) {
+                if (error.status !== 404) {
+                  failures.push(`run ${run_id}: ${error.status}`);
+                }
+              }
+            }
+
+            if (failures.length > 0) {
+              core.setFailed(failures.join("\n"));
+            }
