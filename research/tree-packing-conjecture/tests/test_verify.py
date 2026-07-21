@@ -70,7 +70,8 @@ def test_smallest_k2_tau_maximal_graphs_are_exactly_k6_minus_one_edge() -> None:
     assert len(maximal_graphs) == len(all_edges)
     assert {len(edges) for edges in maximal_graphs} == {14}
     assert {
-        next(edge for edge in all_edges if edge not in edges) for edges in maximal_graphs
+        next(edge for edge in all_edges if edge not in edges)
+        for edges in maximal_graphs
     } == set(all_edges)
 
 
@@ -91,7 +92,8 @@ def test_explicit_tight_construction_meets_the_claimed_rank() -> None:
             missing_edges = set(complete_edges(order)) - set(edges)
             assert missing_edges
             assert all(
-                not is_sparse(order, (*edges, edge), packing_count) for edge in missing_edges
+                not is_sparse(order, (*edges, edge), packing_count)
+                for edge in missing_edges
             )
 
 
@@ -101,7 +103,10 @@ def test_explicit_tight_construction_meets_the_claimed_rank() -> None:
         (lambda: is_sparse(4.0, (), 2), "order must be a plain integer"),
         (lambda: is_sparse(4, ((0.5, 1),), 2), "endpoints must be plain integers"),
         (lambda: is_sparse(4, (), 2.0), "packing_count must be a plain integer"),
-        (lambda: has_packing_subgraph_exact(True, (), 2), "order must be a plain integer"),
+        (
+            lambda: has_packing_subgraph_exact(True, (), 2),
+            "order must be a plain integer",
+        ),
         (lambda: is_tau_maximal_exact(4, (), k=1.0), "k must be a plain integer"),
         (
             lambda: construct_tight_sparse_graph(4, packing_count=False),
