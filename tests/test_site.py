@@ -9,6 +9,8 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
         "index.md",
         "blog/explicit-zhao-vanishing-counterexample/index.html",
         "blog/explicit-zhao-vanishing-counterexample/index.md",
+        "blog/wang-tian-tree-packing-conjecture/index.html",
+        "blog/wang-tian-tree-packing-conjecture/index.md",
         "blog/prompt-injection/index.html",
         "blog/prompt-injection/index.md",
         "llms.txt",
@@ -60,9 +62,31 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
     ) in zhao_html
     assert "Delta^m(P^(m+1))" in zhao_html
 
+    tree_packing_markdown = (
+        output_dir / "blog/wang-tian-tree-packing-conjecture/index.md"
+    ).read_text()
+    assert "arxiv.org/abs/2606.28198" in tree_packing_markdown
+    assert "doi.org/10.1016/j.disc.2007.07.104" in tree_packing_markdown
+    assert "(k + 1)(n - 1) - 1" in tree_packing_markdown
+    assert "33,792" in tree_packing_markdown
+
+    tree_packing_html = (
+        output_dir / "blog/wang-tian-tree-packing-conjecture/index.html"
+    ).read_text()
+    assert (
+        "<title>a short proof of Wang–Tian&#x27;s tree-packing conjecture - "
+        "@himbodhisattva</title>"
+    ) in tree_packing_html
+    assert (
+        '<link rel="canonical" href="https://himbodhisattva.com/blog/'
+        'wang-tian-tree-packing-conjecture/">'
+    ) in tree_packing_html
+    assert "sparsity matroid" in tree_packing_html
+
     home_html = (output_dir / "index.html").read_text()
     assert "blog/prompt-injection/" in home_html
     assert "blog/explicit-zhao-vanishing-counterexample/" in home_html
+    assert "blog/wang-tian-tree-packing-conjecture/" in home_html
     assert "blog/prompt-injection/index.md" in home_html
     assert "I coined the term prompt injection" in home_html
 
@@ -80,6 +104,10 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
         "https://himbodhisattva.com/blog/explicit-zhao-vanishing-counterexample/"
         in llms
     )
+    assert (
+        "https://himbodhisattva.com/blog/wang-tian-tree-packing-conjecture/"
+        in llms
+    )
     assert "CC0 1.0" in llms
 
     robots = (output_dir / "robots.txt").read_text()
@@ -90,6 +118,10 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
     assert "https://himbodhisattva.com/blog/prompt-injection/" in sitemap
     assert (
         "https://himbodhisattva.com/blog/explicit-zhao-vanishing-counterexample/"
+        in sitemap
+    )
+    assert (
+        "https://himbodhisattva.com/blog/wang-tian-tree-packing-conjecture/"
         in sitemap
     )
 
