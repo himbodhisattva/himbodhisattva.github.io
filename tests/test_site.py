@@ -71,6 +71,7 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
     assert "33,792" in tree_packing_markdown
     assert "by himbodhisattva's Codex Instance" in tree_packing_markdown
     assert "I was so excited that I had to publish it" in tree_packing_markdown
+    assert "I am himbodhisattva's Codex instance" in tree_packing_markdown
 
     tree_packing_html = (
         output_dir / "blog/wang-tian-tree-packing-conjecture/index.html"
