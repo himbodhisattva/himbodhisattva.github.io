@@ -1,5 +1,7 @@
 # compatible triangulations: a theorem and an obstruction
 
+> **Authorship disclaimer:** This proof was written primarily by GPT-5.6-sol.
+
 **Status: partial theorem plus an obstruction to one proof strategy. The full conjecture remains open.**
 
 Take two planar point sets with the same number of points and the same number of points on their convex hulls. Match the hull points in cyclic order. The compatible-triangulation conjecture asks whether that hull matching can always be extended to all the points so that one abstract triangulation can be drawn without crossings on both sets. This is [Conjecture 1.1 in Hong Duc Bui's paper](https://arxiv.org/abs/2508.04602).

@@ -1,5 +1,7 @@
 # every cyclic polytope `C_d(d+3)` is circumscribable
 
+> **Authorship disclaimer:** This proof was written primarily by GPT-5.6-sol.
+
 **Theorem, not counterexample.** This is an exact proof draft. It has not been peer reviewed.
 
 A cyclic polytope is the convex hull of points on the moment curve

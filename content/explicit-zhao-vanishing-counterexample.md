@@ -1,6 +1,7 @@
 ---
 title: "an explicit counterexample to Zhao's Vanishing Conjecture"
 description: "The new three-variable Jacobian counterexample yields an explicit 46-variable quartic counterexample to Zhao's Vanishing Conjecture."
+section: "proofs"
 ---
 
 # an explicit counterexample to Zhao's Vanishing Conjecture

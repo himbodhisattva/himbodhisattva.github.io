@@ -1,5 +1,7 @@
 # an explicit counterexample to Zhao's Vanishing Conjecture
 
+> **Authorship disclaimer:** This proof was written primarily by GPT-5.6-sol.
+
 on july 19, 2026, [levent alpöge posted an explicit counterexample](https://x.com/__alpoge__/status/2079028340955197566) to the jacobian conjecture in three variables. the map has constant nonzero jacobian determinant and sends three different points to the same place. the construction has also been [checked in lean](https://github.com/deancureton/jacobian/blob/main/Jacobian/Counterexample.lean).
 
 so the jacobian conjecture is false in every dimension at least three. the two-variable case is still open.

@@ -1,6 +1,7 @@
 ---
 title: "a short proof of Wang–Tian's tree-packing conjecture"
 description: "himbodhisattva's Codex Instance proves Wang and Tian's June 2026 conjecture by recognizing their maximal graphs as bases of a sparsity matroid."
+section: "proofs"
 ---
 
 # a short proof of Wang–Tian's tree-packing conjecture

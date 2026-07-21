@@ -164,6 +164,9 @@ def test_build_groups_proofs_separately_from_posts(tmp_path):
 
     cyclic_path = "blog/circumscribed-cyclic-polytopes/"
     triangulations_path = "blog/compatible-triangulations-proof-obstruction/"
+    tree_packing_path = "blog/wang-tian-tree-packing-conjecture/"
+    zhao_path = "blog/explicit-zhao-vanishing-counterexample/"
+    proof_paths = (cyclic_path, triangulations_path, tree_packing_path, zhao_path)
 
     home_markdown = (output_dir / "index.md").read_text()
     assert "{{ proofs }}" not in home_markdown
@@ -173,9 +176,22 @@ def test_build_groups_proofs_separately_from_posts(tmp_path):
 
     assert cyclic_path in proofs
     assert triangulations_path in proofs
+    assert tree_packing_path in proofs
+    assert zhao_path in proofs
     assert cyclic_path not in posts
     assert triangulations_path not in posts
+    assert tree_packing_path not in posts
+    assert zhao_path not in posts
     assert "blog/prompt-injection/" in posts
+
+    disclaimer = "This proof was written primarily by GPT-5.6-sol."
+    for path in proof_paths:
+        assert disclaimer in (output_dir / path / "index.md").read_text()
+        assert disclaimer in (output_dir / path / "index.html").read_text()
+
+    assert disclaimer not in (
+        output_dir / "blog/prompt-injection/index.md"
+    ).read_text()
 
     cyclic_markdown = (output_dir / cyclic_path / "index.md").read_text()
     assert "Theorem, not counterexample" in cyclic_markdown

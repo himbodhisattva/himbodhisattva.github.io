@@ -15,6 +15,9 @@ DEFAULT_OUTPUT_DIR = ROOT / "docs"
 SITE_URL = "https://himbodhisattva.com"
 SITE_TITLE = "@himbodhisattva"
 LICENSE_URL = "https://creativecommons.org/publicdomain/zero/1.0/"
+PROOF_DISCLAIMER = (
+    "> **Authorship disclaimer:** This proof was written primarily by GPT-5.6-sol."
+)
 PUBLISHED_FILENAMES = {
     ".nojekyll",
     "CNAME",
@@ -137,6 +140,12 @@ def expand_markdown(body: str, page: Page, pages: list[Page]) -> str:
             .replace("{{ proofs }}", page_list_markdown(pages, "proofs").rstrip())
             .replace("{{ posts }}", page_list_markdown(pages, "posts").rstrip())
         )
+    if page.section == "proofs":
+        heading, separator, remainder = body.partition("\n")
+        if separator and heading.startswith("# "):
+            remainder = remainder.lstrip("\n")
+            return f"{heading}\n\n{PROOF_DISCLAIMER}\n\n{remainder}"
+        return f"{PROOF_DISCLAIMER}\n\n{body}"
     return body
 
 
