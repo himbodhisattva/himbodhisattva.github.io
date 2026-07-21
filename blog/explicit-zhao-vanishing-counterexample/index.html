@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The new three-variable Jacobian counterexample yields an explicit 46-variable quartic counterexample to Zhao&#x27;s Vanishing Conjecture.">
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+  <title>an explicit counterexample to Zhao&#x27;s Vanishing Conjecture - @himbodhisattva</title>
+  <link rel="canonical" href="https://himbodhisattva.com/blog/explicit-zhao-vanishing-counterexample/">
+  <link rel="alternate" type="text/markdown" href="https://himbodhisattva.com/blog/explicit-zhao-vanishing-counterexample/index.md">
+  <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header>
+    <a href="../../index.html">@himbodhisattva</a>
+  </header>
+  <main>
+<h1>an explicit counterexample to Zhao's Vanishing Conjecture</h1>
+<p>on july 19, 2026, <a href="https://x.com/__alpoge__/status/2079028340955197566">levent alpöge posted an explicit counterexample</a> to the jacobian conjecture in three variables. the map has constant nonzero jacobian determinant and sends three different points to the same place. the construction has also been <a href="https://github.com/deancureton/jacobian/blob/main/Jacobian/Counterexample.lean">checked in lean</a>.</p>
+<p>so the jacobian conjecture is false in every dimension at least three. the two-variable case is still open.</p>
+<p>i asked codex to go counterexample hunting. it did not magically break ryser, seymour's second-neighborhood conjecture, or frankl's union-closed sets conjecture. it did find a more grounded casualty of the jacobian counterexample: an explicit homogeneous quartic that refutes Zhao's Vanishing Conjecture.</p>
+<h2>the result</h2>
+<p>there is an explicit homogeneous quartic</p>
+<p><code>P in Q(i)[A1,...,A23,B1,...,B23]</code></p>
+<p>with 410 terms such that:</p>
+<ul>
+<li><code>Hess(P)</code> is nilpotent;</li>
+<li>the map <code>Z - grad(P)</code> sends three distinct exact points to the same image;</li>
+<li><code>Delta^m(P^m) = 0</code> for every positive <code>m</code>; and</li>
+<li><code>Delta^m(P^(m+1))</code> is nonzero for infinitely many <code>m</code>.</li>
+</ul>
+<p>the last two lines say exactly that <code>P</code> is a counterexample to the homogeneous quartic Vanishing Conjecture in <a href="https://arxiv.org/abs/math/0409534v2">Zhao's formulation</a>.</p>
+<p>this is not only an existence argument. the polynomial, all three collision points, and their common image are serialized over <code>Q(i)</code> in a machine-readable certificate. the verifier reconstructs the 410-term polynomial, differentiates it, and checks the collision with exact arithmetic.</p>
+<h2>where it comes from</h2>
+<p>the extraction is a chain of old reductions applied to the new map:</p>
+<ol>
+<li>start with a public 11-variable degree-at-most-three stable lift of alpöge's map, <a href="https://gist.github.com/Spacerat/08b4a43f6b6ca57178efabc220170ce8/2224dace71e8763a8621a7f557bbc545a53aa820">posted by Spacerat</a> and credited there to chatgpt. its full symbolic jacobian determinant is <code>-2</code>.</li>
+<li>normalize the linear part and apply the <a href="https://doi.org/10.1090/S0273-0979-1982-15032-7">Bass-Connell-Wright reduction</a>. this produces a cubic-homogeneous map <code>Id + H</code> in 23 variables with nilpotent <code>JH</code> and an exact three-point collision.</li>
+<li>apply the <a href="https://doi.org/10.1090/S0002-9939-05-07570-2">de Bondt-van den Essen symmetric lift</a>. this produces the quartic <code>P</code> in 46 variables with nilpotent hessian and carries the collision to <code>Id - grad(P)</code>.</li>
+<li>Zhao's inversion formula turns eventual vanishing of <code>Delta^m(P^(m+1))</code> into a polynomial inverse for <code>Id - grad(P)</code>. the collision makes that impossible.</li>
+</ol>
+<p>the verifier checks the original determinant, the normalization and homogeneous decomposition, the block identities behind the 23-variable nilpotence argument, and every collision. the 46-variable hessian step and the laplacian consequences use the cited published theorems rather than an expanded symbolic matrix power.</p>
+<h2>code and certificate</h2>
+<ul>
+<li><a href="https://github.com/himbodhisattva/himbodhisattva.github.io/tree/8088b825bb001ac75ff7d547b5bf82e37f55f1a0/research/zhao-vanishing-counterexample">self-contained source and proof sketch</a></li>
+<li><a href="https://raw.githubusercontent.com/himbodhisattva/himbodhisattva.github.io/8088b825bb001ac75ff7d547b5bf82e37f55f1a0/research/zhao-vanishing-counterexample/artifacts/counterexample.json">exact 410-term certificate</a></li>
+<li><a href="https://github.com/himbodhisattva/himbodhisattva.github.io/blob/8088b825bb001ac75ff7d547b5bf82e37f55f1a0/research/zhao-vanishing-counterexample/verify_counterexample.py">verification script</a></li>
+</ul>
+<p>the certificate's sha-256 is <code>b719b1a64d83b96c19455e4292c9f02778335374632bce8d7dcb9bd7b686dfd2</code>. four exact tests pass.</p>
+<h2>epistemic status</h2>
+<p>this is a conventional computer-assisted proof built from exact finite checks and published reduction theorems. multiple independent audit passes found no remaining algebraic or sign error; one of them caught an important sign before publication.</p>
+<p>it has not been peer reviewed, and I am not claiming priority. <a href="https://zzhang-iu.github.io/papers/direct-consequences-jacobian/">Z. Zhang's july 20 note</a> already records the failure of Zhao's conjecture as an existential consequence of the new jacobian counterexample and asks for a small explicit quartic. this is one concrete extraction: 46 variables, 410 terms, exact collision included.</p>
+  </main>
+  <footer>
+    <p><a href="https://himbodhisattva.com/blog/explicit-zhao-vanishing-counterexample/index.md">Markdown</a> | <a href="../../llms.txt">llms.txt</a> | <a href="../../LICENSE">CC0 1.0</a></p>
+  </footer>
+</body>
+</html>

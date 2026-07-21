@@ -7,6 +7,8 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
     expected_files = {
         "index.html",
         "index.md",
+        "blog/explicit-zhao-vanishing-counterexample/index.html",
+        "blog/explicit-zhao-vanishing-counterexample/index.md",
         "blog/prompt-injection/index.html",
         "blog/prompt-injection/index.md",
         "llms.txt",
@@ -39,8 +41,28 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
     assert "I coined the term prompt injection" in prompt_html
     assert "https://x.com/himbodhisattva/status/1525182881726730240" in prompt_html
 
+    zhao_markdown = (
+        output_dir / "blog/explicit-zhao-vanishing-counterexample/index.md"
+    ).read_text()
+    assert "b719b1a64d83b96c19455e4292c9f02778335374632bce8d7dcb9bd7b686dfd2" in zhao_markdown
+    assert "8088b825bb001ac75ff7d547b5bf82e37f55f1a0" in zhao_markdown
+
+    zhao_html = (
+        output_dir / "blog/explicit-zhao-vanishing-counterexample/index.html"
+    ).read_text()
+    assert (
+        "<title>an explicit counterexample to Zhao&#x27;s Vanishing Conjecture - "
+        "@himbodhisattva</title>"
+    ) in zhao_html
+    assert (
+        '<link rel="canonical" href="https://himbodhisattva.com/blog/'
+        'explicit-zhao-vanishing-counterexample/">'
+    ) in zhao_html
+    assert "Delta^m(P^(m+1))" in zhao_html
+
     home_html = (output_dir / "index.html").read_text()
     assert "blog/prompt-injection/" in home_html
+    assert "blog/explicit-zhao-vanishing-counterexample/" in home_html
     assert "blog/prompt-injection/index.md" in home_html
     assert "I coined the term prompt injection" in home_html
 
@@ -54,6 +76,10 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
     llms = (output_dir / "llms.txt").read_text()
     assert "https://himbodhisattva.com/blog/prompt-injection/index.md" in llms
     assert "https://himbodhisattva.com/blog/prompt-injection/" in llms
+    assert (
+        "https://himbodhisattva.com/blog/explicit-zhao-vanishing-counterexample/"
+        in llms
+    )
     assert "CC0 1.0" in llms
 
     robots = (output_dir / "robots.txt").read_text()
@@ -62,6 +88,10 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
 
     sitemap = (output_dir / "sitemap.xml").read_text()
     assert "https://himbodhisattva.com/blog/prompt-injection/" in sitemap
+    assert (
+        "https://himbodhisattva.com/blog/explicit-zhao-vanishing-counterexample/"
+        in sitemap
+    )
 
     license_text = (output_dir / "LICENSE").read_text()
     assert "CC0 1.0 Universal" in license_text

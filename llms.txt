@@ -7,6 +7,7 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
 ## Core pages
 
 - [Home](https://himbodhisattva.com/index.md)
+- [an explicit counterexample to Zhao's Vanishing Conjecture](https://himbodhisattva.com/blog/explicit-zhao-vanishing-counterexample/index.md)
 - [the fundamental theorem of psychology](https://himbodhisattva.com/blog/fundamental-theorem-of-psychology/index.md)
 - [some other ideas I wish I had blogged about at the time](https://himbodhisattva.com/blog/other-ideas/index.md)
 - [I coined the term prompt injection](https://himbodhisattva.com/blog/prompt-injection/index.md)
@@ -14,6 +15,7 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
 ## HTML versions
 
 - [Home](https://himbodhisattva.com/)
+- [an explicit counterexample to Zhao's Vanishing Conjecture](https://himbodhisattva.com/blog/explicit-zhao-vanishing-counterexample/)
 - [the fundamental theorem of psychology](https://himbodhisattva.com/blog/fundamental-theorem-of-psychology/)
 - [some other ideas I wish I had blogged about at the time](https://himbodhisattva.com/blog/other-ideas/)
 - [I coined the term prompt injection](https://himbodhisattva.com/blog/prompt-injection/)
