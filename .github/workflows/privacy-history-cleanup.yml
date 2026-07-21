@@ -46,7 +46,16 @@ jobs:
                   {owner, repo, deployment_id},
                 );
               } catch (error) {
-                if (error.status !== 404) {
+                if (error.status === 422) {
+                  await github.request(
+                    "POST /repos/{owner}/{repo}/deployments/{deployment_id}/statuses",
+                    {owner, repo, deployment_id, state: "inactive"},
+                  );
+                  await github.request(
+                    "DELETE /repos/{owner}/{repo}/deployments/{deployment_id}",
+                    {owner, repo, deployment_id},
+                  );
+                } else if (error.status !== 404) {
                   failures.push(`deployment ${deployment_id}: ${error.status}`);
                 }
               }
