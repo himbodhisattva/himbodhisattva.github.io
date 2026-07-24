@@ -156,6 +156,39 @@ def test_build_can_mirror_generated_pages_to_publish_root(tmp_path, monkeypatch)
     ).read_text()
 
 
+def test_anger_shame_post_keeps_primary_tweet_receipts(tmp_path):
+    import build
+
+    output_dir = tmp_path / "docs"
+    build.build_site(output_dir=output_dir)
+
+    post_path = "blog/anger-shame-and-the-moral-order"
+    post_markdown = (output_dir / post_path / "index.md").read_text()
+    post_html = (output_dir / post_path / "index.html").read_text()
+    tweet_ids = {
+        "2078346409913577760",
+        "2078352918567440529",
+        "2078379207273619647",
+        "2078480388671049889",
+        "2078567575643205889",
+        "2078678337128685945",
+        "2079007467447652808",
+        "2079218762549727727",
+        "2079222933692830070",
+    }
+
+    for tweet_id in tweet_ids:
+        assert f"https://x.com/himbodhisattva/status/{tweet_id}" in post_markdown
+        assert f"https://x.com/himbodhisattva/status/{tweet_id}" in post_html
+
+    home_markdown = (output_dir / "index.md").read_text()
+    llms = (output_dir / "llms.txt").read_text()
+    sitemap = (output_dir / "sitemap.xml").read_text()
+    assert f"{post_path}/" in home_markdown
+    assert f"https://himbodhisattva.com/{post_path}/" in llms
+    assert f"https://himbodhisattva.com/{post_path}/" in sitemap
+
+
 def test_build_groups_proofs_separately_from_posts(tmp_path):
     import build
 
