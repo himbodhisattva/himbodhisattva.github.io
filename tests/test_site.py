@@ -192,6 +192,58 @@ def test_anger_shame_post_keeps_primary_tweet_receipts(tmp_path):
     assert f"https://himbodhisattva.com/{post_path}/" in sitemap
 
 
+def test_us_israel_value_post_is_ai_labeled_and_cited(tmp_path):
+    import build
+
+    output_dir = tmp_path / "docs"
+    build.build_site(output_dir=output_dir)
+
+    post_path = "blog/us-israel-lifetime-economic-value"
+    post_markdown = (output_dir / post_path / "index.md").read_text()
+    post_html = (output_dir / post_path / "index.html").read_text()
+    source_urls = (
+        "https://www.everycrsreport.com/reports/RL33222.html",
+        "https://ustr.gov/countries-regions/europe-middle-east/"
+        "middle-eastnorth-africa/israel",
+        "https://www.usitc.gov/publications/332/pub4614.pdf",
+            "https://www.af.mil/About-Us/Fact-Sheets/Display/Article/104571/"
+            "litening-advance-targeting/",
+            "https://unwritten-record.blogs.archives.gov/2022/10/18/"
+            "throw-a-nickel-on-the-grass-and-have-a-doughnut/",
+        "https://www.armyupress.army.mil/Journals/Military-Review/"
+        "English-Edition-Archives/January-February-2020/Orwin-US-Israeli/",
+        "https://www.dni.gov/index.php/what-we-do/ic-budget",
+        "https://history.state.gov/historicaldocuments/frus1969-76v24/d299",
+        "https://www.gao.gov/products/t-nsiad-91-34",
+        "https://history.state.gov/milestones/1969-1976/oil-embargo",
+        "https://www.gao.gov/assets/emd-77-20.pdf",
+        "https://apnews.com/article/iran-war-hegseth-military-deaths-95-billion-"
+        "7d158708c3e5385683930f8b839d0344",
+    )
+
+    assert "> **AI-written.**" in post_markdown
+    assert "<strong>AI-written.</strong>" in post_html
+    assert post_html.count("<table>") >= 4
+    style = (output_dir / "style.css").read_text()
+    assert "overflow-x: auto" in style
+    assert "border-collapse: collapse" in style
+    assert "overflow-wrap: anywhere" in style
+    assert "$390 billion" in post_markdown
+    assert "$425 billion" in post_markdown
+    assert "−$35 billion" in post_markdown
+    assert "model-based estimates, not published economic results" in post_markdown
+    for source_url in source_urls:
+        assert source_url in post_markdown
+        assert source_url in post_html
+
+    home_markdown = (output_dir / "index.md").read_text()
+    llms = (output_dir / "llms.txt").read_text()
+    sitemap = (output_dir / "sitemap.xml").read_text()
+    assert f"{post_path}/" in home_markdown
+    assert f"https://himbodhisattva.com/{post_path}/" in llms
+    assert f"https://himbodhisattva.com/{post_path}/" in sitemap
+
+
 def test_build_groups_proofs_separately_from_posts(tmp_path):
     import build
 

@@ -14,6 +14,7 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
 - [the fundamental theorem of psychology](https://himbodhisattva.com/blog/fundamental-theorem-of-psychology/index.md)
 - [some other ideas I wish I had blogged about at the time](https://himbodhisattva.com/blog/other-ideas/index.md)
 - [I coined the term prompt injection](https://himbodhisattva.com/blog/prompt-injection/index.md)
+- [estimating the lifetime economic value of the U.S.–Israel relationship](https://himbodhisattva.com/blog/us-israel-lifetime-economic-value/index.md)
 - [a short proof of Wang–Tian's tree-packing conjecture](https://himbodhisattva.com/blog/wang-tian-tree-packing-conjecture/index.md)
 
 ## HTML versions
@@ -26,6 +27,7 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
 - [the fundamental theorem of psychology](https://himbodhisattva.com/blog/fundamental-theorem-of-psychology/)
 - [some other ideas I wish I had blogged about at the time](https://himbodhisattva.com/blog/other-ideas/)
 - [I coined the term prompt injection](https://himbodhisattva.com/blog/prompt-injection/)
+- [estimating the lifetime economic value of the U.S.–Israel relationship](https://himbodhisattva.com/blog/us-israel-lifetime-economic-value/)
 - [a short proof of Wang–Tian's tree-packing conjecture](https://himbodhisattva.com/blog/wang-tian-tree-packing-conjecture/)
 
 ## License
