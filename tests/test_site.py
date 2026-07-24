@@ -7,6 +7,8 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
     expected_files = {
         "index.html",
         "index.md",
+        "proofs/index.html",
+        "proofs/index.md",
         "blog/explicit-zhao-vanishing-counterexample/index.html",
         "blog/explicit-zhao-vanishing-counterexample/index.md",
         "blog/wang-tian-tree-packing-conjecture/index.html",
@@ -89,8 +91,9 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
 
     home_html = (output_dir / "index.html").read_text()
     assert "blog/prompt-injection/" in home_html
-    assert "blog/explicit-zhao-vanishing-counterexample/" in home_html
-    assert "blog/wang-tian-tree-packing-conjecture/" in home_html
+    assert "blog/explicit-zhao-vanishing-counterexample/" not in home_html
+    assert "blog/wang-tian-tree-packing-conjecture/" not in home_html
+    assert 'href="proofs/"' in home_html
     assert "blog/prompt-injection/index.md" in home_html
     assert "I coined the term prompt injection" in home_html
 
@@ -146,6 +149,8 @@ def test_build_can_mirror_generated_pages_to_publish_root(tmp_path, monkeypatch)
     build.build_site(output_dir=output_dir, mirror_root=True)
 
     assert (publish_root / "index.html").exists()
+    assert (publish_root / "proofs/index.html").exists()
+    assert (publish_root / "proofs/index.md").exists()
     assert (publish_root / "llms.txt").exists()
     assert (publish_root / ".nojekyll").exists()
     assert (publish_root / "CNAME").read_text() == "himbodhisattva.com\n"
@@ -244,7 +249,7 @@ def test_us_israel_value_post_is_ai_labeled_and_cited(tmp_path):
     assert f"https://himbodhisattva.com/{post_path}/" in sitemap
 
 
-def test_build_groups_proofs_separately_from_posts(tmp_path):
+def test_build_lists_proofs_only_on_the_proofs_index(tmp_path):
     import build
 
     output_dir = tmp_path / "docs"
@@ -257,20 +262,33 @@ def test_build_groups_proofs_separately_from_posts(tmp_path):
     proof_paths = (cyclic_path, triangulations_path, tree_packing_path, zhao_path)
 
     home_markdown = (output_dir / "index.md").read_text()
+    home_html = (output_dir / "index.html").read_text()
+    proofs_markdown = (output_dir / "proofs/index.md").read_text()
+    proofs_html = (output_dir / "proofs/index.html").read_text()
+
     assert "{{ proofs }}" not in home_markdown
     assert "{{ posts }}" not in home_markdown
-    proofs = home_markdown.split("## proofs\n", 1)[1].split("## posts\n", 1)[0]
-    posts = home_markdown.split("## posts\n", 1)[1].split("## site files\n", 1)[0]
+    assert "## proofs" not in home_markdown
+    assert "<h2>proofs</h2>" not in home_html
+    assert "[proofs](proofs/)" in home_markdown
+    assert 'href="proofs/"' in home_html
 
-    assert cyclic_path in proofs
-    assert triangulations_path in proofs
-    assert tree_packing_path in proofs
-    assert zhao_path in proofs
-    assert cyclic_path not in posts
-    assert triangulations_path not in posts
-    assert tree_packing_path not in posts
-    assert zhao_path not in posts
-    assert "blog/prompt-injection/" in posts
+    assert "# proofs" in proofs_markdown
+    assert "<h1>proofs</h1>" in proofs_html
+    assert "{{ proofs }}" not in proofs_markdown
+    assert (
+        '<link rel="canonical" href="https://himbodhisattva.com/proofs/">'
+        in proofs_html
+    )
+
+    assert cyclic_path in proofs_markdown
+    assert triangulations_path in proofs_markdown
+    assert tree_packing_path in proofs_markdown
+    assert zhao_path in proofs_markdown
+    assert "blog/prompt-injection/" not in proofs_markdown
+    for path in proof_paths:
+        assert path not in home_markdown
+        assert path not in home_html
 
     disclaimer = "This proof was written primarily by GPT-5.6-sol."
     for path in proof_paths:
@@ -299,3 +317,42 @@ def test_build_groups_proofs_separately_from_posts(tmp_path):
     for path in (cyclic_path, triangulations_path):
         assert f"https://himbodhisattva.com/{path}" in llms
         assert f"https://himbodhisattva.com/{path}" in sitemap
+
+
+def test_desktop_essays_are_published_with_requested_statuses(tmp_path):
+    import build
+
+    output_dir = tmp_path / "docs"
+    build.build_site(output_dir=output_dir)
+
+    after_path = output_dir / "blog/after-the-view-from-nowhere"
+    uziel_path = output_dir / "blog/rav-uziel-the-gates-we-guard"
+    after_markdown = (after_path / "index.md").read_text()
+    after_html = (after_path / "index.html").read_text()
+    uziel_markdown = (uziel_path / "index.md").read_text()
+    uziel_html = (uziel_path / "index.html").read_text()
+
+    assert "# After the View from Nowhere (draft)" in after_markdown
+    assert "<h1>After the View from Nowhere (draft)</h1>" in after_html
+    assert "Friday arrives whether or not the argument is finished" in after_markdown
+    assert (
+        "https://himbodhisattva.com/blog/rav-uziel-the-gates-we-guard/"
+        in after_markdown
+    )
+
+    assert "# Rav Uziel and the Gates We Guard (stub)" in uziel_markdown
+    assert "<h1>Rav Uziel and the Gates We Guard (stub)</h1>" in uziel_html
+    assert "Working stub for a later essay." in uziel_markdown
+    assert "## Sources to Develop" in uziel_markdown
+
+    home_markdown = (output_dir / "index.md").read_text()
+    assert (
+        "[After the View from Nowhere (draft)]"
+        "(blog/after-the-view-from-nowhere/)"
+        in home_markdown
+    )
+    assert (
+        "[Rav Uziel and the Gates We Guard (stub)]"
+        "(blog/rav-uziel-the-gates-we-guard/)"
+        in home_markdown
+    )

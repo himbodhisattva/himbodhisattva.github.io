@@ -7,6 +7,7 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
 ## Core pages
 
 - [Home](https://himbodhisattva.com/index.md)
+- [After the View from Nowhere (draft)](https://himbodhisattva.com/blog/after-the-view-from-nowhere/index.md)
 - [what anger and shame are for (draft)](https://himbodhisattva.com/blog/anger-shame-and-the-moral-order/index.md)
 - [every cyclic polytope C_d(d+3) is circumscribable](https://himbodhisattva.com/blog/circumscribed-cyclic-polytopes/index.md)
 - [compatible triangulations: a theorem and an obstruction](https://himbodhisattva.com/blog/compatible-triangulations-proof-obstruction/index.md)
@@ -14,12 +15,15 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
 - [the fundamental theorem of psychology](https://himbodhisattva.com/blog/fundamental-theorem-of-psychology/index.md)
 - [some other ideas I wish I had blogged about at the time](https://himbodhisattva.com/blog/other-ideas/index.md)
 - [I coined the term prompt injection](https://himbodhisattva.com/blog/prompt-injection/index.md)
+- [proofs](https://himbodhisattva.com/proofs/index.md)
+- [Rav Uziel and the Gates We Guard (stub)](https://himbodhisattva.com/blog/rav-uziel-the-gates-we-guard/index.md)
 - [estimating the lifetime economic value of the U.S.–Israel relationship](https://himbodhisattva.com/blog/us-israel-lifetime-economic-value/index.md)
 - [a short proof of Wang–Tian's tree-packing conjecture](https://himbodhisattva.com/blog/wang-tian-tree-packing-conjecture/index.md)
 
 ## HTML versions
 
 - [Home](https://himbodhisattva.com/)
+- [After the View from Nowhere (draft)](https://himbodhisattva.com/blog/after-the-view-from-nowhere/)
 - [what anger and shame are for (draft)](https://himbodhisattva.com/blog/anger-shame-and-the-moral-order/)
 - [every cyclic polytope C_d(d+3) is circumscribable](https://himbodhisattva.com/blog/circumscribed-cyclic-polytopes/)
 - [compatible triangulations: a theorem and an obstruction](https://himbodhisattva.com/blog/compatible-triangulations-proof-obstruction/)
@@ -27,6 +31,8 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
 - [the fundamental theorem of psychology](https://himbodhisattva.com/blog/fundamental-theorem-of-psychology/)
 - [some other ideas I wish I had blogged about at the time](https://himbodhisattva.com/blog/other-ideas/)
 - [I coined the term prompt injection](https://himbodhisattva.com/blog/prompt-injection/)
+- [proofs](https://himbodhisattva.com/proofs/)
+- [Rav Uziel and the Gates We Guard (stub)](https://himbodhisattva.com/blog/rav-uziel-the-gates-we-guard/)
 - [estimating the lifetime economic value of the U.S.–Israel relationship](https://himbodhisattva.com/blog/us-israel-lifetime-economic-value/)
 - [a short proof of Wang–Tian's tree-packing conjecture](https://himbodhisattva.com/blog/wang-tian-tree-packing-conjecture/)
 

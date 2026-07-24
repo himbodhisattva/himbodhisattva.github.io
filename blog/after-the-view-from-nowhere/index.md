@@ -1,0 +1,127 @@
+# After the View from Nowhere (draft)
+
+I was a physics major when I first encountered epistemology and Mahayana Buddhism, which is a fairly efficient way to ruin the obvious world. I learned that perception is constructed, that the thing I experience is not simply reality arriving intact in my head, and that the self doing the experiencing may also be constructed. Then I encountered the old skeptical problem underneath all of it: every attempt to justify a belief seems to end in a circle, an infinite regress, or an unsupported stopping point. Reason certifies reason by using reason. Memory certifies memory by relying on memory. The senses have no external vantage point from which to compare their output with reality apart from perception.
+
+Kant was talking about the conditions under which experience is possible, and Madhyamaka is more interesting than an elaborate proof of solipsism. I know. This is about the panic they can induce before the distinctions settle. I had mostly reinvented a familiar question: How the hell do I know any of this is real?
+
+For a long time I assumed Judaism had nothing useful to say here. I thought the Jewish answer had to be an especially blatant use of the dogmatic horn of the Münchhausen trilemma: Torah is true because Hashem gave it to us; we know Hashem gave it to us because Torah says so; stop asking. I could accept radical doubt, or I could put an arbitrary foundation under one inherited tradition and call the building secure. Those seemed like the choices, and I knew which one a person who cared about truth was supposed to make.
+
+This is an apologetic for Judaism addressed to a particular reader. You studied enough Kant to become annoying about Kant. You encountered Buddhist emptiness, Robert Kegan, David Chapman, David Deutsch, Robin Hanson, and *Seeing Like a State*. You learned that every model leaves something out, every identity has a history, every institution was assembled, and every view comes from somewhere. You may have spent twenty years becoming increasingly good at noticing frames. I am assuming you no longer need reassurance that religion can coexist with physics.
+
+Now you are middle-aged. Whatever you think you believe, you have committed to some life: family man, meditator, careerist, or an unstable mixture. You chose a city, a career, a class position, a set of friends, and a normal use of Friday night. Inertia made many of those choices while you preserved an internal sense that you had not really chosen yet. I would have missed this argument at twenty-two and treated my failure to understand it as evidence against it.
+
+My claim is that permanent searching can become the last eternalism. We reject each available framework because it is incomplete, contingent, historically compromised, or uncertain, while continuing to hope for one that will make commitment safe, clean, and reversible. We have abandoned every eternal truth except the hope of eventually finding the correct eternalism. Sometimes the result is fear with excellent reading comprehension, still calling itself openness.
+
+## Radical Skepticism
+
+Radical skepticism delivers a real discovery: beliefs carry no internal checksum. Perception, memory, reason, testimony, and language are fallible and entangled. I then made skepticism itself into a privileged position, as though exposing the failure of foundations could supply one.
+
+Deutsch gave me the cleanest route out. Knowledge grows through conjecture and criticism. We propose explanations, expose them to error, and replace worse explanations with better ones. Every surviving explanation remains corrigible, while objective improvement remains possible. Finite creatures can pursue truth without first acquiring an infallible foundation.
+
+Epistemology does not tell me what to do on Friday afternoon. A theory of knowledge can guide inquiry, but the questions about my parents, my children, my dead, my working hours, and the future I should help reproduce remain with the person who must live. They arrive on a schedule.
+
+Radical skepticism seems to leave one secure residue: first-person experience is happening. Rationalist accounts often populate that residue with a remarkably thin person, a point of awareness stripped of body, parents, language, people, calendar, and history. Call him *homo nullius loci*, a version of *homo economicus* for epistemology: an abstract agent stripped of every relation that might bias the model. He is the view from nowhere relocated behind the eyes.
+
+My first-person experience arrives thick with language, memories of my parents, habits learned before I could inspect them, being Jewish, my wife, my children, my body, my social role, my fear for my people, and the local time of sunset. These facts belong to the given as much as color, pain, or thought.
+
+My karma is mine. I am using “karma” loosely, but with a specific meaning: the causal and moral inheritance already in motion when I became capable of reflecting on it. Its initial conditions preceded my consent; its next movement passes through me. Even the detached meta-position has karma. It has a body, a browser history, a mortgage, and usually someone else in the house who already knows what time the children need to leave.
+
+A familiar Western skeptical move says that all I finally know is first-person experience. The stage-three corrective says that the first person was constituted by a web of relations before it could name itself. In my better moments I can hold both claims: the experience is mine, and the “mine” includes the web. At other times I want the web to decide for me or the autonomous self to owe it nothing.
+
+Process talk can cheat here. We learn that the self is a process, institutions are processes, meanings arise relationally, and things lack the fixed essences they appear to possess. Madhyamaka treats conventional reality as dependently arisen and empty of independent essence. Emptiness applies to itself too; it never becomes a final platform from which I get to admire my understanding that final platforms do not exist.
+
+Chapman makes a related move in his account of eternalism and nihilism. Meaning is patterned and nebulous: real, dependent, shifting, and partly indeterminate. This should allow commitment under uncertainty. We often use nebulosity as another instrument of delay. We wait for a commitment that preserves our options, protects us from error, and never makes us look naive to a future version of ourselves.
+
+By middle age, the waiting has already selected much of the life: job, city, spouse, children, friends, habits, and calendar. When I claim that I have preserved my optionality, the calendar records where the years actually went.
+
+You know Scott’s warning about schemes that make complicated human realities legible by stripping out local knowledge. Then we perform high modernism on our own lives. We build a comparison table for Judaism, Catholicism, American Buddhism, secular humanism, family life, cities, careers, and political identities. The person making the table has already inherited a language, a body, relationships, promises, and a finite amount of time. I can rank parenthood among contingent social roles while my daughter waits at pickup.
+
+## Kegan and Return
+
+Using Kegan loosely, stage three is embedded in a social world it cannot yet make fully object. Stage four steps outside that world and authors a system of its own. Stage five can make the self-authored system object too. It sees that the autonomous self, its values, and its method of judging inherited traditions are partial constructions, and it can hold several systems at once without expecting any one of them to become complete. In my own life these positions recur rather than lining up cleanly. I sometimes manage the stage-five move and often find myself embedded, defensive, self-authoring, or simply tired.
+
+I know the failure mode because I use it. Once I can see every frame, I begin to identify with the observer who sees. TPOT—This Part of Twitter, pronounced “teapot”—has often rewarded that posture: curiosity, resistance to false closure, pleasure in strange possibilities, and a refusal to turn uncertainty into ordinary despair. I love those qualities. I have also used them to keep the motion going, to remain someone who was still getting there, and to prevent any particular claim from becoming binding. I suspect many of us have done the same.
+
+Some people in TPOT responded by becoming Catholic. The accounts I find compelling dwell on return, obedience, participation, children, ritual, and the discovery that practice changes the person doing the evaluating. [Kitten Beloved’s essay about instinct and obedience](https://www.adorableandharmless.com/p/instinct-and-obedience-to-god) is a recent example. It describes how someone begins to do, in earnest, what once seemed impossibly naive or inauthentic.
+
+After stage four, taking up an inherited yoke can look like regression to stage three. Sometimes it really is regression: people become frightened and hand judgment back to an authority because they want certainty, innocence, or a father. Turning forty-five adds no sophistication to that move.
+
+The same Jew may keep Shabbat, eat kosher food, join a synagogue, teach his children Torah, and accept inherited obligations for different reasons at different times. Sometimes the practice is simply the world he inhabits. Sometimes it is a deliberate return after criticism. Usually the motives are mixed. Mine certainly are.
+
+I say Kiddush seriously, with the critique intact. I use the critique on action, doctrine, and institutions from inside the life they govern. Compared with the family I grew up in, I am the observant one. An observant Jew reading this would probably find my actual practice disappointing. I am still learning to carry the yoke I am describing.
+
+Here the argument meets what we have called stage-five honor culture. Stage-three honor says that I must act because my people are watching and their judgment constitutes me. Stage-four autonomy says that no inherited group has the right to define me. When I can manage the later synthesis, I recognize that a life in which nothing outside my present preferences may make a claim on me is not freedom. I can see how an obligation was made, argue about its meaning, criticize the people administering it, and still choose to become answerable to it.
+
+“Choose” is slightly misleading. I am choosing what to do with a prior claim. Judaism reached me before I had a theory of traditions. Its people, history, and practices formed part of the person who later imagined himself choosing among them. That history changes the question without settling it.
+
+Alasdair MacIntyre is the obvious background presence here. *After Virtue* describes moral language continuing after the practices and traditions that once made it coherent have broken apart. Our own subculture works with Buddhist emptiness, Kegan’s subject-object transitions, Deutschian fallibilism, Chapman’s meaningness, Scott’s local knowledge, Hansonian signaling, Stoic practice, and whatever we retained from the religions we rejected as adolescents. Each catches a real error. Together they give us a formidable apparatus for criticism. The problem of living together across generations remains ours.
+
+I keep reaching for titles such as “After Certainty” and “After Doubt” because MacIntyre’s cadence is doing work. The question concerns what follows once I stop requiring epistemic purity as a condition of commitment; certainty was never available in the first place.
+
+## Deutsch and Hanson
+
+To make the argument precise, I imagined David Deutsch as the most ecstatic baal teshuvah in history and Robin Hanson as an equally improbable Orthodox convert. Deutsch asks whether the tradition is true; Hanson asks what its costs and institutions do.
+
+Deutsch hears an argument about trust, community, practice, and inherited meaning and objects immediately. Every cult offers trust, community, practice, and inherited meaning. People can derive enormous purpose from false explanations. A tradition can persist because it punishes criticism, hides disconfirmation, and rewards conformity. “This life feels meaningful” is evidence about a life, not proof of its metaphysics. He is right, and any Jewish apologetic that asks a Deutschian to turn off criticism deserves to fail.
+
+A stronger Jewish answer treats Torah as revelation entrusted to fallible human interpreters rather than an incorrigible foundation. The famous rabbinic use of *lo bashamayim hi* in Bava Metzia 59b is almost indecently strong. A heavenly voice enters a legal dispute, and the rabbis decline to let it settle the case. Torah has been given to human beings, who must interpret it through human language and procedures.
+
+The story is thoroughly religious: Hashem, revelation, command, and law. Its strangeness lies in making divine authority the source of human judicial responsibility.
+
+The Talmud argues, records minority positions, preserves disputes, distinguishes kinds of evidence, and builds procedures. A legal decision can bind practice while leaving underlying questions open. That machinery can also stabilize error: [Jews and Jewish institutions can preserve error with tremendous stamina](https://himbodhisattva.com/blog/rav-uziel-the-gates-we-guard/). It also gives disagreement a legitimate internal form. The Deutschian baal teshuvah can accept a covenant in which criticism has forms, precedents, duties, and consequences.
+
+Then Hanson asks the impolite question. Why Judaism? American Buddhism is cheaper. It is friendly to doubt, rich in techniques for examining experience, and available with few demands on family structure, diet, sexuality, calendar, or collective memory. Why buy the expensive product?
+
+Here I mean a particular American consumer package. Many Buddhist traditions have vows, institutions, authorities, rituals, communal duties, and substantial costs. The thin package many of us encountered still competes well when the desired product is feeling better about doubt.
+
+Judaism addresses a different problem: binding persons across time. It tells me that I am someone’s child, someone’s parent, a member of a people, an inheritor of debts, and someone’s ancestor—hopefully many someones’. It locates me in a chain and assigns work within it.
+
+Hanson is useful here because costs matter: Shabbat costs time and commercial freedom; kashrut costs convenience and money; communal prayer costs sleep; tzedakah costs resources; sexual laws constrain desire. A real community also includes people I would not have selected by taste. These costs help turn verbal affiliation into a shared form of life and make commitment legible to the person performing it.
+
+Hazing and fanaticism are costly too, so cost cannot establish truth. The Hansonian point is narrower: “asks less” is a strange advantage when nothing has enough weight to organize a life. Judaism carries its claims through the kitchen, the calendar, marriage, money, sex, and what I teach my children. Its inconvenience helps it survive the moods and insights of individual Jews.
+
+## Judaism and Uncertainty
+
+Judaism has several theories of knowledge and perception rather than one canonical answer to Kant, Kegan, or the Münchhausen trilemma. Saadia Gaon treats sense, reason, inference, and reliable tradition as distinct sources of knowledge. Rambam is a realist about the intelligible world and severe about the limits of positive language concerning Hashem. Kabbalistic and Hasidic traditions go further in treating the world’s apparent solidity and independence as concealment rather than ultimate reality.
+
+My own crude intuition is close to the last of these. My senses belong to an embodied creature acting within a human world, and I have stopped expecting them to supply an exhaustive model of reality from no perspective. Perception can serve as a reliable interface for avodah while remaining embodied and partial. The table is real enough to hold Shabbat candles even if its apparent separateness is not metaphysically final.
+
+Ordinary fallibility remains: people hallucinate, witnesses disagree, and instruments extend and correct perception. Science works because appearances can be criticized. Human finitude still leaves a human world in which command and responsibility operate. Halakha repeatedly works at the scale of competent human perception and judgment. The rabbis say that a judge has only what his eyes see and that Torah was given to human beings rather than ministering angels. Those principles establish the human scale of responsibility.
+
+Judaism meets the skeptic inside uncertainty and addresses him there. *Na’aseh v’Nishma* — “we will do and we will hear” — places practice before complete understanding (Exodus 24:7). Some understanding becomes available through participation, and action cannot always wait for theory to finish.
+
+*Aseh lecha rav, vehistalek min hasafek* — make for yourself a teacher and remove yourself from doubt (Pirkei Avot 1:16) — gives uncertainty a procedure. Choose an authority, create a decision process, and act. The procedure may later be revised; the child still needs an answer today.
+
+*Lo alecha hamelacha ligmor, velo atah ben chorin lehibatel mimena* — it is not your responsibility to finish the work, but you are not free to desist from it (Pirkei Avot 2:16). This carries almost the entire argument. The work exceeds us, and the obligation survives.
+
+Rashi’s reading of *tamim tihyeh im Hashem Elokecha* directs the Jew away from exhaustive knowledge of the future. Walk wholeheartedly with Hashem and stop making total foresight a condition of fidelity (Rashi on Deuteronomy 18:13).
+
+The better developmental reading starts with a thick stage-three world grappling with stage-four problems: how inherited authority survives finite judgment, incomplete understanding, disagreement, and changing conditions. Those problems produced procedures for action before completion, learning through participation, and judgment by fallible human institutions. I can return to those procedures after critique while continuing to move, imperfectly, among all three positions.
+
+In that setting, *emunah* can name fidelity, steadiness, and trust expressed through action. A *baal teshuvah* is, literally enough for this argument, someone who turned.
+
+## Now Is the Combat
+
+The *Bhagavad Gita* supplies the obvious comparison. Arjuna sees the horror of the battlefield and wants to withdraw. Krishna enlarges his vision through metaphysics, cosmology, spiritual discipline, an account of action, and a vision of the divine form. Then Arjuna returns to his duty.
+
+The battlefield is literal in the Gita and has also been read as a metaphor for the point at which knowledge becomes action. The structure matters here: cosmic vision returns Arjuna to situated duty and makes evasion harder.
+
+Epictetus makes the same demand without the cosmology. “Now is the combat,” he says in section 51 of the *Enchiridion*. The practice of philosophy begins under present conditions, with present understanding.
+
+For most of us, the combat is offensively ordinary: Friday afternoon; stopping work before sunset; teaching my children something more durable than my preferences; calling a parent; giving money; joining the community; keeping a promise; defending someone; apologizing; doing the task that became mine while I was still comparing frameworks.
+
+Sometimes obligation includes coercion, defense, and violence. Jews should not need this explained. The battlefield metaphor becomes dangerous when “my role” turns self-justifying: inherited duties can be evil, families abusive, communities cowardly or cruel, and traditions capable of preserving lies. Situatedness makes the claims urgent and gives criticism something concrete to judge.
+
+Deutsch leaves inherited claims open to criticism, and Kegan places the self-authored critic under the same scrutiny. Chapman preserves meaning after fixed meaning fails. Scott restores the local knowledge omitted by schemes. Hanson notices that commitments without costs often remain cheap talk. Buddhist emptiness applies to the synthesis too. Judaism gives the resulting apparatus a place in daily obligation.
+
+Having children makes the stakes immediate. Identity is constructed, and parents spend every day constructing it. I can postpone transmitting a tradition while I solve comparative religion, but the ambient culture will use the interval. It will teach my children a calendar, an account of sex, a theory of status, a relation to money, and a story about what they owe other people. In practice, postponement lets the ambient culture choose the inheritance.
+
+At most, children, reproductive durability, and ancestry explain why the question presses on me; Sinai requires a different argument. “Mine” changes the burden of the question. Judaism formed part of the person now doing the choosing, long before I became capable of imagining myself as a pure chooser. Rejection remains available, but it answers a real prior claim. Historical contingency does not turn that claim into an aesthetic preference.
+
+I once thought religion was what happened when people stopped searching. Now I think permanent searching can become a refusal to accept what the search has already shown: every commitment is exposed, every view is situated, and every life proceeds before the theory is finished.
+
+Epistemology remains unsolved for me, and its unsolved condition no longer functions as a stay on judgment. My senses are fallible, my concepts constructed, my tradition historically mediated, my institutions capable of error, and my account due for eventual correction. I still have a body, a family, a people, a calendar, and obligations.
+
+I can see the frame and accept the yoke with the critique intact and childhood certainty gone. The particular life I was given belongs inside the search for truth because it is where the search acquired consequences.
+
+Friday arrives whether or not the argument is finished, and I light the candles.

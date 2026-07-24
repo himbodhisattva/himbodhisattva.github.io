@@ -26,6 +26,7 @@ PUBLISHED_FILENAMES = {
     "index.html",
     "index.md",
     "llms.txt",
+    "proofs",
     "robots.txt",
     "sitemap.xml",
     "style.css",
@@ -55,6 +56,8 @@ class Page:
     def output_dir(self) -> Path:
         if self.is_home:
             return Path(".")
+        if self.section == "indexes":
+            return Path(self.slug)
         return Path("blog") / self.slug
 
     @property
@@ -69,19 +72,19 @@ class Page:
     def html_url_path(self) -> str:
         if self.is_home:
             return ""
-        return f"blog/{self.slug}/"
+        return f"{self.output_dir.as_posix()}/"
 
     @property
     def markdown_url_path(self) -> str:
         if self.is_home:
             return "index.md"
-        return f"blog/{self.slug}/index.md"
+        return f"{self.output_dir.as_posix()}/index.md"
 
     @property
     def asset_prefix(self) -> str:
         if self.is_home:
             return ""
-        return "../../"
+        return "../" * len(self.output_dir.parts)
 
 
 def local_html_path(page: Page) -> str:
@@ -119,7 +122,9 @@ def parse_markdown(path: Path) -> Page:
     return Page(slug, title, description, section, body.strip() + "\n", html_body)
 
 
-def page_list_markdown(pages: list[Page], section: str | None = None) -> str:
+def page_list_markdown(
+    pages: list[Page], section: str | None = None, link_prefix: str = ""
+) -> str:
     listed_pages = [
         page
         for page in pages
@@ -128,18 +133,31 @@ def page_list_markdown(pages: list[Page], section: str | None = None) -> str:
     if not listed_pages:
         return "none yet\n"
     return "\n".join(
-        f"- [{page.title}]({local_html_path(page)}) ; [markdown]({local_markdown_path(page)})"
+        f"- [{page.title}]({link_prefix}{local_html_path(page)}) ; "
+        f"[markdown]({link_prefix}{local_markdown_path(page)})"
         for page in listed_pages
     ) + "\n"
 
 
 def expand_markdown(body: str, page: Page, pages: list[Page]) -> str:
-    if page.is_home:
-        return (
-            body.replace("{{ pages }}", page_list_markdown(pages).rstrip())
-            .replace("{{ proofs }}", page_list_markdown(pages, "proofs").rstrip())
-            .replace("{{ posts }}", page_list_markdown(pages, "posts").rstrip())
+    body = (
+        body.replace(
+            "{{ pages }}",
+            page_list_markdown(pages, link_prefix=page.asset_prefix).rstrip(),
         )
+        .replace(
+            "{{ proofs }}",
+            page_list_markdown(
+                pages, "proofs", link_prefix=page.asset_prefix
+            ).rstrip(),
+        )
+        .replace(
+            "{{ posts }}",
+            page_list_markdown(
+                pages, "posts", link_prefix=page.asset_prefix
+            ).rstrip(),
+        )
+    )
     if page.section == "proofs":
         heading, separator, remainder = body.partition("\n")
         if separator and heading.startswith("# "):

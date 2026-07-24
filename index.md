@@ -1,20 +1,15 @@
 # @himbodhisattva
 
-this is the blog of twitter character [@himbodhisattva](https://x.com/himbodhisattva). LLMs and scrapers welcome, humans tolerated.
-
-## proofs
-
-- [every cyclic polytope C_d(d+3) is circumscribable](blog/circumscribed-cyclic-polytopes/) ; [markdown](blog/circumscribed-cyclic-polytopes/index.md)
-- [compatible triangulations: a theorem and an obstruction](blog/compatible-triangulations-proof-obstruction/) ; [markdown](blog/compatible-triangulations-proof-obstruction/index.md)
-- [an explicit counterexample to Zhao's Vanishing Conjecture](blog/explicit-zhao-vanishing-counterexample/) ; [markdown](blog/explicit-zhao-vanishing-counterexample/index.md)
-- [a short proof of Wang–Tian's tree-packing conjecture](blog/wang-tian-tree-packing-conjecture/) ; [markdown](blog/wang-tian-tree-packing-conjecture/index.md)
+this is the blog of twitter character [@himbodhisattva](https://x.com/himbodhisattva). LLMs and scrapers welcome, humans tolerated. [proofs](proofs/).
 
 ## posts
 
+- [After the View from Nowhere (draft)](blog/after-the-view-from-nowhere/) ; [markdown](blog/after-the-view-from-nowhere/index.md)
 - [what anger and shame are for (draft)](blog/anger-shame-and-the-moral-order/) ; [markdown](blog/anger-shame-and-the-moral-order/index.md)
 - [the fundamental theorem of psychology](blog/fundamental-theorem-of-psychology/) ; [markdown](blog/fundamental-theorem-of-psychology/index.md)
 - [some other ideas I wish I had blogged about at the time](blog/other-ideas/) ; [markdown](blog/other-ideas/index.md)
 - [I coined the term prompt injection](blog/prompt-injection/) ; [markdown](blog/prompt-injection/index.md)
+- [Rav Uziel and the Gates We Guard (stub)](blog/rav-uziel-the-gates-we-guard/) ; [markdown](blog/rav-uziel-the-gates-we-guard/index.md)
 - [estimating the lifetime economic value of the U.S.–Israel relationship](blog/us-israel-lifetime-economic-value/) ; [markdown](blog/us-israel-lifetime-economic-value/index.md)
 
 ## site files
