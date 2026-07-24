@@ -1,9 +1,9 @@
 ---
-title: "what anger and shame are for"
+title: "what anger and shame are for (draft)"
 description: "@himbodhisattva on the emotions therapy culture edits out and what a mature honor culture might recover."
 ---
 
-# what anger and shame are for
+# what anger and shame are for (draft)
 
 I saw a screenshot of a neighbor objecting to a seven-year-old drawing with chalk on the public sidewalk. the first message was a precious request that she draw somewhere else; the second cited municipal ordinances and threatened to report her. [I said I was enraged by the first message](https://x.com/himbodhisattva/status/2079007467447652808).
 

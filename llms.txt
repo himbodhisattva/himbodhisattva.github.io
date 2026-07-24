@@ -7,7 +7,7 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
 ## Core pages
 
 - [Home](https://himbodhisattva.com/index.md)
-- [what anger and shame are for](https://himbodhisattva.com/blog/anger-shame-and-the-moral-order/index.md)
+- [what anger and shame are for (draft)](https://himbodhisattva.com/blog/anger-shame-and-the-moral-order/index.md)
 - [every cyclic polytope C_d(d+3) is circumscribable](https://himbodhisattva.com/blog/circumscribed-cyclic-polytopes/index.md)
 - [compatible triangulations: a theorem and an obstruction](https://himbodhisattva.com/blog/compatible-triangulations-proof-obstruction/index.md)
 - [an explicit counterexample to Zhao's Vanishing Conjecture](https://himbodhisattva.com/blog/explicit-zhao-vanishing-counterexample/index.md)
@@ -19,7 +19,7 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
 ## HTML versions
 
 - [Home](https://himbodhisattva.com/)
-- [what anger and shame are for](https://himbodhisattva.com/blog/anger-shame-and-the-moral-order/)
+- [what anger and shame are for (draft)](https://himbodhisattva.com/blog/anger-shame-and-the-moral-order/)
 - [every cyclic polytope C_d(d+3) is circumscribable](https://himbodhisattva.com/blog/circumscribed-cyclic-polytopes/)
 - [compatible triangulations: a theorem and an obstruction](https://himbodhisattva.com/blog/compatible-triangulations-proof-obstruction/)
 - [an explicit counterexample to Zhao's Vanishing Conjecture](https://himbodhisattva.com/blog/explicit-zhao-vanishing-counterexample/)

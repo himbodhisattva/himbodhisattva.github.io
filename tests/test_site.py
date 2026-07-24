@@ -184,6 +184,9 @@ def test_anger_shame_post_keeps_primary_tweet_receipts(tmp_path):
     home_markdown = (output_dir / "index.md").read_text()
     llms = (output_dir / "llms.txt").read_text()
     sitemap = (output_dir / "sitemap.xml").read_text()
+    assert "# what anger and shame are for (draft)" in post_markdown
+    assert "<h1>what anger and shame are for (draft)</h1>" in post_html
+    assert "[what anger and shame are for (draft)]" in home_markdown
     assert f"{post_path}/" in home_markdown
     assert f"https://himbodhisattva.com/{post_path}/" in llms
     assert f"https://himbodhisattva.com/{post_path}/" in sitemap
