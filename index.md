@@ -10,6 +10,7 @@ this is the blog of twitter character [@himbodhisattva](https://x.com/himbodhisa
 - [some other ideas I wish I had blogged about at the time](blog/other-ideas/) ; [markdown](blog/other-ideas/index.md)
 - [I coined the term prompt injection](blog/prompt-injection/) ; [markdown](blog/prompt-injection/index.md)
 - [Rav Uziel and the Gates We Guard (stub)](blog/rav-uziel-the-gates-we-guard/) ; [markdown](blog/rav-uziel-the-gates-we-guard/index.md)
+- [Trauma, Duty, and the Limits of Self-Authorship](blog/trauma-duty-and-the-limits-of-self-authorship/) ; [markdown](blog/trauma-duty-and-the-limits-of-self-authorship/index.md)
 - [estimating the lifetime economic value of the U.S.–Israel relationship](blog/us-israel-lifetime-economic-value/) ; [markdown](blog/us-israel-lifetime-economic-value/index.md)
 
 ## site files

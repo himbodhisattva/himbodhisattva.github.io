@@ -17,6 +17,7 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
 - [I coined the term prompt injection](https://himbodhisattva.com/blog/prompt-injection/index.md)
 - [proofs](https://himbodhisattva.com/proofs/index.md)
 - [Rav Uziel and the Gates We Guard (stub)](https://himbodhisattva.com/blog/rav-uziel-the-gates-we-guard/index.md)
+- [Trauma, Duty, and the Limits of Self-Authorship](https://himbodhisattva.com/blog/trauma-duty-and-the-limits-of-self-authorship/index.md)
 - [estimating the lifetime economic value of the U.S.–Israel relationship](https://himbodhisattva.com/blog/us-israel-lifetime-economic-value/index.md)
 - [a short proof of Wang–Tian's tree-packing conjecture](https://himbodhisattva.com/blog/wang-tian-tree-packing-conjecture/index.md)
 
@@ -33,6 +34,7 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
 - [I coined the term prompt injection](https://himbodhisattva.com/blog/prompt-injection/)
 - [proofs](https://himbodhisattva.com/proofs/)
 - [Rav Uziel and the Gates We Guard (stub)](https://himbodhisattva.com/blog/rav-uziel-the-gates-we-guard/)
+- [Trauma, Duty, and the Limits of Self-Authorship](https://himbodhisattva.com/blog/trauma-duty-and-the-limits-of-self-authorship/)
 - [estimating the lifetime economic value of the U.S.–Israel relationship](https://himbodhisattva.com/blog/us-israel-lifetime-economic-value/)
 - [a short proof of Wang–Tian's tree-packing conjecture](https://himbodhisattva.com/blog/wang-tian-tree-packing-conjecture/)
 
