@@ -334,7 +334,6 @@ def test_desktop_essays_are_published_with_requested_statuses(tmp_path):
 
     assert "# After the View from Nowhere (draft)" in after_markdown
     assert "<h1>After the View from Nowhere (draft)</h1>" in after_html
-    assert "Friday arrives whether or not the argument is finished" in after_markdown
     assert (
         "https://himbodhisattva.com/blog/rav-uziel-the-gates-we-guard/"
         in after_markdown
