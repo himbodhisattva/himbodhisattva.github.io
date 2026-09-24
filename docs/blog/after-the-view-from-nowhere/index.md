@@ -2,13 +2,13 @@
 
 I was studying physics when I became interested in epistemology and Mahayana Buddhism. I began to doubt whether I could trust my experience of the world. Perception depends on the mind, and even the sense of being a separate self can be questioned. When I tried to justify what I believed, each justification seemed to require another one. Eventually I would have to repeat an earlier assumption or accept something I couldn't prove.
 
-Neither Kant nor Madhyamaka Buddhism simply says that nothing is real. But learning about them left me unsure how to trust what I experienced. For a long time I assumed Judaism had nothing useful to say about this. I thought its answer amounted to saying that Torah was true because Hashem gave it to us, and that we knew this because Torah said so. Accepting that seemed to require giving up on the questions that concerned me.
+Reading Hume and studying Madhyamaka Buddhism left me unsure how to trust what I experienced. For a long time I assumed Judaism had nothing useful to say about this. I thought its answer amounted to saying that Torah was true because Hashem gave it to us, and that we knew this because Torah said so. Accepting that seemed to require giving up on the questions that concerned me.
 
 I now think it is possible to accept Jewish obligations while continuing to question what I believe. This essay is an attempt to explain why. I am writing mainly for people who have spent years examining the assumptions behind their own beliefs and those of the traditions around them, and who remain reluctant to commit themselves to any of those traditions.
 
 By middle age, that reluctance exists alongside many commitments already made. We have chosen where to live and how to spend our time. Some of us have spouses and children. Even when those choices were partly made through habit or circumstance, other people have come to rely on them. Feeling undecided about how to live doesn't stop us from living a particular way.
 
-I have sometimes continued searching because I wanted a commitment I could be certain was right. I would reject a tradition because it was incomplete or compromised, then keep looking for one without those problems. This resembles the expectation of a final, fixed meaning that David Chapman calls eternalism. Doubting every answer can still leave that expectation in place. I had to consider whether I was learning something from further inquiry or using it to avoid a decision I already had enough reason to make.
+I have sometimes continued searching because I wanted a commitment I could be certain was right. I would reject a tradition because it was incomplete or compromised, then keep looking for one without those problems. This resembles the expectation of a final, fixed meaning that David Chapman calls [eternalism](https://meaningness.com/eternalism). Doubting every answer can still leave that expectation in place. I had to consider whether I was learning something from further inquiry or using it to avoid a decision I already had enough reason to make.
 
 ## Knowledge and Obligation
 
