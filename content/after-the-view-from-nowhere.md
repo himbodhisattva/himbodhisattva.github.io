@@ -19,8 +19,6 @@ Those relationships deserve examination. I don't see why they should be excluded
 
 These relationships are also sources of knowledge. James C. Scott's *Seeing Like a State* describes the failures of plans that ignore local knowledge. I think a similar problem arises when I compare traditions as though I had no history with any of them. Living within a tradition gives me knowledge of its people and practices that an abstract comparison leaves out.
 
-I use “karma” loosely for the circumstances and responsibilities that reached me before I could understand or consent to them. What I do with them will become part of my children's inheritance.
-
 In Madhyamaka Buddhism, “emptiness” means that things have no independent essence; they exist through their dependence on other things. That includes the person questioning a tradition. Recognizing that Judaism developed under particular conditions doesn't exempt my own judgment from the same dependence. Even emptiness is empty: the idea itself cannot supply a final, independent foundation for my beliefs.
 
 Chapman's description of meaning as “patterned and nebulous” helps explain how an obligation can be real without being completely defined. There is no exhaustive account of good parenthood that settles every case. My daughter still needs me to pick her up. Disagreement about the meaning of parenthood doesn't make that responsibility optional.
