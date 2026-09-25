@@ -8,14 +8,6 @@ We celebrate Shabbat on Friday evening. We also celebrate the holidays and go to
 
 ## Knowledge and Obligation
 
-I first became concerned with these questions while studying physics. Reading Hume and studying Mahayana Buddhism made me question how much I could trust my experience of the world. Perception depends on the mind, and even the sense of being a separate self can be questioned. When I tried to justify what I believed, each justification seemed to require another one. Eventually I would have to repeat an earlier assumption or accept something I couldn't prove.
-
-For a long time I assumed Judaism had nothing useful to say about this. I thought its answer amounted to saying that Torah was true because Hashem gave it to us, and that we knew this because Torah said so. Accepting that seemed to require giving up on the questions that concerned me.
-
-David Deutsch's account of knowledge helped me with the original problem. We make progress by proposing explanations and criticizing them. An explanation can be better than its predecessor without being certain or complete, and we can continue to find errors in it. I no longer think an infallible foundation is necessary for knowledge.
-
-I still have to decide how to act. A theory of knowledge can help me examine an obligation, but it doesn't determine everything I owe my parents or what I should teach my children. These questions also depend on the relationships involved and what has happened within them.
-
 Accounts of radical doubt often begin with an isolated observer, certain only that experience is happening. I have called this abstraction *homo nullius loci*, a person with no place or history. It leaves out much of what I actually experience. I think in a language I learned from others. I remember my parents and have responsibilities to my wife and children. Being Jewish has shaped me, including the person who later began to question Judaism.
 
 Those relationships deserve examination. I don't see why they should be excluded from the starting point, while an imagined independence from them is treated as neutral. I already belong to a family and a people when I begin asking what I owe them.
@@ -50,7 +42,7 @@ Alasdair MacIntyre's *After Virtue* describes the difficulty of making sense of 
 
 ## Truth and Religious Practice
 
-A defense of Jewish commitment has to address whether Jewish claims are true. From a Deutschian perspective, a tradition's usefulness or capacity to produce meaning cannot settle that question. False beliefs can give people a sense of purpose, and a community can sustain those beliefs by punishing criticism or concealing evidence against them. I want to be able to participate while continuing to identify and correct errors.
+A defense of Jewish commitment has to address whether Jewish claims are true. Following David Deutsch, I don't think a tradition's usefulness or capacity to produce meaning can settle that question. False beliefs can give people a sense of purpose, and a community can sustain those beliefs by punishing criticism or concealing evidence against them. I want to be able to participate while continuing to identify and correct errors.
 
 The rabbinic use of *lo bashamayim hi*, “it is not in heaven,” in Bava Metzia 59b offers an example of human judgment within a religious tradition. A heavenly voice intervenes in a legal dispute, and the rabbis refuse to let it decide the case. Torah has been given to human beings, who must interpret it through the legal procedures they have received.
 
