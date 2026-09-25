@@ -1,16 +1,16 @@
 # After the View from Nowhere (draft)
 
-I was studying physics when I became interested in epistemology and Mahayana Buddhism. I began to doubt whether I could trust my experience of the world. Perception depends on the mind, and even the sense of being a separate self can be questioned. When I tried to justify what I believed, each justification seemed to require another one. Eventually I would have to repeat an earlier assumption or accept something I couldn't prove.
+I have to decide what to teach my children about Judaism before I've settled my own questions about it. They are already learning from the way we live at home and the people we spend time with. Putting off religious decisions affects their upbringing too.
 
-Reading Hume and studying Madhyamaka Buddhism left me unsure how to trust what I experienced. For a long time I assumed Judaism had nothing useful to say about this. I thought its answer amounted to saying that Torah was true because Hashem gave it to us, and that we knew this because Torah said so. Accepting that seemed to require giving up on the questions that concerned me.
+For years I thought I should be able to justify a tradition before accepting its demands. I would reject one because it was incomplete or compromised, then keep looking for one without those problems. I was expecting to find a certainty I had already concluded was unavailable. This resembles what David Chapman calls [eternalism](https://meaningness.com/eternalism): the belief that meaning is fixed and definite, even if we haven't found it yet.
 
-I now think it is possible to accept Jewish obligations while continuing to question what I believe. This essay is an attempt to explain why. I am writing mainly for people who have spent years examining the assumptions behind their own beliefs and those of the traditions around them, and who remain reluctant to commit themselves to any of those traditions.
-
-By middle age, that reluctance exists alongside many commitments already made. We have chosen where to live and how to spend our time. Some of us have spouses and children. Even when those choices were partly made through habit or circumstance, other people have come to rely on them. Feeling undecided about how to live doesn't stop us from living a particular way.
-
-I have sometimes continued searching because I wanted a commitment I could be certain was right. I would reject a tradition because it was incomplete or compromised, then keep looking for one without those problems. This resembles the expectation of a final, fixed meaning that David Chapman calls [eternalism](https://meaningness.com/eternalism). Doubting every answer can still leave that expectation in place. I had to consider whether I was learning something from further inquiry or using it to avoid a decision I already had enough reason to make.
+I now keep Shabbat while many of my questions remain unresolved. I still care whether Judaism's claims are true. I also think I owe something to the people and tradition that formed me. I can act on those obligations while continuing to examine what they require and whether particular demands are justified.
 
 ## Knowledge and Obligation
+
+I first became concerned with these questions while studying physics. Reading Hume and studying Mahayana Buddhism made me question how much I could trust my experience of the world. Perception depends on the mind, and even the sense of being a separate self can be questioned. When I tried to justify what I believed, each justification seemed to require another one. Eventually I would have to repeat an earlier assumption or accept something I couldn't prove.
+
+For a long time I assumed Judaism had nothing useful to say about this. I thought its answer amounted to saying that Torah was true because Hashem gave it to us, and that we knew this because Torah said so. Accepting that seemed to require giving up on the questions that concerned me.
 
 David Deutsch's account of knowledge helped me with the original problem. We make progress by proposing explanations and criticizing them. An explanation can be better than its predecessor without being certain or complete, and we can continue to find errors in it. I no longer think an infallible foundation is necessary for knowledge.
 
@@ -89,8 +89,6 @@ There are similar arguments in other traditions. In the *Bhagavad Gita*, Arjuna 
 My responsibilities usually involve ordinary decisions about work, family, and community. I need to decide when to stop working for Shabbat, how to care for my parents, and what to teach my children. Continuing to study those questions has to be compatible with meeting those responsibilities.
 
 Some duties are harder to judge, including obligations to defend other people or use force. Inherited duties can be wrong. Families can be abusive, and communities can demand harmful or unjust actions. I remain responsible for judging what I am asked to do, including the harm that may follow either obedience or refusal. Belonging to a people makes those questions personally relevant without deciding the answers in advance.
-
-Having children also means that postponing a decision affects someone else's upbringing. If I leave their religious education unresolved while I study comparative religion, they will still learn how to live from the people around them. They will acquire expectations about money and status, what to celebrate, and what they owe others.
 
 My reasons for practicing Judaism don't establish that Torah was revealed at Sinai. Claims about revelation still have to be considered on their own merits. My family and history give me reasons to take part in Jewish life while continuing to examine its claims. Those reasons can survive uncertainty about some of what the tradition teaches.
 
