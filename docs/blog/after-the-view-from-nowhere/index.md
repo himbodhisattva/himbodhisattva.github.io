@@ -22,7 +22,7 @@ Robert Kegan's stages help me distinguish returning to a tradition from giving u
 
 Some people in TPOT, the online community known as “This Part of Twitter,” have become Catholic. [Kitten Beloved's account of returning to religion](https://www.adorableandharmless.com/p/instinct-and-obedience-to-god) interests me because taking his children to Mass changed his understanding of the faith he was considering.
 
-By “stage-five honor culture,” I mean being answerable to a community whose standards I can also examine. The community may be right that I have failed in an obligation, even if I can explain where that obligation came from. I need to distinguish a valid obligation I dislike from a demand I should reject. My ability to criticize either one doesn't settle which it is.
+In [*what anger and shame are for*](https://himbodhisattva.com/blog/anger-shame-and-the-moral-order/), I used the phrase “stage-five honor culture” for being answerable to a community whose standards I can also examine. The community may be right that I have failed in an obligation, even if I can explain where that obligation came from. I need to distinguish a valid obligation I dislike from a demand I should reject. My ability to criticize either one doesn't settle which it is.
 
 Some demands should be refused. Families can be abusive, and communities can ask people to do harmful or unjust things. A demand's age or communal acceptance doesn't excuse the harm it causes. I remain responsible for judging the consequences of either obedience or refusal.
 
