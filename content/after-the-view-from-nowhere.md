@@ -7,9 +7,9 @@ description: "Jewish commitment after radical skepticism."
 
 I have to decide what to teach my children about Judaism before I've settled my own questions about it. They are already learning from the way we live at home and the people we spend time with. Putting off religious decisions affects their upbringing too.
 
-For years I thought I should be able to justify a tradition before accepting its demands. I would reject one because it was incomplete or compromised, then keep looking for one without those problems. This resembles what David Chapman calls [eternalism](https://meaningness.com/eternalism): the belief that meaning is fixed and definite, even if we haven't found it yet.
+For years I thought I needed a complete justification for a tradition before accepting its demands. When I found one incomplete or compromised, I kept looking for one without those problems. That expectation resembles what David Chapman calls [eternalism](https://meaningness.com/eternalism): the belief that meaning is fixed and definite, even if we haven't found it yet.
 
-We celebrate Shabbat on Friday evening. We also celebrate the holidays and go to shul. Many of my questions remain unresolved. I still care whether Judaism's claims are true. I also think I owe something to the people and tradition that formed me.
+We celebrate Shabbat on Friday evening, celebrate the holidays, and go to shul. I still care whether Judaism's claims are true. I also think I owe something to the people and tradition that formed me.
 
 ## Knowledge and Obligation
 
@@ -17,54 +17,36 @@ Accounts of radical doubt often begin with an isolated observer, certain only th
 
 Those relationships deserve examination. I don't see why they should be excluded from the starting point, while an imagined independence from them is treated as neutral. I already belong to a family and a people when I begin asking what I owe them.
 
-These relationships are also sources of knowledge. James C. Scott's *Seeing Like a State* describes the failures of plans that ignore local knowledge. I think a similar problem arises when I compare traditions as though I had no history with any of them. Living within a tradition gives me knowledge of its people and practices that an abstract comparison leaves out.
+My own judgment also has a history. In Madhyamaka Buddhism, “emptiness” means that things have no independent essence; they exist in dependence on other things. That applies to the person criticizing a tradition as well as to the tradition. The standards I use to judge Judaism also came from people and institutions, and I can examine them too.
 
-In Madhyamaka Buddhism, “emptiness” means that things have no independent essence; they exist through their dependence on other things. That includes the person questioning a tradition. Recognizing that Judaism developed under particular conditions doesn't exempt my own judgment from the same dependence. Even emptiness is empty: the idea itself cannot supply a final, independent foundation for my beliefs.
+An obligation can depend on a particular relationship without being arbitrary. What my daughter needs from me changes as she grows, and no definition of good parenthood settles every case. That doesn't make a responsibility such as picking her up optional. Chapman's description of meaning as [“patterned and nebulous”](https://meaningness.com/nebulosity) helps me understand this: an obligation can be real even when its limits are unsettled.
 
-Chapman's description of meaning as “patterned and nebulous” helps explain how an obligation can be real without being completely defined. There is no exhaustive account of good parenthood that settles every case. My daughter still needs me to pick her up. Disagreement about the meaning of parenthood doesn't make that responsibility optional.
+## Belonging after Criticism
 
-## Returning to a Tradition
+Robert Kegan's stages help me distinguish returning to a tradition from giving up my judgment. Using his account loosely, at stage three a person judges by the standards of a family or community. At stage four, she develops principles of her own. At stage five, she can examine the limitations of those principles too. Reconsidering my principles may give me reasons to listen again to people whose authority I rejected.
 
-Robert Kegan's stages help describe how a person can return to a tradition after questioning it. Using them loosely, at stage three, a person's identity and judgment are largely formed by the standards of a family or community. At stage four, she can examine those standards and develop principles of her own. At stage five, she can also examine those principles and recognize the limitations of her own system of judgment.
+Some people in TPOT, the online community known as “This Part of Twitter,” have become Catholic. [Kitten Beloved's account of returning to religion](https://www.adorableandharmless.com/p/instinct-and-obedience-to-god) interests me because taking his children to Mass changed his understanding of the faith he was considering.
 
-This last step matters because independent judgment also has a history. My standards for evaluating Judaism were influenced by people and institutions, just as my Jewish upbringing was. I can question both. In practice, I move among these positions, and I don't assume that understanding the distinctions means I have reached the last stage.
+By “stage-five honor culture,” I mean being answerable to a community whose standards I can also examine. The community may be right that I have failed in an obligation, even if I can explain where that obligation came from. I need to distinguish a valid obligation I dislike from a demand I should reject. My ability to criticize either one doesn't settle which it is.
 
-In TPOT, the online community whose name stands for “This Part of Twitter,” I have valued the willingness to entertain unfamiliar ideas and question accepted beliefs. I have also found it easy to keep doing this indefinitely, postponing commitments because there was always another possibility to consider.
-
-Some people in that community have become Catholic. The accounts that interest me describe how practicing a religion changed their understanding of it. [Kitten Beloved's essay about instinct and obedience](https://www.adorableandharmless.com/p/instinct-and-obedience-to-god) is one example.
-
-Returning to religion can also be a way of avoiding judgment. Someone may accept an authority because he is frightened and wants it to decide for him. The same outward practice can therefore reflect different motives, and those motives can change.
-
-I have used the phrase “stage-five honor culture” for a form of belonging in which a person can examine a community's standards and still accept its judgment of him. The community may be right that I have failed in an obligation, even if I can explain where that obligation came from. I need to distinguish a valid obligation I dislike from a demand I should reject. My ability to criticize either one doesn't settle which it is.
-
-Inherited duties can be wrong. Families can be abusive, and communities can demand harmful or unjust actions. I remain responsible for judging what I am asked to do, including the harm that may follow either obedience or refusal.
+Some demands should be refused. Families can be abusive, and communities can ask people to do harmful or unjust things. A demand's age or communal acceptance doesn't excuse the harm it causes. I remain responsible for judging the consequences of either obedience or refusal.
 
 ## Truth and Religious Practice
 
-My reasons for taking part in Jewish life don't establish that Torah was revealed at Sinai. Following David Deutsch, I don't think a tradition's usefulness or capacity to produce meaning can settle whether its claims are true. False beliefs can give people a sense of purpose, and a community can sustain those beliefs by punishing criticism or concealing evidence against them. I want to be able to participate while continuing to identify and correct errors.
+My family and history give me reasons to participate in Judaism, but they don't establish that Torah was revealed at Sinai. A tradition can sustain a community while preserving false beliefs. David Deutsch's account of knowledge helped me understand how explanations can improve without becoming certain: we propose them, criticize them, and try to correct errors. Religious explanations should be open to the same scrutiny.
 
-Jewish law gives some forms of disagreement an established place. In Bava Metzia 59b, a heavenly voice intervenes in a legal dispute, and the rabbis refuse to let it decide the case. They invoke *lo bashamayim hi*, “it is not in heaven.” In this story, Hashem has given people the authority and responsibility to interpret Torah through the legal procedures they have received.
+Jewish law addresses a related practical problem: people who disagree still have to act together. In Bava Metzia 59b, a heavenly voice intervenes in a legal dispute, and the rabbis refuse to let it decide the case. They invoke *lo bashamayim hi*, “it is not in heaven.” In this story, Hashem has given human beings the authority and responsibility to interpret Torah through the legal procedures they have received.
 
-The Talmud also preserves disputes and minority opinions alongside rulings that govern practice. People can be bound by a decision while remaining aware of the arguments against it. These procedures can preserve mistakes, as [Jewish institutions have sometimes done](https://himbodhisattva.com/blog/rav-uziel-the-gates-we-guard/). They also give a Jew a way to challenge a decision on the tradition's own terms.
+The Talmud preserves disputes and minority opinions alongside rulings that govern practice. A decision can bind people without resolving every objection. These procedures can also preserve mistakes, as [Jewish institutions have sometimes done](https://himbodhisattva.com/blog/rav-uziel-the-gates-we-guard/).
 
-Other Jewish teachings address how to act when understanding is incomplete.
+*Aseh lecha rav, vehistalek min hasafek*, “make for yourself a teacher and remove yourself from doubt” (Pirkei Avot 1:16), advises finding someone whose judgment I can rely on. I read it as a way to make decisions with help from someone who knows more than I do.
 
-*Na'aseh v'nishma*, “we will do and we will hear” (Exodus 24:7), places doing before full understanding. Some understanding comes through practice, so I cannot require all of it as a condition of beginning.
+*Na'aseh v'nishma*, “we will do and we will hear” (Exodus 24:7), places doing before full understanding. I can find out through participation what a practice asks of me, how it affects other people, and whether my objections to it hold up.
 
-*Aseh lecha rav, vehistalek min hasafek*, “make for yourself a teacher and remove yourself from doubt” (Pirkei Avot 1:16), advises finding someone whose judgment I can rely on. I read this as a way to reach decisions when I am uncertain. The teacher can still be wrong.
+## Passing It On
 
-*Lo alecha hamelacha ligmor, velo atah ben chorin lehibatel mimena*: “it is not your responsibility to finish the work, but you are not free to desist from it” (Pirkei Avot 2:16). I take this to mean that I remain responsible for my part in work I cannot complete on my own.
+This is also how my children will learn what Judaism asks of them. They need people to practice it with, as well as explanations of what it means. Our Friday evenings, holidays, and time at shul are part of their education. Other Jews give them examples and relationships that I cannot provide on my own.
 
-Rashi's reading of *tamim tihyeh im Hashem Elokecha* asks us to walk wholeheartedly with Hashem and stop trying to know the future (Deuteronomy 18:13). I understand this as accepting that I must act without knowing how everything will turn out.
+A community capable of doing this needs people who make time for it and take responsibility for its work. Prayer, teaching, and helping other people all require effort that could have gone elsewhere. Robin Hanson's account of [costly commitment](https://www.overcomingbias.com/p/bets-as-loyalty-signalshtml) helps explain why accepting those costs can give others reason to take a commitment seriously. I want to belong to a community whose members can rely on one another, which means accepting some claims on my own time and resources.
 
-In this setting, *emunah*, usually translated as faith, can include fidelity and trust expressed through action while questions remain unanswered.
-
-## Sustaining a Tradition
-
-Alasdair MacIntyre's *After Virtue* describes the difficulty of making sense of moral judgments apart from the traditions and shared practices in which they developed. Many of us draw ideas from several such traditions while participating fully in none. Those ideas help us criticize our lives. Teaching children a tradition also requires people who practice it together.
-
-Robin Hanson's attention to the costs of commitment helps explain what sustains such a practice. Religious practices require time and resources that people could use elsewhere. Traditional Shabbat observance restricts work. Kashrut restricts what people eat. Communal prayer requires showing up with people one might not otherwise choose to spend time with. Tzedakah requires giving money, and sexual laws constrain desire. Observing these practices gives other members of a community some basis for expecting continued participation even when it is inconvenient.
-
-Cost alone doesn't establish the value of a practice or the truth of the beliefs behind it. It matters to me when it helps people keep their commitments to one another. I want to take part in something my children can inherit and that other people can rely on.
-
-I need to make time for the holidays and shul, care for my parents, and decide what to teach my children. I take part in Jewish life and teach them what I can because I accept a responsibility to continue this tradition.
+*Lo alecha hamelacha ligmor, velo atah ben chorin lehibatel mimena*: “it is not your responsibility to finish the work, but you are not free to desist from it” (Pirkei Avot 2:16). I understand continuing a tradition as work of this kind. I received it from other people, and my children will have to decide what to do with what I teach them. My responsibility is to take part in Jewish life with them and teach them what I can.
