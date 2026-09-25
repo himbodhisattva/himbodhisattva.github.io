@@ -2,7 +2,7 @@
 
 I have to decide what to teach my children about Judaism before I've settled my own questions about it. They are already learning from the way we live at home and the people we spend time with. Putting off religious decisions affects their upbringing too.
 
-For years I thought I should be able to justify a tradition before accepting its demands. I would reject one because it was incomplete or compromised, then keep looking for one without those problems. I was expecting to find a certainty I had already concluded was unavailable. This resembles what David Chapman calls [eternalism](https://meaningness.com/eternalism): the belief that meaning is fixed and definite, even if we haven't found it yet.
+For years I thought I should be able to justify a tradition before accepting its demands. I would reject one because it was incomplete or compromised, then keep looking for one without those problems. This resembles what David Chapman calls [eternalism](https://meaningness.com/eternalism): the belief that meaning is fixed and definite, even if we haven't found it yet.
 
 We celebrate Shabbat on Friday evening. We also celebrate the holidays and go to shul. Many of my questions remain unresolved. I still care whether Judaism's claims are true. I also think I owe something to the people and tradition that formed me.
 
