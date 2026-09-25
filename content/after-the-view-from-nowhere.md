@@ -9,7 +9,7 @@ I have to decide what to teach my children about Judaism before I've settled my 
 
 For years I thought I should be able to justify a tradition before accepting its demands. I would reject one because it was incomplete or compromised, then keep looking for one without those problems. I was expecting to find a certainty I had already concluded was unavailable. This resembles what David Chapman calls [eternalism](https://meaningness.com/eternalism): the belief that meaning is fixed and definite, even if we haven't found it yet.
 
-I now keep Shabbat while many of my questions remain unresolved. I still care whether Judaism's claims are true. I also think I owe something to the people and tradition that formed me. I can act on those obligations while continuing to examine what they require and whether particular demands are justified.
+We celebrate Shabbat on Friday evening. We also celebrate the holidays and go to shul. Many of my questions remain unresolved. I still care whether Judaism's claims are true. I also think I owe something to the people and tradition that formed me. I can act on those obligations while continuing to examine what they require and whether particular demands are justified.
 
 ## Knowledge and Obligation
 
@@ -45,7 +45,7 @@ Some people in that community have become Catholic. The accounts that interest m
 
 Returning to religion can also be a way of avoiding judgment. Someone may accept an authority because he is frightened and wants it to decide for him. The same outward practice can therefore reflect different motives, and those motives can change. A Jew keeping Shabbat may be following an unquestioned habit, acting on a considered commitment, or doing some of each.
 
-I take Kiddush seriously when I say it on Friday night. My objections to religious claims still matter when I judge what my community does or what I am asked to believe. I practice more than the family I grew up in, though many observant Jews would consider my practice incomplete. I am still learning what accepting these obligations requires of me.
+We don't keep Shabbat on Saturday. I take our Friday evenings and holidays seriously, and I value going to shul. My objections to religious claims still matter when I judge what my community does or what I am asked to believe.
 
 I have used the phrase “stage-five honor culture” for a form of belonging in which a person can examine a community's standards and still accept its judgment of him. The community may be right that I have failed in an obligation, even if I can explain where that obligation came from. I need to distinguish a valid obligation I dislike from a demand I should reject. My ability to criticize either one doesn't settle which it is.
 
@@ -63,11 +63,11 @@ In this story, Hashem gives people the authority and responsibility to decide. T
 
 These procedures can preserve mistakes, as [Jewish institutions have sometimes done](https://himbodhisattva.com/blog/rav-uziel-the-gates-we-guard/). They also give disagreement a recognized place in Jewish life. There are religious reasons to argue about what the law requires. This allows a person to criticize decisions while remaining part of the tradition, although it leaves many questions about the proper limits of that criticism unresolved.
 
-Robin Hanson's attention to the costs of commitment helps with a different question. Religious practices require time and resources that people could use elsewhere. Keeping Shabbat limits when I can work. Kashrut affects what I eat. Communal prayer requires showing up with people I might not otherwise choose to spend time with. Tzedakah requires giving money, and sexual laws constrain desire. Observing these practices gives others some basis for expecting that I will continue to participate when it is inconvenient.
+Robin Hanson's attention to the costs of commitment helps with a different question. Religious practices require time and resources that people could use elsewhere. Traditional Shabbat observance restricts work. Kashrut restricts what people eat. Communal prayer requires showing up with people one might not otherwise choose to spend time with. Tzedakah requires giving money, and sexual laws constrain desire. Observing these practices gives other members of a community some basis for expecting continued participation even when it is inconvenient.
 
 Someone seeking help with doubt can often find it in American Buddhist practice with fewer changes to daily life. I mean the relatively informal forms many of us encountered; other Buddhist traditions involve extensive vows and communal obligations. Judaism asks for changes across much of a person's life because it also concerns the continuation of a people and its responsibilities across generations.
 
-Demanding practices can serve harmful ends too. Their cost doesn't establish their value or the truth of the beliefs behind them. But the demands of Judaism can help sustain commitments that I would otherwise reconsider whenever my preferences changed. I want to take part in something my children can inherit and that other people can rely on.
+Demanding practices can serve harmful ends too. Their cost doesn't establish their value or the truth of the beliefs behind them. But these demands can help sustain a community's practices despite changes in the preferences of individual members. I want to take part in something my children can inherit and that other people can rely on.
 
 ## Jewish Responses to Uncertainty
 
@@ -91,10 +91,10 @@ These teachings developed among people who lived within a tradition and had to d
 
 There are similar arguments in other traditions. In the *Bhagavad Gita*, Arjuna wants to withdraw from a battle because of the suffering it will cause. Krishna instructs him and gives him a vision of the divine form. Arjuna then returns to his duty. His greater understanding changes how he approaches the situation in which he must act. Epictetus also argues, in section 51 of the *Enchiridion*, that we have to begin practicing philosophy with the understanding we have now.
 
-My responsibilities usually involve ordinary decisions about work, family, and community. I need to decide when to stop working for Shabbat, how to care for my parents, and what to teach my children. Continuing to study those questions has to be compatible with meeting those responsibilities.
+My responsibilities usually involve ordinary decisions about work, family, and community. I need to make time for the holidays and shul, care for my parents, and decide what to teach my children. Continuing to study those questions has to be compatible with meeting those responsibilities.
 
 Some duties are harder to judge, including obligations to defend other people or use force. Inherited duties can be wrong. Families can be abusive, and communities can demand harmful or unjust actions. I remain responsible for judging what I am asked to do, including the harm that may follow either obedience or refusal. Belonging to a people makes those questions personally relevant without deciding the answers in advance.
 
 My reasons for practicing Judaism don't establish that Torah was revealed at Sinai. Claims about revelation still have to be considered on their own merits. My family and history give me reasons to take part in Jewish life while continuing to examine its claims. Those reasons can survive uncertainty about some of what the tradition teaches.
 
-I remain unsure about parts of Judaism, and I expect my understanding to change. I keep Shabbat and teach my children what I can because I accept a responsibility to continue this tradition. I intend to keep working through the questions I still have as part of that life.
+I remain unsure about parts of Judaism, and I expect my understanding to change. I take part in Jewish life and teach my children what I can because I accept a responsibility to continue this tradition. I intend to keep working through the questions I still have as part of that life.
