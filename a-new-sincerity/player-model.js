@@ -41,5 +41,37 @@
     return null;
   }
 
-  root.ANS_PLAYER_MODEL = { buildQueueContext, nextPlayable, activeCueIndex, routePath, escapeLayer };
+  function playPresentation(track) {
+    return track?.instrumental ? 'sleeve' : 'lyrics';
+  }
+
+  function nextLyricMode(mode, event, isPlaying) {
+    if (event === 'play') return mode === 'full' ? 'full' : 'peek';
+    if (event === 'open') return 'full';
+    if (event === 'close') return mode === 'full' && isPlaying ? 'peek' : 'closed';
+    return mode;
+  }
+
+  function lyricRouteAction(event, { mode = 'closed', ownsEntry = false, hash = '' } = {}) {
+    if (event === 'track-change') return mode === 'full' ? 'replace' : null;
+    if (event === 'close' && ownsEntry) return 'back';
+    if (event === 'close' && /^#track=/.test(hash)) return 'replace';
+    return null;
+  }
+
+  function lyricCloseLabel(mode) {
+    return mode === 'full' ? 'Collapse lyrics' : 'Close lyrics';
+  }
+
+  root.ANS_PLAYER_MODEL = {
+    buildQueueContext,
+    nextPlayable,
+    activeCueIndex,
+    routePath,
+    escapeLayer,
+    playPresentation,
+    nextLyricMode,
+    lyricRouteAction,
+    lyricCloseLabel,
+  };
 })(typeof window === 'undefined' ? globalThis : window);

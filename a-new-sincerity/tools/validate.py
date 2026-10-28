@@ -33,17 +33,23 @@ for document in documents:
  for path in re.findall(r'(?:src|href)="(assets/[^\"]+)"',html):assert (ROOT/path).is_file(),path
 main=documents[0].read_text()
 records=documents[1].read_text()
+public_copy=(main+records).lower()
 assert '<details' not in main and '<summary' not in main, 'story should use the shared liner-note deck, not stacked accordions'
 assert 'Minima' not in main and 'minima' not in main, 'Minima should remain in the catalog, not the essay focus'
 assert 'Like They Do In The Movies' in main
 assert 'somehow both a victory lap and a cry for help' in main.lower()
 assert 'emulated Stereogum review' in main
 assert 'data-play="victory-lap-01"' in main
-assert 'data-play="unfortunately-08" data-queue="album" data-album-context="unfortunately"' in main
+assert 'Hyperpop-punk, sincerity and self-absorption cranked up.' in main
 assert 'attached' not in (main+records+(ROOT/'app.js').read_text()).lower(), 'stale attachment copy remains'
 assert 'id="records"' not in main, 'the full catalog belongs on its own page'
 assert 'id="records"' in records and 'id="album-stage"' in records
 assert 'id="lyric-stage"' in main and 'id="lyric-stage"' in records
+assert main.index('id="unfortunately"') < main.index('id="counterfactual"'), '(unfortunately) must precede Revisionist History'
+for recommendation in ('our favorite', 'start with', 'places to start', 'save this one for later', 'funniest song'):
+ assert recommendation not in public_copy, f'recommendation copy remains: {recommendation}'
+records_hero=re.search(r'<header class="records-hero">(.*?)</header>',records,re.S).group(1)
+assert re.sub(r'<[^>]+>','',records_hero).strip()=='the records.', 'records page hero should say only “the records.”'
 sync_text=(ROOT/'lyrics-sync.js').read_text()
 sync=json.loads(re.sub(r'^window\.ANS_SYNC\s*=\s*','',sync_text).rstrip().removesuffix(';'))
 vocal_ids={t['id'] for t in data['tracks'] if not t['instrumental']}

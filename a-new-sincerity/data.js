@@ -243,7 +243,7 @@ window.ANS_DATA = {
       "instrumental": false,
       "provenance": "ai-generated performance · collaborative lyrics",
       "originalUrl": null,
-      "note": "The narrator forgives himself on someone else's behalf and feels generous for doing it. It is the funniest song on the album."
+      "note": "The narrator forgives himself on someone else's behalf and feels generous for doing it."
     },
     {
       "id": "unfortunately-08",
@@ -261,7 +261,7 @@ window.ANS_DATA = {
       "instrumental": false,
       "provenance": "ai-generated performance · collaborative lyrics",
       "originalUrl": null,
-      "note": "The narrator catches each manipulation as he makes it, then turns that recognition into another one. Start here."
+      "note": "The narrator catches each manipulation as he makes it, then turns that recognition into another one."
     },
     {
       "id": "unfortunately-09",
@@ -477,7 +477,7 @@ window.ANS_DATA = {
       "instrumental": false,
       "provenance": "ai-assisted reinterpretations of earlier songs",
       "originalUrl": null,
-      "note": "Our favorite on the record. The new recording brings the high guitar harmonies forward and gives the chorus room to open."
+      "note": "The new recording brings the high guitar harmonies forward and gives the chorus room to open."
     },
     {
       "id": "revisionist-03",

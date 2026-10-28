@@ -29,11 +29,13 @@ queue context. An album row, album button or album-linked story feature keeps
 the album order even after the listener opens lyrics. Natural completion stops
 after the final album track; manual previous and next controls may wrap.
 
-The lyric theater opens above the persistent player. `lyrics-sync.js` maps each
-supplied lyric line to the matching local recording. Clicking a line seeks to
-its cue. Manual scrolling pauses automatic following until the listener presses
-“follow the song.” Tracks without generated cues use a duration-weighted
-fallback; instrumentals display their sleeve without invented lyrics.
+Playing a track opens a compact lyric panel above the persistent player.
+`lyrics-sync.js` maps each supplied lyric line to the matching local recording,
+keeps the active line in view and lets a listener click any line to seek. The
+player can expand the panel into a full inner sleeve. Manual scrolling pauses
+automatic following until the listener presses “follow the song.” Tracks
+without generated cues use a duration-weighted fallback; instrumentals display
+their sleeve without invented lyrics.
 
 To regenerate cues from the current MP3 files:
 

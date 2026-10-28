@@ -6,32 +6,24 @@
 > emo/posthardcore musician, then had him remix my (real! actually recorded)
 > old songs
 
-That is where the site starts. The first song is “Somehow Both a Victory Lap and
-a Cry for Help.” If you want to start with the first A New Sincerity album,
-start with “Sorry for the Self-Awareness.”
+The album came first; the remixes followed.
 
-## The counterfactual
+## The first experiment
 
-*Revisionist History* collects songs I wrote for Lock Haven and The System of
-the World, now recorded by A New Sincerity.
+*(Unfortunately) I Know Exactly What I'm Doing* came first: what would
+counterfactual me be writing if I were still making pop-punk? Hyperpop-punk,
+sincerity and self-absorption cranked up.
 
-“Like They Do In The Movies” is our favorite on the record. The remake brings
-the high guitar harmonies forward and gives the chorus room to open. The site
-lets a listener switch between the Lock Haven recording and the A New Sincerity
-remake.
+Was that a dead end, or could you keep going?
 
-## (Unfortunately) I Know Exactly What I'm Doing
+## Keep going
 
-The remixes led to new songs. On the first A New Sincerity album, every narrator
-can explain his own manipulation while he is still doing it.
+So I had A New Sincerity remake songs I wrote and recorded with Lock Haven and
+The System of the World.
 
-The jokes work because the feelings under them are real. The choruses are much
-too large to count as an apology.
-
-“Sorry for the Self-Awareness” is the first choice. “Toxic Positivity
-(Microdose)” and “Why Is This Song So Self-Aware When I'm Not?” are two other
-places to begin. “I Forgive Myself (On Your Behalf)” is the funniest song on the
-album. Save it for later.
+For “Like They Do In The Movies,” the site places the Lock Haven recording and
+the A New Sincerity remake together. The remake brings the high guitar harmonies
+forward and gives the chorus room to open.
 
 ## My daughters asked for a happy love song
 
@@ -104,6 +96,6 @@ successful artistic enterprise.
 
 ## The records
 
-The complete catalog lives on its own page. A listener can start an album or
-choose any track. Album playback continues through the next track, and the lyric
-theater follows the recording line by line.
+The complete catalog lives on its own page. Playing a song opens a compact lyric
+view that follows the recording line by line. The full inner sleeve remains
+available from the player, and albums continue into the next track.

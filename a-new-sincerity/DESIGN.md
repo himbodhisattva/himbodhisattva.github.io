@@ -21,8 +21,10 @@ as context. None of their individual songs should organize the page.
 ## Interaction
 - One persistent audio element. Never autoplay on arrival or scroll. Album
   playback continues through the selected album after the listener starts it.
-- Timed lyrics open as a full inner-sleeve theater above the player. The active
-  line stays centered until the listener scrolls; any lyric line can seek.
+- Playing a track opens a compact lyric panel above the player without stealing
+  focus or blocking the page. It shows only a few lines and keeps the active line
+  centered until the listener scrolls. The player can expand it into the full
+  inner sleeve, and any lyric line can seek.
 - Put the deeper prose in a single pull-out liner-note deck. Keep accordions,
   cards and dialogs out of the story.
 - Show the steps from album to review to sampled song in one horizontal strip.
@@ -30,7 +32,7 @@ as context. None of their individual songs should organize the page.
   state and explicit queue context.
 - Artist filters and search preserve titles and versions. Do not invent
   recommendations.
-- Share links open a song in the records-page lyric theater without playback.
+- Share links open a song in the records-page full lyric view without playback.
 - Keyboard focus, Escape, arrow keys for tabs, visible focus indicators, reduced
   motion, safe-area spacing. Desktop seeking is always in the mini-player.
 - Never simulate successful playback when a recording is absent.
@@ -45,4 +47,4 @@ footage of the actual college band.
 ## Responsive
 Reviewed from 320px through 1440px. The essay becomes one column at phone sizes. The records
 page uses a horizontal sleeve shelf and one full album stage. Desktop keeps a
-chapter rail and gives the lyric theater room for the cover beside the words.
+chapter rail; the compact lyric panel expands into a full cover-and-words view.

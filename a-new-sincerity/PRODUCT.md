@@ -13,20 +13,23 @@ labels or private transcripts to the essay.
 
 ## Content requirements
 - Omit the entertainment.
-- Start with the supplied posts and Victory Lap. Use the earlier bands only to
-  explain how Revisionist History came about. Keep individual Lock Haven and
-  System of the World songs out of the lead.
-- The homepage starts with Somehow Both a Victory Lap and a Cry for Help. The
-  first-album starting point remains Sorry for the Self-Awareness.
+- Frame the homepage with the supplied posts and Victory Lap. Keep individual
+  Lock Haven and System of the World songs out of the lead.
+- The homepage establishes Somehow Both a Victory Lap and a Cry for Help as the
+  organizing phrase, then tells the project history in order.
+- *(Unfortunately) I Know Exactly What I'm Doing* came first. The experiment
+  imagines counterfactual me still writing pop-punk, with hyperpop-punk,
+  sincerity and self-absorption turned up.
+- Revisionist History came later as one answer to whether that counterfactual
+  musician could keep going.
 - Lock Haven and The System of the World are the earlier work. They already
   contain sincere material; The Top of the Mountain celebrates living.
 - The first ANS album continues those questions. Do not turn it into a "got
   sober, grew up, now happy" redemption story.
-- Treat Revisionist History as an A New Sincerity album. Call Like They Do In
-  The Movies the favorite on that record. Keep Minima in the catalog and out of
-  the essay.
-- Recommend Sorry for the Self-Awareness first. Save I Forgive Myself, the
-  funniest song on the album, for later.
+- Treat Revisionist History as an A New Sincerity album. Keep the original/remake
+  comparison for Like They Do In The Movies. Keep Minima in the catalog and out
+  of the essay.
+- Do not rank songs, label favorites or tell listeners where to begin.
 - Friday Girls begins with the daughters’ request for happy love songs.
 - The fictional band may be entirely uncomplicated within its own songs.
 - A small crush/identification aside exists, but is not the project thesis or an
@@ -45,7 +48,8 @@ labels or private transcripts to the essay.
 ## Visitor modes
 1. Listen immediately, with the complete records on a direct-linkable page.
 2. Read the short main essay with songs in context.
-3. Open lyrics, credits and deeper notes selectively.
+3. Follow compact synced lyrics automatically, with full lyrics, credits and
+   deeper notes available selectively.
 All must work by touch and keyboard. None may require hovering. Starting an
 album creates an explicit album queue and advances through it automatically.
 

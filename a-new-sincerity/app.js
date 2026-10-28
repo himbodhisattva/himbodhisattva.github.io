@@ -23,6 +23,7 @@
     selectedAlbum: 'unfortunately',
     lyricCues: [],
     activeCue: -1,
+    lyricMode: 'closed',
     followLyrics: true,
     lyricReturnFocus: null,
     dialogReturnFocus: null,
@@ -41,10 +42,15 @@
   const albumArt = album => asset(album.art);
   const canPlay = id => Boolean(tracks.get(id)?.audio);
 
-  function setLyricsOpen(open) {
+  function setLyricsMode(mode) {
+    const open = mode !== 'closed';
+    const full = mode === 'full';
+    state.lyricMode = mode;
+    lyricStage.dataset.mode = mode;
     lyricStage.hidden = !open;
-    document.body.classList.toggle('lyrics-open', open);
-    $$('body > .skip-link, body > header, body > main').forEach(element => { element.inert = open; });
+    $('#lyrics-close').setAttribute('aria-label', model.lyricCloseLabel(mode));
+    document.body.classList.toggle('lyrics-open', full);
+    $$('body > .skip-link, body > header, body > main').forEach(element => { element.inert = full; });
   }
 
   const iconPaths = {
@@ -268,7 +274,7 @@
           });
         } catch {}
       }
-      if (!lyricStage.hidden && $('#lyric-title').dataset.track !== track.id) renderLyrics(track);
+      if (state.lyricMode !== 'closed' && $('#lyric-title').dataset.track !== track.id) renderLyrics(track);
     }
     syncPlayButtons();
     updateTime();
@@ -335,53 +341,82 @@
     } else {
       lines.innerHTML = state.lyricCues.map((cue, index) => `<button class="lyric-line${cue.stanzaStart ? ' stanza-start' : ''}" data-cue="${index}" data-seek-time="${cue.start.toFixed(2)}"><span>${escape(cue.text)}</span></button>`).join('');
     }
+    lines.scrollTop = 0;
     $('#lyric-follow').hidden = true;
     updateActiveLyrics(true);
+  }
+
+  function showLyrics(track, { mode = 'peek', historyAction = null, returnFocus = null, focus = false } = {}) {
+    const wasClosed = state.lyricMode === 'closed';
+    lyricStage.dataset.presentation = model.playPresentation(track);
+    if ($('#lyric-title').dataset.track !== track.id) renderLyrics(track);
+    else {
+      state.followLyrics = true;
+      $('#lyric-follow').hidden = true;
+      updateActiveLyrics(true);
+    }
+    if (focus || (wasClosed && mode === 'peek')) state.lyricReturnFocus = returnFocus || document.activeElement;
+    setLyricsMode(mode);
+    updateActiveLyrics(true);
+    if (focus) $('#lyric-lines').focus({ preventScroll: true });
+    if (historyAction) {
+      const url = new URL(location.href);
+      url.hash = `track=${encodeURIComponent(track.id)}`;
+      if (historyAction === 'replace' || state.lyricHistoryEntry) {
+        history.replaceState(history.state, '', url);
+      } else {
+        history.pushState({ ansLyrics: true }, '', url);
+        state.lyricHistoryEntry = true;
+      }
+    }
   }
 
   async function openLyrics(id, { updateHistory = true, returnFocus = null } = {}) {
     const track = tracks.get(id);
     if (!track) return;
-    const wasOpen = !lyricStage.hidden;
     if (recordsPage && state.selectedAlbum !== track.album) renderAlbumStage(track.album);
     else state.selectedAlbum = track.album;
     const queue = state.queue.kind === 'album' && state.queue.id === track.album
       ? state.queue
       : model.buildQueueContext('album', track.album, albums.get(track.album).tracks);
     await selectTrack(id, { play: false, queue });
-    renderLyrics(track);
-    if (!wasOpen) state.lyricReturnFocus = returnFocus || document.activeElement;
-    setLyricsOpen(true);
-    $('#lyric-lines').focus({ preventScroll: true });
-    if (updateHistory) {
-      const url = new URL(location.href);
-      url.hash = `track=${encodeURIComponent(id)}`;
-      if (wasOpen || state.lyricHistoryEntry) history.replaceState({ ansLyrics: true }, '', url);
-      else history.pushState({ ansLyrics: true }, '', url);
-      state.lyricHistoryEntry = true;
-    }
+    showLyrics(track, { mode: model.nextLyricMode(state.lyricMode, 'open', !audio.paused), historyAction: updateHistory ? 'open' : null, returnFocus, focus: true });
   }
 
   function closeLyrics({ updateHistory = true } = {}) {
-    if (lyricStage.hidden) return;
-    setLyricsOpen(false);
-    if (!updateHistory) state.lyricHistoryEntry = false;
-    if (updateHistory) {
-      if (state.lyricHistoryEntry && history.state?.ansLyrics) {
-        state.lyricHistoryEntry = false;
-        history.back();
-      } else {
+    if (state.lyricMode === 'closed') return;
+    const wasFull = state.lyricMode === 'full';
+    const nextMode = model.nextLyricMode(state.lyricMode, 'close', !audio.paused);
+    const returnTarget = state.lyricReturnFocus?.isConnected && state.lyricReturnFocus !== document.body
+      ? state.lyricReturnFocus
+      : $('#player-lyrics');
+    const routeAction = updateHistory
+      ? model.lyricRouteAction('close', { ownsEntry: state.lyricHistoryEntry, hash: location.hash })
+      : null;
+    setLyricsMode(nextMode);
+    if (routeAction === 'back') {
+      state.lyricHistoryEntry = false;
+      if (history.state?.ansLyrics) history.back();
+      else {
         const destination = recordsPage && state.selectedAlbum
           ? model.routePath(location.pathname, location.search, 'album', state.selectedAlbum)
           : `${location.pathname}${location.search}`;
         history.replaceState(null, '', destination);
       }
+    } else if (routeAction === 'replace') {
+      state.lyricHistoryEntry = false;
+      const destination = recordsPage && state.selectedAlbum
+        ? model.routePath(location.pathname, location.search, 'album', state.selectedAlbum)
+        : `${location.pathname}${location.search}`;
+      history.replaceState(null, '', destination);
     }
-    if (state.lyricReturnFocus?.isConnected) state.lyricReturnFocus.focus({ preventScroll: true });
+    if (!updateHistory) state.lyricHistoryEntry = false;
+    if ((wasFull || nextMode === 'closed') && returnTarget?.isConnected) returnTarget.focus({ preventScroll: true });
+    state.lyricReturnFocus = nextMode === 'peek' ? returnTarget : null;
   }
 
   function updateActiveLyrics(force = false) {
-    if (lyricStage.hidden || !state.lyricCues.length) return;
+    if (state.lyricMode === 'closed' || !state.lyricCues.length) return;
     const index = model.activeCueIndex(state.lyricCues, audio.currentTime || 0);
     if (!force && index === state.activeCue) return;
     state.activeCue = index;
@@ -392,12 +427,16 @@
     });
     if (state.followLyrics && index >= 0) {
       const active = $(`.lyric-line[data-cue="${index}"]`, lyricStage);
-      active?.scrollIntoView({ block: 'center', behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+      const lines = $('#lyric-lines');
+      if (active) {
+        const top = active.offsetTop - (lines.clientHeight - active.offsetHeight) / 2;
+        lines.scrollTo({ top: Math.max(0, top), behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+      }
     }
   }
 
   function pauseLyricFollow() {
-    if (lyricStage.hidden || !state.lyricCues.length) return;
+    if (state.lyricMode === 'closed' || !state.lyricCues.length) return;
     state.followLyrics = false;
     $('#lyric-follow').hidden = false;
   }
@@ -472,7 +511,7 @@
         if (recordsPage && !stage?.childElementCount) renderAlbumStage(state.selectedAlbum);
       }
     } else {
-      closeLyrics({ updateHistory: false });
+      if (state.lyricMode === 'full') closeLyrics({ updateHistory: false });
       if (recordsPage) {
         const id = albumMatch ? decodeURIComponent(albumMatch[1]) : state.selectedAlbum;
         const stage = $('#album-stage');
@@ -573,10 +612,14 @@
   });
   $('#lyric-lines').addEventListener('wheel', pauseLyricFollow, { passive: true });
   $('#lyric-lines').addEventListener('touchmove', pauseLyricFollow, { passive: true });
+  $('#lyric-lines').addEventListener('pointerdown', pauseLyricFollow, { passive: true });
+  $('#lyric-lines').addEventListener('keydown', event => {
+    if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End'].includes(event.key)) pauseLyricFollow();
+  });
 
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') {
-      const layer = model.escapeLayer(dialog.open, !lyricStage.hidden);
+      const layer = model.escapeLayer(dialog.open, state.lyricMode !== 'closed');
       if (layer === 'dialog') {
         event.preventDefault();
         dialog.close();
@@ -595,7 +638,7 @@
       selectLiner(tabs[next].dataset.liner, true);
       return;
     }
-    if (event.code === 'Space' && lyricStage.hidden && !dialog.open && !event.target.closest('input,textarea,select,button,a,[contenteditable]')) {
+    if (event.code === 'Space' && state.lyricMode !== 'full' && !dialog.open && !event.target.closest('input,textarea,select,button,a,[contenteditable]')) {
       event.preventDefault();
       toggleCurrent();
     }
@@ -610,7 +653,16 @@
     if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
   });
 
-  ['play', 'pause', 'loadedmetadata', 'durationchange'].forEach(name => audio.addEventListener(name, updatePlayer));
+  audio.addEventListener('play', () => {
+    const track = tracks.get(state.current);
+    if (track) {
+      const mode = model.nextLyricMode(state.lyricMode, 'play', true);
+      const historyAction = model.lyricRouteAction('track-change', { mode: state.lyricMode });
+      showLyrics(track, { mode, historyAction });
+    }
+    updatePlayer();
+  });
+  ['pause', 'loadedmetadata', 'durationchange'].forEach(name => audio.addEventListener(name, updatePlayer));
   audio.addEventListener('timeupdate', updateTime);
   audio.addEventListener('ended', () => advance(1, false));
   audio.addEventListener('error', async () => {

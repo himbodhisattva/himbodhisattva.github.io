@@ -54,9 +54,9 @@ for album_id, credit in album_credits.items():
     albums[album_id]["credit"] = credit
 
 notes = {
-    "revisionist-02": "Our favorite on the record. The new recording brings the high guitar harmonies forward and gives the chorus room to open.",
-    "unfortunately-07": "The narrator forgives himself on someone else's behalf and feels generous for doing it. It is the funniest song on the album.",
-    "unfortunately-08": "The narrator catches each manipulation as he makes it, then turns that recognition into another one. Start here.",
+    "revisionist-02": "The new recording brings the high guitar harmonies forward and gives the chorus room to open.",
+    "unfortunately-07": "The narrator forgives himself on someone else's behalf and feels generous for doing it.",
+    "unfortunately-08": "The narrator catches each manipulation as he makes it, then turns that recognition into another one.",
     "friday-girls-02": "A crush begins after Friday dinner. The song lets the invitation be the whole event.",
     "friday-girls-05": "This began as a Friday Girls section inside Victory Lap. I split it into a separate recording and gave the band the full song.",
     "revisionist-03": "A New Sincerity remake of the Lock Haven song.",
