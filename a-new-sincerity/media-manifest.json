@@ -1,0 +1,313 @@
+{
+  "instructions": "All 48 catalog entries map to local 256 kbps MP3 files with album-specific metadata. Album artwork is configured for all six records. Run uv run --no-project python tools/apply_manifest.py after changing paths.",
+  "albums": {
+    "unfortunately": {
+      "art": "assets/unfortunately.webp"
+    },
+    "friday-girls": {
+      "art": "assets/user/friday-girls.webp"
+    },
+    "revisionist": {
+      "art": "assets/revisionist.webp"
+    },
+    "victory-lap": {
+      "art": "assets/user/victory-lap.webp"
+    },
+    "lock-haven": {
+      "art": "assets/user/lock-haven.webp"
+    },
+    "system": {
+      "art": "assets/user/system.webp"
+    }
+  },
+  "tracks": {
+    "unfortunately-01": {
+      "artist": "a new sincerity",
+      "title": "idiot plot armor",
+      "audio": "audio/unfortunately-01.mp3",
+      "art": "assets/unfortunately.webp"
+    },
+    "unfortunately-02": {
+      "artist": "a new sincerity",
+      "title": "toxic positivity (microdose)",
+      "audio": "audio/unfortunately-02.mp3",
+      "art": "assets/unfortunately.webp"
+    },
+    "unfortunately-03": {
+      "artist": "a new sincerity",
+      "title": "my red flags are decorative",
+      "audio": "audio/unfortunately-03.mp3",
+      "art": "assets/unfortunately.webp"
+    },
+    "unfortunately-04": {
+      "artist": "a new sincerity",
+      "title": "my therapist thinks I'm hilarious",
+      "audio": "audio/unfortunately-04.mp3",
+      "art": "assets/unfortunately.webp"
+    },
+    "unfortunately-05": {
+      "artist": "a new sincerity",
+      "title": "i'm above all this (please (don't) notice (but do))",
+      "audio": "audio/unfortunately-05.mp3",
+      "art": "assets/unfortunately.webp"
+    },
+    "unfortunately-06": {
+      "artist": "a new sincerity",
+      "title": "we need to talk about how well I communicate (technically flawless apology)",
+      "audio": "audio/unfortunately-06.mp3",
+      "art": "assets/unfortunately.webp"
+    },
+    "unfortunately-07": {
+      "artist": "a new sincerity",
+      "title": "i forgive myself (on your behalf)",
+      "audio": "audio/unfortunately-07.mp3",
+      "art": "assets/unfortunately.webp"
+    },
+    "unfortunately-08": {
+      "artist": "a new sincerity",
+      "title": "sorry for the self-awareness",
+      "audio": "audio/unfortunately-08.mp3",
+      "art": "assets/unfortunately.webp"
+    },
+    "unfortunately-09": {
+      "artist": "a new sincerity",
+      "title": "my \"i'm not an unreliable narrator\" shirt is raising a lot of questions already answered by the shirt",
+      "audio": "audio/unfortunately-09.mp3",
+      "art": "assets/unfortunately.webp"
+    },
+    "unfortunately-10": {
+      "artist": "a new sincerity",
+      "title": "why is this song so self-aware when I'm not?",
+      "audio": "audio/unfortunately-10.mp3",
+      "art": "assets/unfortunately.webp"
+    },
+    "unfortunately-11": {
+      "artist": "a new sincerity",
+      "title": "the transformative power of a key change",
+      "audio": "audio/unfortunately-11.mp3",
+      "art": "assets/unfortunately.webp"
+    },
+    "unfortunately-12": {
+      "artist": "a new sincerity",
+      "title": "i'm cured",
+      "audio": "audio/unfortunately-12.mp3",
+      "art": "assets/unfortunately.webp"
+    },
+    "friday-girls-01": {
+      "artist": "friday girls",
+      "title": "save me a seat",
+      "audio": "audio/friday-girls-01.mp3",
+      "art": "assets/user/friday-girls.webp"
+    },
+    "friday-girls-02": {
+      "artist": "friday girls",
+      "title": "since when?!",
+      "audio": "audio/friday-girls-02.mp3",
+      "art": "assets/user/friday-girls.webp"
+    },
+    "friday-girls-03": {
+      "artist": "friday girls",
+      "title": "it's you!",
+      "audio": "audio/friday-girls-03.mp3",
+      "art": "assets/user/friday-girls.webp"
+    },
+    "friday-girls-04": {
+      "artist": "friday girls",
+      "title": "and then forever",
+      "audio": "audio/friday-girls-04.mp3",
+      "art": "assets/user/friday-girls.webp"
+    },
+    "friday-girls-05": {
+      "artist": "friday girls",
+      "title": "again and again",
+      "audio": "audio/friday-girls-05.mp3",
+      "art": "assets/user/friday-girls.webp"
+    },
+    "friday-girls-06": {
+      "artist": "friday girls",
+      "title": "since when?! (a new sincerity remix?!)",
+      "audio": "audio/friday-girls-06.mp3",
+      "art": "assets/user/friday-girls.webp"
+    },
+    "revisionist-01": {
+      "artist": "a new sincerity",
+      "title": "The Wicked and The Proud (a new sincerity remix)",
+      "audio": "audio/revisionist-01.mp3",
+      "art": "assets/revisionist.webp"
+    },
+    "revisionist-02": {
+      "artist": "a new sincerity",
+      "title": "Like They Do In The Movies (a new sincerity remix)",
+      "audio": "audio/revisionist-02.mp3",
+      "art": "assets/movies.webp"
+    },
+    "revisionist-03": {
+      "artist": "a new sincerity",
+      "title": "Minima (a new sincerity remix)",
+      "audio": "audio/revisionist-03.mp3",
+      "art": "assets/minima.webp"
+    },
+    "revisionist-04": {
+      "artist": "a new sincerity",
+      "title": "Sept Ans (a new sincerity remix)",
+      "audio": "audio/revisionist-04.mp3",
+      "art": "assets/sept-ans.webp"
+    },
+    "revisionist-05": {
+      "artist": "a new sincerity",
+      "title": "nothing (a new sincerity remix)",
+      "audio": "audio/revisionist-05.mp3",
+      "art": "assets/revisionist.webp"
+    },
+    "revisionist-06": {
+      "artist": "a new sincerity",
+      "title": "I Am a Mountain (a new sincerity remix)",
+      "audio": "audio/revisionist-06.mp3",
+      "art": "assets/revisionist.webp"
+    },
+    "revisionist-07": {
+      "artist": "a new sincerity",
+      "title": "You'll Figure It Out (a new sincerity remix)",
+      "audio": "audio/revisionist-07.mp3",
+      "art": "assets/revisionist.webp"
+    },
+    "revisionist-08": {
+      "artist": "a new sincerity",
+      "title": "Vulnerable (a new sincerity remix)",
+      "audio": "audio/revisionist-08.mp3",
+      "art": "assets/revisionist.webp"
+    },
+    "revisionist-09": {
+      "artist": "a new sincerity",
+      "title": "seventeen again",
+      "audio": "audio/revisionist-09.mp3",
+      "art": "assets/seventeen.webp"
+    },
+    "victory-lap-01": {
+      "artist": "a new sincerity",
+      "title": "somehow both a victory lap and a cry for help",
+      "audio": "audio/victory-lap-01.mp3",
+      "art": "assets/user/victory-lap.webp"
+    },
+    "lock-haven-01": {
+      "artist": "lock haven",
+      "title": "The Secret Plot to Kill the Homeless",
+      "audio": "audio/lock-haven-01.mp3",
+      "art": "assets/user/lock-haven.webp"
+    },
+    "lock-haven-02": {
+      "artist": "lock haven",
+      "title": "Like They Do In The Movies",
+      "audio": "audio/lock-haven-02.mp3",
+      "art": "assets/user/lock-haven.webp"
+    },
+    "lock-haven-03": {
+      "artist": "lock haven",
+      "title": "Minima",
+      "audio": "audio/lock-haven-03.mp3",
+      "art": "assets/user/lock-haven.webp"
+    },
+    "lock-haven-04": {
+      "artist": "lock haven",
+      "title": "Sept Ans",
+      "audio": "audio/lock-haven-04.mp3",
+      "art": "assets/user/lock-haven.webp"
+    },
+    "lock-haven-05": {
+      "artist": "lock haven",
+      "title": "Seventeen Again",
+      "audio": "audio/lock-haven-05.mp3",
+      "art": "assets/user/lock-haven.webp"
+    },
+    "lock-haven-06": {
+      "artist": "lock haven",
+      "title": "The Secret Plot to Kill the Homeless (a new sincerity remix)",
+      "audio": "audio/lock-haven-06.mp3",
+      "art": "assets/user/lock-haven.webp"
+    },
+    "lock-haven-07": {
+      "artist": "lock haven",
+      "title": "Like They Do In The Movies (a new sincerity remix)",
+      "audio": "audio/lock-haven-07.mp3",
+      "art": "assets/movies.webp"
+    },
+    "lock-haven-08": {
+      "artist": "lock haven",
+      "title": "Minima (a new sincerity remix)",
+      "audio": "audio/lock-haven-08.mp3",
+      "art": "assets/minima.webp"
+    },
+    "lock-haven-09": {
+      "artist": "lock haven",
+      "title": "Sept Ans (a new sincerity remix)",
+      "audio": "audio/lock-haven-09.mp3",
+      "art": "assets/sept-ans.webp"
+    },
+    "system-01": {
+      "artist": "the system of the world",
+      "title": "The Wicked and The Proud",
+      "audio": "audio/system-01.mp3",
+      "art": "assets/user/system.webp"
+    },
+    "system-02": {
+      "artist": "the system of the world",
+      "title": "You'll Figure It Out",
+      "audio": "audio/system-02.mp3",
+      "art": "assets/user/system.webp"
+    },
+    "system-03": {
+      "artist": "the system of the world",
+      "title": "The Top of the Mountain",
+      "audio": "audio/system-03.mp3",
+      "art": "assets/user/system.webp"
+    },
+    "system-04": {
+      "artist": "the system of the world",
+      "title": "Vulnerable",
+      "audio": "audio/system-04.mp3",
+      "art": "assets/user/system.webp"
+    },
+    "system-05": {
+      "artist": "the system of the world",
+      "title": "Maybe If I Write Another Song",
+      "audio": "audio/system-05.mp3",
+      "art": "assets/user/system.webp"
+    },
+    "system-06": {
+      "artist": "the system of the world",
+      "title": "I Am a Mountain",
+      "audio": "audio/system-06.mp3",
+      "art": "assets/user/system.webp"
+    },
+    "system-07": {
+      "artist": "the system of the world",
+      "title": "The Schedule",
+      "audio": "audio/system-07.mp3",
+      "art": "assets/user/system.webp"
+    },
+    "system-08": {
+      "artist": "the system of the world",
+      "title": "your kisses",
+      "audio": "audio/system-08.mp3",
+      "art": "assets/user/system.webp"
+    },
+    "system-09": {
+      "artist": "the system of the world",
+      "title": "nothing",
+      "audio": "audio/system-09.mp3",
+      "art": "assets/user/system.webp"
+    },
+    "system-10": {
+      "artist": "the system of the world",
+      "title": "Raddicus",
+      "audio": "audio/system-10.mp3",
+      "art": "assets/user/system.webp"
+    },
+    "system-11": {
+      "artist": "the system of the world",
+      "title": "Atticus",
+      "audio": "audio/system-11.mp3",
+      "art": "assets/user/system.webp"
+    }
+  }
+}

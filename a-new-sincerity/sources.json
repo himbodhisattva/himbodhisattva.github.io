@@ -1,0 +1,50 @@
+{
+  "sources": [
+    {
+      "file": "A New Sincerity \u2014 (Unfortunately) I know exactly what I'm doing \u2014 Lyrics.md",
+      "sha256": "58ddfa124358ecdb11a68b4b36e4ef99da2e999c7e7132c699a391409d5d6297",
+      "tracks": 12,
+      "role": "lyrics transcribed verbatim from supplied file; titles retain source wording"
+    },
+    {
+      "file": "friday girls \u2014 this whole time?! \u2014 Lyrics.md",
+      "sha256": "461298f0133ddb30ba6fd38a4eaa8be6da05be410d71710e27314961961e16d0",
+      "tracks": 6,
+      "role": "lyrics transcribed verbatim from supplied file; titles retain source wording"
+    },
+    {
+      "file": "A New Sincerity \u2014 Revisionist History (The Remixes) \u2014 Lyrics.md",
+      "sha256": "9c1582d1fe8de53592c3d73982487623728c63182183c5c2f80d3febe0eefa9d",
+      "tracks": 9,
+      "role": "lyrics transcribed verbatim from supplied file; titles retain source wording"
+    },
+    {
+      "file": "A New Sincerity \u2014 victory lap \u2014 Lyrics.md",
+      "sha256": "8f70e3a3c65db3e9546816c77985d9804c2d4fd703c0547847452cb00ae0bf43",
+      "tracks": 1,
+      "role": "lyrics transcribed verbatim from supplied file; titles retain source wording"
+    },
+    {
+      "file": "Lock Haven \u2014 Painting a Painting \u2014 Lyrics.md",
+      "sha256": "37beab4dbf22c6e08fcc0fedac60a12ecf08d2463393751b496503d38822df8b",
+      "tracks": 9,
+      "role": "lyrics transcribed verbatim from supplied file; titles retain source wording"
+    },
+    {
+      "file": "The System of the World \u2014 The System of the World \u2014 Lyrics.md",
+      "sha256": "ff2cc05827b3328a6c1c1120c7236070774d673199c6d769a410978896e50fd1",
+      "tracks": 11,
+      "role": "lyrics transcribed verbatim from supplied file; titles retain source wording"
+    }
+  ],
+  "art": {
+    "unfortunately": "4D8EFB78-2061-4745-A776-D8C9001A80DD.jpeg",
+    "revisionist": "revisionist_history_the_remixes.png",
+    "minima": "0BBB90F6-FD56-44A8-B819-B835318BBD69(1).jpeg",
+    "movies": "C8D1BF85-D176-4510-8836-776EC4128AF3(1).jpeg",
+    "sept-ans": "IMG_0078(1).jpeg",
+    "seventeen": "120F4FFD-7376-473D-ADE8-1134479EFA63(1).jpeg"
+  },
+  "narrative": "Drafted from the user messages in the supplied conversation; private names, locations, employer and detailed relationship history are not introduced into the essay. No invented dates, quotes from external critics or clinician diagnoses.",
+  "notes": "Full lyrics retain their source wording, including occasional personal first names and sensitive themes. Review these before publishing under a pseudonym."
+}

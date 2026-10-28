@@ -1,0 +1,7 @@
+audio/*.mp3
+dist/
+LOCAL-ASSETS.json
+LOCAL-VERIFICATION.json
+local-preview*.png
+local-preview.html
+.DS_Store
