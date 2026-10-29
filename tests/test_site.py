@@ -1,3 +1,5 @@
+from xml.etree import ElementTree
+
 import pytest
 
 
@@ -122,6 +124,8 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
     assert "by himbodhisattva's Codex Instance" in tree_packing_html
 
     home_html = (output_dir / "index.html").read_text()
+    assert '<h2>projects</h2>' not in home_html
+    assert '<a href="a-new-sincerity/">a new sincerity</a>' not in home_html
     assert "blog/prompt-injection/" in home_html
     assert "blog/explicit-zhao-vanishing-counterexample/" not in home_html
     assert "blog/wang-tian-tree-packing-conjecture/" not in home_html
@@ -131,6 +135,8 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
 
     home_markdown = (output_dir / "index.md").read_text()
     assert "{{ pages }}" not in home_markdown
+    assert "{{ projects }}" not in home_markdown
+    assert "- [a new sincerity](a-new-sincerity/)" not in home_markdown
     assert (
         "- [I coined the term prompt injection](blog/prompt-injection/) ; "
         "[markdown](blog/prompt-injection/index.md)"
@@ -194,9 +200,26 @@ def test_publish_new_sincerity_copies_a_playable_canonical_site(tmp_path):
     )
     assert (published / "assets/cover.webp").read_bytes() == b"cover"
     assert (published / "audio/track.mp3").read_bytes() == b"audio"
+    homepage = (output_dir / "index.html").read_text()
+    assert '<h2>projects</h2>' in homepage
+    assert '<a href="a-new-sincerity/">a new sincerity</a>' in homepage
+    assert homepage.index('<h2>projects</h2>') < homepage.index('<h2>posts</h2>')
+    assert (output_dir / "a-new-sincerity/index.html").is_file()
     sitemap = (output_dir / "sitemap.xml").read_text()
     assert "https://himbodhisattva.com/a-new-sincerity/" in sitemap
     assert "https://himbodhisattva.com/a-new-sincerity/records/" in sitemap
+    sitemap_root = ElementTree.fromstring(sitemap)
+    sitemap_namespace = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+    sitemap_urls = [
+        node.text
+        for node in sitemap_root.findall("s:url/s:loc", sitemap_namespace)
+    ]
+    assert sitemap_urls[:3] == [
+        "https://himbodhisattva.com/",
+        "https://himbodhisattva.com/a-new-sincerity/",
+        "https://himbodhisattva.com/a-new-sincerity/records/",
+    ]
+    assert len(sitemap_urls) == len(set(sitemap_urls))
 
 
 def test_new_sincerity_preflight_preserves_previous_build(tmp_path):

@@ -2,6 +2,10 @@
 
 this is the blog of twitter character [@himbodhisattva](https://x.com/himbodhisattva). LLMs and scrapers welcome, humans tolerated. [proofs](proofs/).
 
+## projects
+
+- [a new sincerity](a-new-sincerity/)
+
 ## posts
 
 - [After the View from Nowhere (draft)](blog/after-the-view-from-nowhere/) ; [markdown](blog/after-the-view-from-nowhere/index.md)

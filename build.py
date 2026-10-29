@@ -35,6 +35,7 @@ LICENSE_URL = "https://creativecommons.org/publicdomain/zero/1.0/"
 PROOF_DISCLAIMER = (
     "> **Authorship disclaimer:** This proof was written primarily by GPT-5.6-sol."
 )
+PROJECTS_MARKDOWN = "## projects\n\n- [a new sincerity](a-new-sincerity/)"
 PUBLISHED_FILENAMES = {
     ".nojekyll",
     "CNAME",
@@ -156,7 +157,12 @@ def page_list_markdown(
     ) + "\n"
 
 
-def expand_markdown(body: str, page: Page, pages: list[Page]) -> str:
+def expand_markdown(
+    body: str,
+    page: Page,
+    pages: list[Page],
+    include_new_sincerity: bool = False,
+) -> str:
     body = (
         body.replace(
             "{{ pages }}",
@@ -173,6 +179,10 @@ def expand_markdown(body: str, page: Page, pages: list[Page]) -> str:
             page_list_markdown(
                 pages, "posts", link_prefix=page.asset_prefix
             ).rstrip(),
+        )
+        .replace(
+            "{{ projects }}",
+            PROJECTS_MARKDOWN if include_new_sincerity else "",
         )
     )
     if page.section == "proofs":
@@ -335,9 +345,12 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
 """,
     )
 
-    sitemap_entries = [f"{SITE_URL}/{page.html_url_path}" for page in pages]
+    sitemap_entries = [
+        f"{SITE_URL}/{page.html_url_path}" for page in ordered_pages
+    ]
     if include_new_sincerity:
-        sitemap_entries.extend(NEW_SINCERITY_CANONICALS.values())
+        sitemap_entries[1:1] = NEW_SINCERITY_CANONICALS.values()
+    sitemap_entries = list(dict.fromkeys(sitemap_entries))
     sitemap_urls = "\n".join(
         f"  <url><loc>{url}</loc></url>" for url in sitemap_entries
     )
@@ -458,7 +471,12 @@ def build_site(
     pages = [parse_markdown(path) for path in sorted(CONTENT_DIR.glob("*.md"))]
 
     for page in pages:
-        rendered_markdown = expand_markdown(page.markdown, page, pages)
+        rendered_markdown = expand_markdown(
+            page.markdown,
+            page,
+            pages,
+            include_new_sincerity=new_sincerity_source is not None,
+        )
         rendered_page = Page(
             slug=page.slug,
             title=page.title,
