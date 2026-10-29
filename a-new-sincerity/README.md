@@ -3,7 +3,7 @@
 This static site combines a multimedia essay with a separate catalog at
 `/a-new-sincerity/records/`. Both pages use the same audio player, album queues,
 artwork, track data and timed lyrics. The working copy retains
-`noindex,nofollow` and has not been published.
+`noindex,nofollow`; the parent site's build creates the canonical public copy.
 
 ## Local media
 
@@ -34,7 +34,7 @@ Playing a track opens a compact lyric panel above the persistent player.
 keeps the active line in view and lets a listener click any line to seek. The
 player can expand the panel into a full inner sleeve. Manual scrolling pauses
 automatic following until the listener presses “follow the song.” Tracks
-without generated cues use a duration-weighted fallback; instrumentals display
+without generated cues use a duration-weighted fallback. Instrumentals display
 their sleeve without invented lyrics.
 
 To regenerate cues from the current MP3 files:
@@ -73,10 +73,10 @@ The build appears in `dist/a-new-sincerity/` with staging metadata intact. The
 `--publish` option replaces `noindex` with canonical links in the built copy,
 but does not upload or deploy anything.
 
-## Publication review
+## Publication
 
-Before integration with the parent site, review collaborator credits, private
-names inside lyrics, mobile Safari playback, cue accuracy on the featured
-songs, cache headers, compression, the sitemap and the content security policy.
-The outer blog rebuilds `docs/`, so publication needs a repeatable copy step in
-its builder rather than a manual copy into that directory.
+Run `scripts/publish.sh` from the parent repository. Its builder copies this
+site and its audio into `docs/a-new-sincerity/`, replaces the staging robots
+tags with canonical links, and adds both public routes to the sitemap. The
+source pages keep their staging metadata so local drafts are never mistaken for
+the public build.

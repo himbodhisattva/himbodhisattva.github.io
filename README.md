@@ -1,7 +1,7 @@
 # @himbodhisattva homepage
 
-Plain static homepage for `@himbodhisattva`, optimized for direct reading by
-humans, crawlers, archives, and language models.
+Plain static homepage for `@himbodhisattva`, optimized for people and automated
+readers.
 
 ## Build
 
@@ -10,6 +10,8 @@ uv run python build.py
 ```
 
 The generated GitHub Pages site lives in `docs/`.
+The build also publishes the reviewed A New Sincerity source at
+`docs/a-new-sincerity/`, including its local audio library.
 
 ## Test
 

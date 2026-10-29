@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import html
+import json
 import shutil
 from dataclasses import dataclass
 from pathlib import Path
@@ -14,6 +15,22 @@ TEMPLATE_PATH = ROOT / "templates" / "page.html"
 DEFAULT_OUTPUT_DIR = ROOT / "docs"
 SITE_URL = "https://himbodhisattva.com"
 SITE_TITLE = "@himbodhisattva"
+NEW_SINCERITY_SOURCE_DIR = ROOT / "a-new-sincerity"
+NEW_SINCERITY_FILES = (
+    "index.html",
+    "style.css",
+    "experience.css",
+    "app.js",
+    "player-model.js",
+    "data.js",
+    "lyrics-sync.js",
+    "favicon.ico",
+)
+NEW_SINCERITY_DIRS = ("assets", "audio", "records")
+NEW_SINCERITY_CANONICALS = {
+    "index.html": f"{SITE_URL}/a-new-sincerity/",
+    "records/index.html": f"{SITE_URL}/a-new-sincerity/records/",
+}
 LICENSE_URL = "https://creativecommons.org/publicdomain/zero/1.0/"
 PROOF_DISCLAIMER = (
     "> **Authorship disclaimer:** This proof was written primarily by GPT-5.6-sol."
@@ -185,7 +202,11 @@ def render_page(page: Page, template: str) -> str:
     )
 
 
-def write_static_files(output_dir: Path, pages: list[Page]) -> None:
+def write_static_files(
+    output_dir: Path,
+    pages: list[Page],
+    include_new_sincerity: bool = False,
+) -> None:
     (output_dir / "CNAME").write_text("himbodhisattva.com\n")
 
     (output_dir / "style.css").write_text(
@@ -314,9 +335,11 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
 """,
     )
 
+    sitemap_entries = [f"{SITE_URL}/{page.html_url_path}" for page in pages]
+    if include_new_sincerity:
+        sitemap_entries.extend(NEW_SINCERITY_CANONICALS.values())
     sitemap_urls = "\n".join(
-        f"  <url><loc>{SITE_URL}/{page.html_url_path}</loc></url>"
-        for page in pages
+        f"  <url><loc>{url}</loc></url>" for url in sitemap_entries
     )
     (output_dir / "sitemap.xml").write_text(
         f"""<?xml version="1.0" encoding="UTF-8"?>
@@ -356,7 +379,74 @@ def mirror_to_root(output_dir: Path) -> None:
             shutil.copyfile(source, target)
 
 
-def build_site(output_dir: Path = DEFAULT_OUTPUT_DIR, mirror_root: bool = False) -> None:
+def preflight_new_sincerity(source_dir: Path) -> None:
+    """Validate every input needed to publish the listening site."""
+    manifest_path = source_dir / "media-manifest.json"
+    if not manifest_path.is_file():
+        raise FileNotFoundError(f"missing A New Sincerity manifest: {manifest_path}")
+    manifest = json.loads(manifest_path.read_text())
+    referenced_audio = {
+        track["audio"] for track in manifest["tracks"].values() if track.get("audio")
+    }
+    missing_audio = sorted(
+        audio_path
+        for audio_path in referenced_audio
+        if not (source_dir / audio_path).is_file()
+    )
+    if not referenced_audio or missing_audio:
+        missing = ", ".join(missing_audio) or "manifest has no audio paths"
+        raise FileNotFoundError(f"A New Sincerity publication is incomplete: {missing}")
+
+    for filename in NEW_SINCERITY_FILES:
+        source = source_dir / filename
+        if not source.is_file():
+            raise FileNotFoundError(f"missing A New Sincerity file: {source}")
+
+    for dirname in NEW_SINCERITY_DIRS:
+        source = source_dir / dirname
+        if not source.is_dir():
+            raise FileNotFoundError(f"missing A New Sincerity directory: {source}")
+
+    staging_meta = '<meta name="robots" content="noindex,nofollow">'
+    for relative_path in NEW_SINCERITY_CANONICALS:
+        page = source_dir / relative_path
+        if page.read_text().count(staging_meta) != 1:
+            raise ValueError(f"expected one staging robots tag in {page}")
+
+
+def publish_new_sincerity(source_dir: Path, output_dir: Path) -> None:
+    """Copy the reviewed listening site into the GitHub Pages output tree."""
+    preflight_new_sincerity(source_dir)
+
+    target_dir = output_dir / "a-new-sincerity"
+    if target_dir.exists():
+        shutil.rmtree(target_dir)
+    target_dir.mkdir(parents=True)
+
+    for filename in NEW_SINCERITY_FILES:
+        source = source_dir / filename
+        shutil.copy2(source, target_dir / filename)
+
+    for dirname in NEW_SINCERITY_DIRS:
+        source = source_dir / dirname
+        shutil.copytree(source, target_dir / dirname)
+
+    staging_meta = '<meta name="robots" content="noindex,nofollow">'
+    for relative_path, canonical_url in NEW_SINCERITY_CANONICALS.items():
+        page = target_dir / relative_path
+        html_text = page.read_text()
+        canonical = f'<link rel="canonical" href="{canonical_url}">'
+        page.write_text(html_text.replace(staging_meta, canonical))
+
+
+def build_site(
+    output_dir: Path = DEFAULT_OUTPUT_DIR,
+    mirror_root: bool = False,
+    new_sincerity_source: Path | None = None,
+) -> None:
+    if new_sincerity_source is not None:
+        preflight_new_sincerity(new_sincerity_source)
+
     output_dir.mkdir(parents=True, exist_ok=True)
     for path in output_dir.iterdir():
         if path.is_dir():
@@ -387,11 +477,21 @@ def build_site(output_dir: Path = DEFAULT_OUTPUT_DIR, mirror_root: bool = False)
         (output_dir / page.html_output_path).write_text(render_page(rendered_page, template))
 
     (output_dir / ".nojekyll").write_text("")
-    write_static_files(output_dir, pages)
+    write_static_files(
+        output_dir,
+        pages,
+        include_new_sincerity=new_sincerity_source is not None,
+    )
+
+    if new_sincerity_source is not None:
+        publish_new_sincerity(new_sincerity_source, output_dir)
 
     if mirror_root:
         mirror_to_root(output_dir)
 
 
 if __name__ == "__main__":
-    build_site(mirror_root=True)
+    build_site(
+        mirror_root=True,
+        new_sincerity_source=NEW_SINCERITY_SOURCE_DIR,
+    )

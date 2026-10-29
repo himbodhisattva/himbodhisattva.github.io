@@ -1,3 +1,35 @@
+import pytest
+
+
+def _new_sincerity_fixture(tmp_path):
+    source_dir = tmp_path / "a-new-sincerity"
+    (source_dir / "assets").mkdir(parents=True)
+    (source_dir / "audio").mkdir()
+    (source_dir / "records").mkdir()
+
+    staging_meta = '<meta name="robots" content="noindex,nofollow">'
+    (source_dir / "index.html").write_text(f"<head>{staging_meta}</head>")
+    (source_dir / "records/index.html").write_text(
+        f"<head>{staging_meta}</head>"
+    )
+    for filename in (
+        "style.css",
+        "experience.css",
+        "app.js",
+        "player-model.js",
+        "data.js",
+        "lyrics-sync.js",
+        "favicon.ico",
+    ):
+        (source_dir / filename).write_bytes(filename.encode())
+    (source_dir / "assets/cover.webp").write_bytes(b"cover")
+    (source_dir / "audio/track.mp3").write_bytes(b"audio")
+    (source_dir / "media-manifest.json").write_text(
+        '{"tracks":{"track":{"audio":"audio/track.mp3"}}}'
+    )
+    return source_dir, staging_meta
+
+
 def test_build_outputs_llm_friendly_static_site(tmp_path):
     import build
 
@@ -131,11 +163,59 @@ def test_build_outputs_llm_friendly_static_site(tmp_path):
         "https://himbodhisattva.com/blog/wang-tian-tree-packing-conjecture/"
         in sitemap
     )
-
     license_text = (output_dir / "LICENSE").read_text()
     assert "CC0 1.0 Universal" in license_text
 
     assert (output_dir / "CNAME").read_text() == "himbodhisattva.com\n"
+
+
+def test_publish_new_sincerity_copies_a_playable_canonical_site(tmp_path):
+    import build
+
+    source_dir, staging_meta = _new_sincerity_fixture(tmp_path)
+    output_dir = tmp_path / "docs"
+    build.build_site(
+        output_dir=output_dir,
+        new_sincerity_source=source_dir,
+    )
+
+    published = output_dir / "a-new-sincerity"
+    home = (published / "index.html").read_text()
+    records = (published / "records/index.html").read_text()
+    assert staging_meta not in home
+    assert staging_meta not in records
+    assert (
+        '<link rel="canonical" href="https://himbodhisattva.com/a-new-sincerity/">'
+        in home
+    )
+    assert (
+        '<link rel="canonical" href="https://himbodhisattva.com/'
+        'a-new-sincerity/records/">' in records
+    )
+    assert (published / "assets/cover.webp").read_bytes() == b"cover"
+    assert (published / "audio/track.mp3").read_bytes() == b"audio"
+    sitemap = (output_dir / "sitemap.xml").read_text()
+    assert "https://himbodhisattva.com/a-new-sincerity/" in sitemap
+    assert "https://himbodhisattva.com/a-new-sincerity/records/" in sitemap
+
+
+def test_new_sincerity_preflight_preserves_previous_build(tmp_path):
+    import build
+
+    source_dir, _ = _new_sincerity_fixture(tmp_path)
+    output_dir = tmp_path / "docs"
+    output_dir.mkdir()
+    sentinel = output_dir / "existing-publication"
+    sentinel.write_text("keep me")
+    (source_dir / "audio/track.mp3").unlink()
+
+    with pytest.raises(FileNotFoundError, match="audio/track.mp3"):
+        build.build_site(
+            output_dir=output_dir,
+            new_sincerity_source=source_dir,
+        )
+
+    assert sentinel.read_text() == "keep me"
 
 
 def test_build_can_mirror_generated_pages_to_publish_root(tmp_path, monkeypatch):

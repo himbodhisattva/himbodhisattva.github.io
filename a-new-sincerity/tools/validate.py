@@ -31,6 +31,10 @@ for obj in data['albums']+data['tracks']:
   assert not value.startswith(('blob:','javascript:','data:')), f'non-publishable {key}: {value}'
   if not value.startswith(('https://','/')):assert (ROOT/value).is_file(), f'missing asset {value}'
 documents=[ROOT/'index.html',ROOT/'records'/'index.html']
+canonical_urls={
+ documents[0]:'https://himbodhisattva.com/a-new-sincerity/',
+ documents[1]:'https://himbodhisattva.com/a-new-sincerity/records/',
+}
 for document in documents:
  html=document.read_text()
  assert 'noindex,nofollow' in html, f'{document.name}: staging copy must remain noindex until explicitly published'
@@ -40,6 +44,9 @@ for document in documents:
  assert set(external_runtime_urls)<=allowed_runtime_urls, f'{document.name}: unexpected runtime dependency'
  wordmark=re.search(r'<a class="site-wordmark".*?</a>',html,re.S).group()
  assert 'himbodhisattva' not in wordmark.lower(), f'{document.name}: project should not carry the parent-site brand'
+ assert f'<meta property="og:url" content="{canonical_urls[document]}">' in html
+ assert '<meta property="og:image" content="https://himbodhisattva.com/a-new-sincerity/assets/user/victory-lap-1254.webp">' in html
+ assert '<meta name="twitter:card" content="summary_large_image">' in html
  for path in re.findall(r'(?:src|href)="(assets/[^\"]+)"',html):assert (ROOT/path).is_file(),path
 main=documents[0].read_text()
 records=documents[1].read_text()
