@@ -9,6 +9,7 @@ const {
   routePath,
   escapeLayer,
   playPresentation,
+  playbackLyricEvent,
   nextLyricMode,
   lyricRouteAction,
   lyricCloseLabel,
@@ -53,7 +54,11 @@ assert.equal(escapeLayer(false, true), 'lyrics');
 assert.equal(escapeLayer(false, false), null);
 assert.equal(playPresentation({ instrumental: false }), 'lyrics', 'playing a vocal track reveals timed lyrics');
 assert.equal(playPresentation({ instrumental: true }), 'sleeve', 'playing an instrumental reveals its sleeve');
+assert.equal(playbackLyricEvent({ automatic: true }), 'autoplay', 'queue continuation does not impersonate a new play request');
+assert.equal(playbackLyricEvent({ automatic: false }), 'play', 'a listener-requested track may reveal lyrics');
 assert.equal(nextLyricMode('closed', 'play', true), 'peek', 'play opens the compact lyric panel');
+assert.equal(nextLyricMode('closed', 'autoplay', true), 'closed', 'autoplay respects a listener-closed lyric panel');
+assert.equal(nextLyricMode('peek', 'autoplay', true), 'peek', 'autoplay keeps an open lyric panel following the queue');
 assert.equal(nextLyricMode('peek', 'open', true), 'full', 'the lyrics control expands the panel');
 assert.equal(nextLyricMode('full', 'close', true), 'peek', 'closing full lyrics returns to the playing peek');
 assert.equal(nextLyricMode('peek', 'close', true), 'closed', 'closing the peek hides it');
@@ -97,10 +102,10 @@ assert.deepEqual(
     storyQueue: ['album-01', 'album-02'],
   }, canPlay),
   {
-    track: 'album-02',
+    track: 'album-01',
     queue: { kind: 'story', id: 'essay', tracks: ['album-01', 'album-02'] },
   },
-  'the essay player keeps its curated default track',
+  'an untouched essay player starts with the first playable track at the top',
 );
 
 const emptyRecordsContext = {

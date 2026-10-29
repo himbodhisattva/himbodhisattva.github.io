@@ -15,7 +15,7 @@ imagines that he never stopped making pop-punk and writes from that
 counterfactual career. The result is hyperpop-punk, with even more sincerity
 and self-absorption.
 
-The album appears with its complete track list and a collage of simulated
+The album appears with its complete track list and a collage of emulated
 reviews. The collage identifies the lines as emulations and states that the
 named publications did not publish them. Its Stereogum line, “somehow both a cry
 for help and a victory lap,” becomes the title of the later record.
@@ -24,19 +24,20 @@ The album section also contains the “sorry for the self-awareness.” argument
 A New Sincerity attempts infinite ironic detachment: The Narrator anticipates
 each criticism before anyone can use it against him. His intelligence makes
 flaws charming, wins arguments, avoids responsibility, and eventually becomes
-a prison made of explanations. A better account of the problem does not mean
-the problem has changed. Three playable track-title rows interrupt the argument
-and give it a direct listening path.
-
-The Narrator is both A New Sincerity and the author. The section cuts its
-explanation short and leaves the joke to its closing line: “The Narrator would
-also like credit for recognizing this.”
+a prison made of explanations. The author calls himself The Narrator when he is
+chasing praise for being self-aware. He names the flaw
+first, waits to be congratulated for noticing it, then uses the explanation to
+do the same thing again. A better account of the problem does not mean the
+problem has changed. Three playable track-title rows interrupt the argument and
+give it a direct listening path.
 
 ## The older songs
 
-*Revisionist History* follows. A New Sincerity remakes songs originally written
-for Lock Haven and The System of the World. Its complete track list appears in
-the essay.
+*Revisionist History* follows. The author gives A New Sincerity songs he had
+already written for Lock Haven and The System of the World. Some survive as
+finished recordings; others as low-quality files in which the performance is
+barely audible. Counterfactual him inherits, reconstructs, and improves them.
+Its complete track list appears in the essay.
 
 “Like They Do In The Movies” receives a direct comparison. The version labeled
 as the reconstruction is already an AI recovery from a recording where the
@@ -61,18 +62,28 @@ page states the speed plainly: this process can run at several songs per day.
 ## Victory Lap
 
 *Somehow Both a Victory Lap and a Cry for Help* follows Friday Girls. The title
-comes from the simulated Stereogum review of *(Unfortunately)*. This album
-section interrupts the longer explanation and keeps the record playable in
-place.
+comes from the emulated Stereogum review of *(Unfortunately)*, which then became
+the next song. By this point, the project is consuming its own history. The
+author invents A New Sincerity; A New Sincerity restores and improves the old
+songs the author could barely recover. The author then invents Friday Girls.
+His daughters become obsessed with them, making the fictional band part of real
+family life. A New Sincerity consumes and improves those songs too. Each turn
+makes ironic distance harder to maintain. The section ends by anticipating the
+next track and asking: “Who's the real one now?”
 
 ## Philosophy liner note
 
 The visible postmodernism coda ends with “Now it is our turn to solve
-postmodernism.” The sentence is a hidden link to a first-person philosophy
-liner note. The New Sincerity comes first, followed by metamodernism and
-performatism. Fatal strategies closes the four-part survey. The note then asks
-whether an experience becomes authentic because of its origin or because of
-its consequences. It also preserves the full post and its reply exchange.
+postmodernism.” A second visible line invites the reader to open the first-person
+philosophy liner note. The note has three explicit strands. The first combines
+The New Sincerity with metamodernism, then adds performatism and fatal strategies
+to form one stance against postmodernism. The second argues that AI art becomes
+a new medium when speed and recursion compress the feedback loop enough to
+change the creative process, drawing on Fisher's lost futures and Baudrillard's
+simulation. The third treats songwriting as an act of making the self legible
+to itself, then uses Scott's account of legibility and mētis to ask how that
+representation rewards some parts of the self and discourages others. It also
+preserves the full post and its reply exchange.
 
 ## Public context
 
@@ -89,6 +100,12 @@ One link closes the page. It combines “the records.” with the smaller line �
 in loser, we're subverting postmodernism from the inside.”
 
 On `/records/`, the album shelf stays visible above the selected album. Selecting
-an album scrolls to its full detail and track list; direct album links do the
+an album scrolls to its full detail and track list. Direct album links do the
 same. Album playback continues through the record, and the compact lyric view
-tracks the current line.
+tracks the current line. Explicit song selection opens lyrics. Closing the lyric
+view becomes a persistent listener choice during automatic queue continuation.
+The next song does not reopen it. The player stays compact while its art,
+metadata, primary play control, and lyrics control are larger and easier to use.
+
+Both pages close with the factual credit “all songs made with Suno v6-pro,”
+linking to Suno.

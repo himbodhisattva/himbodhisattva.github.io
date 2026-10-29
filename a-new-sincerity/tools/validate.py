@@ -22,8 +22,8 @@ assert track_by_id['friday-girls-05']['art']=='assets/user/friday-girls-again-an
 assert all(manifest['albums'][a['id']]['art']==a['art'] for a in data['albums']), 'album artwork paths disagree with the media manifest'
 assert all(manifest['tracks'][t['id']]['art']==t['art'] and manifest['tracks'][t['id']]['audio']==t['audio'] for t in data['tracks']), 'track media paths disagree with the media manifest'
 assert all(t['group']==album_by_id[t['album']]['group'] for t in data['tracks']), 'track and album groups disagree'
-assert data['defaultTrack']=='victory-lap-01', 'Victory Lap should be the site-wide player default'
-assert data['queue'][0]=='victory-lap-01', 'The story queue should begin at the site anchor'
+assert data['defaultTrack']=='unfortunately-01', 'The untouched player should begin with the top track'
+assert data['queue'][0]=='unfortunately-01', 'The story queue should begin with the top track'
 for obj in data['albums']+data['tracks']:
  for key in ['art','audio']:
   value=obj.get(key)
@@ -72,7 +72,8 @@ assert 'what is “a new sincerity”?' in main.lower()
 assert 'attempt at infinite ironic detachment' in main.lower()
 assert "knowing what you're doing is not the same as being able to do otherwise" in main.lower()
 assert main.lower().index("knowing what you're doing is not the same as being able to do otherwise") < main.index('id="unfortunately"'), 'the central discovery belongs in the opening definition'
-assert 'The Narrator would also like credit for recognizing this.' in main
+assert 'The Narrator would also like credit for recognizing this.' not in main
+assert "chasing praise for being self-aware" in main
 assert 'The Protagonist' not in main
 assert 'keep going' not in main
 assert 'id="self-awareness"' in main
@@ -95,8 +96,11 @@ assert '2115229386890994060' in main, 'the Friday Girls chronology tweet is miss
 assert '2115224311409901920' in main, 'the linked postmodernism post is missing'
 assert 'Now it is our turn to solve postmodernism.' in main
 assert 'your completely valid philosophical objections are now promotional material' in main
-assert '<a class="philosophy-trigger" href="#philosophy">Now it is our turn to solve postmodernism.</a>' in main
+assert '<strong>Now it is our turn to solve postmodernism.</strong>' in main
+assert '<span>open the philosophy liner note</span>' in main
 assert 'id="philosophy-dialog"' in main
+for strand_id in ('philosophy-postmodernism', 'philosophy-medium', 'philosophy-legibility'):
+ assert f'id="{strand_id}"' in main, f'missing philosophy strand: {strand_id}'
 for philosophy_phrase in (
  'The New Sincerity: feel something despite knowing better.',
  'Metamodernism: move between belief and disbelief.',
@@ -105,6 +109,11 @@ for philosophy_phrase in (
  'whether an experience becomes real because of where it came from, or because of what happens next',
 ):
  assert philosophy_phrase in main, f'missing philosophy liner-note copy: {philosophy_phrase}'
+assert 'The feedback loop becomes the medium.' in main
+assert 'making the self legible to itself' in main
+assert 'mētis' in main
+assert 'yalebooks.yale.edu/book/9780300078152/seeing-like-a-state/' in main
+assert 'simonandschuster.com/books/Ghosts-of-My-Life/Mark-Fisher/9781780992266' in main
 assert "I'm not worried about being late" not in main
 assert "previous expeditions into the dragon's cave" not in main
 assert 'liner note 05b' not in main, 'the philosophy note should not refer to a removed chapter number'
@@ -123,10 +132,16 @@ app_source=(ROOT/'app.js').read_text()
 assert 'openPhilosophy({ returnFocus: null });' in app_source, 'direct philosophy links must not restore focus to an off-screen trigger'
 assert 'openPhilosophy({ returnFocus: event.currentTarget });' in app_source, 'click-opened philosophy notes should restore focus to the activating link'
 for page in (main, records):
-    assert 'style.css?v=20261029d' in page
-    assert 'experience.css?v=20261029d' in page
-    assert 'player-model.js?v=20261029d' in page
-    assert 'app.js?v=20261029d' in page
+    assert 'data.js?v=20261029e' in page
+    assert 'style.css?v=20261029e' in page
+    assert 'experience.css?v=20261029e' in page
+    assert 'player-model.js?v=20261029e' in page
+    assert 'app.js?v=20261029e' in page
+    assert '<a href="https://suno.com/">Suno v6-pro</a>' in page
+assert '↗' not in (main+records+app_source), 'decorative up-right arrows remain'
+assert 'simulated reviews' not in main.lower(), 'review terminology must stay emulated'
+assert 'Annoyingly, he improved the songs.' in main
+assert "Who's the real one now?" in main
 assert 'id="liner-notes"' not in main and 'review-centerpiece' not in main and 'current-status' not in main
 assert main.count('class="records-door"') == 1
 assert 'get in loser, we\'re subverting postmodernism from the inside' in main

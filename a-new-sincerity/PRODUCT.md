@@ -3,7 +3,7 @@
 ## Purpose
 
 A New Sincerity is a writing and listening project about using AI to continue a
-counterfactual music career. The homepage traces the records through simulated
+counterfactual music career. The homepage traces the records through emulated
 criticism, fictional performers, family listening, and public posts. Its central
 argument concerns the limits of self-awareness: understanding a defense or a
 failure does not produce the ability to act differently.
@@ -20,7 +20,7 @@ labels, or private transcripts to the essay.
 - Lead with the counterfactual-musician post and define A New Sincerity as the
   character the author wrote from the life he might have had as a musician.
 - Present *(Unfortunately) I Know Exactly What I'm Doing* first. Pair it with an
-  obviously simulated review collage and state that the quoted outlets did not
+  obviously emulated review collage and state that the quoted outlets did not
   publish those lines. Place the “sorry for the self-awareness.” argument under
   this album's description. Three playable song-title rows break up the prose;
   do not use an intelligence-to-salvation diagram.
@@ -33,17 +33,25 @@ labels, or private transcripts to the essay.
   without embedding an X widget. Keep “wait, you like me too?!” as a small aside
   rather than the section heading.
 - Present *Somehow Both a Victory Lap and a Cry for Help* after Friday Girls.
-  Its title comes from the simulated Stereogum review of *(Unfortunately)*.
+  Its title comes from the emulated Stereogum review of *(Unfortunately)*. Its
+  copy closes the recursive sequence. The author invents A New Sincerity, who
+  reconstructs barely audible recordings of the author's older songs and
+  improves them. Friday Girls becomes part of real family life before A New
+  Sincerity remixes those songs too. The resulting attachment makes ironic
+  distance harder to maintain.
 - Show the complete track lists for *(Unfortunately)*, *Revisionist History*,
   and the Friday Girls album inside their story sections.
 - Use only three tweet-derived story beats: the opening counterfactual-musician
   premise, the Friday Girls turn, and the postmodernism post with its reply
   exchange. The visible essay ends its postmodernism coda with “Now it is our
-  turn to solve postmodernism.” That ordinary-looking sentence opens a
-  first-person philosophy liner note at `#philosophy`. The note preserves the
-  full post and supplied reply screenshot. It begins directly with four
-  responses to postmodernism, names Wallace's response “The New Sincerity,” and
-  links its sources.
+  turn to solve postmodernism.” A visible “open the philosophy liner note” label
+  makes the sentence's destination clear. The link opens a first-person note at
+  `#philosophy`, which preserves the full post and supplied reply screenshot.
+  The note has three strands. One synthesizes four responses to postmodernism.
+  Another treats AI art as a medium created by an accelerated feedback loop.
+  The last explains how songwriting makes the self legible while also changing
+  it. The first strand names Wallace's response “The New Sincerity” and links
+  its sources.
   Do not load an embedded X widget for that material or add a separate tweet
   wall.
 - Use a single records link. Its large label is “the records.” and its smaller line
@@ -64,7 +72,9 @@ track counts, and disclosures remain factual or functional.
   the counterfactual author would write after pushing pop-punk toward hyperpop.
   Its lyrics heighten both sincerity and self-absorption.
 - *Revisionist History* follows the first record and remakes older Lock Haven
-  and System of the World songs.
+  and System of the World songs. A New Sincerity inherits recordings the author
+  left behind, including barely audible files, then reconstructs and improves
+  the songs.
 - Keep Minima in the catalog and out of the essay.
 - Friday Girls sits outside A New Sincerity's recursive self-awareness. The
   songs draw on the author's marriage while leaving room for his daughters to
@@ -75,17 +85,27 @@ track counts, and disclosures remain factual or functional.
   developmental, or metaphysical verdict.
 - Use finished lyrics, supplied disclosures, source posts, and local recordings
   as evidence. Do not invent dates or treat rejected drafts as canon.
+- Credit the production plainly in both page footers: “all songs made with
+  Suno v6-pro,” with “Suno v6-pro” linked to `https://suno.com/`.
 
 ## Listening behavior
 
 The homepage and `/records/` use the same catalog and player. Starting an album
 creates an album queue and advances through every track. Playback opens a
 compact lyric view that follows the recording, scrolls the active lines into
-view, and keeps full lyrics and credits available.
+view, and keeps full lyrics and credits available. Explicitly choosing a track
+or pressing Next opens the compact lyrics. If the listener closes lyrics,
+automatic continuation to the next song respects that choice and leaves them
+closed.
+
+Keep the persistent player compact and information-dense. Its art, metadata,
+play control, and lyrics control remain comfortably readable and tappable. Do
+not create empty height around undersized controls.
 
 Before a song has been chosen, every player control resolves from the same
-starting point: the selected record on `/records/`, or the essay's curated song
-on the homepage. The controls must never establish different first tracks.
+starting point: the selected record on `/records/`, or the first playable track
+at the top of the homepage queue. The controls must never establish different
+first tracks.
 
 The records page keeps the album shelf above the detail view. Choosing an album
 updates the URL, renders its full track list, and scrolls the selected detail
@@ -95,7 +115,7 @@ replace smooth scrolling with an immediate jump.
 All controls must work by touch and keyboard. No action may require hovering.
 The philosophy liner note opens from its sentence or a direct `#philosophy`
 URL. Visitors can dismiss it without disturbing playback. The close button and
-backdrop support pointer input; Escape and browser Back support navigation.
+backdrop support pointer input. Escape and browser Back support navigation.
 
 ## Scope of v1
 

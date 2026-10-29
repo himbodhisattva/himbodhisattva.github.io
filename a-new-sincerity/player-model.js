@@ -45,8 +45,13 @@
     return track?.instrumental ? 'sleeve' : 'lyrics';
   }
 
+  function playbackLyricEvent({ automatic = false } = {}) {
+    return automatic ? 'autoplay' : 'play';
+  }
+
   function nextLyricMode(mode, event, isPlaying) {
     if (event === 'play') return mode === 'full' ? 'full' : 'peek';
+    if (event === 'autoplay') return mode;
     if (event === 'open') return 'full';
     if (event === 'close') return mode === 'full' && isPlaying ? 'peek' : 'closed';
     return mode;
@@ -86,9 +91,8 @@
       }
     }
 
-    const track = defaultTrack && canPlay(defaultTrack)
-      ? defaultTrack
-      : storyQueue.find(canPlay);
+    const track = storyQueue.find(canPlay)
+      || (defaultTrack && canPlay(defaultTrack) ? defaultTrack : null);
     return track ? {
       track,
       queue: buildQueueContext('story', 'essay', storyQueue),
@@ -107,6 +111,7 @@
     routePath,
     escapeLayer,
     playPresentation,
+    playbackLyricEvent,
     nextLyricMode,
     lyricRouteAction,
     lyricCloseLabel,

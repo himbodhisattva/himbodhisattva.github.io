@@ -180,20 +180,6 @@
     var(--ans-plum);
   overflow: hidden;
 }
-.emulated-review::before {
-  content: "SIMULATED REVIEWS";
-  position: absolute;
-  top: 35px;
-  right: -47px;
-  width: 210px;
-  padding: 9px 0;
-  border-block: 1px solid currentColor;
-  color: var(--ans-pink);
-  font: 700 9px/1 var(--sans);
-  letter-spacing: .15em;
-  text-align: center;
-  transform: rotate(38deg);
-}
 .emulated-review > * { position: relative; z-index: 1; }
 .review-stamp {
   display: inline-flex;
@@ -354,16 +340,12 @@
 .self-awareness-listening button:hover .icon,
 .self-awareness-listening button:focus-visible .icon { transform: translateX(5px); }
 .theory-copy {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(260px, .85fr);
-  gap: clamp(42px, 8vw, 96px);
-  align-items: start;
+  max-width: 760px;
 }
 .theory-copy > * { min-width: 0; padding-top: 22px; border-top: 1px solid color-mix(in oklch, var(--ans-milk) 20%, transparent); }
 .theory-copy p { color: color-mix(in oklch, var(--ans-milk) 76%, transparent); font-size: 16px; line-height: 1.78; }
 .theory-copy p + p { margin-top: 24px; }
 .theory-copy del { color: color-mix(in oklch, var(--ans-milk) 56%, transparent); text-decoration-color: var(--ans-pink); }
-.theory-close { color: var(--ans-pink) !important; font: italic 400 clamp(24px, 3vw, 38px)/1.28 var(--serif) !important; letter-spacing: -.02em; }
 .friday-post {
   display: block;
   max-width: 820px;
@@ -407,11 +389,34 @@
 .philosophy-coda .postmodernism-thread { margin-top: 0; padding-top: 0; border-top: 0; }
 .philosophy-coda .postmodernism-post p { max-width: 36ch; font-size: clamp(24px, 3.2vw, 42px); line-height: 1.42; letter-spacing: -.025em; }
 .philosophy-trigger {
-  color: inherit;
+  display: block;
+  width: fit-content;
+  margin-top: clamp(34px, 5vw, 54px);
+  color: var(--ans-milk);
   text-decoration: none;
   cursor: pointer;
 }
-.philosophy-trigger:hover { text-decoration: underline; text-decoration-color: var(--ans-pink); text-decoration-thickness: 1px; text-underline-offset: 5px; }
+.philosophy-trigger strong {
+  display: block;
+  max-width: 23ch;
+  font: 400 clamp(29px, 4vw, 50px)/1.12 var(--serif);
+  letter-spacing: -.035em;
+  text-decoration: underline;
+  text-decoration-color: var(--ans-pink);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 8px;
+}
+.philosophy-trigger span {
+  display: block;
+  margin-top: 18px;
+  color: var(--ans-pink);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.philosophy-trigger:hover strong,
+.philosophy-trigger:focus-visible strong { color: var(--ans-cyan); }
 
 .philosophy-dialog {
   width: min(1180px, calc(100vw - 36px));
@@ -439,16 +444,37 @@
   backdrop-filter: blur(14px);
 }
 .philosophy-top .eyebrow { color: var(--ans-rose-ink); }
-.philosophy-page { max-width: 1040px; margin: 0 auto; padding: clamp(46px, 7vw, 84px) clamp(26px, 6vw, 78px) clamp(64px, 9vw, 108px); }
+.philosophy-page { max-width: 1040px; margin: 0 auto; padding: clamp(40px, 5vw, 62px) clamp(26px, 6vw, 78px) clamp(64px, 9vw, 108px); }
 .philosophy-header {
-  margin-bottom: clamp(46px, 7vw, 72px);
+  margin-bottom: clamp(36px, 5vw, 50px);
 }
 .philosophy-header h2 {
   margin: 0;
-  font: 400 clamp(62px, 9vw, 118px)/.82 var(--serif);
+  font: 400 clamp(58px, 7.5vw, 96px)/.84 var(--serif);
   letter-spacing: -.065em;
 }
 .philosophy-header h2 em { color: var(--ans-rose); white-space: nowrap; }
+.philosophy-header > p {
+  max-width: 600px;
+  margin-top: 36px;
+  color: color-mix(in oklch, var(--ans-ink) 74%, transparent);
+  font: 400 clamp(18px, 2vw, 24px)/1.55 var(--serif);
+}
+.philosophy-strand { margin-top: clamp(74px, 11vw, 130px); }
+.philosophy-strand:first-of-type { margin-top: 0; }
+.philosophy-strand-heading {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) minmax(160px, .5fr);
+  gap: 20px;
+  align-items: baseline;
+  margin-bottom: 36px;
+  padding-block: 18px;
+  border-block: 1px solid color-mix(in oklch, var(--ans-ink) 24%, transparent);
+}
+.philosophy-strand-heading > span,
+.philosophy-strand-heading > p { color: var(--ans-rose-ink); font: 700 10px/1.5 var(--sans); letter-spacing: .09em; text-transform: uppercase; }
+.philosophy-strand-heading > h3 { margin: 0; font: 400 clamp(34px, 5vw, 62px)/.95 var(--serif); letter-spacing: -.045em; }
+.philosophy-strand-heading > p { justify-self: end; max-width: 25ch; text-align: right; }
 .philosophy-strategies {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -470,8 +496,8 @@
 .philosophy-strategies li > p:not(.strategy-number, .philosophy-sources) { color: color-mix(in oklch, var(--ans-ink) 78%, transparent); font-size: 15px; line-height: 1.78; }
 .philosophy-sources { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 27px; }
 .philosophy-sources a { color: var(--ans-rose-ink); font-size: 10px; font-weight: 650; line-height: 1.5; letter-spacing: .035em; text-decoration: underline; text-decoration-color: color-mix(in oklch, var(--ans-rose-ink) 55%, transparent); text-underline-offset: 4px; }
-.philosophy-argument { max-width: 720px; margin: clamp(72px, 10vw, 120px) auto; }
-.philosophy-argument > p { font: 400 clamp(19px, 2vw, 25px)/1.62 var(--serif); letter-spacing: -.015em; }
+.philosophy-argument { max-width: 720px; margin: clamp(48px, 7vw, 78px) auto 0; }
+.philosophy-argument > p { font: 400 clamp(19px, 1.8vw, 23px)/1.6 var(--serif); letter-spacing: -.015em; }
 .philosophy-argument > p + p { margin-top: 1.45em; }
 .philosophy-argument .philosophy-question { margin-top: 2.1em; color: var(--ans-rose); font-size: clamp(30px, 4.4vw, 52px); line-height: 1.15; letter-spacing: -.035em; }
 .philosophy-origin {
@@ -491,7 +517,7 @@
 
 .records-door {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, .45fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, .45fr);
   gap: clamp(22px, 5vw, 72px);
   align-items: end;
   min-height: clamp(360px, 48vw, 620px);
@@ -514,18 +540,13 @@
   padding-bottom: .3em;
   font: italic 400 clamp(20px, 2.8vw, 34px)/1.24 var(--serif);
 }
-.records-door-arrow,
-.records-door > span:last-child { align-self: center; font: 300 clamp(44px, 6vw, 76px)/1 var(--serif); transition: transform .35s var(--ans-ease); }
-.records-door:hover .records-door-arrow,
-.records-door:focus-visible .records-door-arrow,
-.records-door:hover > span:last-child,
-.records-door:focus-visible > span:last-child { transform: translate(9px, -9px); }
 
 body[data-page="records"] { color: var(--ans-milk); background: var(--ans-plum); }
 body[data-page="records"] .site-header { color: var(--ans-milk); background: color-mix(in oklch, var(--ans-plum) 95%, transparent); border-color: color-mix(in oklch, var(--ans-milk) 14%, transparent); }
 body[data-page="records"] .site-header nav a[aria-current="page"] { color: var(--ans-pink); }
 body[data-page="records"] :where(a, button, input, select, summary):focus-visible { outline-color: var(--ans-pink); }
-.records-page { min-height: 100vh; padding-bottom: 110px; }
+.records-page { min-height: 100vh; }
+body[data-page="records"] .player { color: var(--ans-ink); }
 .records-hero { padding: clamp(130px, 19vw, 220px) max(24px, calc((100vw - 1240px) / 2)) clamp(58px, 8vw, 96px); }
 .records-hero h1 { margin: 0; font: 400 clamp(72px, 14vw, 180px)/.78 var(--serif); letter-spacing: -.07em; }
 .record-browser { padding: 0 max(24px, calc((100vw - 1240px) / 2)) clamp(54px, 8vw, 90px); }
@@ -593,6 +614,9 @@ body[data-page="records"] #search-results .track-title-button,
 body[data-page="records"] #search-results .text-button { color: var(--ans-milk); }
 body[data-page="records"] .library-count { color: color-mix(in oklch, var(--ans-milk) 50%, transparent); }
 .records-footer { background: color-mix(in oklch, var(--ans-plum) 90%, var(--ans-rose)); }
+.site-footer small a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.records-footer small,
+.records-footer small a { color: color-mix(in oklch, var(--ans-milk) 68%, transparent); }
 
 .lyric-stage {
   position: fixed;
@@ -757,15 +781,17 @@ dialog { z-index: 120; }
   .version-art { grid-column: 1; grid-row: auto; width: min(100%, 520px); }
   .version-compact .version-switch { grid-column: 1; }
   .emulated-review { width: 100%; margin-inline: 0; }
+  .album-theory { margin-inline: 0; }
   .victory-layout { grid-template-columns: minmax(230px, .7fr) minmax(0, 1fr); gap: 44px; }
-  .theory-copy { grid-template-columns: 1fr; gap: 38px; }
   .postmodernism-thread { grid-template-columns: 1fr; }
   .postmodernism-exchange { width: min(100%, 310px); }
-  .records-door { grid-template-columns: minmax(0, 1fr) auto; }
-  .records-door-subtitle { grid-column: 1; }
-  .records-door-arrow { grid-column: 2; grid-row: 1 / span 2; }
+  .records-door { grid-template-columns: minmax(0, 1fr) minmax(190px, .45fr); }
   .album-stage { grid-template-columns: minmax(190px, .52fr) minmax(0, 1fr); gap: 42px; }
   .lyric-stage[data-mode="full"] .lyric-sleeve { grid-template-columns: minmax(170px, .48fr) minmax(0, 1fr); gap: 36px; }
+}
+
+@media (min-width: 901px) and (max-width: 1360px) {
+  .emulated-review { width: 100%; margin-inline: 0; }
 }
 
 @media (max-width: 360px) {
@@ -792,7 +818,6 @@ dialog { z-index: 120; }
   .story-track-list .track-row { min-height: 62px; }
   .story-track-list .track-row > .text-button { display: none; }
   .emulated-review { padding: 64px 22px 46px; }
-  .emulated-review::before { top: 25px; right: -58px; }
   .review-scraps { display: block; }
   .review-scraps > blockquote,
   .review-scraps > blockquote:nth-child(n) { margin: 0 0 15px; transform: none; }
@@ -825,6 +850,10 @@ dialog { z-index: 120; }
   .philosophy-page { padding: 48px 22px 70px; }
   .philosophy-header { margin-bottom: 50px; }
   .philosophy-header h2 { font-size: clamp(50px, 14vw, 68px); }
+  .philosophy-header > p { margin-top: 28px; font-size: 18px; }
+  .philosophy-strand { margin-top: 88px; }
+  .philosophy-strand-heading { grid-template-columns: 32px minmax(0, 1fr); gap: 12px; }
+  .philosophy-strand-heading > p { grid-column: 2; justify-self: start; text-align: left; }
   .philosophy-strategies { display: block; }
   .philosophy-strategies > li { padding: 38px 0; border-right: 0 !important; }
   .philosophy-strategies h3 { font-size: 32px; }
@@ -840,12 +869,12 @@ dialog { z-index: 120; }
   .friday-post blockquote { font-size: 23px; }
   .philosophy-coda .postmodernism-post p { font-size: 25px; }
   .records-door {
-    grid-template-columns: minmax(0, 1fr) auto;
+    display: block;
     min-height: 430px;
     padding-inline: 22px;
   }
   .records-door-title { font-size: clamp(64px, 22vw, 104px); }
-  .records-door-subtitle { font-size: 21px; }
+  .records-door-subtitle { display: block; margin-top: 54px; font-size: 21px; }
   .album-shelf { grid-auto-columns: 72vw; }
   .album-stage { display: block; padding-inline: 18px; }
   .album-stage-art { position: static; }

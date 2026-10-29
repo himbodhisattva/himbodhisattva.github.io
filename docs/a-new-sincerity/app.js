@@ -167,7 +167,7 @@
     $$('[data-album-embed]').forEach(element => {
       const album = albums.get(element.dataset.albumEmbed);
       if (!album) return;
-      element.innerHTML = `<div class="story-album-head"><span>${quantity(album.tracks.length, 'track')}</span><a href="records/#album=${encodeURIComponent(album.id)}">album page <span aria-hidden="true">↗</span></a></div><ol class="track-list story-track-list">${album.tracks.map(id => trackRow(tracks.get(id))).join('')}</ol>`;
+      element.innerHTML = `<div class="story-album-head"><span>${quantity(album.tracks.length, 'track')}</span><a href="records/#album=${encodeURIComponent(album.id)}">album page</a></div><ol class="track-list story-track-list">${album.tracks.map(id => trackRow(tracks.get(id))).join('')}</ol>`;
       element.setAttribute('aria-label', `${album.title} track list`);
     });
     syncPlayButtons();
@@ -250,7 +250,7 @@
     return model.buildQueueContext('album', albumId, album?.tracks || [track.id]);
   }
 
-  async function selectTrack(id, { play = true, queue = null } = {}) {
+  async function selectTrack(id, { play = true, queue = null, automatic = false } = {}) {
     const track = tracks.get(id);
     if (!track) return;
     if (queue) state.queue = queue;
@@ -275,6 +275,12 @@
     if (!play) return;
     try {
       await audio.play();
+      const lyricEvent = model.playbackLyricEvent({ automatic });
+      const mode = model.nextLyricMode(state.lyricMode, lyricEvent, true);
+      if (mode !== 'closed') {
+        const historyAction = model.lyricRouteAction('track-change', { mode: state.lyricMode });
+        showLyrics(track, { mode, historyAction });
+      }
       announce(`playing ${track.title} by ${track.artist}`);
     } catch (error) {
       if (error.name !== 'AbortError') {
@@ -295,7 +301,7 @@
     else audio.pause();
   }
 
-  async function advance(direction, wrap) {
+  async function advance(direction, wrap, { automatic = false } = {}) {
     if (!state.current) {
       const initial = emptyPlayerAction(direction < 0 ? 'previous' : 'next');
       if (!initial) return false;
@@ -308,7 +314,7 @@
     }
     const next = model.nextPlayable(state.queue, state.current, direction, canPlay, wrap);
     if (!next) return false;
-    await selectTrack(next, { queue: state.queue });
+    await selectTrack(next, { queue: state.queue, automatic });
     return true;
   }
 
@@ -739,22 +745,14 @@
     if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closePhilosophy();
   });
 
-  audio.addEventListener('play', () => {
-    const track = tracks.get(state.current);
-    if (track) {
-      const mode = model.nextLyricMode(state.lyricMode, 'play', true);
-      const historyAction = model.lyricRouteAction('track-change', { mode: state.lyricMode });
-      showLyrics(track, { mode, historyAction });
-    }
-    updatePlayer();
-  });
+  audio.addEventListener('play', updatePlayer);
   ['pause', 'loadedmetadata', 'durationchange'].forEach(name => audio.addEventListener(name, updatePlayer));
   audio.addEventListener('timeupdate', updateTime);
-  audio.addEventListener('ended', () => advance(1, false));
+  audio.addEventListener('ended', () => advance(1, false, { automatic: true }));
   audio.addEventListener('error', async () => {
     if (!audio.getAttribute('src') || state.recovering) return;
     state.recovering = true;
-    const moved = await advance(1, false);
+    const moved = await advance(1, false, { automatic: true });
     toast(moved ? 'This track could not load. Skipping to the next song.' : 'This track could not load.');
     state.recovering = false;
   });
