@@ -44,8 +44,7 @@ labels, or private transcripts to the essay.
 - Use only three tweet-derived story beats: the opening counterfactual-musician
   premise, the Friday Girls turn, and the postmodernism post with its reply
   exchange. The visible essay ends its postmodernism coda with “Now it is our
-  turn to solve postmodernism.” A visible “open the philosophy liner note” label
-  makes the sentence's destination clear. The link opens a first-person note at
+  turn to solve postmodernism.” The sentence itself opens a first-person note at
   `#philosophy`, which preserves the full post and supplied reply screenshot.
   The note has three strands. One synthesizes four responses to postmodernism.
   Another treats AI art as a medium created by an accelerated feedback loop.

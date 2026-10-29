@@ -90,14 +90,15 @@ assert tweet_sources==3, f'homepage should contain exactly three tweet-derived i
 assert 'class="twitter-tweet"' not in main, 'Friday Girls should use designed linked text, not an embedded X widget'
 assert 'class="friday-post"' in main
 assert '<blockquote>then my daughters complained' in main, 'the Friday Girls account must remain readable prose'
-assert '<a href="https://x.com/himbodhisattva/status/2115229386890994060">view the post on X' in main, 'the Friday Girls prose needs a separate source link'
+assert 'class="friday-post-source" href="https://x.com/himbodhisattva/status/2115229386890994060"' in main, 'the Friday Girls prose should carry its own source link'
+assert 'view the post on X' not in main, 'narrated X source links should be removed'
 assert main.count('data-flourish=')==2, 'homepage should contain exactly two intentional decorative asides'
 assert '2115229386890994060' in main, 'the Friday Girls chronology tweet is missing'
 assert '2115224311409901920' in main, 'the linked postmodernism post is missing'
 assert 'Now it is our turn to solve postmodernism.' in main
 assert 'your completely valid philosophical objections are now promotional material' in main
 assert '<strong>Now it is our turn to solve postmodernism.</strong>' in main
-assert '<span>open the philosophy liner note</span>' in main
+assert 'open the philosophy liner note' not in main.lower(), 'the philosophy link should not explain itself'
 assert 'id="philosophy-dialog"' in main
 for strand_id in ('philosophy-postmodernism', 'philosophy-medium', 'philosophy-legibility'):
  assert f'id="{strand_id}"' in main, f'missing philosophy strand: {strand_id}'
@@ -128,15 +129,19 @@ for cut_copy in (
 ):
  assert cut_copy not in main, f'cut copy remains: {cut_copy}'
 assert 'platform.twitter.com/widgets.js' not in main
+for album_id in ('unfortunately', 'revisionist', 'friday-girls'):
+ assert f'href="records/#album={album_id}"' in main, f'{album_id} cover should open its record'
 app_source=(ROOT/'app.js').read_text()
+assert 'album page' not in app_source.lower(), 'story track lists should rely on their clickable album covers'
+assert 'open the album' not in main.lower(), 'album covers should carry record navigation without an instruction label'
 assert 'openPhilosophy({ returnFocus: null });' in app_source, 'direct philosophy links must not restore focus to an off-screen trigger'
 assert 'openPhilosophy({ returnFocus: event.currentTarget });' in app_source, 'click-opened philosophy notes should restore focus to the activating link'
 for page in (main, records):
-    assert 'data.js?v=20261029e' in page
-    assert 'style.css?v=20261029e' in page
-    assert 'experience.css?v=20261029e' in page
-    assert 'player-model.js?v=20261029e' in page
-    assert 'app.js?v=20261029e' in page
+    assert 'data.js?v=20261029f' in page
+    assert 'style.css?v=20261029f' in page
+    assert 'experience.css?v=20261029f' in page
+    assert 'player-model.js?v=20261029f' in page
+    assert 'app.js?v=20261029f' in page
     assert '<a href="https://suno.com/">Suno v6-pro</a>' in page
 assert '↗' not in (main+records+app_source), 'decorative up-right arrows remain'
 assert 'simulated reviews' not in main.lower(), 'review terminology must stay emulated'

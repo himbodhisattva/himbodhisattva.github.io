@@ -167,7 +167,7 @@
     $$('[data-album-embed]').forEach(element => {
       const album = albums.get(element.dataset.albumEmbed);
       if (!album) return;
-      element.innerHTML = `<div class="story-album-head"><span>${quantity(album.tracks.length, 'track')}</span><a href="records/#album=${encodeURIComponent(album.id)}">album page</a></div><ol class="track-list story-track-list">${album.tracks.map(id => trackRow(tracks.get(id))).join('')}</ol>`;
+      element.innerHTML = `<div class="story-album-head"><span>${quantity(album.tracks.length, 'track')}</span></div><ol class="track-list story-track-list">${album.tracks.map(id => trackRow(tracks.get(id))).join('')}</ol>`;
       element.setAttribute('aria-label', `${album.title} track list`);
     });
     syncPlayButtons();
