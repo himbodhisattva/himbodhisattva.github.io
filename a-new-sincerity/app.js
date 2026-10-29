@@ -14,13 +14,14 @@
   const lyricStage = document.getElementById('lyric-stage');
   const recordsPage = document.body.dataset.page === 'records';
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const defaultAlbumId = D.albums[0]?.id || 'unfortunately';
 
   const state = {
     current: null,
     queue: model.buildQueueContext('story', 'essay', D.queue),
     filter: 'all',
     query: '',
-    selectedAlbum: 'unfortunately',
+    selectedAlbum: defaultAlbumId,
     lyricCues: [],
     activeCue: -1,
     lyricMode: 'closed',
@@ -121,6 +122,12 @@
       element.classList.remove('typographic-cover', 'fg-cover');
       element.classList.add('art-button');
     });
+    $$('[data-album-embed]').forEach(element => {
+      const album = albums.get(element.dataset.albumEmbed);
+      if (!album) return;
+      element.innerHTML = `<div class="story-album-head"><span>${quantity(album.tracks.length, 'track')}</span><a href="records/#album=${encodeURIComponent(album.id)}">album page <span aria-hidden="true">↗</span></a></div><ol class="track-list story-track-list">${album.tracks.map(id => trackRow(tracks.get(id))).join('')}</ol>`;
+      element.setAttribute('aria-label', `${album.title} track list`);
+    });
     syncPlayButtons();
   }
 
@@ -140,7 +147,7 @@
     const album = albums.get(albumId);
     if (!stage || !album) return;
     state.selectedAlbum = albumId;
-    stage.innerHTML = `<div class="album-stage-art"><div class="album-cover">${artMarkup(album)}</div><p>${escape(album.credit)}</p></div><div class="album-stage-copy"><p class="eyebrow">${escape(album.artist)} · ${quantity(album.tracks.length, 'track')}</p><h2>${escape(album.title.toLowerCase())}</h2><p class="album-description">${escape(album.description)}</p><button class="button primary" data-play-album="${album.id}">${icon('play')} play album</button><ul class="track-list">${album.tracks.map(id => trackRow(tracks.get(id))).join('')}</ul></div>`;
+    stage.innerHTML = `<div class="album-stage-art"><div class="album-cover">${artMarkup(album)}</div><p>${escape(album.credit)}</p></div><div class="album-stage-copy"><p class="eyebrow">${escape(album.artist)} · ${quantity(album.tracks.length, 'track')}</p><h2 tabindex="-1">${escape(album.title.toLowerCase())}</h2><p class="album-description">${escape(album.description)}</p><button class="button primary" data-play-album="${album.id}">${icon('play')} play album</button><ul class="track-list">${album.tracks.map(id => trackRow(tracks.get(id))).join('')}</ul></div>`;
     $$('.album-open').forEach(button => {
       const selected = button.dataset.album === albumId;
       button.classList.toggle('is-selected', selected);
@@ -148,8 +155,23 @@
     });
     syncPlayButtons();
     if (updateHistory && recordsPage) {
-      history.pushState(null, '', model.routePath(location.pathname, location.search, 'album', albumId));
+      const target = model.routePath(location.pathname, location.search, 'album', albumId);
+      if (`${location.pathname}${location.search}${location.hash}` !== target) history.pushState({ ansAlbum: albumId }, '', target);
     }
+  }
+
+  function revealAlbumStage({ userSelection = false, directLink = false } = {}) {
+    const stage = $('#album-stage');
+    const behavior = model.albumScrollBehavior({ userSelection, directLink, reducedMotion: reducedMotion.matches });
+    if (!stage || !behavior) return;
+    requestAnimationFrame(() => {
+      stage.scrollIntoView({ behavior, block: 'start' });
+      if (userSelection) stage.querySelector('h2')?.focus({ preventScroll: true });
+    });
+  }
+
+  function decodeRouteId(value) {
+    try { return decodeURIComponent(value); } catch { return null; }
   }
 
   function renderRecords() {
@@ -476,20 +498,6 @@
     }
   }
 
-  function selectLiner(id, focus = false) {
-    $$('[data-liner]').forEach(button => {
-      const active = button.dataset.liner === id;
-      button.setAttribute('aria-selected', String(active));
-      button.tabIndex = active ? 0 : -1;
-      if (active && focus) button.focus();
-    });
-    $$('[data-liner-panel]').forEach(panel => {
-      const active = panel.dataset.linerPanel === id;
-      panel.hidden = !active;
-      panel.classList.toggle('is-active', active);
-    });
-  }
-
   function updateReadingProgress() {
     const indicator = $('#reading-progress');
     if (!indicator) return;
@@ -501,7 +509,7 @@
     const trackMatch = location.hash.match(/^#track=(.+)$/);
     const albumMatch = location.hash.match(/^#album=(.+)$/);
     if (trackMatch) {
-      const id = decodeURIComponent(trackMatch[1]);
+      const id = decodeRouteId(trackMatch[1]);
       if (tracks.has(id)) {
         state.lyricHistoryEntry = Boolean(history.state?.ansLyrics);
         await openLyrics(id, { updateHistory: false });
@@ -513,9 +521,10 @@
     } else {
       if (state.lyricMode === 'full') closeLyrics({ updateHistory: false });
       if (recordsPage) {
-        const id = albumMatch ? decodeURIComponent(albumMatch[1]) : state.selectedAlbum;
+        const id = albumMatch ? decodeRouteId(albumMatch[1]) : defaultAlbumId;
         const stage = $('#album-stage');
         if (albums.has(id) && (state.selectedAlbum !== id || !stage?.childElementCount)) renderAlbumStage(id);
+        if (albumMatch && albums.has(id)) revealAlbumStage({ directLink: true });
       }
     }
   }
@@ -550,6 +559,7 @@
     }
     if (button.dataset.album) {
       renderAlbumStage(button.dataset.album, true);
+      revealAlbumStage({ userSelection: true });
       return;
     }
     if (button.dataset.playAlbum) {
@@ -570,10 +580,6 @@
     }
     if (button.dataset.share) {
       await shareTrack(button.dataset.share);
-      return;
-    }
-    if (button.dataset.liner) {
-      selectLiner(button.dataset.liner);
       return;
     }
     if (button.dataset.seekTime) {
@@ -629,14 +635,6 @@
         closeLyrics();
         return;
       }
-    }
-    if (event.target.matches('[data-liner]') && ['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) {
-      event.preventDefault();
-      const tabs = $$('[data-liner]');
-      const current = tabs.indexOf(event.target);
-      const next = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (current + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
-      selectLiner(tabs[next].dataset.liner, true);
-      return;
     }
     if (event.code === 'Space' && state.lyricMode !== 'full' && !dialog.open && !event.target.closest('input,textarea,select,button,a,[contenteditable]')) {
       event.preventDefault();
@@ -707,6 +705,13 @@
   }
   addEventListener('popstate', scheduleRoute);
   addEventListener('hashchange', scheduleRoute);
+  addEventListener('pageshow', event => {
+    const navigation = performance.getEntriesByType?.('navigation')[0];
+    if (event.persisted || navigation?.type !== 'reload') return;
+    const albumMatch = location.hash.match(/^#album=(.+)$/);
+    const id = albumMatch ? decodeRouteId(albumMatch[1]) : null;
+    if (recordsPage && albums.has(id)) revealAlbumStage({ directLink: true });
+  });
 
   if ('IntersectionObserver' in window) {
     const chapters = $$('[data-chapter]');

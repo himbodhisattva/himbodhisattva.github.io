@@ -5,13 +5,13 @@
       "art": "assets/unfortunately.webp"
     },
     "friday-girls": {
-      "art": "assets/user/friday-girls.webp"
+      "art": "assets/user/friday-girls-1254.webp"
     },
     "revisionist": {
       "art": "assets/revisionist.webp"
     },
     "victory-lap": {
-      "art": "assets/user/victory-lap.webp"
+      "art": "assets/user/victory-lap-1254.webp"
     },
     "lock-haven": {
       "art": "assets/user/lock-haven.webp"
@@ -97,37 +97,37 @@
       "artist": "friday girls",
       "title": "save me a seat",
       "audio": "audio/friday-girls-01.mp3",
-      "art": "assets/user/friday-girls.webp"
+      "art": "assets/user/friday-girls-1254.webp"
     },
     "friday-girls-02": {
       "artist": "friday girls",
       "title": "since when?!",
       "audio": "audio/friday-girls-02.mp3",
-      "art": "assets/user/friday-girls.webp"
+      "art": "assets/user/friday-girls-1254.webp"
     },
     "friday-girls-03": {
       "artist": "friday girls",
       "title": "it's you!",
       "audio": "audio/friday-girls-03.mp3",
-      "art": "assets/user/friday-girls.webp"
+      "art": "assets/user/friday-girls-1254.webp"
     },
     "friday-girls-04": {
       "artist": "friday girls",
       "title": "and then forever",
       "audio": "audio/friday-girls-04.mp3",
-      "art": "assets/user/friday-girls.webp"
+      "art": "assets/user/friday-girls-1254.webp"
     },
     "friday-girls-05": {
       "artist": "friday girls",
       "title": "again and again",
       "audio": "audio/friday-girls-05.mp3",
-      "art": "assets/user/friday-girls.webp"
+      "art": "assets/user/friday-girls-again-and-again.webp"
     },
     "friday-girls-06": {
       "artist": "friday girls",
       "title": "since when?! (a new sincerity remix?!)",
       "audio": "audio/friday-girls-06.mp3",
-      "art": "assets/user/friday-girls.webp"
+      "art": "assets/user/friday-girls-1254.webp"
     },
     "revisionist-01": {
       "artist": "a new sincerity",
@@ -187,7 +187,7 @@
       "artist": "a new sincerity",
       "title": "somehow both a victory lap and a cry for help",
       "audio": "audio/victory-lap-01.mp3",
-      "art": "assets/user/victory-lap.webp"
+      "art": "assets/user/victory-lap-1254.webp"
     },
     "lock-haven-01": {
       "artist": "lock haven",

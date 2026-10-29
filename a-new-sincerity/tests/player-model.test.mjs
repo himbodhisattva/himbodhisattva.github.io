@@ -12,6 +12,7 @@ const {
   nextLyricMode,
   lyricRouteAction,
   lyricCloseLabel,
+  albumScrollBehavior,
 } = window.ANS_PLAYER_MODEL;
 
 const available = new Set(['album-01', 'album-02', 'album-04']);
@@ -62,5 +63,9 @@ assert.equal(lyricRouteAction('close', { ownsEntry: false, hash: '#track=one' })
 assert.equal(lyricRouteAction('close', { ownsEntry: false, hash: '#album=one' }), null);
 assert.equal(lyricCloseLabel('full'), 'Collapse lyrics');
 assert.equal(lyricCloseLabel('peek'), 'Close lyrics');
+assert.equal(albumScrollBehavior({ userSelection: true, reducedMotion: false }), 'smooth', 'choosing an album reveals its detail');
+assert.equal(albumScrollBehavior({ directLink: true, reducedMotion: false }), 'smooth', 'direct album links reveal their detail');
+assert.equal(albumScrollBehavior({ userSelection: true, reducedMotion: true }), 'auto', 'reduced motion avoids smooth scrolling');
+assert.equal(albumScrollBehavior({}), null, 'initial catalog rendering does not move the page');
 
 console.log('PASS: explicit album queues and lyric cue lookup.');

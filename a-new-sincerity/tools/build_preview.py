@@ -18,7 +18,7 @@ def build(destination: Path) -> None:
     css=(ROOT/'style.css').read_text()+'\n'+(ROOT/'experience.css').read_text()
     html = html.replace('<link rel="stylesheet" href="style.css">','<style>'+css+'</style>').replace('<link rel="stylesheet" href="experience.css">','')
     for source in ['data.js','lyrics-sync.js','player-model.js','app.js']:
-        html=html.replace(f'<script defer src="{source}"></script>','')
+        html=re.sub(fr'<script defer src="{re.escape(source)}(?:\?[^\"]*)?"></script>','',html)
     for path, value in assets.items():
         html=html.replace('src="'+path+'"','src="'+value+'"').replace('href="'+path+'"','href="'+value+'"')
     js='window.ANS_ASSETS = '+json.dumps(assets)+';\n'+'\n'.join((ROOT/source).read_text() for source in ['data.js','lyrics-sync.js','player-model.js','app.js'])

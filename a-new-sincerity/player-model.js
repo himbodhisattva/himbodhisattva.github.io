@@ -63,6 +63,11 @@
     return mode === 'full' ? 'Collapse lyrics' : 'Close lyrics';
   }
 
+  function albumScrollBehavior({ userSelection = false, directLink = false, reducedMotion = false } = {}) {
+    if (!userSelection && !directLink) return null;
+    return reducedMotion ? 'auto' : 'smooth';
+  }
+
   root.ANS_PLAYER_MODEL = {
     buildQueueContext,
     nextPlayable,
@@ -73,5 +78,6 @@
     nextLyricMode,
     lyricRouteAction,
     lyricCloseLabel,
+    albumScrollBehavior,
   };
 })(typeof window === 'undefined' ? globalThis : window);

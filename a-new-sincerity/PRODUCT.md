@@ -1,60 +1,86 @@
 # Product truth
 
 ## Purpose
-A writing project about making records with AI, asking AI to review them, and
-turning the reviews into more songs. The records also have a direct listening
-page. The organizing phrase is “somehow both a victory lap and a cry for help.”
+
+A New Sincerity is a writing and listening project about using AI to continue a
+counterfactual music career. The homepage traces the records through simulated
+criticism, fictional performers, family listening, and public posts. Each part
+changes the author's later writing. The homepage uses “somehow both a victory
+lap and a cry for help” as its organizing phrase.
 
 ## Public identity
+
 The project identifies itself as A New Sincerity. The parent site's persona is
-not a wordmark, byline or subject inside this section. Do not add a legal name,
+not a wordmark, byline, or subject inside this section. Do not add a legal name,
 employer, family names, location, private relationship biographies, clinical
-labels or private transcripts to the essay.
+labels, or private transcripts to the essay.
 
-## Content requirements
-- Omit the entertainment.
-- Frame the homepage with the supplied posts and Victory Lap. Keep individual
-  Lock Haven and System of the World songs out of the lead.
-- The homepage establishes Somehow Both a Victory Lap and a Cry for Help as the
-  organizing phrase, then tells the project history in order.
-- *(Unfortunately) I Know Exactly What I'm Doing* came first. The experiment
-  imagines counterfactual me still writing pop-punk, with hyperpop-punk,
-  sincerity and self-absorption turned up.
-- Revisionist History came later as one answer to whether that counterfactual
-  musician could keep going.
-- Lock Haven and The System of the World are the earlier work. They already
-  contain sincere material; The Top of the Mountain celebrates living.
-- The first ANS album continues those questions. Do not turn it into a "got
-  sober, grew up, now happy" redemption story.
-- Treat Revisionist History as an A New Sincerity album. Keep the original/remake
-  comparison for Like They Do In The Movies. Keep Minima in the catalog and out
-  of the essay.
-- Do not rank songs, label favorites or tell listeners where to begin.
-- Friday Girls begins with the daughters’ request for happy love songs.
-- The fictional band may be entirely uncomplicated within its own songs.
-- A small crush/identification aside exists, but is not the project thesis or an
-  adult love relationship with the fictional performers. Keep it behind disclosure.
-- Show how AI helps make a record, the family listens to it, the author posts
-  about it, and the emulated review becomes part of the next song.
-- The emulated Stereogum review of (Unfortunately) feeds directly into Victory
-  Lap. Preserve that review-to-song loop as the central example.
-- Use the author's supplied post language and lowercase cadence where it is the
-  clearest account. Do not polish it into generic memoir prose.
-- No claim that artificial performers are conscious or independently living.
-- No final developmental verdict, therapeutic outcome or metaphysical solution.
-- Finished lyrics and the user's disclosures are the source. Do not silently
-  replace them with generic descriptions, invent dates, or canonize rejected drafts.
+## Homepage structure
 
-## Visitor modes
-1. Listen immediately, with the complete records on a direct-linkable page.
-2. Read the short main essay with songs in context.
-3. Follow compact synced lyrics automatically, with full lyrics, credits and
-   deeper notes available selectively.
-All must work by touch and keyboard. None may require hovering. Starting an
-album creates an explicit album queue and advances through it automatically.
+- Lead with *Somehow Both a Victory Lap and a Cry for Help* and the project
+  premise.
+- Present *(Unfortunately) I Know Exactly What I'm Doing* first. Pair it with an
+  obviously simulated review collage and state that the quoted outlets did not
+  publish those lines.
+- Present *Revisionist History* as the next A New Sincerity record. “Like They
+  Do In The Movies” compares two AI reconstructions: the first was recovered
+  from a recording where the performance is barely audible, and the later
+  version brings forward the high, harmonized guitar parts.
+- Present Friday Girls after the daughters' request for happy love songs. Keep
+  “wait, you like me too?!” as a small aside rather than the section heading.
+- Show the complete track lists for *(Unfortunately)*, *Revisionist History*,
+  and the Friday Girls album inside their story sections.
+- End the essay with the feedback loop: interpretation becomes a song, the song
+  becomes an experience, and the experience changes the author before he writes
+  the next version. The essay states that awareness of this process does not put
+  the author outside it.
+- Use contextual tweet embeds for the public posts. Keep parent posts beside
+  replies when a reply depends on the original premise.
+- Use a single records link. Its large label is “the records.” and its smaller line
+  is “get in loser, we're subverting postmodernism from the inside.”
+
+The homepage has no liner-card section, separate centerpiece about the review
+becoming a song, detached quote cards, song rankings, favorite badges, or
+instructions about where to start listening.
+
+## Content rules
+
+- Omit The Entertainment.
+- Keep individual Lock Haven and System of the World songs out of the lead.
+- *(Unfortunately) I Know Exactly What I'm Doing* came first. It imagines what
+  the counterfactual author would write after pushing pop-punk toward hyperpop.
+  Its lyrics heighten both sincerity and self-absorption.
+- *Revisionist History* follows the first record and remakes older Lock Haven
+  and System of the World songs.
+- Keep Minima in the catalog and out of the essay.
+- Friday Girls provides a way to write uncomplicated love songs. Do not claim
+  that the generated performers are conscious or independently living.
+- Keep any crush or identification with Friday Girls brief and subordinate to
+  the writing process.
+- Do not turn the project into a redemption story or state a final therapeutic,
+  developmental, or metaphysical verdict.
+- Use finished lyrics, supplied disclosures, source posts, and local recordings
+  as evidence. Do not invent dates or treat rejected drafts as canon.
+
+## Listening behavior
+
+The homepage and `/records/` use the same catalog and player. Starting an album
+creates an album queue and advances through every track. Playback opens a
+compact lyric view that follows the recording, scrolls the active lines into
+view, and keeps full lyrics and credits available.
+
+The records page keeps the album shelf above the detail view. Choosing an album
+updates the URL, renders its full track list, and scrolls the selected detail
+into view. A direct album URL performs the same reveal. Reduced-motion settings
+replace smooth scrolling with an immediate jump.
+
+All controls must work by touch and keyboard. No action may require hovering.
 
 ## Scope of v1
-Runnable static site + portable preview. No external runtime dependencies.
-The essay and `/records/` share one player and one catalog. Timed lyrics use cue
-data aligned to the local recordings, with a visible fallback only when exact
-cues are unavailable. No deployment without author review.
+
+The project is a static site with a portable local preview. The story and
+records pages share one player and one catalog. Timed lyrics use cue data aligned
+to local recordings and fall back to untimed lines when cue data is unavailable.
+The homepage loads X's widget script for tweet rendering; its blockquote content
+must remain readable when that script is unavailable. Do not deploy without
+author review.
