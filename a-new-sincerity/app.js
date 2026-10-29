@@ -245,8 +245,14 @@
 
   async function toggleCurrent() {
     if (!state.current) {
-      const first = D.defaultTrack || D.queue.find(canPlay);
-      if (first) await selectTrack(first, { queue: model.buildQueueContext('story', 'essay', D.queue) });
+      const initial = model.initialPlayback({
+        recordsPage,
+        selectedAlbum: state.selectedAlbum,
+        albums: D.albums,
+        defaultTrack: D.defaultTrack,
+        storyQueue: D.queue,
+      }, canPlay);
+      if (initial) await selectTrack(initial.track, { queue: initial.queue });
       return;
     }
     if (audio.paused) await selectTrack(state.current);

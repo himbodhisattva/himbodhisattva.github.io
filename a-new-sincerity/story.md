@@ -9,9 +9,10 @@ then asked that version to remake old recordings.
 
 ## The first record
 
-*(Unfortunately) I Know Exactly What I'm Doing* comes first. It tests what the
-counterfactual musician would write now: pop-punk pushed toward hyperpop, with
-sincerity and self-absorption turned up.
+*(Unfortunately) I Know Exactly What I'm Doing* was the first album. The author
+imagines that he never stopped making pop-punk and writes from that
+counterfactual career. The result is hyperpop-punk, with even more sincerity
+and self-absorption.
 
 The album appears with its complete track list and a collage of simulated
 reviews. The collage identifies the lines as emulations and states that the
@@ -49,16 +50,16 @@ cancel the attachment or restore a neutral viewpoint.
 The section distinguishes two related moves. *(Unfortunately)* uses recursive
 self-awareness. Friday Girls uses recursive self-creation. An older lyric from
 “The Top of the Mountain” shows that the limits of explanation were already
-present in the earlier writing. The section closes by requiring the next song
-to reveal something the author did not know before writing it.
+present in the earlier writing. The postmodernism post and the exchange it
+prompted close the section.
 
 ## Public context
 
-Four tweet groups follow the essay. They preserve the original post and reply
-relationships for the hyperreality comment, the self-deception joke, the
-Debord/Wallace/Fisher premise and “their mistake” reply, and the “thinking is
-dangerous” exchange. The reply about inventing people must never appear without
-the post it answers.
+The homepage contains three tweet-derived story beats: the opening
+counterfactual-musician premise, the Friday Girls turn, and the postmodernism
+post with its reply exchange. The last appears as linked text and a supplied
+screenshot. Do not load an embedded X widget for it or add a separate tweet
+wall.
 
 ## Catalog link
 

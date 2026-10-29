@@ -34,14 +34,20 @@ labels, or private transcripts to the essay.
   becomes an experience, and the experience changes the author before he writes
   the next version. The essay states that awareness of this process does not put
   the author outside it.
-- Use contextual tweet embeds for the public posts. Keep parent posts beside
-  replies when a reply depends on the original premise.
+- Use only three tweet-derived story beats: the opening counterfactual-musician
+  premise, the Friday Girls turn, and the postmodernism post with its reply
+  exchange. The last appears as linked text and a supplied screenshot. Do not
+  load an embedded X widget for it or add a separate tweet wall.
 - Use a single records link. Its large label is “the records.” and its smaller line
   is “get in loser, we're subverting postmodernism from the inside.”
 
 The homepage has no liner-card section, separate centerpiece about the review
 becoming a song, detached quote cards, song rankings, favorite badges, or
 instructions about where to start listening.
+
+Keep decorative asides to two: “wait, you like me too?!” and “get in loser,
+we're subverting postmodernism from the inside.” Labels, navigation, credits,
+track counts, and disclosures remain factual or functional.
 
 ## Content rules
 

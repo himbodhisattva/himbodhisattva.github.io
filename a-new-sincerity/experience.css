@@ -199,12 +199,6 @@
   text-transform: uppercase;
   transform: rotate(-1.5deg);
 }
-.emulated-review h3 {
-  max-width: 12ch;
-  margin: 0 0 clamp(38px, 6vw, 70px);
-  font: 400 clamp(46px, 7.5vw, 92px)/.91 var(--serif);
-  letter-spacing: -.04em;
-}
 .review-scraps {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -355,45 +349,7 @@
 .old-song-note .track-copy small,
 .old-song-note .text-button { color: color-mix(in oklch, var(--ans-milk) 66%, transparent); }
 .old-song-note .round-play { color: var(--ans-plum); background: var(--ans-pink); }
-.territory-close {
-  max-width: 24ch;
-  margin: clamp(66px, 10vw, 116px) 0 0 auto;
-  color: var(--ans-pink);
-  font: italic 400 clamp(29px, 4.5vw, 57px)/1.12 var(--serif);
-  letter-spacing: -.035em;
-}
-
-.tweet-wall {
-  padding: clamp(76px, 11vw, 140px) max(24px, calc((100vw - 1180px) / 2));
-  background: var(--ans-paper);
-}
-.tweet-wall-inner { max-width: 1180px; margin-inline: auto; }
-.tweet-wall h2,
-.tweet-wall-heading {
-  max-width: 10ch;
-  margin: 0 0 clamp(42px, 7vw, 78px);
-  font: 400 clamp(46px, 7vw, 86px)/.93 var(--serif);
-  letter-spacing: -.04em;
-}
-.tweet-threads { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 76px); align-items: start; }
-.tweet-thread {
-  min-width: 0;
-  padding-top: 16px;
-  border-top: 1px solid color-mix(in oklch, var(--ans-ink) 22%, transparent);
-}
-.tweet-thread-label {
-  margin-bottom: 15px;
-  color: var(--ans-muted);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-}
-.tweet-replies {
-  margin: 10px 0 0 clamp(12px, 3vw, 40px);
-  padding-left: clamp(13px, 2vw, 25px);
-  border-left: 1px solid color-mix(in oklch, var(--ans-rose) 42%, transparent);
-}
+.tweet-thread { min-width: 0; }
 .tweet-thread .twitter-tweet,
 .tweet-thread .twitter-tweet-rendered { width: 100% !important; max-width: 100% !important; margin: 0 !important; }
 .tweet-thread blockquote.twitter-tweet {
@@ -403,8 +359,28 @@
 }
 .tweet-thread blockquote.twitter-tweet p { margin-bottom: 16px; }
 .tweet-thread blockquote.twitter-tweet a { color: var(--ans-rose); font: 600 11px/1.5 var(--sans); text-decoration: underline; text-underline-offset: 4px; }
-.tweet-thread-friday { max-width: 550px; margin-bottom: clamp(38px, 6vw, 68px); border-top: 0; }
+.tweet-thread-friday { max-width: 550px; margin-bottom: clamp(38px, 6vw, 68px); }
 .tweet-thread-friday blockquote.twitter-tweet { padding-top: 0; }
+
+.postmodernism-thread {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
+  gap: clamp(36px, 7vw, 90px);
+  align-items: center;
+  margin-top: clamp(72px, 11vw, 132px);
+  padding-top: clamp(38px, 6vw, 68px);
+  border-top: 1px solid color-mix(in oklch, var(--ans-milk) 22%, transparent);
+}
+.postmodernism-post { min-width: 0; }
+.postmodernism-post p {
+  color: color-mix(in oklch, var(--ans-milk) 88%, transparent);
+  font: 400 clamp(20px, 2.35vw, 31px)/1.42 var(--serif);
+  letter-spacing: -.02em;
+}
+.postmodernism-post p + p { margin-top: 1.15em; }
+.postmodernism-post .text-button { display: inline-flex; margin-top: 32px; color: var(--ans-pink); }
+.postmodernism-exchange { min-width: 0; transform: rotate(.45deg); }
+.postmodernism-exchange img { width: 100%; height: auto; box-shadow: 0 30px 70px -42px black; }
 
 .records-door {
   display: grid;
@@ -667,8 +643,9 @@ dialog { z-index: 120; }
   .version-art { grid-column: 1; grid-row: auto; width: min(100%, 520px); }
   .version-compact .version-switch { grid-column: 1; }
   .emulated-review { width: 100%; margin-inline: 0; }
-  .tweet-threads { grid-template-columns: 1fr; }
   .territory-grid { gap: 44px; }
+  .postmodernism-thread { grid-template-columns: 1fr; }
+  .postmodernism-exchange { width: min(100%, 620px); }
   .records-door { grid-template-columns: minmax(0, 1fr) auto; }
   .records-door-subtitle { grid-column: 1; }
   .records-door-arrow { grid-column: 2; grid-row: 1 / span 2; }
@@ -702,7 +679,6 @@ dialog { z-index: 120; }
   .story-track-list .track-row > .text-button { display: none; }
   .emulated-review { padding: 64px 22px 46px; }
   .emulated-review::before { top: 25px; right: -58px; }
-  .emulated-review h3 { margin-bottom: 38px; }
   .review-scraps { display: block; }
   .review-scraps > blockquote,
   .review-scraps > blockquote:nth-child(n) { margin: 0 0 15px; transform: none; }
@@ -712,18 +688,16 @@ dialog { z-index: 120; }
   .friday-section h2 { font-size: clamp(38px, 12vw, 54px); }
   .friday-aside { font-size: 20px; }
   .fg-album-cover { width: min(84vw, 360px); }
-  .territory-section,
-  .tweet-wall { padding-inline: 22px; }
+  .territory-section { padding-inline: 22px; }
   .territory-section h2 { font-size: clamp(50px, 15vw, 76px); }
   .territory-grid { grid-template-columns: 1fr; gap: 38px; }
+  .postmodernism-post p { font-size: 21px; }
   .old-song-note { grid-column: 1; display: block; }
   .old-song-note cite { display: block; margin-top: 20px; }
   .old-song-note > .text-button { margin-top: 18px; }
   .feedback-loop { margin-inline: -22px; padding-inline: 22px; }
   .feedback-loop span,
   .feedback-loop strong { flex-basis: 62vw; }
-  .tweet-wall h2 { font-size: clamp(43px, 13vw, 63px); }
-  .tweet-replies { margin-left: 8px; padding-left: 15px; }
   .records-door {
     grid-template-columns: minmax(0, 1fr) auto;
     min-height: 430px;

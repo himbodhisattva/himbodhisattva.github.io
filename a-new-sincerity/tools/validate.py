@@ -57,7 +57,7 @@ assert 'Like They Do In The Movies' in main
 assert 'somehow both a victory lap and a cry for help' in main.lower()
 assert 'emulated stereogum' in main.lower()
 assert 'data-play="victory-lap-01"' in main
-assert 'Hyperpop-punk, sincerity and self-absorption cranked up.' in main
+assert 'kept making pop-punk' in main
 assert 'data-album-embed="unfortunately"' in main
 assert 'data-album-embed="revisionist"' in main
 assert 'data-album-embed="friday-girls"' in main
@@ -65,7 +65,33 @@ assert 'emulated-review' in main and 'not published by' in main.lower()
 assert 'AI reconstruction from a recording where the original performance is barely audible' in main
 assert 'the creation changed its creator' in main.lower()
 assert 'the map modifies the territory' in main.lower()
-assert 'twitter-tweet' in main and 'platform.twitter.com/widgets.js' in main
+tweet_sources=(
+ main.count('class="twitter-tweet"')
+ +main.count('class="hero-post"')
+ +main.count('class="postmodernism-thread"')
+)
+assert tweet_sources==3, f'homepage should contain exactly three tweet-derived items, found {tweet_sources}'
+assert main.count('class="twitter-tweet"')==1, 'only the Friday Girls post should use an embedded X widget'
+assert 'class="twitter-tweet" data-conversation="none"' in main, 'the Friday Girls embed should not repeat its parent post'
+assert main.count('data-flourish=')==2, 'homepage should contain exactly two intentional decorative asides'
+assert '2115229386890994060' in main, 'the Friday Girls chronology tweet is missing'
+assert '2115224311409901920' in main, 'the linked postmodernism post is missing'
+assert 'Now it is our turn to solve postmodernism.' in main
+assert 'your completely valid philosophical objections are now promotional material' in main
+assert '2115157842760212520' not in main, 'the replaced self-awareness tweet remains'
+assert 'tweet-wall' not in main, 'the repetitive closing tweet wall should be removed'
+for cut_copy in (
+ 'a writing project that keeps becoming music',
+ "anyway that's what this is about",
+ 'The next song has to teach me something I did not know before I wrote it.',
+ 'Self-awareness never becomes self-control.',
+ 'the reviews did not miss.',
+):
+ assert cut_copy not in main, f'cut copy remains: {cut_copy}'
+assert 'platform.twitter.com/widgets.js' in main
+for page in (main, records):
+ assert 'player-model.js?v=20261029' in page
+ assert 'app.js?v=20261029' in page
 assert 'id="liner-notes"' not in main and 'review-centerpiece' not in main and 'current-status' not in main
 assert main.count('class="records-door"') == 1
 assert 'get in loser, we\'re subverting postmodernism from the inside' in main

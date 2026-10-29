@@ -68,6 +68,33 @@
     return reducedMotion ? 'auto' : 'smooth';
   }
 
+  function initialPlayback({
+    recordsPage = false,
+    selectedAlbum = null,
+    albums = [],
+    defaultTrack = null,
+    storyQueue = [],
+  } = {}, canPlay = () => false) {
+    if (recordsPage) {
+      const album = albums.find(candidate => candidate.id === selectedAlbum);
+      const track = album?.tracks?.find(canPlay);
+      if (track) {
+        return {
+          track,
+          queue: buildQueueContext('album', album.id, album.tracks),
+        };
+      }
+    }
+
+    const track = defaultTrack && canPlay(defaultTrack)
+      ? defaultTrack
+      : storyQueue.find(canPlay);
+    return track ? {
+      track,
+      queue: buildQueueContext('story', 'essay', storyQueue),
+    } : null;
+  }
+
   root.ANS_PLAYER_MODEL = {
     buildQueueContext,
     nextPlayable,
@@ -79,5 +106,6 @@
     lyricRouteAction,
     lyricCloseLabel,
     albumScrollBehavior,
+    initialPlayback,
   };
 })(typeof window === 'undefined' ? globalThis : window);

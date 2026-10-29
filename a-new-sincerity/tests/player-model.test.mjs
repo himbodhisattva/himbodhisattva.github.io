@@ -13,6 +13,7 @@ const {
   lyricRouteAction,
   lyricCloseLabel,
   albumScrollBehavior,
+  initialPlayback,
 } = window.ANS_PLAYER_MODEL;
 
 const available = new Set(['album-01', 'album-02', 'album-04']);
@@ -67,5 +68,38 @@ assert.equal(albumScrollBehavior({ userSelection: true, reducedMotion: false }),
 assert.equal(albumScrollBehavior({ directLink: true, reducedMotion: false }), 'smooth', 'direct album links reveal their detail');
 assert.equal(albumScrollBehavior({ userSelection: true, reducedMotion: true }), 'auto', 'reduced motion avoids smooth scrolling');
 assert.equal(albumScrollBehavior({}), null, 'initial catalog rendering does not move the page');
+
+assert.deepEqual(
+  initialPlayback({
+    recordsPage: true,
+    selectedAlbum: 'album-b',
+    albums: [
+      { id: 'album-a', tracks: ['album-01'] },
+      { id: 'album-b', tracks: ['album-03', 'album-04'] },
+    ],
+    defaultTrack: 'album-01',
+    storyQueue: ['album-01', 'album-02'],
+  }, canPlay),
+  {
+    track: 'album-04',
+    queue: { kind: 'album', id: 'album-b', tracks: ['album-03', 'album-04'] },
+  },
+  'empty player starts at the first playable track of the selected record',
+);
+
+assert.deepEqual(
+  initialPlayback({
+    recordsPage: false,
+    selectedAlbum: 'album-b',
+    albums: [{ id: 'album-b', tracks: ['album-04'] }],
+    defaultTrack: 'album-02',
+    storyQueue: ['album-01', 'album-02'],
+  }, canPlay),
+  {
+    track: 'album-02',
+    queue: { kind: 'story', id: 'essay', tracks: ['album-01', 'album-02'] },
+  },
+  'the essay player keeps its curated default track',
+);
 
 console.log('PASS: explicit album queues and lyric cue lookup.');
