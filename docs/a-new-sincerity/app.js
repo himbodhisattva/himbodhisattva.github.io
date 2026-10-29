@@ -12,6 +12,8 @@
   const dialog = document.getElementById('detail-dialog');
   const dialogContent = document.getElementById('dialog-content');
   const lyricStage = document.getElementById('lyric-stage');
+  const philosophyDialog = document.getElementById('philosophy-dialog');
+  const philosophyTrigger = document.querySelector('.philosophy-trigger');
   const recordsPage = document.body.dataset.page === 'records';
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const defaultAlbumId = D.albums[0]?.id || 'unfortunately';
@@ -28,6 +30,7 @@
     followLyrics: true,
     lyricReturnFocus: null,
     dialogReturnFocus: null,
+    philosophyReturnFocus: null,
     lyricHistoryEntry: false,
     recovering: false,
   };
@@ -42,6 +45,16 @@
   const artFor = track => asset(track.art || albums.get(track.album)?.art);
   const albumArt = album => asset(album.art);
   const canPlay = id => Boolean(tracks.get(id)?.audio);
+
+  function emptyPlayerAction(action) {
+    return model.emptyPlayerAction(action, {
+      recordsPage,
+      selectedAlbum: state.selectedAlbum,
+      albums: D.albums,
+      defaultTrack: D.defaultTrack,
+      storyQueue: D.queue,
+    }, canPlay);
+  }
 
   function setLyricsMode(mode) {
     const open = mode !== 'closed';
@@ -85,6 +98,35 @@
     element.textContent = message;
     element.classList.add('show');
     toastTimer = setTimeout(() => element.classList.remove('show'), 4200);
+  }
+
+  function resetPhilosophyScroll() {
+    if (!philosophyDialog) return;
+    philosophyDialog.scrollTop = 0;
+    requestAnimationFrame(() => {
+      philosophyDialog.scrollTop = 0;
+      setTimeout(() => { philosophyDialog.scrollTop = 0; }, 0);
+    });
+  }
+
+  function openPhilosophy({ returnFocus = null } = {}) {
+    if (!philosophyDialog || philosophyDialog.open) return;
+    state.philosophyReturnFocus = returnFocus?.isConnected ? returnFocus : null;
+    if (dialog.open) dialog.close();
+    philosophyDialog.showModal();
+    resetPhilosophyScroll();
+  }
+
+  function closePhilosophy({ updateHistory = true, restoreFocus = true } = {}) {
+    if (!philosophyDialog?.open) return;
+    const returnFocus = state.philosophyReturnFocus || $('.site-wordmark');
+    philosophyDialog.close();
+    philosophyDialog.scrollTop = 0;
+    if (updateHistory && location.hash === '#philosophy') {
+      if (history.state?.ansPhilosophy) history.back();
+      else history.replaceState(history.state, '', `${location.pathname}${location.search}`);
+    }
+    if (restoreFocus && returnFocus?.isConnected) requestAnimationFrame(() => returnFocus.focus({ preventScroll: true }));
   }
 
   function fmt(seconds) {
@@ -245,13 +287,7 @@
 
   async function toggleCurrent() {
     if (!state.current) {
-      const initial = model.initialPlayback({
-        recordsPage,
-        selectedAlbum: state.selectedAlbum,
-        albums: D.albums,
-        defaultTrack: D.defaultTrack,
-        storyQueue: D.queue,
-      }, canPlay);
+      const initial = emptyPlayerAction('play');
       if (initial) await selectTrack(initial.track, { queue: initial.queue });
       return;
     }
@@ -260,6 +296,12 @@
   }
 
   async function advance(direction, wrap) {
+    if (!state.current) {
+      const initial = emptyPlayerAction(direction < 0 ? 'previous' : 'next');
+      if (!initial) return false;
+      await selectTrack(initial.track, { queue: initial.queue });
+      return true;
+    }
     if (direction < 0 && audio.currentTime > 3) {
       audio.currentTime = 0;
       return true;
@@ -514,6 +556,13 @@
   async function route() {
     const trackMatch = location.hash.match(/^#track=(.+)$/);
     const albumMatch = location.hash.match(/^#album=(.+)$/);
+    const philosophyRoute = !recordsPage && location.hash === '#philosophy';
+    if (philosophyRoute) {
+      if (state.lyricMode === 'full') closeLyrics({ updateHistory: false });
+      openPhilosophy({ returnFocus: null });
+      return;
+    }
+    if (philosophyDialog?.open) closePhilosophy({ updateHistory: false, restoreFocus: false });
     if (trackMatch) {
       const id = decodeRouteId(trackMatch[1]);
       if (tracks.has(id)) {
@@ -535,12 +584,23 @@
     }
   }
 
+  philosophyTrigger?.addEventListener('click', event => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    if (location.hash !== '#philosophy') history.pushState({ ansPhilosophy: true }, '', '#philosophy');
+    openPhilosophy({ returnFocus: event.currentTarget });
+  });
+
   document.addEventListener('click', async event => {
     const button = event.target.closest('button');
     if (!button) return;
 
     if (button.classList.contains('close-dialog')) {
       dialog.close();
+      return;
+    }
+    if (button.id === 'philosophy-close') {
+      closePhilosophy();
       return;
     }
     if (button.dataset.play) {
@@ -599,7 +659,15 @@
     if (button.id === 'play-pause') await toggleCurrent();
     else if (button.id === 'previous-track') await advance(-1, true);
     else if (button.id === 'next-track') await advance(1, true);
-    else if (button.id === 'player-lyrics' || button.id === 'player-art') await openLyrics(state.current || D.defaultTrack);
+    else if (button.id === 'player-lyrics' || button.id === 'player-art') {
+      const target = state.current
+        ? { track: state.current, queue: state.queue }
+        : emptyPlayerAction('lyrics');
+      if (target) {
+        state.queue = target.queue;
+        await openLyrics(target.track);
+      }
+    }
     else if (button.id === 'lyrics-close') closeLyrics();
     else if (button.id === 'lyric-follow') {
       state.followLyrics = true;
@@ -631,6 +699,11 @@
 
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') {
+      if (philosophyDialog?.open) {
+        event.preventDefault();
+        closePhilosophy();
+        return;
+      }
       const layer = model.escapeLayer(dialog.open, state.lyricMode !== 'closed');
       if (layer === 'dialog') {
         event.preventDefault();
@@ -642,7 +715,7 @@
         return;
       }
     }
-    if (event.code === 'Space' && state.lyricMode !== 'full' && !dialog.open && !event.target.closest('input,textarea,select,button,a,[contenteditable]')) {
+    if (event.code === 'Space' && state.lyricMode !== 'full' && !dialog.open && !philosophyDialog?.open && !event.target.closest('input,textarea,select,button,a,[contenteditable]')) {
       event.preventDefault();
       toggleCurrent();
     }
@@ -655,6 +728,15 @@
     if (event.target !== dialog) return;
     const bounds = dialog.getBoundingClientRect();
     if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+  });
+  philosophyDialog?.addEventListener('cancel', event => {
+    event.preventDefault();
+    closePhilosophy();
+  });
+  philosophyDialog?.addEventListener('click', event => {
+    if (event.target !== philosophyDialog) return;
+    const bounds = philosophyDialog.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closePhilosophy();
   });
 
   audio.addEventListener('play', () => {
@@ -712,6 +794,7 @@
   addEventListener('popstate', scheduleRoute);
   addEventListener('hashchange', scheduleRoute);
   addEventListener('pageshow', event => {
+    if (location.hash === '#philosophy') resetPhilosophyScroll();
     const navigation = performance.getEntriesByType?.('navigation')[0];
     if (event.persisted || navigation?.type !== 'reload') return;
     const albumMatch = location.hash.match(/^#album=(.+)$/);

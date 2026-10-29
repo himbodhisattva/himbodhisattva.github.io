@@ -14,6 +14,7 @@ const {
   lyricCloseLabel,
   albumScrollBehavior,
   initialPlayback,
+  emptyPlayerAction,
 } = window.ANS_PLAYER_MODEL;
 
 const available = new Set(['album-01', 'album-02', 'album-04']);
@@ -101,5 +102,27 @@ assert.deepEqual(
   },
   'the essay player keeps its curated default track',
 );
+
+const emptyRecordsContext = {
+  recordsPage: true,
+  selectedAlbum: 'album-b',
+  albums: [
+    { id: 'album-a', tracks: ['album-01'] },
+    { id: 'album-b', tracks: ['album-03', 'album-04'] },
+  ],
+  defaultTrack: 'album-01',
+  storyQueue: ['album-01', 'album-02'],
+};
+for (const action of ['play', 'next', 'previous', 'lyrics']) {
+  assert.deepEqual(
+    emptyPlayerAction(action, emptyRecordsContext, canPlay),
+    {
+      action,
+      track: 'album-04',
+      queue: { kind: 'album', id: 'album-b', tracks: ['album-03', 'album-04'] },
+    },
+    `empty-player ${action} resolves against the selected record`,
+  );
+}
 
 console.log('PASS: explicit album queues and lyric cue lookup.');

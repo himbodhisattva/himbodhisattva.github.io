@@ -40,7 +40,7 @@ for document in documents:
  assert 'noindex,nofollow' in html, f'{document.name}: staging copy must remain noindex until explicitly published'
  assert 'autoplay' not in re.search(r'<audio.*?>',html).group(), f'{document.name}: audio must not autoplay on arrival'
  external_runtime_urls=re.findall(r'<(?:script|link)[^>]+(?:src|href)="(https?://[^"]+)"',html)
- allowed_runtime_urls={'https://platform.twitter.com/widgets.js'} if document == ROOT/'index.html' else set()
+ allowed_runtime_urls=set()
  assert set(external_runtime_urls)<=allowed_runtime_urls, f'{document.name}: unexpected runtime dependency'
  wordmark=re.search(r'<a class="site-wordmark".*?</a>',html,re.S).group()
  assert 'himbodhisattva' not in wordmark.lower(), f'{document.name}: project should not carry the parent-site brand'
@@ -61,23 +61,51 @@ assert 'kept making pop-punk' in main
 assert 'data-album-embed="unfortunately"' in main
 assert 'data-album-embed="revisionist"' in main
 assert 'data-album-embed="friday-girls"' in main
+assert 'Friday Girls sit outside the self-awareness thing' in main
+assert "literally, the best songs I've ever made" in main
+assert 'Now I can animate the ghosts' in main
+assert 'My ghosts write songs.' in main
+assert 'multiple songs per day' in main
 assert 'emulated-review' in main and 'not published by' in main.lower()
 assert 'AI reconstruction from a recording where the original performance is barely audible' in main
-assert 'the creation changed its creator' in main.lower()
-assert 'the map modifies the territory' in main.lower()
+assert 'what is “a new sincerity”?' in main.lower()
+assert 'attempt at infinite ironic detachment' in main.lower()
+assert "knowing what you're doing is not the same as being able to do otherwise" in main.lower()
+assert main.lower().index("knowing what you're doing is not the same as being able to do otherwise") < main.index('id="unfortunately"'), 'the central discovery belongs in the opening definition'
+assert 'The Protagonist would also like credit for recognizing this.' in main
+assert 'id="self-awareness"' in main
+assert 'class="old-song-note"' not in main
+assert 'class="feedback-loop"' not in main
+assert 'the creation changed its creator' not in main.lower()
+assert 'the map modifies the territory' not in main.lower()
 tweet_sources=(
- main.count('class="twitter-tweet"')
+ main.count('class="friday-post"')
  +main.count('class="hero-post"')
  +main.count('class="postmodernism-thread"')
 )
 assert tweet_sources==3, f'homepage should contain exactly three tweet-derived items, found {tweet_sources}'
-assert main.count('class="twitter-tweet"')==1, 'only the Friday Girls post should use an embedded X widget'
-assert 'class="twitter-tweet" data-conversation="none"' in main, 'the Friday Girls embed should not repeat its parent post'
+assert 'class="twitter-tweet"' not in main, 'Friday Girls should use designed linked text, not an embedded X widget'
+assert 'class="friday-post"' in main
+assert '<blockquote>then my daughters complained' in main, 'the Friday Girls account must remain readable prose'
+assert '<a href="https://x.com/himbodhisattva/status/2115229386890994060">view the post on X' in main, 'the Friday Girls prose needs a separate source link'
 assert main.count('data-flourish=')==2, 'homepage should contain exactly two intentional decorative asides'
 assert '2115229386890994060' in main, 'the Friday Girls chronology tweet is missing'
 assert '2115224311409901920' in main, 'the linked postmodernism post is missing'
 assert 'Now it is our turn to solve postmodernism.' in main
 assert 'your completely valid philosophical objections are now promotional material' in main
+assert '<a class="philosophy-trigger" href="#philosophy">Now it is our turn to solve postmodernism.</a>' in main
+assert 'id="philosophy-dialog"' in main
+for philosophy_phrase in (
+ 'The New Sincerity: feel something despite knowing better.',
+ 'Metamodernism: move between belief and disbelief.',
+ 'Performatism: build a situation in which belief can happen.',
+ "Baudrillard's fatal strategies: intensify the simulation until it reverses.",
+ 'whether an experience becomes real because of where it came from, or because of what happens next',
+):
+ assert philosophy_phrase in main, f'missing philosophy liner-note copy: {philosophy_phrase}'
+assert "I'm not worried about being late" not in main
+assert "previous expeditions into the dragon's cave" not in main
+assert 'liner note 05b' not in main, 'the philosophy note should not refer to a removed chapter number'
 assert '2115157842760212520' not in main, 'the replaced self-awareness tweet remains'
 assert 'tweet-wall' not in main, 'the repetitive closing tweet wall should be removed'
 for cut_copy in (
@@ -88,18 +116,29 @@ for cut_copy in (
  'the reviews did not miss.',
 ):
  assert cut_copy not in main, f'cut copy remains: {cut_copy}'
-assert 'platform.twitter.com/widgets.js' in main
+assert 'platform.twitter.com/widgets.js' not in main
+app_source=(ROOT/'app.js').read_text()
+assert 'openPhilosophy({ returnFocus: null });' in app_source, 'direct philosophy links must not restore focus to an off-screen trigger'
+assert 'openPhilosophy({ returnFocus: event.currentTarget });' in app_source, 'click-opened philosophy notes should restore focus to the activating link'
 for page in (main, records):
- assert 'player-model.js?v=20261029' in page
- assert 'app.js?v=20261029' in page
+    assert 'style.css?v=20261029c' in page
+    assert 'experience.css?v=20261029c' in page
+    assert 'player-model.js?v=20261029c' in page
+    assert 'app.js?v=20261029c' in page
 assert 'id="liner-notes"' not in main and 'review-centerpiece' not in main and 'current-status' not in main
 assert main.count('class="records-door"') == 1
 assert 'get in loser, we\'re subverting postmodernism from the inside' in main
-assert 'attached' not in (main+records+(ROOT/'app.js').read_text()).lower(), 'stale attachment copy remains'
+assert 'attached' not in (main+records+app_source).lower(), 'stale attachment copy remains'
 assert 'id="records"' not in main, 'the full catalog belongs on its own page'
 assert 'id="records"' in records and 'id="album-stage"' in records
 assert 'id="lyric-stage"' in main and 'id="lyric-stage"' in records
 assert main.index('id="unfortunately"') < main.index('id="counterfactual"'), '(unfortunately) must precede Revisionist History'
+assert main.index('id="self-awareness"') < main.index('data-album-embed="unfortunately"'), 'the self-awareness argument belongs directly under the first album description'
+assert main.index('id="self-awareness"') < main.index('id="counterfactual"'), 'the self-awareness argument belongs with (Unfortunately), not at the end'
+assert main.index('id="victory-lap"') < main.index('class="postmodernism-thread"'), 'the postmodernism link should remain the closing coda'
+assert 'class="intelligence-arc"' not in main, 'the abstract intelligence-arrow diagram should be removed'
+assert 'class="self-awareness-listening"' in main, 'the album argument needs a visual, playable break'
+assert 'assets/favicon-parenthetical.svg' in main and 'assets/favicon-parenthetical.svg' in records, 'both pages must use the self-awareness favicon'
 for recommendation in ('our favorite', 'start with', 'places to start', 'save this one for later', 'funniest song'):
  assert recommendation not in public_copy, f'recommendation copy remains: {recommendation}'
 records_hero=re.search(r'<header class="records-hero">(.*?)</header>',records,re.S).group(1)

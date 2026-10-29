@@ -95,6 +95,11 @@
     } : null;
   }
 
+  function emptyPlayerAction(action, context, canPlay = () => false) {
+    const initial = initialPlayback(context, canPlay);
+    return initial ? { action, ...initial } : null;
+  }
+
   root.ANS_PLAYER_MODEL = {
     buildQueueContext,
     nextPlayable,
@@ -107,5 +112,6 @@
     lyricCloseLabel,
     albumScrollBehavior,
     initialPlayback,
+    emptyPlayerAction,
   };
 })(typeof window === 'undefined' ? globalThis : window);
