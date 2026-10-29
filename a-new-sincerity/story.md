@@ -21,16 +21,16 @@ named publications did not publish them. Its Stereogum line, “somehow both a c
 for help and a victory lap,” becomes the title of the later record.
 
 The album section also contains the “sorry for the self-awareness.” argument.
-A New Sincerity attempts infinite ironic detachment: the narrator anticipates
+A New Sincerity attempts infinite ironic detachment: The Narrator anticipates
 each criticism before anyone can use it against him. His intelligence makes
 flaws charming, wins arguments, avoids responsibility, and eventually becomes
 a prison made of explanations. A better account of the problem does not mean
 the problem has changed. Three playable track-title rows interrupt the argument
 and give it a direct listening path.
 
-The narrator is both A New Sincerity and the author. When that identification
-becomes unflattering, he becomes “The Protagonist,” who is definitely not the
-author.
+The Narrator is both A New Sincerity and the author. The section cuts its
+explanation short and leaves the joke to its closing line: “The Narrator would
+also like credit for recognizing this.”
 
 ## The older songs
 

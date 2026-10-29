@@ -72,7 +72,9 @@ assert 'what is “a new sincerity”?' in main.lower()
 assert 'attempt at infinite ironic detachment' in main.lower()
 assert "knowing what you're doing is not the same as being able to do otherwise" in main.lower()
 assert main.lower().index("knowing what you're doing is not the same as being able to do otherwise") < main.index('id="unfortunately"'), 'the central discovery belongs in the opening definition'
-assert 'The Protagonist would also like credit for recognizing this.' in main
+assert 'The Narrator would also like credit for recognizing this.' in main
+assert 'The Protagonist' not in main
+assert 'keep going' not in main
 assert 'id="self-awareness"' in main
 assert 'class="old-song-note"' not in main
 assert 'class="feedback-loop"' not in main
@@ -121,10 +123,10 @@ app_source=(ROOT/'app.js').read_text()
 assert 'openPhilosophy({ returnFocus: null });' in app_source, 'direct philosophy links must not restore focus to an off-screen trigger'
 assert 'openPhilosophy({ returnFocus: event.currentTarget });' in app_source, 'click-opened philosophy notes should restore focus to the activating link'
 for page in (main, records):
-    assert 'style.css?v=20261029c' in page
-    assert 'experience.css?v=20261029c' in page
-    assert 'player-model.js?v=20261029c' in page
-    assert 'app.js?v=20261029c' in page
+    assert 'style.css?v=20261029d' in page
+    assert 'experience.css?v=20261029d' in page
+    assert 'player-model.js?v=20261029d' in page
+    assert 'app.js?v=20261029d' in page
 assert 'id="liner-notes"' not in main and 'review-centerpiece' not in main and 'current-status' not in main
 assert main.count('class="records-door"') == 1
 assert 'get in loser, we\'re subverting postmodernism from the inside' in main
