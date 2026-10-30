@@ -65,7 +65,7 @@ main_markup=re.search(r'<main>(.*?)</main>',main,re.S).group(1)
 main_prose_blocks=re.findall(r'<(?:p|blockquote)(?:\s[^>]*)?>(.*?)</(?:p|blockquote)>',main_markup,re.S)
 main_prose=' '.join(re.sub(r'<[^>]+>',' ',block) for block in main_prose_blocks)
 main_prose_word_count=len(re.findall(r"\b[\w’'-]+\b",main_prose))
-assert main_prose_word_count<=205, f'homepage prose should be at least 75% shorter than the 820-word explainer, found {main_prose_word_count} words'
+assert 300<=main_prose_word_count<=450, f'homepage prose should add narrative without returning to the 820-word explainer, found {main_prose_word_count} words'
 release_hero=re.search(r'<section class="release-hero".*?</section>',main_markup,re.S).group()
 assert main_markup.index(release_hero) < main_markup.index('id="about-project"'), 'the homepage must open with the release'
 assert release_hero.index('class="art-button release-hero-art"') < release_hero.index('class="release-hero-copy"'), 'release artwork should lead the hero in reading order'
@@ -103,9 +103,22 @@ art_machine_play=re.search(r'<button[^>]+data-play="my-art-machine-01"[^>]*>',re
 assert 'data-queue="album"' in art_machine_play and 'data-album-context="my-art-machine"' in art_machine_play, 'Art Machine playback should retain its one-song album context'
 for album_id in ('unfortunately', 'revisionist', 'friday-girls'):
  assert f'data-album-embed="{album_id}"' in main_markup, f'{album_id} should retain its playable track list'
+assert main_markup.index('data-album-context="unfortunately"') < main_markup.index('class="release-note release-note-dark"') < main_markup.index('data-album-embed="unfortunately"'), 'Unfortunately context should follow its Play control and precede its track list'
+assert main_markup.index('data-album-context="revisionist"') < main_markup.index('class="release-note release-note-history"') < main_markup.index('data-album-embed="revisionist"'), 'Revisionist context should follow its Play control and precede its track list'
+assert main_markup.index('data-album-context="friday-girls"') < main_markup.index('class="friday-story"') < main_markup.index('data-album-embed="friday-girls"'), 'Friday Girls context should follow its Play control and precede its track list'
+assert main_markup.index('class="review-bridge"') < main_markup.index('id="victory-lap"'), 'the emulated review should lead into the song it named'
 for album_id in ('unfortunately', 'revisionist', 'friday-girls', 'victory-lap'):
  assert f'href="records/#album={album_id}"' in main_markup, f'{album_id} cover should open its record'
-assert 'AI reconstruction from a recording where the original performance is barely audible' not in main_markup, 'album theory should stay out of the release page'
+assert 'AI reconstruction from a recording where the original performance is barely audible' in main_markup, 'Movies needs the provenance that explains why both versions are reconstructions'
+for narrative_turn in (
+ 'what would counterfactual me be writing if i\'d kept making pop-punk?',
+ 'the narrator is me when i\'m chasing praise for being self-aware',
+ 'then i gave counterfactual me the songs i had already written.',
+ 'friday girls sit outside the self-awareness thing.',
+ 'the fake band is part of my daughters\' actual childhood now.',
+ "who's the real one now?",
+):
+ assert narrative_turn in main_markup.lower(), f'missing release narrative: {narrative_turn}'
 assert 'The Narrator would also like credit for recognizing this.' not in main_markup
 assert 'The Protagonist' not in main_markup
 assert 'keep going' not in main_markup
@@ -156,12 +169,12 @@ assert 'openPhilosophy({ returnFocus: null });' in app_source, 'direct philosoph
 assert 'openPhilosophy({ returnFocus: event.currentTarget });' in app_source, 'click-opened philosophy notes should restore focus to the activating link'
 assert "document.querySelectorAll('.philosophy-trigger')" in app_source, 'every philosophy link must be bound, not only the first one'
 for page in (main, records):
-    assert 'data.js?v=20261030b' in page
-    assert 'style.css?v=20261030b' in page
-    assert 'experience.css?v=20261030b' in page
-    assert 'player-model.js?v=20261030b' in page
-    assert 'app.js?v=20261030b' in page
-    assert '20261030a' not in page, 'stale asset cache key remains'
+    assert 'data.js?v=20261030c' in page
+    assert 'style.css?v=20261030c' in page
+    assert 'experience.css?v=20261030c' in page
+    assert 'player-model.js?v=20261030c' in page
+    assert 'app.js?v=20261030c' in page
+    assert '20261030a' not in page and '20261030b' not in page, 'stale asset cache key remains'
     assert '<a href="https://suno.com/">Suno v6-pro</a>' in page
 assert '↗' not in (main+records+app_source), 'decorative up-right arrows remain'
 assert 'id="liner-notes"' not in main and 'review-centerpiece' not in main and 'current-status' not in main

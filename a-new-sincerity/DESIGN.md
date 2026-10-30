@@ -18,9 +18,15 @@ next to the song. On phones, the cover appears before the copy. Follow with a
 short artist note and a sequence of releases. Covers and track lists should
 occupy more space than prose.
 
+Give each step in the story one compact transition after its cover and Play
+control: a shallow liner note, a linked personal post, or a single review
+scrap. Vary these treatments so they feel like artifacts from the records,
+not a stack of explanatory cards. Keep each mobile transition under one screen.
+
 Use original lyric fragments as display copy. Keep captions and release index
 labels short and factual. Do not add a reading-progress line, chapter
-navigation, process diagrams, or blocks that explain the meaning of the work.
+navigation, process diagrams, or freestanding blocks that explain the meaning
+of the work.
 
 The longer philosophy essay opens from one understated text link. It remains a
 separate reading state with a visible close control and a shareable

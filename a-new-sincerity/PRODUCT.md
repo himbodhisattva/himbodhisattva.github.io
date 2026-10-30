@@ -11,8 +11,9 @@ comes later.
 - Keep the existing typography, palette, album artwork, and visual direction.
 - Give album art and music most of the page. Show release covers, useful play
   controls, and compact track lists.
-- Keep visible homepage prose at 205 words or fewer. Lyric fragments provide
-  most of the page's voice.
+- Keep visible homepage prose between roughly 300 and 450 words. Each bit of
+  context follows its release cover and Play control, so the story accumulates
+  without becoming a freestanding explainer.
 - Use the line “my art machine has the right aesthetics / that's how you know
   i'm so authentic.” Do not add a thesis about what the work proves or how a
   listener should receive it.
@@ -20,8 +21,8 @@ comes later.
   audience feedback, and what counts as real.
 - Include one small link to the longer philosophy essay. The full essay remains
   available only when a visitor chooses to open it.
-- Exclude reading progress, a chapter rail, explanatory diagrams, theory cards,
-  favorite badges, and listening instructions.
+- Exclude reading progress, a chapter rail, explanatory diagrams, full theory
+  modules, favorite badges, and listening instructions.
 - Credit production in the footer as “all songs made with Suno v6-pro,” with
   “Suno v6-pro” linked to `https://suno.com/`.
 
