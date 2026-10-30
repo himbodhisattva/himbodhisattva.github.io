@@ -645,6 +645,7 @@ body[data-page="records"] .library-count { color: color-mix(in oklch, var(--ans-
 }
 .lyric-stage-top .eyebrow { color: var(--ans-pink); }
 .lyric-stage-top .icon-button { color: var(--ans-milk); }
+.lyric-stage-actions { display: flex; align-items: center; gap: 4px; }
 .lyric-sleeve {
   position: relative;
   z-index: 2;

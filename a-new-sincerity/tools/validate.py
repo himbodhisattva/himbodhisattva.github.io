@@ -137,11 +137,11 @@ assert 'open the album' not in main.lower(), 'album covers should carry record n
 assert 'openPhilosophy({ returnFocus: null });' in app_source, 'direct philosophy links must not restore focus to an off-screen trigger'
 assert 'openPhilosophy({ returnFocus: event.currentTarget });' in app_source, 'click-opened philosophy notes should restore focus to the activating link'
 for page in (main, records):
-    assert 'data.js?v=20261029f' in page
-    assert 'style.css?v=20261029f' in page
-    assert 'experience.css?v=20261029f' in page
-    assert 'player-model.js?v=20261029f' in page
-    assert 'app.js?v=20261029f' in page
+    assert 'data.js?v=20261029g' in page
+    assert 'style.css?v=20261029g' in page
+    assert 'experience.css?v=20261029g' in page
+    assert 'player-model.js?v=20261029g' in page
+    assert 'app.js?v=20261029g' in page
     assert '<a href="https://suno.com/">Suno v6-pro</a>' in page
 assert '↗' not in (main+records+app_source), 'decorative up-right arrows remain'
 assert 'simulated reviews' not in main.lower(), 'review terminology must stay emulated'
@@ -154,6 +154,9 @@ assert 'attached' not in (main+records+app_source).lower(), 'stale attachment co
 assert 'id="records"' not in main, 'the full catalog belongs on its own page'
 assert 'id="records"' in records and 'id="album-stage"' in records
 assert 'id="lyric-stage"' in main and 'id="lyric-stage"' in records
+assert 'id="lyric-share"' in main and 'id="lyric-share"' in records, 'song links need a visible control in the lyrics header'
+assert 'Copy link to “${track.title}”' in app_source, 'song-link control needs a title-specific accessible label'
+assert 'copy song link' not in app_source.lower(), 'song-link control should not be buried in notes and credits'
 assert main.index('id="unfortunately"') < main.index('id="counterfactual"'), '(unfortunately) must precede Revisionist History'
 assert main.index('id="self-awareness"') < main.index('data-album-embed="unfortunately"'), 'the self-awareness argument belongs directly under the first album description'
 assert main.index('id="self-awareness"') < main.index('id="counterfactual"'), 'the self-awareness argument belongs with (Unfortunately), not at the end'

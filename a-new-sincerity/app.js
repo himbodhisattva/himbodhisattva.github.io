@@ -411,6 +411,8 @@
     $('#lyric-backdrop').style.backgroundImage = image ? `url("${String(image).replace(/["\\]/g, '\\$&')}")` : '';
     const lines = $('#lyric-lines');
     $('#lyric-stage-label').textContent = track.instrumental ? 'inner sleeve / instrumental' : 'inner sleeve / timed lyrics';
+    $('#lyric-share').disabled = false;
+    $('#lyric-share').setAttribute('aria-label', `Copy link to “${track.title}”`);
     lines.setAttribute('aria-label', track.instrumental ? 'Instrumental track sleeve' : 'Timed lyrics');
     if (track.instrumental) {
       lines.innerHTML = '<p class="instrumental-lyric">instrumental</p>';
@@ -532,7 +534,7 @@
     if (!track) return;
     const album = albums.get(track.album);
     const lyricsSource = track.source.replace(/\.md$/i, '');
-    showDialog('notes & credits', `<div class="dialog-main"><div class="detail-track-head">${miniArt(track, 'detail-art')}<div><p class="eyebrow">${escape(track.artist)}</p><h2 id="dialog-title">${escape(track.title.toLowerCase())}</h2></div></div><p>${escape(track.note || album.description)}</p><p><strong>record:</strong> ${escape(album.title)}<br><strong>artist:</strong> ${escape(track.artist)}<br><strong>lyrics source:</strong> ${escape(lyricsSource)}<br><strong>how this version was made:</strong> ${escape(track.provenance)}</p><div class="detail-actions"><button class="button primary" data-lyrics="${track.id}" data-album-context="${track.album}">${track.instrumental ? 'open sleeve' : 'timed lyrics'}</button><button class="text-button" data-share="${track.id}">copy song link</button><a class="text-button" href="${escape(source(track))}" download>download audio</a></div></div>`);
+    showDialog('notes & credits', `<div class="dialog-main"><div class="detail-track-head">${miniArt(track, 'detail-art')}<div><p class="eyebrow">${escape(track.artist)}</p><h2 id="dialog-title">${escape(track.title.toLowerCase())}</h2></div></div><p>${escape(track.note || album.description)}</p><p><strong>record:</strong> ${escape(album.title)}<br><strong>artist:</strong> ${escape(track.artist)}<br><strong>lyrics source:</strong> ${escape(lyricsSource)}<br><strong>how this version was made:</strong> ${escape(track.provenance)}</p><div class="detail-actions"><button class="button primary" data-lyrics="${track.id}" data-album-context="${track.album}">${track.instrumental ? 'open sleeve' : 'timed lyrics'}</button><a class="text-button" href="${escape(source(track))}" download>download audio</a></div></div>`);
   }
 
   function openArtwork(button) {
@@ -650,10 +652,6 @@
       openArtwork(button);
       return;
     }
-    if (button.dataset.share) {
-      await shareTrack(button.dataset.share);
-      return;
-    }
     if (button.dataset.seekTime) {
       audio.currentTime = Number(button.dataset.seekTime);
       state.followLyrics = true;
@@ -674,6 +672,7 @@
         await openLyrics(target.track);
       }
     }
+    else if (button.id === 'lyric-share' && state.current) await shareTrack(state.current);
     else if (button.id === 'lyrics-close') closeLyrics();
     else if (button.id === 'lyric-follow') {
       state.followLyrics = true;

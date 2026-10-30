@@ -56,6 +56,7 @@ should read as part of the essay rather than imitate X's interface.
 - Artist filters and search preserve titles and versions. Do not invent
   recommendations.
 - Share links open a song in the records-page full lyric view without playback.
+  The copy-link control sits beside Close in the lyric header.
 - Keyboard focus, Escape, arrow keys for tabs, visible focus indicators, reduced
   motion, safe-area spacing. Desktop seeking is always in the mini-player.
 - Link affordances come from clear language and underlines. Color and focus
