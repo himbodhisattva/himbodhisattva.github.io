@@ -9452,6 +9452,620 @@ window.ANS_SYNC = {
       }
     ]
   },
+  "my-art-machine-02": {
+    "duration": 196.96,
+    "confidence": 0.921,
+    "model": "mlx-community/whisper-large-v3-turbo",
+    "cues": [
+      {
+        "start": 22.56,
+        "end": 23.51,
+        "text": "i’ve left the mistakes in",
+        "stanzaStart": true
+      },
+      {
+        "start": 23.54,
+        "end": 26.15,
+        "text": "exactly where i put them",
+        "stanzaStart": false
+      },
+      {
+        "start": 26.18,
+        "end": 28.85,
+        "text": "the little bits that prove i’m human",
+        "stanzaStart": false
+      },
+      {
+        "start": 28.88,
+        "end": 31.71,
+        "text": "were the hardest ones to get right",
+        "stanzaStart": false
+      },
+      {
+        "start": 31.74,
+        "end": 35.09,
+        "text": "i kept the breath before the first word",
+        "stanzaStart": true
+      },
+      {
+        "start": 35.12,
+        "end": 37.33,
+        "text": "the feedback and the strain",
+        "stanzaStart": false
+      },
+      {
+        "start": 37.36,
+        "end": 40.25,
+        "text": "spent all night making sure",
+        "stanzaStart": false
+      },
+      {
+        "start": 40.28,
+        "end": 44.59,
+        "text": "it sounded like the first take",
+        "stanzaStart": false
+      },
+      {
+        "start": 44.62,
+        "end": 47.05,
+        "text": "every crack is intentional",
+        "stanzaStart": true
+      },
+      {
+        "start": 47.08,
+        "end": 50.19,
+        "text": "every stumble’s by design",
+        "stanzaStart": false
+      },
+      {
+        "start": 50.22,
+        "end": 53.13,
+        "text": "and if it sounds like someone’s hurting",
+        "stanzaStart": false
+      },
+      {
+        "start": 53.16,
+        "end": 56.29,
+        "text": "well, that’s how you know it’s mine",
+        "stanzaStart": false
+      },
+      {
+        "start": 56.32,
+        "end": 59.75,
+        "text": "my art machine’s got the right aesthetics",
+        "stanzaStart": true
+      },
+      {
+        "start": 59.78,
+        "end": 62.51,
+        "text": "that’s how you know i’m so authentic",
+        "stanzaStart": false
+      },
+      {
+        "start": 62.54,
+        "end": 65.55,
+        "text": "every little imperfection",
+        "stanzaStart": false
+      },
+      {
+        "start": 65.58,
+        "end": 68.25,
+        "text": "is a mark of my expression",
+        "stanzaStart": false
+      },
+      {
+        "start": 68.28,
+        "end": 71.17,
+        "text": "my art machine’s got the right aesthetics",
+        "stanzaStart": true
+      },
+      {
+        "start": 71.2,
+        "end": 73.91,
+        "text": "that’s how you know i’m so authentic",
+        "stanzaStart": false
+      },
+      {
+        "start": 73.94,
+        "end": 76.61,
+        "text": "i made it perfect, flaws and all",
+        "stanzaStart": false
+      },
+      {
+        "start": 76.64,
+        "end": 89.65,
+        "text": "and you can hear the human in it all",
+        "stanzaStart": false
+      },
+      {
+        "start": 89.68,
+        "end": 91.77,
+        "text": "you say you wanna hear the human",
+        "stanzaStart": true
+      },
+      {
+        "start": 91.8,
+        "end": 94.39,
+        "text": "well, what the hell am i supposed to do?",
+        "stanzaStart": false
+      },
+      {
+        "start": 94.42,
+        "end": 97.87,
+        "text": "i spent all night getting the breathing right",
+        "stanzaStart": false
+      },
+      {
+        "start": 97.9,
+        "end": 100.31,
+        "text": "and every word is something i went through",
+        "stanzaStart": false
+      },
+      {
+        "start": 100.34,
+        "end": 103.27,
+        "text": "you want the sound of someone struggling",
+        "stanzaStart": true
+      },
+      {
+        "start": 103.3,
+        "end": 105.93,
+        "text": "i can give you seventeen different takes",
+        "stanzaStart": false
+      },
+      {
+        "start": 105.96,
+        "end": 109.25,
+        "text": "but when i pick the one that kills me",
+        "stanzaStart": false
+      },
+      {
+        "start": 109.28,
+        "end": 114.39,
+        "text": "you say it’s too polished to be pain",
+        "stanzaStart": false
+      },
+      {
+        "start": 114.42,
+        "end": 115.35,
+        "text": "inauthentic?",
+        "stanzaStart": true
+      },
+      {
+        "start": 115.38,
+        "end": 117.75,
+        "text": "lacking the uniqueness of human expression?",
+        "stanzaStart": true
+      },
+      {
+        "start": 117.78,
+        "end": 120.05,
+        "text": "i’m dissecting my soul for you",
+        "stanzaStart": true
+      },
+      {
+        "start": 120.08,
+        "end": 121.35,
+        "text": "again and again",
+        "stanzaStart": false
+      },
+      {
+        "start": 121.38,
+        "end": 122.39,
+        "text": "it’s just that it’s precise",
+        "stanzaStart": true
+      },
+      {
+        "start": 122.42,
+        "end": 123.01,
+        "text": "and polished",
+        "stanzaStart": false
+      },
+      {
+        "start": 123.04,
+        "end": 125.47,
+        "text": "and above all",
+        "stanzaStart": false
+      },
+      {
+        "start": 125.5,
+        "end": 126.69,
+        "text": "APPRECIATES A GOOD HOOK, ALRIGHT?!",
+        "stanzaStart": true
+      },
+      {
+        "start": 126.72,
+        "end": 129.45,
+        "text": "MY ART MACHINE’S GOT THE RIGHT AESTHETICS",
+        "stanzaStart": true
+      },
+      {
+        "start": 129.48,
+        "end": 132.27,
+        "text": "THAT’S HOW YOU KNOW I’M SO AUTHENTIC",
+        "stanzaStart": false
+      },
+      {
+        "start": 132.3,
+        "end": 135.31,
+        "text": "EVERY LITTLE IMPERFECTION",
+        "stanzaStart": false
+      },
+      {
+        "start": 135.34,
+        "end": 138.05,
+        "text": "IS A MARK OF MY EXPRESSION",
+        "stanzaStart": false
+      },
+      {
+        "start": 138.08,
+        "end": 140.97,
+        "text": "MY ART MACHINE’S GOT THE RIGHT AESTHETICS",
+        "stanzaStart": true
+      },
+      {
+        "start": 141.0,
+        "end": 143.71,
+        "text": "THAT’S HOW YOU KNOW I’M SO AUTHENTIC",
+        "stanzaStart": false
+      },
+      {
+        "start": 143.74,
+        "end": 146.71,
+        "text": "I MADE IT PERFECT, IMPERFECTIONS AND ALL",
+        "stanzaStart": false
+      },
+      {
+        "start": 146.74,
+        "end": 149.65,
+        "text": "IF THAT ISN’T HUMAN, WHAT IS?",
+        "stanzaStart": false
+      },
+      {
+        "start": 149.68,
+        "end": 153.39,
+        "text": "so authentic",
+        "stanzaStart": true
+      },
+      {
+        "start": 153.42,
+        "end": 172.07,
+        "text": "so authentic",
+        "stanzaStart": false
+      },
+      {
+        "start": 172.1,
+        "end": 174.85,
+        "text": "my art machine",
+        "stanzaStart": false
+      },
+      {
+        "start": 174.88,
+        "end": 182.79,
+        "text": "my art machine",
+        "stanzaStart": false
+      },
+      {
+        "start": 182.82,
+        "end": 186.57,
+        "text": "my art machine’s got the right aesthetics",
+        "stanzaStart": true
+      },
+      {
+        "start": 186.6,
+        "end": 196.96,
+        "text": "that’s how you know i’m so authentic",
+        "stanzaStart": false
+      }
+    ]
+  },
+  "my-art-machine-03": {
+    "duration": 184.8,
+    "confidence": 0.966,
+    "model": "mlx-community/whisper-large-v3-turbo",
+    "cues": [
+      {
+        "start": 2.5,
+        "end": 3.69,
+        "text": "i’ve left the mistakes in",
+        "stanzaStart": true
+      },
+      {
+        "start": 3.72,
+        "end": 6.51,
+        "text": "exactly where i put them",
+        "stanzaStart": false
+      },
+      {
+        "start": 6.54,
+        "end": 9.29,
+        "text": "the little bits that prove i’m human",
+        "stanzaStart": false
+      },
+      {
+        "start": 9.32,
+        "end": 12.19,
+        "text": "were the hardest ones to get right",
+        "stanzaStart": false
+      },
+      {
+        "start": 12.22,
+        "end": 15.47,
+        "text": "i kept the breath before the first word",
+        "stanzaStart": true
+      },
+      {
+        "start": 15.5,
+        "end": 17.77,
+        "text": "the feedback and the strain",
+        "stanzaStart": false
+      },
+      {
+        "start": 17.8,
+        "end": 20.73,
+        "text": "spent all night making sure",
+        "stanzaStart": false
+      },
+      {
+        "start": 20.76,
+        "end": 25.11,
+        "text": "it sounded like the first take",
+        "stanzaStart": false
+      },
+      {
+        "start": 25.14,
+        "end": 27.53,
+        "text": "every crack is intentional",
+        "stanzaStart": true
+      },
+      {
+        "start": 27.56,
+        "end": 30.77,
+        "text": "every stumble’s by design",
+        "stanzaStart": false
+      },
+      {
+        "start": 30.8,
+        "end": 33.71,
+        "text": "and if it sounds like someone’s hurting",
+        "stanzaStart": false
+      },
+      {
+        "start": 33.74,
+        "end": 36.95,
+        "text": "well, that’s how you know it’s mine",
+        "stanzaStart": false
+      },
+      {
+        "start": 36.98,
+        "end": 40.39,
+        "text": "my art machine’s got the right aesthetics",
+        "stanzaStart": true
+      },
+      {
+        "start": 40.42,
+        "end": 43.27,
+        "text": "that’s how you know i’m so authentic",
+        "stanzaStart": false
+      },
+      {
+        "start": 43.3,
+        "end": 46.27,
+        "text": "every little imperfection",
+        "stanzaStart": false
+      },
+      {
+        "start": 46.3,
+        "end": 49.03,
+        "text": "is a mark of my expression",
+        "stanzaStart": false
+      },
+      {
+        "start": 49.06,
+        "end": 51.99,
+        "text": "my art machine’s got the right aesthetics",
+        "stanzaStart": true
+      },
+      {
+        "start": 52.02,
+        "end": 54.79,
+        "text": "that’s how you know i’m so authentic",
+        "stanzaStart": false
+      },
+      {
+        "start": 54.82,
+        "end": 57.59,
+        "text": "i made it perfect, flaws and all",
+        "stanzaStart": false
+      },
+      {
+        "start": 57.62,
+        "end": 70.65,
+        "text": "and you can hear the human in it all",
+        "stanzaStart": false
+      },
+      {
+        "start": 70.68,
+        "end": 72.85,
+        "text": "you say you wanna hear the human",
+        "stanzaStart": true
+      },
+      {
+        "start": 72.88,
+        "end": 76.01,
+        "text": "well, what the hell am i supposed to do?",
+        "stanzaStart": false
+      },
+      {
+        "start": 76.04,
+        "end": 78.97,
+        "text": "i spent all night getting the breathing right",
+        "stanzaStart": false
+      },
+      {
+        "start": 79.0,
+        "end": 81.35,
+        "text": "and every word is something i went through",
+        "stanzaStart": false
+      },
+      {
+        "start": 81.38,
+        "end": 84.57,
+        "text": "you want the sound of someone struggling",
+        "stanzaStart": true
+      },
+      {
+        "start": 84.6,
+        "end": 87.21,
+        "text": "i can give you seventeen different takes",
+        "stanzaStart": false
+      },
+      {
+        "start": 87.24,
+        "end": 90.51,
+        "text": "but when i pick the one that kills me",
+        "stanzaStart": false
+      },
+      {
+        "start": 90.54,
+        "end": 95.93,
+        "text": "you say it’s too polished to be pain",
+        "stanzaStart": false
+      },
+      {
+        "start": 95.96,
+        "end": 96.87,
+        "text": "inauthentic?",
+        "stanzaStart": true
+      },
+      {
+        "start": 96.9,
+        "end": 99.25,
+        "text": "lacking the uniqueness of human expression?",
+        "stanzaStart": true
+      },
+      {
+        "start": 99.28,
+        "end": 101.43,
+        "text": "i’m dissecting my soul for you",
+        "stanzaStart": true
+      },
+      {
+        "start": 101.46,
+        "end": 103.17,
+        "text": "again and again",
+        "stanzaStart": false
+      },
+      {
+        "start": 103.2,
+        "end": 104.19,
+        "text": "it’s just that it’s precise",
+        "stanzaStart": true
+      },
+      {
+        "start": 104.22,
+        "end": 104.77,
+        "text": "and polished",
+        "stanzaStart": false
+      },
+      {
+        "start": 104.8,
+        "end": 107.53,
+        "text": "and above all",
+        "stanzaStart": false
+      },
+      {
+        "start": 107.56,
+        "end": 112.81,
+        "text": "APPRECIATES A GOOD HOOK, ALRIGHT?!",
+        "stanzaStart": true
+      },
+      {
+        "start": 112.84,
+        "end": 115.93,
+        "text": "MY ART MACHINE’S GOT THE RIGHT AESTHETICS",
+        "stanzaStart": true
+      },
+      {
+        "start": 115.96,
+        "end": 118.79,
+        "text": "THAT’S HOW YOU KNOW I’M SO AUTHENTIC",
+        "stanzaStart": false
+      },
+      {
+        "start": 118.82,
+        "end": 121.85,
+        "text": "EVERY LITTLE IMPERFECTION",
+        "stanzaStart": false
+      },
+      {
+        "start": 121.88,
+        "end": 124.61,
+        "text": "IS A MARK OF MY EXPRESSION",
+        "stanzaStart": false
+      },
+      {
+        "start": 124.64,
+        "end": 127.57,
+        "text": "MY ART MACHINE’S GOT THE RIGHT AESTHETICS",
+        "stanzaStart": true
+      },
+      {
+        "start": 127.6,
+        "end": 130.43,
+        "text": "THAT’S HOW YOU KNOW I’M SO AUTHENTIC",
+        "stanzaStart": false
+      },
+      {
+        "start": 130.46,
+        "end": 133.21,
+        "text": "I MADE IT PERFECT, IMPERFECTIONS AND ALL",
+        "stanzaStart": false
+      },
+      {
+        "start": 133.24,
+        "end": 137.45,
+        "text": "IF THAT ISN’T HUMAN, WHAT IS?",
+        "stanzaStart": false
+      },
+      {
+        "start": 137.48,
+        "end": 140.45,
+        "text": "so authentic",
+        "stanzaStart": true
+      },
+      {
+        "start": 140.48,
+        "end": 143.05,
+        "text": "so authentic",
+        "stanzaStart": false
+      },
+      {
+        "start": 143.08,
+        "end": 144.91,
+        "text": "my art machine",
+        "stanzaStart": false
+      },
+      {
+        "start": 144.94,
+        "end": 147.77,
+        "text": "my art machine",
+        "stanzaStart": false
+      },
+      {
+        "start": 147.8,
+        "end": 150.87,
+        "text": "my art machine’s got the right aesthetics",
+        "stanzaStart": true
+      },
+      {
+        "start": 150.9,
+        "end": 184.8,
+        "text": "that’s how you know i’m so authentic",
+        "stanzaStart": false
+      }
+    ]
+  },
   "lock-haven-01": {
     "duration": 206.76,
     "confidence": 0.637,

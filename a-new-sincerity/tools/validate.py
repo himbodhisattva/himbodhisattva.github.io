@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parent.parent
 text=(ROOT/'data.js').read_text();data=json.loads(re.sub(r'^window\.ANS_DATA\s*=\s*','',text).rstrip().removesuffix(';'))
 ids=[x['id'] for x in data['tracks']]
 assert len(ids)==len(set(ids)), 'duplicate track IDs'
-assert len(data['tracks'])==49 and len(data['albums'])==7
+assert len(data['tracks'])==51 and len(data['albums'])==7
 assert not any('entertainment' in a['artist'].lower() for a in data['albums'])
 assert all(t['lyrics'].strip() and t['source'] for t in data['tracks'])
 assert all(t in ids for a in data['albums'] for t in a['tracks'])
@@ -18,17 +18,27 @@ assert album_by_id['revisionist']['artist'].lower()=='a new sincerity'
 assert album_by_id['revisionist']['group']=='ans', 'Revisionist History belongs to A New Sincerity'
 assert album_by_id['victory-lap']['art']=='assets/user/victory-lap-1254.webp', 'Victory Lap must use the high-resolution cover'
 assert album_by_id['friday-girls']['art']=='assets/user/friday-girls-1254.webp', 'Friday Girls must use the high-resolution cover'
-assert album_by_id['my-art-machine']['tracks']==['my-art-machine-01'], 'My Art Machine must remain a one-song album'
+assert album_by_id['my-art-machine']['tracks']==[
+ 'my-art-machine-01',
+ 'my-art-machine-02',
+ 'my-art-machine-03',
+], 'My Art Machine must contain the original and both extra-authentic versions'
 assert album_by_id['my-art-machine']['art']=='assets/user/my-art-machine-1254.webp', 'My Art Machine must use its full-resolution cover'
 assert track_by_id['revisionist-02']['title']=='Like They Do In The Movies (a new sincerity remix)', 'Movies share title changed unexpectedly'
 assert track_by_id['revisionist-02']['art']=='assets/movies.webp', 'Movies share link must use its own artwork'
 assert track_by_id['friday-girls-05']['art']=='assets/user/friday-girls-again-and-again.webp', 'Again and Again must use its track artwork'
 assert track_by_id['my-art-machine-01']['originalUrl']=='https://suno.com/song/53914ce6-b9a6-4341-9e44-14c438a5ca91', 'My Art Machine must retain its canonical Suno source'
+assert track_by_id['my-art-machine-02']['title']=='my art machine (extra authentic version)', 'Extra Authentic title must match Suno'
+assert track_by_id['my-art-machine-02']['originalUrl']=='https://suno.com/song/785aaf06-7a52-4b0f-ab2d-b1b6c184219c', 'Extra Authentic must retain its canonical Suno source'
+assert track_by_id['my-art-machine-02']['art']=='assets/user/my-art-machine-02-1254.webp', 'Extra Authentic must use its own artwork'
+assert track_by_id['my-art-machine-03']['title']=='my art machine (extra authentic version) LIVE (even more authentic)', 'Live Extra Authentic title must match Suno'
+assert track_by_id['my-art-machine-03']['originalUrl']=='https://suno.com/song/efbfa35b-539f-4546-ad9b-9fc9dae62117', 'Live Extra Authentic must retain its canonical Suno source'
+assert track_by_id['my-art-machine-03']['art']=='assets/user/my-art-machine-03-1254.webp', 'Live Extra Authentic must use its own artwork'
 assert all(manifest['albums'][a['id']]['art']==a['art'] for a in data['albums']), 'album artwork paths disagree with the media manifest'
 assert all(manifest['tracks'][t['id']]['art']==t['art'] and manifest['tracks'][t['id']]['audio']==t['audio'] for t in data['tracks']), 'track media paths disagree with the media manifest'
 assert all(t['group']==album_by_id[t['album']]['group'] for t in data['tracks']), 'track and album groups disagree'
 assert data['defaultTrack']=='my-art-machine-01', 'The untouched player should begin with the homepage release'
-assert data['queue'][0]=='my-art-machine-01', 'The story queue should begin with the homepage release'
+assert data['queue'][:3]==['my-art-machine-01','my-art-machine-02','my-art-machine-03'], 'The story queue should begin with the complete Art Machine album'
 for obj in data['albums']+data['tracks']:
  for key in ['art','audio']:
   value=obj.get(key)
@@ -87,8 +97,8 @@ for lyric_fragment in (
  'but god, does this sound good tonight.',
 ):
  assert lyric_fragment in main_markup.lower(), f'missing original lyric voice: {lyric_fragment}'
-assert 'Seven records and forty-nine tracks' in records, 'records metadata must match the seven-album, forty-nine-track catalog'
-assert 'Seven records, forty-nine tracks' in records, 'records share description must match the current catalog'
+assert 'Seven records and fifty-one tracks' in records, 'records metadata must match the seven-album, fifty-one-track catalog'
+assert 'Seven records, fifty-one tracks' in records, 'records share description must match the current catalog'
 assert '<details' not in main and '<summary' not in main, 'homepage should avoid stacked accordions'
 assert 'Minima' not in main_markup and 'minima' not in main_markup, 'Minima should remain in the catalog, not the homepage focus'
 assert 'somehow both a victory lap and a cry for help' in main_markup.lower()
@@ -96,10 +106,11 @@ assert 'emulated stereogum' in main_markup.lower()
 assert 'simulated reviews' not in main_markup.lower(), 'review terminology must stay emulated'
 assert 'data-play="victory-lap-01"' in main_markup
 assert 'id="art-machine"' in main_markup, 'Art Machine needs its own shareable homepage section'
-assert 'href="records/my-art-machine/"' in release_hero, 'the Art Machine cover should open its one-song album'
+assert 'href="records/my-art-machine/"' in release_hero, 'the Art Machine cover should open its album'
+assert 'new album' in release_hero.lower() and 'play the album' in release_hero.lower(), 'the three-track release should be presented as an album'
 assert 'src="assets/user/my-art-machine-1254.webp"' in release_hero, 'the Art Machine section should use its full-resolution cover'
 art_machine_play=re.search(r'<button[^>]+data-play="my-art-machine-01"[^>]*>',release_hero).group()
-assert 'data-queue="album"' in art_machine_play and 'data-album-context="my-art-machine"' in art_machine_play, 'Art Machine playback should retain its one-song album context'
+assert 'data-queue="album"' in art_machine_play and 'data-album-context="my-art-machine"' in art_machine_play, 'Art Machine playback should retain its album context'
 for album_id in ('unfortunately', 'revisionist', 'friday-girls'):
  assert f'data-album-embed="{album_id}"' in main_markup, f'{album_id} should retain its playable track list'
 assert main_markup.index('data-album-context="unfortunately"') < main_markup.index('class="release-note release-note-dark"') < main_markup.index('data-album-embed="unfortunately"'), 'Unfortunately context should follow its Play control and precede its track list'
@@ -168,12 +179,13 @@ assert 'openPhilosophy({ returnFocus: null });' in app_source, 'direct philosoph
 assert 'openPhilosophy({ returnFocus: event.currentTarget });' in app_source, 'click-opened philosophy notes should restore focus to the activating link'
 assert "document.querySelectorAll('.philosophy-trigger')" in app_source, 'every philosophy link must be bound, not only the first one'
 for page in (main, records):
-    assert 'data.js?v=20261030f' in page
-    assert 'style.css?v=20261030f' in page
-    assert 'experience.css?v=20261030f' in page
-    assert 'player-model.js?v=20261030f' in page
-    assert 'app.js?v=20261030f' in page
-    assert not any(version in page for version in ('20261030a', '20261030b', '20261030c', '20261030d', '20261030e')), 'stale asset cache key remains'
+    assert 'data.js?v=20261030g' in page
+    assert 'style.css?v=20261030g' in page
+    assert 'experience.css?v=20261030g' in page
+    assert 'player-model.js?v=20261030g' in page
+    assert 'app.js?v=20261030g' in page
+    assert 'lyrics-sync.js?v=20261030g' in page
+    assert not any(version in page for version in ('20261030a', '20261030b', '20261030c', '20261030d', '20261030e', '20261030f')), 'stale asset cache key remains'
     assert '<a href="https://suno.com/">Suno v6-pro</a>' in page
 assert '↗' not in (main+records+app_source), 'decorative up-right arrows remain'
 assert 'id="liner-notes"' not in main and 'review-centerpiece' not in main and 'current-status' not in main

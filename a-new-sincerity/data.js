@@ -81,9 +81,11 @@ window.ANS_DATA = {
       "title": "my art machine",
       "group": "ans",
       "art": "assets/user/my-art-machine-1254.webp",
-      "description": "One song about polishing imperfection until it sounds authentic.",
+      "description": "Three progressively more authentic versions of one song.",
       "tracks": [
-        "my-art-machine-01"
+        "my-art-machine-01",
+        "my-art-machine-02",
+        "my-art-machine-03"
       ],
       "credit": "ai-generated performance · collaborative lyrics"
     },
@@ -654,6 +656,42 @@ window.ANS_DATA = {
       "note": ""
     },
     {
+      "id": "my-art-machine-02",
+      "title": "my art machine (extra authentic version)",
+      "artist": "A New Sincerity",
+      "album": "my-art-machine",
+      "group": "ans",
+      "number": 2,
+      "lyrics": "i’ve left the mistakes in\nexactly where i put them\nthe little bits that prove i’m human\nwere the hardest ones to get right\n\ni kept the breath before the first word\nthe feedback and the strain\nspent all night making sure\nit sounded like the first take\n\nevery crack is intentional\nevery stumble’s by design\nand if it sounds like someone’s hurting\nwell, that’s how you know it’s mine\n\nmy art machine’s got the right aesthetics\nthat’s how you know i’m so authentic\nevery little imperfection\nis a mark of my expression\n\nmy art machine’s got the right aesthetics\nthat’s how you know i’m so authentic\ni made it perfect, flaws and all\nand you can hear the human in it all\n\nyou say you wanna hear the human\nwell, what the hell am i supposed to do?\ni spent all night getting the breathing right\nand every word is something i went through\n\nyou want the sound of someone struggling\ni can give you seventeen different takes\nbut when i pick the one that kills me\nyou say it’s too polished to be pain\n\ninauthentic?\n\nlacking the uniqueness of human expression?\n\ni’m dissecting my soul for you\nagain and again\n\nit’s just that it’s precise\nand polished\nand above all\n\nAPPRECIATES A GOOD HOOK, ALRIGHT?!\n\nMY ART MACHINE’S GOT THE RIGHT AESTHETICS\nTHAT’S HOW YOU KNOW I’M SO AUTHENTIC\nEVERY LITTLE IMPERFECTION\nIS A MARK OF MY EXPRESSION\n\nMY ART MACHINE’S GOT THE RIGHT AESTHETICS\nTHAT’S HOW YOU KNOW I’M SO AUTHENTIC\nI MADE IT PERFECT, IMPERFECTIONS AND ALL\nIF THAT ISN’T HUMAN, WHAT IS?\n\nso authentic\nso authentic\nmy art machine\nmy art machine\n\nmy art machine’s got the right aesthetics\nthat’s how you know i’m so authentic",
+      "art": "assets/user/my-art-machine-02-1254.webp",
+      "audio": "audio/my-art-machine-02.mp3",
+      "duration": 196.96,
+      "source": "A New Sincerity — my art machine — Lyrics.md",
+      "credit": "ai-generated performance · collaborative lyrics",
+      "instrumental": false,
+      "provenance": "ai-generated performance · collaborative lyrics",
+      "originalUrl": "https://suno.com/song/785aaf06-7a52-4b0f-ab2d-b1b6c184219c",
+      "note": "Raw indie-rock version."
+    },
+    {
+      "id": "my-art-machine-03",
+      "title": "my art machine (extra authentic version) LIVE (even more authentic)",
+      "artist": "A New Sincerity",
+      "album": "my-art-machine",
+      "group": "ans",
+      "number": 3,
+      "lyrics": "i’ve left the mistakes in\nexactly where i put them\nthe little bits that prove i’m human\nwere the hardest ones to get right\n\ni kept the breath before the first word\nthe feedback and the strain\nspent all night making sure\nit sounded like the first take\n\nevery crack is intentional\nevery stumble’s by design\nand if it sounds like someone’s hurting\nwell, that’s how you know it’s mine\n\nmy art machine’s got the right aesthetics\nthat’s how you know i’m so authentic\nevery little imperfection\nis a mark of my expression\n\nmy art machine’s got the right aesthetics\nthat’s how you know i’m so authentic\ni made it perfect, flaws and all\nand you can hear the human in it all\n\nyou say you wanna hear the human\nwell, what the hell am i supposed to do?\ni spent all night getting the breathing right\nand every word is something i went through\n\nyou want the sound of someone struggling\ni can give you seventeen different takes\nbut when i pick the one that kills me\nyou say it’s too polished to be pain\n\ninauthentic?\n\nlacking the uniqueness of human expression?\n\ni’m dissecting my soul for you\nagain and again\n\nit’s just that it’s precise\nand polished\nand above all\n\nAPPRECIATES A GOOD HOOK, ALRIGHT?!\n\nMY ART MACHINE’S GOT THE RIGHT AESTHETICS\nTHAT’S HOW YOU KNOW I’M SO AUTHENTIC\nEVERY LITTLE IMPERFECTION\nIS A MARK OF MY EXPRESSION\n\nMY ART MACHINE’S GOT THE RIGHT AESTHETICS\nTHAT’S HOW YOU KNOW I’M SO AUTHENTIC\nI MADE IT PERFECT, IMPERFECTIONS AND ALL\nIF THAT ISN’T HUMAN, WHAT IS?\n\nso authentic\nso authentic\nmy art machine\nmy art machine\n\nmy art machine’s got the right aesthetics\nthat’s how you know i’m so authentic",
+      "art": "assets/user/my-art-machine-03-1254.webp",
+      "audio": "audio/my-art-machine-03.mp3",
+      "duration": 184.8,
+      "source": "A New Sincerity — my art machine — Lyrics.md",
+      "credit": "ai-generated performance · collaborative lyrics",
+      "instrumental": false,
+      "provenance": "ai-generated performance · collaborative lyrics",
+      "originalUrl": "https://suno.com/song/efbfa35b-539f-4546-ad9b-9fc9dae62117",
+      "note": "Live basement version of the extra-authentic version."
+    },
+    {
       "id": "lock-haven-01",
       "title": "The Secret Plot to Kill the Homeless",
       "artist": "Lock Haven",
@@ -1017,6 +1055,8 @@ window.ANS_DATA = {
   "defaultTrack": "my-art-machine-01",
   "queue": [
     "my-art-machine-01",
+    "my-art-machine-02",
+    "my-art-machine-03",
     "unfortunately-01",
     "victory-lap-01",
     "unfortunately-08",

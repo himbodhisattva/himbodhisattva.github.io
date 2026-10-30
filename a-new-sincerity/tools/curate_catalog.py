@@ -9,8 +9,12 @@ path = ROOT / "data.js"
 data = json.loads(re.sub(r"^window\.ANS_DATA\s*=\s*", "", path.read_text()).rstrip().removesuffix(";"))
 
 data["byline"] = ""
-data["defaultTrack"] = "victory-lap-01"
+data["defaultTrack"] = "my-art-machine-01"
 data["queue"] = [
+    "my-art-machine-01",
+    "my-art-machine-02",
+    "my-art-machine-03",
+    "unfortunately-01",
     "victory-lap-01",
     "unfortunately-08",
     "unfortunately-02",
@@ -42,7 +46,7 @@ album_descriptions = {
     "friday-girls": "Six uncomplicated love songs, written after my daughters asked for one.",
     "revisionist": "Nine earlier songs, remade by A New Sincerity.",
     "victory-lap": "The emulated review of (unfortunately) became the next song.",
-    "my-art-machine": "One song about polishing imperfection until it sounds authentic.",
+    "my-art-machine": "Three progressively more authentic versions of one song.",
     "lock-haven": "Nine tracks from my college band, Lock Haven.",
     "system": "Eleven tracks from The System of the World.",
 }
@@ -62,6 +66,8 @@ notes = {
     "friday-girls-02": "A crush begins after Friday dinner. The song lets the invitation be the whole event.",
     "friday-girls-05": "This began as a Friday Girls section inside Victory Lap. I split it into a separate recording and gave the band the full song.",
     "revisionist-03": "A New Sincerity remake of the Lock Haven song.",
+    "my-art-machine-02": "Raw indie-rock version.",
+    "my-art-machine-03": "Live basement version of the extra-authentic version.",
     "victory-lap-01": "The opening monologue comes from an emulated Stereogum review of (unfortunately). I sampled its diagnosis and answered it inside the song.",
     "lock-haven-03": "Original Lock Haven recording.",
     "lock-haven-08": "A New Sincerity remake included with the Lock Haven recordings.",

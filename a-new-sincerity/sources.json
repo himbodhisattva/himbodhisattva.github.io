@@ -26,9 +26,9 @@
     },
     {
       "file": "A New Sincerity \u2014 my art machine \u2014 Lyrics.md",
-      "sha256": "936dec49814977021f142e570731186071e507947fe62bd5fe76deeddb524b3c",
-      "tracks": 1,
-      "role": "lyrics copied from the source song; bracketed production directions omitted"
+      "sha256": "851b8de4601a8f6b3e61ad71eb32d9c98f0a00d606400f0c26169a67b36b9367",
+      "tracks": 3,
+      "role": "lyrics copied from the three source songs; bracketed production directions omitted"
     },
     {
       "file": "Lock Haven \u2014 Painting a Painting \u2014 Lyrics.md",
@@ -50,7 +50,9 @@
     "movies": "C8D1BF85-D176-4510-8836-776EC4128AF3(1).jpeg",
     "sept-ans": "IMG_0078(1).jpeg",
     "seventeen": "120F4FFD-7376-473D-ADE8-1134479EFA63(1).jpeg",
-    "my-art-machine": "53914ce6-b9a6-4341-9e44-14c438a5ca91_b4be4cbf.jpeg"
+    "my-art-machine": "53914ce6-b9a6-4341-9e44-14c438a5ca91_b4be4cbf.jpeg",
+    "my-art-machine-02": "785aaf06-7a52-4b0f-ab2d-b1b6c184219c_4586f76f.jpeg",
+    "my-art-machine-03": "efbfa35b-539f-4546-ad9b-9fc9dae62117_575024d2.jpeg"
   },
   "narrative": "Drafted from the user messages in the supplied conversation; private names, locations, employer and detailed relationship history are not introduced into the homepage. No invented dates, quotes from external critics or clinician diagnoses.",
   "notes": "Full lyrics retain their source wording, including occasional personal first names and sensitive themes. Review these before publishing under a pseudonym."

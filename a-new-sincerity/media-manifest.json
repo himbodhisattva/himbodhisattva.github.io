@@ -1,5 +1,5 @@
 {
-  "instructions": "All 49 catalog entries map to local 256 kbps MP3 files with album-specific metadata. Album artwork is configured for all seven records. Run uv run --no-project python tools/apply_manifest.py after changing paths.",
+  "instructions": "All 51 catalog entries map to local 256 kbps MP3 files with album-specific metadata. Album artwork is configured for all seven records. Run uv run --no-project python tools/apply_manifest.py after changing paths.",
   "albums": {
     "unfortunately": {
       "art": "assets/unfortunately.webp"
@@ -197,6 +197,18 @@
       "title": "my art machine",
       "audio": "audio/my-art-machine-01.mp3",
       "art": "assets/user/my-art-machine-1254.webp"
+    },
+    "my-art-machine-02": {
+      "artist": "A New Sincerity",
+      "title": "my art machine (extra authentic version)",
+      "audio": "audio/my-art-machine-02.mp3",
+      "art": "assets/user/my-art-machine-02-1254.webp"
+    },
+    "my-art-machine-03": {
+      "artist": "A New Sincerity",
+      "title": "my art machine (extra authentic version) LIVE (even more authentic)",
+      "audio": "audio/my-art-machine-03.mp3",
+      "art": "assets/user/my-art-machine-03-1254.webp"
     },
     "lock-haven-01": {
       "artist": "lock haven",
