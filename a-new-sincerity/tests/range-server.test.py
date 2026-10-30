@@ -36,6 +36,8 @@ module.RangeRequestHandler.copyfile(PartialResponse(), BytesIO(b"0123456789"), C
 with TemporaryDirectory() as directory:
     root = Path(directory)
     (root / "sample.mp3").write_bytes(b"0123456789")
+    (root / "records").mkdir()
+    (root / "records" / "index.html").write_text('<base href="../">records shell')
     handler = partial(QuietRangeRequestHandler, directory=directory)
     server = module.ThreadingHTTPServer(("127.0.0.1", 0), handler)
     thread = Thread(target=server.serve_forever, daemon=True)
@@ -59,9 +61,13 @@ with TemporaryDirectory() as directory:
             assert error.headers["Content-Range"] == "bytes */10"
         else:
             raise AssertionError("out-of-range requests should return 416")
+
+        with urlopen(f"http://127.0.0.1:{server.server_port}/records/my-art-machine-01/") as response:
+            assert response.status == 200
+            assert response.read() == b'<base href="../../">records shell'
     finally:
         server.shutdown()
         server.server_close()
         thread.join(timeout=2)
 
-print("PASS: local preview server supports audio byte ranges.")
+print("PASS: local preview server supports audio byte ranges and direct song routes.")

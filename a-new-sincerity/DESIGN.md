@@ -9,8 +9,11 @@ grid of explanatory cards through the story.
 
 Lay out the homepage as short posts interrupted by playable records. Keep the
 opening typographic and place the Victory Lap cover after Friday Girls, where it
-breaks up the long explanation. Use the source bands only as context. None of their
-individual songs should organize the page.
+breaks up the long explanation. Follow it with Art Machine as a black, white,
+and hot-pink zine spread anchored by its cover. Use the source bands only as
+context. No individual Lock Haven or System of the World song should organize
+the page. Art Machine has its own chapter because its song states the project's
+organizing process.
 
 Set the Friday Girls turn as a prominent prose block with a source link. It
 should read as part of the essay rather than imitate X's interface.
@@ -34,11 +37,11 @@ should read as part of the essay rather than imitate X's interface.
 - Keep the player short and dense while giving the artwork, metadata, play
   control, and lyrics label enough size to scan and tap easily. Remove empty
   space before shrinking meaningful controls.
-- Keep accordions, cards and routine dialogs out of the story. An
-  explicit two-line philosophy link ends the postmodernism coda: the first line
-  reads “Now it is our turn to solve postmodernism.” and the second invites the
-  reader to open the liner note. It opens a full-page paper-and-ink dialog with
-  a visible close control and shareable hash.
+- Keep accordions, cards and routine dialogs out of the story. The sentence
+  “Now it is our turn to solve postmodernism.” ends the postmodernism coda and
+  opens a full-page paper-and-ink dialog with a visible close control and
+  shareable hash. A sentence link connects Art Machine to the note's accelerated
+  feedback-loop argument.
 - Put the self-awareness argument inside the *(Unfortunately)* album section.
   Break its prose with three large playable track-title rows drawn from that
   record. These rows should look like part of the essay and provide a direct
@@ -49,10 +52,14 @@ should read as part of the essay rather than imitate X's interface.
   medium formed by the speed and recursion of its feedback loop. The third uses
   songwriting and legibility to ask how an act of self-discovery also changes
   the self it describes.
+- Set the Art Machine chapter in near-black with bold sans-serif display type.
+  Let the square cover dominate the other column and offset it with hard pink
+  and cyan registration shadows. On phones, show the cover before the prose.
+  Do not turn the speed argument into cards, arrows, or a process diagram.
 - In-context track links and the standalone records page use the same player
   state and explicit queue context.
-- Empty player controls all inherit the selected record on `/records/`; the
-  homepage starts at the top of its story queue.
+- Empty player controls inherit the selected record on `/records/`. The
+  homepage controls start at the top of its story queue.
 - Artist filters and search preserve titles and versions. Do not invent
   recommendations.
 - Each shared song has a static `/records/<track-id>/` page so link previews use

@@ -13,7 +13,7 @@
   const dialogContent = document.getElementById('dialog-content');
   const lyricStage = document.getElementById('lyric-stage');
   const philosophyDialog = document.getElementById('philosophy-dialog');
-  const philosophyTrigger = document.querySelector('.philosophy-trigger');
+  const philosophyTriggers = document.querySelectorAll('.philosophy-trigger');
   const recordsPage = document.body.dataset.page === 'records';
   const recordsUrl = new URL('records/', document.baseURI);
   const publicRecordsUrl = new URL('https://himbodhisattva.com/a-new-sincerity/records/');
@@ -621,11 +621,13 @@
     }
   }
 
-  philosophyTrigger?.addEventListener('click', event => {
-    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    event.preventDefault();
-    if (location.hash !== '#philosophy') history.pushState({ ansPhilosophy: true }, '', '#philosophy');
-    openPhilosophy({ returnFocus: event.currentTarget });
+  philosophyTriggers.forEach(trigger => {
+    trigger.addEventListener('click', event => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      if (location.hash !== '#philosophy') history.pushState({ ansPhilosophy: true }, '', '#philosophy');
+      openPhilosophy({ returnFocus: event.currentTarget });
+    });
   });
 
   document.addEventListener('click', async event => {

@@ -36,7 +36,8 @@ give it a direct listening path.
 *Revisionist History* follows. The author gives A New Sincerity songs he had
 already written for Lock Haven and The System of the World. Some survive as
 finished recordings; others as low-quality files in which the performance is
-barely audible. Counterfactual him inherits, reconstructs, and improves them.
+barely audible. Counterfactual him reconstructs them and often improves the
+result.
 Its complete track list appears in the essay.
 
 “Like They Do In The Movies” receives a direct comparison. The version labeled
@@ -68,19 +69,35 @@ author invents A New Sincerity; A New Sincerity restores and improves the old
 songs the author could barely recover. The author then invents Friday Girls.
 His daughters become obsessed with them, making the fictional band part of real
 family life. A New Sincerity consumes and improves those songs too. Each turn
-makes ironic distance harder to maintain. The section ends by anticipating the
-next track and asking: “Who's the real one now?”
+makes ironic distance harder to maintain. The next track turns that process
+into material and asks: “Who's the real one now?”
+
+## Art Machine
+
+“My Art Machine” follows Victory Lap and gives the feedback loop its own
+chapter. The cover opens the direct song page, and the chapter can start its
+one-song album in the shared player. The visible argument is blunt: individual
+songs are intermediate states in an optimization process, and that evolving
+process is the artwork.
+
+The chapter makes speed concrete. A song written in the evening can receive
+criticism that night, and that attention can affect the next pass before
+morning. Agents search the author's past and present for material. Each output
+helps choose the next input. The section also keeps the unresolved risk in
+view: a synthetic environment can produce self-transformation or become a
+solipsistic substitute for contact with the world.
 
 ## Philosophy liner note
 
 The visible postmodernism coda ends with “Now it is our turn to solve
-postmodernism.” A second visible line invites the reader to open the first-person
-philosophy liner note. The note has three explicit strands. The first combines
+postmodernism.” That sentence opens the first-person philosophy liner note. The
+note has three explicit strands. The first combines
 The New Sincerity with metamodernism, then adds performatism and fatal strategies
 to form one stance against postmodernism. The second argues that AI art becomes
-a new medium when speed and recursion compress the feedback loop enough to
-change the creative process, drawing on Fisher's lost futures and Baudrillard's
-simulation. The third treats songwriting as an act of making the self legible
+a new medium when speed and recursion compress the feedback loop enough to make
+individual songs intermediate states in an evolving creative system, drawing
+on Fisher's lost futures and Baudrillard's simulation. The third treats
+songwriting as an act of making the self legible
 to itself, then uses Scott's account of legibility and mētis to ask how that
 representation rewards some parts of the self and discourages others. It also
 preserves the full post and its reply exchange.

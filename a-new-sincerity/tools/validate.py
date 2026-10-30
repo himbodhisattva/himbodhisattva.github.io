@@ -56,12 +56,24 @@ for document in documents:
 main=documents[0].read_text()
 records=documents[1].read_text()
 public_copy=(main+records).lower()
+assert 'Seven records and forty-nine tracks' in records, 'records metadata must match the seven-album, forty-nine-track catalog'
+assert 'Seven records, forty-nine tracks' in records, 'records share description must match the current catalog'
 assert '<details' not in main and '<summary' not in main, 'story should avoid stacked accordions'
 assert 'Minima' not in main and 'minima' not in main, 'Minima should remain in the catalog, not the essay focus'
 assert 'Like They Do In The Movies' in main
 assert 'somehow both a victory lap and a cry for help' in main.lower()
 assert 'emulated stereogum' in main.lower()
 assert 'data-play="victory-lap-01"' in main
+assert 'id="art-machine"' in main, 'Art Machine needs its own shareable homepage section'
+assert 'href="#art-machine"' in main, 'the chapter rail should reach Art Machine'
+assert 'id="art-machine" data-chapter="05"' in main, 'Art Machine should follow Victory Lap as chapter 05'
+assert 'href="records/my-art-machine-01/"' in main, 'the Art Machine cover should open the direct song page'
+assert 'src="assets/user/my-art-machine-1254.webp"' in main, 'the Art Machine section should use its full-resolution cover'
+art_machine_play=re.search(r'<button[^>]+data-play="my-art-machine-01"[^>]*>',main).group()
+assert 'data-queue="album"' in art_machine_play and 'data-album-context="my-art-machine"' in art_machine_play, 'Art Machine playback should retain its one-song album context'
+assert "the songs aren't the art" in main.lower(), 'the Art Machine section lost its central claim'
+assert 'intermediate state in the optimization process' in main.lower(), 'the Art Machine section must distinguish songs from the process'
+assert 'before morning' in main.lower(), 'the Art Machine section should make the speed of the feedback loop concrete'
 assert 'kept making pop-punk' in main
 assert 'data-album-embed="unfortunately"' in main
 assert 'data-album-embed="revisionist"' in main
@@ -103,6 +115,7 @@ assert '2115224311409901920' in main, 'the linked postmodernism post is missing'
 assert 'Now it is our turn to solve postmodernism.' in main
 assert 'your completely valid philosophical objections are now promotional material' in main
 assert '<strong>Now it is our turn to solve postmodernism.</strong>' in main
+assert main.count('philosophy-trigger') >= 2, 'Art Machine should lead into the philosophy without an instructional link label'
 assert 'open the philosophy liner note' not in main.lower(), 'the philosophy link should not explain itself'
 assert 'id="philosophy-dialog"' in main
 for strand_id in ('philosophy-postmodernism', 'philosophy-medium', 'philosophy-legibility'):
@@ -116,6 +129,7 @@ for philosophy_phrase in (
 ):
  assert philosophy_phrase in main, f'missing philosophy liner-note copy: {philosophy_phrase}'
 assert 'The feedback loop becomes the medium.' in main
+assert 'individual songs record intermediate states' in main.lower(), 'the medium strand should identify the evolving process as the artwork'
 assert 'making the self legible to itself' in main
 assert 'mētis' in main
 assert 'yalebooks.yale.edu/book/9780300078152/seeing-like-a-state/' in main
@@ -143,12 +157,13 @@ assert 'album page' not in app_source.lower(), 'story track lists should rely on
 assert 'open the album' not in main.lower(), 'album covers should carry record navigation without an instruction label'
 assert 'openPhilosophy({ returnFocus: null });' in app_source, 'direct philosophy links must not restore focus to an off-screen trigger'
 assert 'openPhilosophy({ returnFocus: event.currentTarget });' in app_source, 'click-opened philosophy notes should restore focus to the activating link'
+assert "document.querySelectorAll('.philosophy-trigger')" in app_source, 'every philosophy link must be bound, not only the first one'
 for page in (main, records):
-    assert 'data.js?v=20261029k' in page
-    assert 'style.css?v=20261029k' in page
-    assert 'experience.css?v=20261029k' in page
-    assert 'player-model.js?v=20261029k' in page
-    assert 'app.js?v=20261029k' in page
+    assert 'data.js?v=20261030a' in page
+    assert 'style.css?v=20261030a' in page
+    assert 'experience.css?v=20261030a' in page
+    assert 'player-model.js?v=20261030a' in page
+    assert 'app.js?v=20261030a' in page
     assert '<a href="https://suno.com/">Suno v6-pro</a>' in page
 assert '↗' not in (main+records+app_source), 'decorative up-right arrows remain'
 assert 'simulated reviews' not in main.lower(), 'review terminology must stay emulated'
@@ -182,6 +197,7 @@ assert main.index('id="unfortunately"') < main.index('id="counterfactual"'), '(u
 assert main.index('id="self-awareness"') < main.index('data-album-embed="unfortunately"'), 'the self-awareness argument belongs directly under the first album description'
 assert main.index('id="self-awareness"') < main.index('id="counterfactual"'), 'the self-awareness argument belongs with (Unfortunately), not at the end'
 assert main.index('id="victory-lap"') < main.index('class="postmodernism-thread"'), 'the postmodernism link should remain the closing coda'
+assert main.index('id="victory-lap"') < main.index('id="art-machine"') < main.index('class="postmodernism-thread"'), 'Art Machine should bridge Victory Lap into the philosophy coda'
 assert 'class="intelligence-arc"' not in main, 'the abstract intelligence-arrow diagram should be removed'
 assert 'class="self-awareness-listening"' in main, 'the album argument needs a visual, playable break'
 assert 'assets/favicon-parenthetical.svg' in main and 'assets/favicon-parenthetical.svg' in records, 'both pages must use the self-awareness favicon'

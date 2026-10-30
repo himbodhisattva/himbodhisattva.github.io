@@ -3,8 +3,11 @@
 from argparse import ArgumentParser
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from io import BytesIO
 from pathlib import Path
 import os
+import re
+from urllib.parse import urlsplit
 
 
 def parse_byte_range(header: str, size: int) -> tuple[int, int]:
@@ -39,10 +42,33 @@ class RangeRequestHandler(SimpleHTTPRequestHandler):
         self.send_header("Accept-Ranges", "bytes")
         super().end_headers()
 
+    def records_shell_path(self) -> Path | None:
+        """Resolve a source-preview song route through the records shell."""
+        request_path = urlsplit(self.path).path
+        parts = request_path.strip("/").split("/")
+        if len(parts) != 2 or parts[0] != "records" or not re.fullmatch(r"[a-z0-9-]+", parts[1]):
+            return None
+        shell = Path(self.translate_path("/records/index.html"))
+        return shell if shell.is_file() else None
+
+    def send_records_shell(self, shell: Path):
+        """Serve the records app at a nested song URL with a corrected base."""
+        body = shell.read_bytes().replace(b'<base href="../">', b'<base href="../../">')
+        stat = shell.stat()
+        self.send_response(200)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Last-Modified", self.date_time_string(stat.st_mtime))
+        self.end_headers()
+        return BytesIO(body)
+
     def send_head(self):
         self.byte_range = None
         header = self.headers.get("Range")
         path = self.translate_path(self.path)
+        shell = self.records_shell_path() if not os.path.exists(path) else None
+        if shell:
+            return self.send_records_shell(shell)
         if not header or os.path.isdir(path):
             return super().send_head()
 

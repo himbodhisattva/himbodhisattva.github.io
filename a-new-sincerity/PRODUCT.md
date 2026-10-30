@@ -39,6 +39,14 @@ labels, or private transcripts to the essay.
   improves them. Friday Girls becomes part of real family life before A New
   Sincerity remixes those songs too. The resulting attachment makes ironic
   distance harder to maintain.
+- Present “My Art Machine” directly after Victory Lap and before the philosophy
+  coda. Give it a shareable `#art-machine` chapter, its full-resolution cover,
+  a direct song-page link, and one-song album playback. Its central claim is
+  that each song captures an intermediate state while the author revises the
+  process in response. Make the speed concrete. The author can make a song in
+  the evening and hear criticism that night, then apply it before morning.
+  Keep the risk unresolved. The system may support self-transformation, or it
+  may become a solipsistic substitute for contact with the world.
 - Show the complete track lists for *(Unfortunately)*, *Revisionist History*,
   and the Friday Girls album inside their story sections.
 - Use only three tweet-derived story beats: the opening counterfactual-musician
@@ -47,7 +55,8 @@ labels, or private transcripts to the essay.
   turn to solve postmodernism.” The sentence itself opens a first-person note at
   `#philosophy`, which preserves the full post and supplied reply screenshot.
   The note has three strands. One synthesizes four responses to postmodernism.
-  Another treats AI art as a medium created by an accelerated feedback loop.
+  Another describes AI art as an accelerated feedback loop. Each song records
+  an intermediate state while the author revises the process in response.
   The last explains how songwriting makes the self legible while also changing
   it. The first strand names Wallace's response “The New Sincerity” and links
   its sources.
