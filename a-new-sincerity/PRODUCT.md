@@ -32,8 +32,9 @@ clinical labels, employer information, or material from private transcripts.
 ## Records
 
 `/records/` is a standalone, scannable catalog. Its album shelf stays above the
-selected release. Selecting an album updates the URL, scrolls to its full track
-list, and creates an album queue. A direct album URL reveals the same detail.
+selected release. Selecting an album uses its static `/records/<album-id>/`
+URL, scrolls to its full track list, and creates an album queue. Each album URL
+shows the release title and artist beside its cover in link previews.
 Reduced-motion settings replace smooth scrolling with an immediate jump.
 
 Album artwork links to the corresponding release. Song titles and version

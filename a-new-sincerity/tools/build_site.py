@@ -45,9 +45,15 @@ def build(*, publish: bool) -> Path:
         catalog,
         publish=publish,
     )
+    site_builder.write_new_sincerity_album_pages(
+        SOURCE_DIR,
+        output_dir,
+        catalog,
+        publish=publish,
+    )
     urls = (
         tuple(site_builder.NEW_SINCERITY_CANONICALS.values())
-        + site_builder.new_sincerity_song_urls(catalog)
+        + site_builder.new_sincerity_record_urls(catalog)
     )
     sitemap_urls = "\n".join(f"  <url><loc>{url}</loc></url>" for url in urls)
     (output_dir / "sitemap.xml").write_text(

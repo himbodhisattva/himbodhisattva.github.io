@@ -49,13 +49,20 @@
   const albumArt = album => asset(album.art);
   const canPlay = id => Boolean(tracks.get(id)?.audio);
 
-  function songUrl(id) {
+  function recordUrl(id) {
     const url = new URL(recordsUrl.href);
-    url.pathname = model.songRoutePath(recordsUrl.pathname, id);
+    url.pathname = model.recordRoutePath(recordsUrl.pathname, id);
     url.search = '';
     url.hash = '';
     return url;
   }
+
+  const songUrl = recordUrl;
+  const albumUrl = recordUrl;
+  const albumDocumentTitle = id => {
+    const album = albums.get(id);
+    return album ? `${album.title} · ${album.artist}` : recordsDocumentTitle;
+  };
 
   function emptyPlayerAction(action) {
     return model.emptyPlayerAction(action, {
@@ -192,7 +199,7 @@
 
   function albumShelfItem(album) {
     const selected = album.id === state.selectedAlbum;
-    return `<button class="album-open${selected ? ' is-selected' : ''}" data-album="${album.id}" aria-pressed="${selected}" aria-label="Show ${escape(album.title)} by ${escape(album.artist)}"><span class="album-cover">${artMarkup(album)}</span><span class="album-meta"><span>${escape(album.artist)}</span><span>${quantity(album.tracks.length, 'track')}</span></span><strong>${escape(album.title.toLowerCase())}</strong></button>`;
+    return `<a class="album-open${selected ? ' is-selected' : ''}" href="${escape(albumUrl(album.id).href)}" data-album="${album.id}"${selected ? ' aria-current="page"' : ''} aria-label="Show ${escape(album.title)} by ${escape(album.artist)}"><span class="album-cover">${artMarkup(album)}</span><span class="album-meta"><span>${escape(album.artist)}</span><span>${quantity(album.tracks.length, 'track')}</span></span><strong>${escape(album.title.toLowerCase())}</strong></a>`;
   }
 
   function renderAlbumStage(albumId, updateHistory = false) {
@@ -204,12 +211,14 @@
     $$('.album-open').forEach(button => {
       const selected = button.dataset.album === albumId;
       button.classList.toggle('is-selected', selected);
-      button.setAttribute('aria-pressed', String(selected));
+      if (selected) button.setAttribute('aria-current', 'page');
+      else button.removeAttribute('aria-current');
     });
     syncPlayButtons();
     if (updateHistory && recordsPage) {
-      const target = model.routePath(recordsUrl.pathname, recordsUrl.search, 'album', albumId);
-      if (`${location.pathname}${location.search}${location.hash}` !== target) history.pushState({ ansAlbum: albumId }, '', target);
+      const target = albumUrl(albumId);
+      if (location.href !== target.href) history.pushState({ ansAlbum: albumId }, '', target);
+      document.title = albumDocumentTitle(albumId);
     }
   }
 
@@ -490,7 +499,7 @@
       ? model.lyricRouteAction('close', {
         ownsEntry: state.lyricHistoryEntry,
         hash: location.hash,
-        directTrack: recordsPage && Boolean(model.songRouteId(location.pathname, recordsUrl.pathname)),
+        directTrack: recordsPage && tracks.has(model.recordRouteId(location.pathname, recordsUrl.pathname)),
       })
       : null;
     setLyricsMode(nextMode);
@@ -500,18 +509,18 @@
       if (history.state?.ansLyrics) history.back();
       else {
         const destination = recordsPage && state.selectedAlbum
-          ? model.routePath(recordsUrl.pathname, recordsUrl.search, 'album', state.selectedAlbum)
+          ? albumUrl(state.selectedAlbum)
           : `${location.pathname}${location.search}`;
         history.replaceState(null, '', destination);
       }
     } else if (routeAction === 'replace') {
       state.lyricHistoryEntry = false;
       const destination = recordsPage && state.selectedAlbum
-        ? model.routePath(recordsUrl.pathname, recordsUrl.search, 'album', state.selectedAlbum)
+        ? albumUrl(state.selectedAlbum)
         : `${location.pathname}${location.search}`;
       history.replaceState(null, '', destination);
     }
-    if (recordsPage && routeAction) document.title = recordsDocumentTitle;
+    if (recordsPage && routeAction) document.title = albumDocumentTitle(state.selectedAlbum);
     if (!updateHistory) state.lyricHistoryEntry = false;
     if ((wasFull || nextMode === 'closed') && returnTarget?.isConnected) returnTarget.focus({ preventScroll: true });
     state.lyricReturnFocus = nextMode === 'peek' ? returnTarget : null;
@@ -569,7 +578,7 @@
     const track = tracks.get(id);
     if (!track) return;
     const url = new URL(publicRecordsUrl.href);
-    url.pathname = model.songRoutePath(publicRecordsUrl.pathname, id);
+    url.pathname = model.recordRoutePath(publicRecordsUrl.pathname, id);
     try {
       await navigator.clipboard.writeText(url.href);
       toast('song link copied');
@@ -586,7 +595,9 @@
   }
 
   async function route() {
-    const songRoute = recordsPage ? model.songRouteId(location.pathname, recordsUrl.pathname) : null;
+    const recordRoute = recordsPage ? model.recordRouteId(location.pathname, recordsUrl.pathname) : null;
+    const songRoute = tracks.has(recordRoute) ? recordRoute : null;
+    const albumRoute = albums.has(recordRoute) ? recordRoute : null;
     const trackMatch = location.hash.match(/^#track=(.+)$/);
     const albumMatch = location.hash.match(/^#album=(.+)$/);
     const philosophyRoute = !recordsPage && location.hash === '#philosophy';
@@ -612,11 +623,15 @@
     } else {
       if (state.lyricMode === 'full') closeLyrics({ updateHistory: false });
       if (recordsPage) {
-        document.title = recordsDocumentTitle;
-        const id = albumMatch ? decodeRouteId(albumMatch[1]) : defaultAlbumId;
+        const legacyAlbum = albumMatch ? decodeRouteId(albumMatch[1]) : null;
+        const id = albumRoute || legacyAlbum || defaultAlbumId;
         const stage = $('#album-stage');
         if (albums.has(id) && (state.selectedAlbum !== id || !stage?.childElementCount)) renderAlbumStage(id);
-        if (albumMatch && albums.has(id)) revealAlbumStage({ directLink: true });
+        if (albums.has(id)) {
+          document.title = albumRoute || legacyAlbum ? albumDocumentTitle(id) : recordsDocumentTitle;
+          if (legacyAlbum) history.replaceState(history.state, '', albumUrl(id));
+          if (albumRoute || legacyAlbum) revealAlbumStage({ directLink: true });
+        }
       }
     }
   }
@@ -631,6 +646,14 @@
   });
 
   document.addEventListener('click', async event => {
+    const albumLink = event.target.closest('a[data-album]');
+    if (albumLink) {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      renderAlbumStage(albumLink.dataset.album, true);
+      revealAlbumStage({ userSelection: true });
+      return;
+    }
     const button = event.target.closest('button');
     if (!button) return;
 
@@ -660,11 +683,6 @@
     }
     if (button.dataset.notes) {
       openNotes(button.dataset.notes);
-      return;
-    }
-    if (button.dataset.album) {
-      renderAlbumStage(button.dataset.album, true);
-      revealAlbumStage({ userSelection: true });
       return;
     }
     if (button.dataset.playAlbum) {
@@ -831,8 +849,9 @@
     if (location.hash === '#philosophy') resetPhilosophyScroll();
     const navigation = performance.getEntriesByType?.('navigation')[0];
     if (event.persisted || navigation?.type !== 'reload') return;
+    const recordRoute = recordsPage ? model.recordRouteId(location.pathname, recordsUrl.pathname) : null;
     const albumMatch = location.hash.match(/^#album=(.+)$/);
-    const id = albumMatch ? decodeRouteId(albumMatch[1]) : null;
+    const id = albums.has(recordRoute) ? recordRoute : (albumMatch ? decodeRouteId(albumMatch[1]) : null);
     if (recordsPage && albums.has(id)) revealAlbumStage({ directLink: true });
   });
 

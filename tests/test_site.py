@@ -366,6 +366,85 @@ def test_publish_new_sincerity_generates_song_share_pages(tmp_path):
     )
 
 
+def test_publish_new_sincerity_generates_album_share_pages(tmp_path):
+    import build
+
+    source_dir, staging_meta = _new_sincerity_fixture(tmp_path)
+    output_dir = tmp_path / "docs"
+    build.build_site(
+        output_dir=output_dir,
+        new_sincerity_source=source_dir,
+    )
+
+    published = output_dir / "a-new-sincerity"
+    album_url = (
+        "https://himbodhisattva.com/a-new-sincerity/records/revisionist/"
+    )
+    album = (published / "records/revisionist/index.html").read_text()
+
+    assert staging_meta not in album
+    assert (
+        "<title>Revisionist History (The Remixes) · A New Sincerity</title>"
+        in album
+    )
+    assert (
+        '<meta property="og:title" content="Revisionist History '
+        '(The Remixes)">'
+    ) in album
+    assert (
+        '<meta property="og:description" content="A New Sincerity · 2 tracks">'
+        in album
+    )
+    assert '<meta property="og:type" content="music.album">' in album
+    assert f'<link rel="canonical" href="{album_url}">' in album
+    assert f'<meta property="og:url" content="{album_url}">' in album
+    album_art = (
+        "https://himbodhisattva.com/a-new-sincerity/assets/album-cover.webp"
+    )
+    assert f'<meta property="og:image" content="{album_art}">' in album
+    assert (
+        '<meta property="og:image:alt" content="Revisionist History '
+        '(The Remixes) album artwork">'
+    ) in album
+    assert '<meta name="twitter:card" content="summary_large_image">' in album
+    assert (
+        '<meta name="twitter:title" content="Revisionist History '
+        '(The Remixes)">'
+    ) in album
+    assert (
+        '<meta name="twitter:description" content="A New Sincerity · 2 tracks">'
+        in album
+    )
+    assert f'<meta name="twitter:image" content="{album_art}">' in album
+    assert (
+        '<meta name="twitter:image:alt" content="Revisionist History '
+        '(The Remixes) album artwork">'
+    ) in album
+    assert '<base href="../../">' in album
+    assert '<body data-page="records">' in album
+    assert '<audio id="audio" preload="none"></audio>' in album
+    assert "autoplay" not in album
+
+    sitemap = (output_dir / "sitemap.xml").read_text()
+    assert album_url in sitemap
+
+
+def test_new_sincerity_preflight_rejects_album_track_route_collisions(tmp_path):
+    import build
+
+    source_dir, _ = _new_sincerity_fixture(tmp_path)
+    catalog = build.load_new_sincerity_catalog(source_dir)
+    catalog["tracks"][0]["id"] = catalog["albums"][0]["id"]
+    catalog["albums"][0]["tracks"][0] = catalog["albums"][0]["id"]
+    catalog["queue"][0] = catalog["albums"][0]["id"]
+    (source_dir / "data.js").write_text(
+        f"window.ANS_DATA = {json.dumps(catalog)};"
+    )
+
+    with pytest.raises(ValueError, match="route ID is both an album and a track"):
+        build.preflight_new_sincerity(source_dir)
+
+
 def test_new_sincerity_preflight_preserves_previous_build(tmp_path):
     import build
 

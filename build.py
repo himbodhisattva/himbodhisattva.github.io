@@ -220,7 +220,7 @@ def write_static_files(
     output_dir: Path,
     pages: list[Page],
     include_new_sincerity: bool = False,
-    new_sincerity_song_urls: tuple[str, ...] = (),
+    new_sincerity_release_urls: tuple[str, ...] = (),
 ) -> None:
     (output_dir / "CNAME").write_text("himbodhisattva.com\n")
 
@@ -355,7 +355,7 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
     ]
     if include_new_sincerity:
         sitemap_entries[1:1] = NEW_SINCERITY_CANONICALS.values()
-        sitemap_entries[3:3] = new_sincerity_song_urls
+        sitemap_entries[3:3] = new_sincerity_release_urls
     sitemap_entries = list(dict.fromkeys(sitemap_entries))
     sitemap_urls = "\n".join(
         f"  <url><loc>{url}</loc></url>" for url in sitemap_entries
@@ -463,6 +463,11 @@ def load_new_sincerity_catalog(source_dir: Path) -> dict[str, object]:
             _new_sincerity_asset(source_dir, track["art"], f"track {track_id}")
         track_by_id[track_id] = track
 
+    route_collisions = set(album_by_id) & set(track_by_id)
+    if route_collisions:
+        collision = sorted(route_collisions)[0]
+        raise ValueError(f"route ID is both an album and a track: {collision}")
+
     listed_tracks: set[str] = set()
     for album_id, album in album_by_id.items():
         album_tracks = album.get("tracks")
@@ -488,6 +493,17 @@ def new_sincerity_song_urls(catalog: dict[str, object]) -> tuple[str, ...]:
         f"{NEW_SINCERITY_BASE_URL}/records/{quote(track['id'], safe='')}/"
         for track in catalog["tracks"]
     )
+
+
+def new_sincerity_album_urls(catalog: dict[str, object]) -> tuple[str, ...]:
+    return tuple(
+        f"{NEW_SINCERITY_BASE_URL}/records/{quote(album['id'], safe='')}/"
+        for album in catalog["albums"]
+    )
+
+
+def new_sincerity_record_urls(catalog: dict[str, object]) -> tuple[str, ...]:
+    return new_sincerity_album_urls(catalog) + new_sincerity_song_urls(catalog)
 
 
 def _remove_share_metadata(page: str) -> str:
@@ -520,23 +536,22 @@ def _remove_share_metadata(page: str) -> str:
     return re.sub(r"<title\b[^>]*>.*?</title>", "", page, flags=re.I | re.S)
 
 
-def render_new_sincerity_song_page(
+def _render_new_sincerity_share_page(
     records_shell: str,
-    track: dict[str, object],
-    album: dict[str, object],
     *,
+    record_id: str,
+    title: str,
+    artist: str,
+    description: str,
+    art: str,
+    image_alt: str,
+    open_graph_type: str,
     publish: bool,
 ) -> str:
-    track_id = track["id"]
-    title = track["title"]
-    artist = track.get("artist", album["artist"])
-    description = f"{artist} · {album['title']}"
-    image_alt = f"{title} artwork"
-    art = track.get("art") or album["art"]
-    song_url = f"{NEW_SINCERITY_BASE_URL}/records/{quote(track_id, safe='')}/"
+    record_url = f"{NEW_SINCERITY_BASE_URL}/records/{quote(record_id, safe='')}/"
     art_url = f"{NEW_SINCERITY_BASE_URL}/{quote(art, safe='/')}"
     visibility = (
-        f'<link rel="canonical" href="{html.escape(song_url, quote=True)}">'
+        f'<link rel="canonical" href="{html.escape(record_url, quote=True)}">'
         if publish
         else '<meta name="robots" content="noindex,nofollow">'
     )
@@ -545,8 +560,8 @@ def render_new_sincerity_song_page(
 {visibility}
 <meta property="og:title" content="{html.escape(title, quote=True)}">
 <meta property="og:description" content="{html.escape(description, quote=True)}">
-<meta property="og:type" content="music.song">
-<meta property="og:url" content="{html.escape(song_url, quote=True)}">
+<meta property="og:type" content="{html.escape(open_graph_type, quote=True)}">
+<meta property="og:url" content="{html.escape(record_url, quote=True)}">
 <meta property="og:image" content="{html.escape(art_url, quote=True)}">
 <meta property="og:image:alt" content="{html.escape(image_alt, quote=True)}">
 <meta name="twitter:card" content="summary_large_image">
@@ -566,6 +581,51 @@ def render_new_sincerity_song_page(
     return f"{head}{separator}{body}"
 
 
+def render_new_sincerity_song_page(
+    records_shell: str,
+    track: dict[str, object],
+    album: dict[str, object],
+    *,
+    publish: bool,
+) -> str:
+    title = track["title"]
+    artist = track.get("artist", album["artist"])
+    return _render_new_sincerity_share_page(
+        records_shell,
+        record_id=track["id"],
+        title=title,
+        artist=artist,
+        description=f"{artist} · {album['title']}",
+        art=track.get("art") or album["art"],
+        image_alt=f"{title} artwork",
+        open_graph_type="music.song",
+        publish=publish,
+    )
+
+
+def render_new_sincerity_album_page(
+    records_shell: str,
+    album: dict[str, object],
+    *,
+    publish: bool,
+) -> str:
+    track_count = len(album["tracks"])
+    track_label = "track" if track_count == 1 else "tracks"
+    title = album["title"]
+    artist = album["artist"]
+    return _render_new_sincerity_share_page(
+        records_shell,
+        record_id=album["id"],
+        title=title,
+        artist=artist,
+        description=f"{artist} · {track_count} {track_label}",
+        art=album["art"],
+        image_alt=f"{title} album artwork",
+        open_graph_type="music.album",
+        publish=publish,
+    )
+
+
 def write_new_sincerity_song_pages(
     source_dir: Path,
     target_dir: Path,
@@ -583,6 +643,26 @@ def write_new_sincerity_song_pages(
                 shell,
                 track,
                 albums[track["album"]],
+                publish=publish,
+            )
+        )
+
+
+def write_new_sincerity_album_pages(
+    source_dir: Path,
+    target_dir: Path,
+    catalog: dict[str, object],
+    *,
+    publish: bool,
+) -> None:
+    shell = (source_dir / "records" / "index.html").read_text()
+    for album in catalog["albums"]:
+        destination = target_dir / "records" / album["id"] / "index.html"
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(
+            render_new_sincerity_album_page(
+                shell,
+                album,
                 publish=publish,
             )
         )
@@ -650,6 +730,12 @@ def preflight_new_sincerity(source_dir: Path) -> dict[str, object]:
             )
     records_shell = (source_dir / "records" / "index.html").read_text()
     albums = {album["id"]: album for album in catalog["albums"]}
+    for album in catalog["albums"]:
+        render_new_sincerity_album_page(
+            records_shell,
+            album,
+            publish=True,
+        )
     for track in catalog["tracks"]:
         render_new_sincerity_song_page(
             records_shell,
@@ -689,6 +775,12 @@ def publish_new_sincerity(
         page.write_text(html_text.replace(staging_meta, canonical))
 
     write_new_sincerity_song_pages(
+        source_dir,
+        target_dir,
+        catalog,
+        publish=True,
+    )
+    write_new_sincerity_album_pages(
         source_dir,
         target_dir,
         catalog,
@@ -746,8 +838,8 @@ def build_site(
         output_dir,
         pages,
         include_new_sincerity=new_sincerity_source is not None,
-        new_sincerity_song_urls=(
-            new_sincerity_song_urls(new_sincerity_catalog)
+        new_sincerity_release_urls=(
+            new_sincerity_record_urls(new_sincerity_catalog)
             if new_sincerity_catalog is not None
             else ()
         ),

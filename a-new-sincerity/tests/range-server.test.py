@@ -65,9 +65,13 @@ with TemporaryDirectory() as directory:
         with urlopen(f"http://127.0.0.1:{server.server_port}/records/my-art-machine-01/") as response:
             assert response.status == 200
             assert response.read() == b'<base href="../../">records shell'
+
+        with urlopen(f"http://127.0.0.1:{server.server_port}/records/my-art-machine/") as response:
+            assert response.status == 200
+            assert response.read() == b'<base href="../../">records shell'
     finally:
         server.shutdown()
         server.server_close()
         thread.join(timeout=2)
 
-print("PASS: local preview server supports audio byte ranges and direct song routes.")
+print("PASS: local preview server supports audio byte ranges and direct record routes.")

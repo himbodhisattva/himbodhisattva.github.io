@@ -43,7 +43,7 @@ class RangeRequestHandler(SimpleHTTPRequestHandler):
         super().end_headers()
 
     def records_shell_path(self) -> Path | None:
-        """Resolve a source-preview song route through the records shell."""
+        """Resolve a source-preview album or song route through the records shell."""
         request_path = urlsplit(self.path).path
         parts = request_path.strip("/").split("/")
         if len(parts) != 2 or parts[0] != "records" or not re.fullmatch(r"[a-z0-9-]+", parts[1]):
@@ -52,7 +52,7 @@ class RangeRequestHandler(SimpleHTTPRequestHandler):
         return shell if shell.is_file() else None
 
     def send_records_shell(self, shell: Path):
-        """Serve the records app at a nested song URL with a corrected base."""
+        """Serve the records app at a nested release URL with a corrected base."""
         body = shell.read_bytes().replace(b'<base href="../">', b'<base href="../../">')
         stat = shell.stat()
         self.send_response(200)

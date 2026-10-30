@@ -6,7 +6,6 @@ const {
   nextPlayable,
   activeCueIndex,
   buildQueueContext,
-  routePath,
   escapeLayer,
   playPresentation,
   playbackLyricEvent,
@@ -16,8 +15,8 @@ const {
   albumScrollBehavior,
   initialPlayback,
   emptyPlayerAction,
-  songRouteId,
-  songRoutePath,
+  recordRouteId,
+  recordRoutePath,
 } = window.ANS_PLAYER_MODEL;
 
 const available = new Set(['album-01', 'album-02', 'album-04']);
@@ -46,13 +45,8 @@ assert.deepEqual(buildQueueContext('story', 'essay', ['a', 'b']), {
   tracks: ['a', 'b'],
 });
 
-assert.equal(routePath('/records/', '', 'album', 'revisionist'), '/records/#album=revisionist');
 assert.equal(
-  routePath('/a-new-sincerity/records/', '?from=site', 'track', 'song & one'),
-  '/a-new-sincerity/records/?from=site#track=song%20%26%20one',
-);
-assert.equal(
-  songRouteId(
+  recordRouteId(
     '/a-new-sincerity/records/revisionist-02/',
     '/a-new-sincerity/records/',
   ),
@@ -60,27 +54,40 @@ assert.equal(
   'a generated song path identifies the track to open',
 );
 assert.equal(
-  songRouteId('/a-new-sincerity/records/', '/a-new-sincerity/records/'),
+  recordRouteId('/a-new-sincerity/records/', '/a-new-sincerity/records/'),
   null,
   'the records index is not mistaken for a song',
 );
 assert.equal(
-  songRouteId(
+  recordRouteId(
     '/a-new-sincerity/records/revisionist-02/extra/',
     '/a-new-sincerity/records/',
   ),
   null,
-  'only one path segment may identify a song',
+  'only one path segment may identify a record',
 );
 assert.equal(
-  songRoutePath('/a-new-sincerity/records/', 'revisionist-02'),
+  recordRouteId(
+    '/a-new-sincerity/records/revisionist/',
+    '/a-new-sincerity/records/',
+  ),
+  'revisionist',
+  'a generated album path exposes its catalog identifier',
+);
+assert.equal(
+  recordRoutePath('/a-new-sincerity/records/', 'revisionist'),
+  '/a-new-sincerity/records/revisionist/',
+  'album links use the same crawlable record namespace as songs',
+);
+assert.equal(
+  recordRoutePath('/a-new-sincerity/records/', 'revisionist-02'),
   '/a-new-sincerity/records/revisionist-02/',
   'shared song links use a crawlable path instead of a fragment',
 );
 assert.equal(
-  songRoutePath('/a-new-sincerity/records/', 'song & one'),
+  recordRoutePath('/a-new-sincerity/records/', 'song & one'),
   '/a-new-sincerity/records/song%20%26%20one/',
-  'song paths encode route identifiers',
+  'record paths encode route identifiers',
 );
 assert.equal(escapeLayer(true, true), 'dialog', 'Escape closes the topmost dialog first');
 assert.equal(escapeLayer(false, true), 'lyrics');

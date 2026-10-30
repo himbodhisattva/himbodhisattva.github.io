@@ -55,7 +55,8 @@ Shared links use the song's title and artwork.
 ## Records page
 
 Keep the album shelf visible above one selected album detail. Choosing a sleeve
-scrolls to that detail and updates the URL. The detail includes the full track
+opens its static route and scrolls to that detail. Its link preview shows the
+release title and artist beside the cover. The detail includes the full track
 list and a clear album Play control. The homepage and records page use the same
 player state and queue rules.
 

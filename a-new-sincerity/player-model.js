@@ -31,16 +31,12 @@
     return Math.max(0, high);
   }
 
-  function routePath(pathname, search, kind, id) {
-    return `${pathname}${search}#${kind}=${encodeURIComponent(id)}`;
-  }
-
-  function songRoutePath(recordsPath, id) {
+  function recordRoutePath(recordsPath, id) {
     const base = recordsPath.endsWith('/') ? recordsPath : `${recordsPath}/`;
     return `${base}${encodeURIComponent(id)}/`;
   }
 
-  function songRouteId(pathname, recordsPath) {
+  function recordRouteId(pathname, recordsPath) {
     const base = recordsPath.endsWith('/') ? recordsPath : `${recordsPath}/`;
     if (!pathname.startsWith(base)) return null;
     const remainder = pathname.slice(base.length).replace(/\/$/, '');
@@ -123,9 +119,8 @@
     buildQueueContext,
     nextPlayable,
     activeCueIndex,
-    routePath,
-    songRoutePath,
-    songRouteId,
+    recordRoutePath,
+    recordRouteId,
     escapeLayer,
     playPresentation,
     playbackLyricEvent,

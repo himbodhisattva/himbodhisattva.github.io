@@ -97,7 +97,7 @@ assert 'emulated stereogum' in main_markup.lower()
 assert 'simulated reviews' not in main_markup.lower(), 'review terminology must stay emulated'
 assert 'data-play="victory-lap-01"' in main_markup
 assert 'id="art-machine"' in main_markup, 'Art Machine needs its own shareable homepage section'
-assert 'href="records/my-art-machine-01/"' in release_hero, 'the Art Machine cover should open the direct song page'
+assert 'href="records/my-art-machine/"' in release_hero, 'the Art Machine cover should open its one-song album'
 assert 'src="assets/user/my-art-machine-1254.webp"' in release_hero, 'the Art Machine section should use its full-resolution cover'
 art_machine_play=re.search(r'<button[^>]+data-play="my-art-machine-01"[^>]*>',release_hero).group()
 assert 'data-queue="album"' in art_machine_play and 'data-album-context="my-art-machine"' in art_machine_play, 'Art Machine playback should retain its one-song album context'
@@ -108,7 +108,8 @@ assert main_markup.index('data-album-context="revisionist"') < main_markup.index
 assert main_markup.index('data-album-context="friday-girls"') < main_markup.index('class="friday-story"') < main_markup.index('data-album-embed="friday-girls"'), 'Friday Girls context should follow its Play control and precede its track list'
 assert main_markup.index('class="review-bridge"') < main_markup.index('id="victory-lap"'), 'the emulated review should lead into the song it named'
 for album_id in ('unfortunately', 'revisionist', 'friday-girls', 'victory-lap'):
- assert f'href="records/#album={album_id}"' in main_markup, f'{album_id} cover should open its record'
+ assert f'href="records/{album_id}/"' in main_markup, f'{album_id} cover should open its static record page'
+assert 'records/#album=' not in main_markup, 'homepage album links must be crawler-visible paths'
 assert 'AI reconstruction from a recording where the original performance is barely audible' in main_markup, 'Movies needs the provenance that explains why both versions are reconstructions'
 for narrative_turn in (
  'what would counterfactual me be writing if i\'d kept making pop-punk?',
@@ -169,12 +170,12 @@ assert 'openPhilosophy({ returnFocus: null });' in app_source, 'direct philosoph
 assert 'openPhilosophy({ returnFocus: event.currentTarget });' in app_source, 'click-opened philosophy notes should restore focus to the activating link'
 assert "document.querySelectorAll('.philosophy-trigger')" in app_source, 'every philosophy link must be bound, not only the first one'
 for page in (main, records):
-    assert 'data.js?v=20261030c' in page
-    assert 'style.css?v=20261030c' in page
-    assert 'experience.css?v=20261030c' in page
-    assert 'player-model.js?v=20261030c' in page
-    assert 'app.js?v=20261030c' in page
-    assert '20261030a' not in page and '20261030b' not in page, 'stale asset cache key remains'
+    assert 'data.js?v=20261030d' in page
+    assert 'style.css?v=20261030d' in page
+    assert 'experience.css?v=20261030d' in page
+    assert 'player-model.js?v=20261030d' in page
+    assert 'app.js?v=20261030d' in page
+    assert not any(version in page for version in ('20261030a', '20261030b', '20261030c')), 'stale asset cache key remains'
     assert '<a href="https://suno.com/">Suno v6-pro</a>' in page
 assert '↗' not in (main+records+app_source), 'decorative up-right arrows remain'
 assert 'id="liner-notes"' not in main and 'review-centerpiece' not in main and 'current-status' not in main
@@ -188,12 +189,14 @@ assert 'copy song link' not in app_source.lower(), 'song-link control should not
 share_track_source=re.search(r'async function shareTrack\(id\) \{.*?\n  \}',app_source,re.S).group()
 route_source=re.search(r'async function route\(\) \{.*?\n  \}',app_source,re.S).group()
 open_lyrics_source=re.search(r'async function openLyrics\(id,.*?\n  \}',app_source,re.S).group()
-assert 'songRoutePath' in player_model_source, 'player model must expose canonical song paths'
-assert 'songRouteId' in player_model_source, 'player model must recognize generated song paths'
-assert 'model.songRoutePath' in share_track_source, 'shared song links must use the canonical static route'
+assert 'recordRoutePath' in player_model_source, 'player model must expose canonical album and song paths'
+assert 'recordRouteId' in player_model_source, 'player model must recognize generated record paths'
+assert 'model.recordRoutePath' in share_track_source, 'shared song links must use the canonical static route'
 assert '.hash' not in share_track_source and '#track=' not in share_track_source, 'shared song links must not use crawler-invisible fragments'
-assert 'model.songRouteId' in route_source, 'generated song paths must open their matching track'
+assert 'model.recordRouteId' in route_source, 'generated record paths must dispatch by catalog membership'
 assert 'openLyrics' in route_source, 'generated song paths must open the full inner sleeve'
+assert 'albums.has(recordRoute)' in route_source, 'generated album paths must open their matching album'
+assert 'href="${escape(albumUrl(album.id).href)}"' in app_source, 'record shelf covers must expose copyable static album links'
 assert 'selectTrack(id, { play: false' in open_lyrics_source, 'direct song routes must arrive paused'
 assert 'class="round-play lyric-primary-play"' in app_source, 'direct song links need a prominent play control on the artwork'
 assert 'Play “${track.title}” by ${track.artist}' in app_source, 'prominent play control needs a song-specific accessible name'
