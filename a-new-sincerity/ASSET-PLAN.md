@@ -24,9 +24,8 @@
 - One short seamless visual loop derived from approved art/lighting for an optional
   player view. Pink/cyan reflections, physical glitter, not a generic waveform.
   Deliver poster + WebM/MP4. No video needs to block v1 publication.
-- If originals are available, one explicit before/after listening comparison.
-  Label original recording vs AI-assisted reconstruction; do not claim a remix is
-  a faithful untouched restoration, or promise sample-accurate A/B alignment.
+- Keep version provenance in the record sleeve or track metadata. The homepage
+  does not need a before/after comparison.
 
 ## Deliberately not needed
 More fabricated documentary photos, a comprehensive fictional biography, a diagram

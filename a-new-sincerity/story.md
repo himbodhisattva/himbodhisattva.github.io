@@ -25,10 +25,8 @@ enough track information to choose something. It includes:
 1. *(Unfortunately) I Know Exactly What I'm Doing*, with a lyric from “sorry
    for the self-awareness” and a short note about counterfactual pop-punk and
    The Narrator's habit of turning self-awareness into another bid for praise.
-2. *Revisionist History*, with “Like They Do In The Movies” available in both
-   reconstructed forms. This section says that A New Sincerity consumed and,
-   annoyingly, improved the old songs. The original performance is barely
-   audible in the source recording used for the first reconstruction.
+2. *Revisionist History*, with its complete track list. This section says that
+   A New Sincerity consumed and, annoyingly, improved the old songs.
 3. Friday Girls, introduced after its cover and Play control through the linked
    daughters post and a brief account of the band entering real family life.
 4. A clearly labeled emulated Stereogum scrap bridges Friday Girls to

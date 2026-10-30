@@ -91,7 +91,6 @@ assert 'Seven records and forty-nine tracks' in records, 'records metadata must 
 assert 'Seven records, forty-nine tracks' in records, 'records share description must match the current catalog'
 assert '<details' not in main and '<summary' not in main, 'homepage should avoid stacked accordions'
 assert 'Minima' not in main_markup and 'minima' not in main_markup, 'Minima should remain in the catalog, not the homepage focus'
-assert 'Like They Do In The Movies' in main_markup
 assert 'somehow both a victory lap and a cry for help' in main_markup.lower()
 assert 'emulated stereogum' in main_markup.lower()
 assert 'simulated reviews' not in main_markup.lower(), 'review terminology must stay emulated'
@@ -110,7 +109,6 @@ assert main_markup.index('class="review-bridge"') < main_markup.index('id="victo
 for album_id in ('unfortunately', 'revisionist', 'friday-girls', 'victory-lap'):
  assert f'href="records/{album_id}/"' in main_markup, f'{album_id} cover should open its static record page'
 assert 'records/#album=' not in main_markup, 'homepage album links must be crawler-visible paths'
-assert 'AI reconstruction from a recording where the original performance is barely audible' in main_markup, 'Movies needs the provenance that explains why both versions are reconstructions'
 for narrative_turn in (
  'what would counterfactual me be writing if i\'d kept making pop-punk?',
  'the narrator is me when i\'m chasing praise for being self-aware',
@@ -170,12 +168,12 @@ assert 'openPhilosophy({ returnFocus: null });' in app_source, 'direct philosoph
 assert 'openPhilosophy({ returnFocus: event.currentTarget });' in app_source, 'click-opened philosophy notes should restore focus to the activating link'
 assert "document.querySelectorAll('.philosophy-trigger')" in app_source, 'every philosophy link must be bound, not only the first one'
 for page in (main, records):
-    assert 'data.js?v=20261030e' in page
-    assert 'style.css?v=20261030e' in page
-    assert 'experience.css?v=20261030e' in page
-    assert 'player-model.js?v=20261030e' in page
-    assert 'app.js?v=20261030e' in page
-    assert not any(version in page for version in ('20261030a', '20261030b', '20261030c', '20261030d')), 'stale asset cache key remains'
+    assert 'data.js?v=20261030f' in page
+    assert 'style.css?v=20261030f' in page
+    assert 'experience.css?v=20261030f' in page
+    assert 'player-model.js?v=20261030f' in page
+    assert 'app.js?v=20261030f' in page
+    assert not any(version in page for version in ('20261030a', '20261030b', '20261030c', '20261030d', '20261030e')), 'stale asset cache key remains'
     assert '<a href="https://suno.com/">Suno v6-pro</a>' in page
 assert '↗' not in (main+records+app_source), 'decorative up-right arrows remain'
 assert 'id="liner-notes"' not in main and 'review-centerpiece' not in main and 'current-status' not in main
