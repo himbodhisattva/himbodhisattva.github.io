@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parent.parent
 text=(ROOT/'data.js').read_text();data=json.loads(re.sub(r'^window\.ANS_DATA\s*=\s*','',text).rstrip().removesuffix(';'))
 ids=[x['id'] for x in data['tracks']]
 assert len(ids)==len(set(ids)), 'duplicate track IDs'
-assert len(data['tracks'])==48 and len(data['albums'])==6
+assert len(data['tracks'])==49 and len(data['albums'])==7
 assert not any('entertainment' in a['artist'].lower() for a in data['albums'])
 assert all(t['lyrics'].strip() and t['source'] for t in data['tracks'])
 assert all(t in ids for a in data['albums'] for t in a['tracks'])
@@ -18,9 +18,12 @@ assert album_by_id['revisionist']['artist'].lower()=='a new sincerity'
 assert album_by_id['revisionist']['group']=='ans', 'Revisionist History belongs to A New Sincerity'
 assert album_by_id['victory-lap']['art']=='assets/user/victory-lap-1254.webp', 'Victory Lap must use the high-resolution cover'
 assert album_by_id['friday-girls']['art']=='assets/user/friday-girls-1254.webp', 'Friday Girls must use the high-resolution cover'
+assert album_by_id['my-art-machine']['tracks']==['my-art-machine-01'], 'My Art Machine must remain a one-song album'
+assert album_by_id['my-art-machine']['art']=='assets/user/my-art-machine-1254.webp', 'My Art Machine must use its full-resolution cover'
 assert track_by_id['revisionist-02']['title']=='Like They Do In The Movies (a new sincerity remix)', 'Movies share title changed unexpectedly'
 assert track_by_id['revisionist-02']['art']=='assets/movies.webp', 'Movies share link must use its own artwork'
 assert track_by_id['friday-girls-05']['art']=='assets/user/friday-girls-again-and-again.webp', 'Again and Again must use its track artwork'
+assert track_by_id['my-art-machine-01']['originalUrl']=='https://suno.com/song/53914ce6-b9a6-4341-9e44-14c438a5ca91', 'My Art Machine must retain its canonical Suno source'
 assert all(manifest['albums'][a['id']]['art']==a['art'] for a in data['albums']), 'album artwork paths disagree with the media manifest'
 assert all(manifest['tracks'][t['id']]['art']==t['art'] and manifest['tracks'][t['id']]['audio']==t['audio'] for t in data['tracks']), 'track media paths disagree with the media manifest'
 assert all(t['group']==album_by_id[t['album']]['group'] for t in data['tracks']), 'track and album groups disagree'
@@ -188,6 +191,11 @@ records_hero=re.search(r'<header class="records-hero">(.*?)</header>',records,re
 assert re.sub(r'<[^>]+>','',records_hero).strip()=='the records.', 'records page hero should say only “the records.”'
 sync_text=(ROOT/'lyrics-sync.js').read_text()
 sync=json.loads(re.sub(r'^window\.ANS_SYNC\s*=\s*','',sync_text).rstrip().removesuffix(';'))
+my_art_cues=sync['my-art-machine-01']['cues']
+my_art_lines=[line for line in track_by_id['my-art-machine-01']['lyrics'].splitlines() if line.strip()]
+assert len(my_art_cues)==len(my_art_lines)+2, 'My Art Machine must include the final two-line refrain performed twice in the recording'
+assert [cue['text'].lower() for cue in my_art_cues[-4:]]==[line.lower() for line in my_art_lines[-2:]]*2, 'My Art Machine repeated refrain drifted from the performed take'
+assert my_art_cues[0]['start'] < 2 and my_art_cues[-2]['start'] < 150, 'My Art Machine lyric timing drifted away from the recording'
 vocal_ids={t['id'] for t in data['tracks'] if not t['instrumental']}
 assert set(sync)==vocal_ids, 'every vocal track must retain a cue map'
 for track_id,entry in sync.items():

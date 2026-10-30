@@ -7,7 +7,7 @@ artwork, track data and timed lyrics. The working copy retains
 
 ## Local media
 
-The catalog contains six albums and 48 entries. Each entry has a 256 kbps MP3
+The catalog contains seven albums and 49 entries. Each entry has a 256 kbps MP3
 with metadata for its album context. Every album has a cover. The source masters remain in `~/Music/Suno Albums`.
 `LOCAL-ASSETS.json` records the local mapping and stays outside Git.
 

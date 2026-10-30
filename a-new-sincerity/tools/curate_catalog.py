@@ -28,6 +28,7 @@ canonical_albums = {
     "friday-girls": ("this whole time?!", "friday girls"),
     "revisionist": ("Revisionist History (The Remixes)", "A New Sincerity"),
     "victory-lap": ("victory lap", "A New Sincerity"),
+    "my-art-machine": ("my art machine", "A New Sincerity"),
     "lock-haven": ("Painting a Painting", "Lock Haven"),
     "system": ("The System of the World", "The System of the World"),
 }
@@ -41,6 +42,7 @@ album_descriptions = {
     "friday-girls": "Six uncomplicated love songs, written after my daughters asked for one.",
     "revisionist": "Nine earlier songs, remade by A New Sincerity.",
     "victory-lap": "The emulated review of (unfortunately) became the next song.",
+    "my-art-machine": "One song about polishing imperfection until it sounds authentic.",
     "lock-haven": "Nine tracks from my college band, Lock Haven.",
     "system": "Eleven tracks from The System of the World.",
 }

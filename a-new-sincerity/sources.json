@@ -25,6 +25,12 @@
       "role": "lyrics transcribed verbatim from supplied file; titles retain source wording"
     },
     {
+      "file": "A New Sincerity \u2014 my art machine \u2014 Lyrics.md",
+      "sha256": "936dec49814977021f142e570731186071e507947fe62bd5fe76deeddb524b3c",
+      "tracks": 1,
+      "role": "lyrics copied from the source song; bracketed production directions omitted"
+    },
+    {
       "file": "Lock Haven \u2014 Painting a Painting \u2014 Lyrics.md",
       "sha256": "37beab4dbf22c6e08fcc0fedac60a12ecf08d2463393751b496503d38822df8b",
       "tracks": 9,
@@ -43,7 +49,8 @@
     "minima": "0BBB90F6-FD56-44A8-B819-B835318BBD69(1).jpeg",
     "movies": "C8D1BF85-D176-4510-8836-776EC4128AF3(1).jpeg",
     "sept-ans": "IMG_0078(1).jpeg",
-    "seventeen": "120F4FFD-7376-473D-ADE8-1134479EFA63(1).jpeg"
+    "seventeen": "120F4FFD-7376-473D-ADE8-1134479EFA63(1).jpeg",
+    "my-art-machine": "53914ce6-b9a6-4341-9e44-14c438a5ca91_b4be4cbf.jpeg"
   },
   "narrative": "Drafted from the user messages in the supplied conversation; private names, locations, employer and detailed relationship history are not introduced into the essay. No invented dates, quotes from external critics or clinician diagnoses.",
   "notes": "Full lyrics retain their source wording, including occasional personal first names and sensitive themes. Review these before publishing under a pseudonym."

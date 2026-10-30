@@ -1,5 +1,5 @@
 {
-  "instructions": "All 48 catalog entries map to local 256 kbps MP3 files with album-specific metadata. Album artwork is configured for all six records. Run uv run --no-project python tools/apply_manifest.py after changing paths.",
+  "instructions": "All 49 catalog entries map to local 256 kbps MP3 files with album-specific metadata. Album artwork is configured for all seven records. Run uv run --no-project python tools/apply_manifest.py after changing paths.",
   "albums": {
     "unfortunately": {
       "art": "assets/unfortunately.webp"
@@ -12,6 +12,9 @@
     },
     "victory-lap": {
       "art": "assets/user/victory-lap-1254.webp"
+    },
+    "my-art-machine": {
+      "art": "assets/user/my-art-machine-1254.webp"
     },
     "lock-haven": {
       "art": "assets/user/lock-haven.webp"
@@ -188,6 +191,12 @@
       "title": "somehow both a victory lap and a cry for help",
       "audio": "audio/victory-lap-01.mp3",
       "art": "assets/user/victory-lap-1254.webp"
+    },
+    "my-art-machine-01": {
+      "artist": "A New Sincerity",
+      "title": "my art machine",
+      "audio": "audio/my-art-machine-01.mp3",
+      "art": "assets/user/my-art-machine-1254.webp"
     },
     "lock-haven-01": {
       "artist": "lock haven",

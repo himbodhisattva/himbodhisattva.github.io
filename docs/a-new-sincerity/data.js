@@ -76,6 +76,18 @@ window.ANS_DATA = {
       "credit": "ai-generated performance · collaborative lyrics"
     },
     {
+      "id": "my-art-machine",
+      "artist": "A New Sincerity",
+      "title": "my art machine",
+      "group": "ans",
+      "art": "assets/user/my-art-machine-1254.webp",
+      "description": "One song about polishing imperfection until it sounds authentic.",
+      "tracks": [
+        "my-art-machine-01"
+      ],
+      "credit": "ai-generated performance · collaborative lyrics"
+    },
+    {
       "id": "lock-haven",
       "artist": "Lock Haven",
       "title": "Painting a Painting",
@@ -622,6 +634,24 @@ window.ANS_DATA = {
       "provenance": "ai-generated performance · collaborative lyrics",
       "originalUrl": "https://suno.com/s/sHHWvP7dmEX2PiWM",
       "note": "The opening monologue comes from an emulated Stereogum review of (unfortunately). I sampled its diagnosis and answered it inside the song."
+    },
+    {
+      "id": "my-art-machine-01",
+      "title": "my art machine",
+      "artist": "A New Sincerity",
+      "album": "my-art-machine",
+      "group": "ans",
+      "number": 1,
+      "lyrics": "i’ve left the mistakes in\nexactly where i put them\nthe little bits that prove i’m human\nwere the hardest ones to get right\n\ni kept the breath before the first word\nthe feedback and the strain\nspent all night making sure\nit sounded like the first take\n\nevery crack is intentional\nevery stumble’s by design\nand if it sounds like someone’s hurting\nwell, that’s how you know it’s mine\n\nmy art machine’s got the right aesthetics\nthat’s how you know i’m so authentic\nevery little imperfection\nis a mark of my expression\n\nmy art machine’s got the right aesthetics\nthat’s how you know i’m so authentic\ni made it perfect, flaws and all\nand you can hear the human in it all\n\nyou say you wanna hear the human\nwell, what the hell am i supposed to do?\ni spent all night getting the breathing right\nand every word is something i went through\n\nyou want the sound of someone struggling\ni can give you seventeen different takes\nbut when i pick the one that kills me\nyou say it’s too polished to be pain\n\ninauthentic?\n\nlacking the uniqueness of human expression?\n\ni’m dissecting my soul for you\nagain and again\n\nit’s just that it’s precise\nand polished\nand above all\n\nAPPRECIATES A GOOD HOOK, ALRIGHT?!\n\nMY ART MACHINE’S GOT THE RIGHT AESTHETICS\nTHAT’S HOW YOU KNOW I’M SO AUTHENTIC\nEVERY LITTLE IMPERFECTION\nIS A MARK OF MY EXPRESSION\n\nMY ART MACHINE’S GOT THE RIGHT AESTHETICS\nTHAT’S HOW YOU KNOW I’M SO AUTHENTIC\nI MADE IT PERFECT, IMPERFECTIONS AND ALL\nIF THAT ISN’T HUMAN, WHAT IS?\n\nso authentic\nso authentic\nmy art machine\nmy art machine\n\nmy art machine’s got the right aesthetics\nthat’s how you know i’m so authentic",
+      "art": "assets/user/my-art-machine-1254.webp",
+      "audio": "audio/my-art-machine-01.mp3",
+      "duration": 162.0,
+      "source": "A New Sincerity — my art machine — Lyrics.md",
+      "credit": "ai-generated performance · collaborative lyrics",
+      "instrumental": false,
+      "provenance": "ai-generated performance · collaborative lyrics",
+      "originalUrl": "https://suno.com/song/53914ce6-b9a6-4341-9e44-14c438a5ca91",
+      "note": ""
     },
     {
       "id": "lock-haven-01",
