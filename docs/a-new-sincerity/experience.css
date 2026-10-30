@@ -718,6 +718,45 @@ dialog { z-index: 120; }
   font: italic 400 clamp(21px, 2.5vw, 32px)/1.35 var(--serif);
   letter-spacing: -.02em;
 }
+.release-note {
+  max-width: 980px;
+  margin: clamp(58px, 8vw, 94px) auto 0;
+}
+.release-note h3 {
+  margin: 0;
+  font: 400 clamp(34px, 4.4vw, 58px)/.98 var(--serif);
+  letter-spacing: -.045em;
+}
+.release-note p {
+  max-width: 48ch;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.72;
+}
+.release-note p + p { margin-top: 1.25em; }
+.release-note-dark {
+  display: grid;
+  grid-template-columns: minmax(260px, .85fr) minmax(320px, 1.15fr);
+  gap: clamp(38px, 6vw, 80px);
+  align-items: start;
+  padding: clamp(36px, 5vw, 58px);
+  color: var(--ans-milk);
+  background: var(--ans-plum);
+  box-shadow: 11px 13px 0 var(--ans-pink);
+  transform: rotate(-.3deg);
+}
+.release-note-dark .eyebrow { display: block; margin-bottom: 18px; color: var(--ans-pink); }
+.release-note-dark p { color: color-mix(in oklch, var(--ans-milk) 82%, transparent); }
+.release-note-history {
+  display: grid;
+  grid-template-columns: minmax(300px, 1.1fr) minmax(280px, .9fr);
+  gap: clamp(42px, 7vw, 90px);
+  align-items: end;
+  padding-block: clamp(32px, 5vw, 54px);
+  border-block: 1px solid color-mix(in oklch, var(--ans-ink) 20%, transparent);
+}
+.release-note-history h3 { max-width: 18ch; }
+.release-note-history p { color: var(--ans-muted); }
 .release-reverse .release-card { grid-column: 2; }
 .release-reverse .release-copy { grid-column: 1; grid-row: 1; }
 .release-reverse .release-card .art-button { transform: rotate(1.25deg); box-shadow: 12px 14px 0 color-mix(in oklch, var(--ans-pink) 65%, transparent); }
@@ -733,6 +772,32 @@ dialog { z-index: 120; }
 }
 .single-review blockquote { margin: 0; font: 400 clamp(29px, 4vw, 50px)/1.05 var(--serif); letter-spacing: -.04em; }
 .single-review figcaption { margin-top: 23px; color: var(--ans-pink); font-size: 9px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+
+.friday-story {
+  display: grid;
+  grid-template-columns: minmax(300px, 1.15fr) minmax(260px, .85fr);
+  gap: clamp(42px, 7vw, 88px);
+  align-items: center;
+  max-width: 1080px;
+  margin: clamp(62px, 9vw, 106px) auto 0;
+}
+.friday-story > blockquote {
+  margin: 0;
+  padding: clamp(30px, 4.5vw, 50px);
+  color: var(--ans-milk);
+  background: var(--ans-plum);
+  box-shadow: 10px 12px 0 var(--ans-cyan);
+  transform: rotate(.55deg);
+}
+.friday-story > blockquote:hover { color: var(--ans-pink); transform: rotate(0) translateY(-3px); }
+.friday-story blockquote a { display: block; color: inherit; font: 400 clamp(25px, 3.2vw, 40px)/1.16 var(--serif); letter-spacing: -.035em; }
+.friday-story > p { max-width: 35ch; margin: 0; font-size: 17px; line-height: 1.7; }
+.review-bridge {
+  padding: clamp(70px, 9vw, 118px) var(--gutter);
+  background: var(--ans-paper);
+  border-bottom: 1px solid color-mix(in oklch, var(--ans-ink) 14%, transparent);
+}
+.review-bridge .single-review { margin: 0 auto; }
 
 .release-friday,
 .release-victory { max-width: none; }
@@ -750,6 +815,16 @@ dialog { z-index: 120; }
 .release-victory h2 span { display: block; margin: 0 0 .55em .15em; font: italic 400 .24em/1 var(--serif); letter-spacing: 0; }
 .release-victory h2 em { color: var(--ans-rose-ink); }
 .victory-punchline { margin: -4px 0 32px; font: 700 clamp(17px, 1.7vw, 22px)/1.4 var(--sans); letter-spacing: -.015em; }
+.release-note-victory {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: clamp(42px, 7vw, 88px);
+  padding: clamp(34px, 5vw, 54px) 0 0 clamp(24px, 4vw, 54px);
+  border-top: 1px solid color-mix(in oklch, var(--ans-ink) 22%, transparent);
+  border-left: 7px solid var(--ans-rose);
+}
+.release-note-victory p:first-child { font: 400 clamp(22px, 2.6vw, 34px)/1.35 var(--serif); letter-spacing: -.025em; }
+.release-note-victory p:last-child { align-self: end; color: var(--ans-rose-ink); font-weight: 650; }
 .philosophy-door {
   padding: clamp(38px, 5vw, 58px) var(--gutter);
   text-align: center;
@@ -767,6 +842,12 @@ dialog { z-index: 120; }
   .release-hero-copy { padding-top: 22px; }
   .release-reverse .release-card,
   .release-reverse .release-copy { grid-column: 1; grid-row: auto; }
+  .release-note-dark,
+  .release-note-history,
+  .friday-story,
+  .release-note-victory { grid-template-columns: 1fr; }
+  .release-note-history { align-items: start; }
+  .friday-story { max-width: 620px; }
   .release-chapter { padding-inline: 28px; }
   .release-friday > :where(.release-focus, .album-embed),
   .release-victory .release-focus { max-width: 620px; }
@@ -792,6 +873,16 @@ dialog { z-index: 120; }
   .release-lyric { font-size: clamp(22px, 7.2vw, 30px); }
   .release-copy .button { width: 100%; min-height: 54px; justify-content: center; }
   .single-review { width: calc(100% - 12px); padding: 36px 24px; box-shadow: 7px 8px 0 var(--ans-pink); }
+  .release-note { margin-top: 58px; }
+  .release-note-dark { gap: 30px; padding: 34px 24px; box-shadow: 7px 8px 0 var(--ans-pink); transform: none; }
+  .release-note h3 { font-size: clamp(34px, 11vw, 48px); }
+  .release-note p { font-size: 15px; }
+  .friday-story { gap: 24px; }
+  .friday-story > blockquote { padding: 24px 20px; box-shadow: 7px 8px 0 var(--ans-cyan); transform: none; }
+  .friday-story blockquote a { font-size: clamp(23px, 7.7vw, 31px); line-height: 1.14; }
+  .friday-story > p { font-size: 15px; line-height: 1.58; }
+  .review-bridge { padding-inline: 22px; }
+  .release-note-victory { gap: 28px; padding-left: 20px; }
   .version-feature { margin-top: 58px; }
   .release-friday .release-card,
   .release-victory .release-card { grid-row: 1; }
