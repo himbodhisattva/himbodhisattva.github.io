@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 from xml.etree import ElementTree
 
 import pytest
@@ -427,6 +428,28 @@ def test_publish_new_sincerity_generates_album_share_pages(tmp_path):
 
     sitemap = (output_dir / "sitemap.xml").read_text()
     assert album_url in sitemap
+
+
+def test_new_sincerity_home_keeps_prominent_records_door():
+    home = (
+        Path(__file__).parents[1] / "a-new-sincerity/index.html"
+    ).read_text()
+
+    records_door = '<a class="records-door" href="records/"'
+    records_title = (
+        '<span class="records-door-title">the records'
+        '<span class="period">.</span></span>'
+    )
+    records_subtitle = (
+        '<span class="records-door-subtitle">get in loser, we\'re '
+        'subverting postmodernism from the inside</span>'
+    )
+
+    assert records_door in home
+    assert records_title in home
+    assert records_subtitle in home
+    assert home.index('class="philosophy-door"') < home.index(records_door)
+    assert home.index(records_door) < home.index('class="site-footer"')
 
 
 def test_new_sincerity_preflight_rejects_album_track_route_collisions(tmp_path):

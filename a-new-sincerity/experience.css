@@ -833,6 +833,29 @@ dialog { z-index: 120; }
 }
 .philosophy-door a { color: var(--ans-muted); font: italic 400 17px/1.5 var(--serif); text-decoration: underline; text-decoration-color: color-mix(in oklch, var(--ans-muted) 35%, transparent); text-underline-offset: 5px; }
 .philosophy-door a:hover { color: var(--ans-rose-ink); }
+.records-door {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, .45fr);
+  gap: clamp(22px, 5vw, 72px);
+  align-items: end;
+  min-height: clamp(360px, 48vw, 620px);
+  padding: clamp(76px, 12vw, 150px) max(24px, calc((100vw - 1180px) / 2));
+  color: var(--ans-plum);
+  background: var(--ans-pink);
+  text-decoration: none;
+  transition: background .35s var(--ans-ease), color .35s var(--ans-ease);
+}
+.records-door:hover,
+.records-door:focus-visible { color: var(--ans-milk); background: var(--ans-rose-ink); }
+.records-door-title {
+  font: 400 clamp(66px, 11vw, 142px)/.8 var(--serif);
+  letter-spacing: -.04em;
+}
+.records-door-subtitle {
+  max-width: 26ch;
+  padding-bottom: .3em;
+  font: italic 400 clamp(20px, 2.8vw, 34px)/1.24 var(--serif);
+}
 
 @media (max-width: 800px) {
   .release-hero-inner,
@@ -887,4 +910,11 @@ dialog { z-index: 120; }
   .release-friday .release-card,
   .release-victory .release-card { grid-row: 1; }
   .philosophy-door { padding-inline: 22px; }
+  .records-door {
+    display: block;
+    min-height: 430px;
+    padding-inline: 22px;
+  }
+  .records-door-title { font-size: clamp(64px, 22vw, 104px); }
+  .records-door-subtitle { display: block; margin-top: 54px; font-size: 21px; }
 }

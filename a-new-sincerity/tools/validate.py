@@ -170,12 +170,12 @@ assert 'openPhilosophy({ returnFocus: null });' in app_source, 'direct philosoph
 assert 'openPhilosophy({ returnFocus: event.currentTarget });' in app_source, 'click-opened philosophy notes should restore focus to the activating link'
 assert "document.querySelectorAll('.philosophy-trigger')" in app_source, 'every philosophy link must be bound, not only the first one'
 for page in (main, records):
-    assert 'data.js?v=20261030d' in page
-    assert 'style.css?v=20261030d' in page
-    assert 'experience.css?v=20261030d' in page
-    assert 'player-model.js?v=20261030d' in page
-    assert 'app.js?v=20261030d' in page
-    assert not any(version in page for version in ('20261030a', '20261030b', '20261030c')), 'stale asset cache key remains'
+    assert 'data.js?v=20261030e' in page
+    assert 'style.css?v=20261030e' in page
+    assert 'experience.css?v=20261030e' in page
+    assert 'player-model.js?v=20261030e' in page
+    assert 'app.js?v=20261030e' in page
+    assert not any(version in page for version in ('20261030a', '20261030b', '20261030c', '20261030d')), 'stale asset cache key remains'
     assert '<a href="https://suno.com/">Suno v6-pro</a>' in page
 assert '↗' not in (main+records+app_source), 'decorative up-right arrows remain'
 assert 'id="liner-notes"' not in main and 'review-centerpiece' not in main and 'current-status' not in main
