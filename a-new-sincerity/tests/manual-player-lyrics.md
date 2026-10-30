@@ -25,16 +25,19 @@ Run against the local range server on the homepage and the records page.
    - Playback advances to the next track without interrupting the album queue.
    - The panel changes its title and cue set, then resets to the new track's opening lines.
 8. Expand lyrics, then advance to another track.
-   - The `#track=` URL changes to the active track.
+   - The song URL changes to the active track path.
    - Closing the full view collapses to the compact panel and clears the track URL.
-9. Load a `#track=` URL directly and close it.
+9. Load a `/records/<track-id>/` URL directly and close it.
    - The full sleeve opens paused with a prominent Play button over the linked
      song's artwork.
    - Activating that button plays the linked song without changing the URL.
    - The prominent control disappears after playback starts, and keyboard focus
      moves to the persistent Pause control.
    - The track URL is replaced by the record URL and does not reopen on refresh.
+   - A legacy `#track=` URL resolves to the same song path and updates the browser
+     title to the selected song.
 10. Close the compact panel by keyboard.
-   - Focus returns to the control that started playback, or to the persistent lyrics control if that control is gone.
+   - Focus returns to the playback control. If it no longer exists, focus returns
+     to the persistent lyrics control.
 11. Scroll with the keyboard or drag the lyric scrollbar.
     - Automatic following pauses and “follow the song” appears.

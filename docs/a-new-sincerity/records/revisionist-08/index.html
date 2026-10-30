@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#211b27">
+
+<meta name="description" content="A New Sincerity · Revisionist History (The Remixes)">
+<link rel="canonical" href="https://himbodhisattva.com/a-new-sincerity/records/revisionist-08/">
+<meta property="og:title" content="Vulnerable (a new sincerity remix)">
+<meta property="og:description" content="A New Sincerity · Revisionist History (The Remixes)">
+<meta property="og:type" content="music.song">
+<meta property="og:url" content="https://himbodhisattva.com/a-new-sincerity/records/revisionist-08/">
+<meta property="og:image" content="https://himbodhisattva.com/a-new-sincerity/assets/revisionist.webp">
+<meta property="og:image:alt" content="Vulnerable (a new sincerity remix) artwork">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vulnerable (a new sincerity remix)">
+<meta name="twitter:description" content="A New Sincerity · Revisionist History (The Remixes)">
+<meta name="twitter:image" content="https://himbodhisattva.com/a-new-sincerity/assets/revisionist.webp">
+<meta name="twitter:image:alt" content="Vulnerable (a new sincerity remix) artwork">
+<base href="../../">
+<title>Vulnerable (a new sincerity remix) · A New Sincerity</title>
+
+<link rel="icon" href="assets/favicon-parenthetical.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css?v=20261029k">
+<link rel="stylesheet" href="experience.css?v=20261029k">
+<script defer src="data.js?v=20261029k"></script>
+<script defer src="lyrics-sync.js"></script>
+<script defer src="player-model.js?v=20261029k"></script>
+<script defer src="app.js?v=20261029k"></script>
+</head>
+<body data-page="records">
+<a class="skip-link" href="#records">skip to the records</a>
+<header class="site-header records-nav">
+  <a class="site-wordmark" href="./">a new sincerity<span class="wordmark-dot">.</span></a>
+  <nav aria-label="Main navigation"><a href="./">the story</a><a href="records/" aria-current="page">the records</a></nav>
+</header>
+
+<main class="records-page" id="records">
+  <header class="records-hero"><h1>the records<span class="period">.</span></h1></header>
+
+  <section class="record-browser" aria-labelledby="record-browser-heading">
+    <h2 id="record-browser-heading" class="sr-only">Choose a record</h2>
+    <div class="library-tools"><div class="filters" role="group" aria-label="Filter records"><button aria-pressed="true" data-filter="all">everything</button><button aria-pressed="false" data-filter="ans">a new sincerity</button><button aria-pressed="false" data-filter="fg">friday girls</button><button aria-pressed="false" data-filter="archive">the earlier work</button></div><label class="search-label"><span class="icon" data-icon="search" aria-hidden="true"></span><input id="library-search" type="search" placeholder="find a song" aria-label="Search songs and records" autocomplete="off"></label></div>
+    <div id="album-grid" class="album-grid album-shelf"></div>
+    <div id="search-results" hidden></div>
+    <p id="library-count" class="library-count"></p>
+  </section>
+
+  <section class="album-stage" id="album-stage" aria-live="polite"></section>
+  <div class="media-notice" hidden><div><strong>these recordings aren't available right now.</strong><p>Reload the page and try again.</p></div></div>
+
+  <footer class="site-footer records-footer"><div><a href="./" class="footer-title">a new sincerity<span class="period">.</span></a></div><div class="footer-links"><a href="./">read the story</a><a href="records/">back to top</a><a href="/">more writing</a></div><small>all songs made with <a href="https://suno.com/">Suno v6-pro</a></small></footer>
+</main>
+
+<section class="lyric-stage" id="lyric-stage" data-mode="closed" hidden aria-labelledby="lyric-title">
+  <div class="lyric-backdrop" id="lyric-backdrop" aria-hidden="true"></div>
+  <div class="lyric-stage-top"><p class="eyebrow" id="lyric-stage-label">inner sleeve / timed lyrics</p><div class="lyric-stage-actions"><button class="icon-button" id="lyric-share" aria-label="Copy link to current song" disabled><span data-icon="share"></span></button><button class="icon-button" id="lyrics-close" aria-label="Close lyrics"><span data-icon="close"></span></button></div></div>
+  <div class="lyric-sleeve">
+    <div class="lyric-identity"><div class="lyric-art" id="lyric-art"></div><p id="lyric-artist"></p><h2 id="lyric-title">lyrics</h2><button class="text-button" id="lyric-notes">notes &amp; credits</button></div>
+    <div class="lyric-scroll-wrap"><button id="lyric-follow" hidden>follow the song</button><div class="lyric-lines" id="lyric-lines" tabindex="0" aria-label="Timed lyrics"></div></div>
+  </div>
+</section>
+
+<section class="player" aria-label="Audio player">
+ <div class="player-inner"><button class="player-art" id="player-art" aria-label="Open current track lyrics"><span aria-hidden="true">♫</span></button><div class="player-track"><p id="player-title">choose a record.</p><p id="player-artist">albums play straight through</p></div><div class="player-controls"><button id="previous-track" aria-label="Previous track" class="icon-button"><span data-icon="previous"></span></button><button id="play-pause" aria-label="Play" class="play-button"><span data-icon="play"></span></button><button id="next-track" aria-label="Next track" class="icon-button"><span data-icon="next"></span></button></div><div class="player-timeline"><span id="current-time">0:00</span><input type="range" id="seek" min="0" max="1000" value="0" aria-label="Seek through the recording" disabled><span id="duration">—:—</span></div><button id="player-lyrics" class="player-lyrics">lyrics</button><button class="icon-button volume-button" id="mute" aria-label="Mute"><span data-icon="volume"></span></button></div>
+ <div class="mobile-progress" aria-hidden="true"><span id="mobile-progress"></span></div>
+</section>
+<audio id="audio" preload="none"></audio>
+<dialog id="detail-dialog" aria-labelledby="dialog-title"><div class="dialog-top"><span class="eyebrow" id="dialog-kicker">notes & credits</span><button class="icon-button close-dialog" aria-label="Close dialog"><span data-icon="close"></span></button></div><div id="dialog-content"></div></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div id="player-status" class="sr-only" role="status" aria-live="polite"></div>
+</body>
+</html>

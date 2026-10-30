@@ -17,6 +17,8 @@ with metadata for its album context. Every album has a cover. The source masters
   deck for optional context.
 - `records/index.html` contains the direct-linkable album catalog. Selecting an
   album updates one album stage instead of opening a modal.
+- `records/<track-id>/` pages are generated with song-specific link-preview
+  metadata and open the same catalog player on that song.
 - `story.md` keeps the site prose in an editable form.
 
 The site identifies itself as A New Sincerity. The parent site's persona does
@@ -77,6 +79,6 @@ but does not upload or deploy anything.
 
 Run `scripts/publish.sh` from the parent repository. Its builder copies this
 site and its audio into `docs/a-new-sincerity/`, replaces the staging robots
-tags with canonical links, and adds both public routes to the sitemap. The
-source pages keep their staging metadata so local drafts are never mistaken for
-the public build.
+tags with canonical links, and adds the story, records and song routes to the
+sitemap. The source pages keep their staging metadata so local drafts are never
+mistaken for the public build.

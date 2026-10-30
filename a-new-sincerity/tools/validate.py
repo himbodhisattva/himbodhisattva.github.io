@@ -18,6 +18,8 @@ assert album_by_id['revisionist']['artist'].lower()=='a new sincerity'
 assert album_by_id['revisionist']['group']=='ans', 'Revisionist History belongs to A New Sincerity'
 assert album_by_id['victory-lap']['art']=='assets/user/victory-lap-1254.webp', 'Victory Lap must use the high-resolution cover'
 assert album_by_id['friday-girls']['art']=='assets/user/friday-girls-1254.webp', 'Friday Girls must use the high-resolution cover'
+assert track_by_id['revisionist-02']['title']=='Like They Do In The Movies (a new sincerity remix)', 'Movies share title changed unexpectedly'
+assert track_by_id['revisionist-02']['art']=='assets/movies.webp', 'Movies share link must use its own artwork'
 assert track_by_id['friday-girls-05']['art']=='assets/user/friday-girls-again-and-again.webp', 'Again and Again must use its track artwork'
 assert all(manifest['albums'][a['id']]['art']==a['art'] for a in data['albums']), 'album artwork paths disagree with the media manifest'
 assert all(manifest['tracks'][t['id']]['art']==t['art'] and manifest['tracks'][t['id']]['audio']==t['audio'] for t in data['tracks']), 'track media paths disagree with the media manifest'
@@ -133,16 +135,17 @@ for album_id in ('unfortunately', 'revisionist', 'friday-girls'):
  assert f'href="records/#album={album_id}"' in main, f'{album_id} cover should open its record'
 app_source=(ROOT/'app.js').read_text()
 experience_source=(ROOT/'experience.css').read_text()
+player_model_source=(ROOT/'player-model.js').read_text()
 assert 'album page' not in app_source.lower(), 'story track lists should rely on their clickable album covers'
 assert 'open the album' not in main.lower(), 'album covers should carry record navigation without an instruction label'
 assert 'openPhilosophy({ returnFocus: null });' in app_source, 'direct philosophy links must not restore focus to an off-screen trigger'
 assert 'openPhilosophy({ returnFocus: event.currentTarget });' in app_source, 'click-opened philosophy notes should restore focus to the activating link'
 for page in (main, records):
-    assert 'data.js?v=20261029h' in page
-    assert 'style.css?v=20261029h' in page
-    assert 'experience.css?v=20261029h' in page
-    assert 'player-model.js?v=20261029h' in page
-    assert 'app.js?v=20261029h' in page
+    assert 'data.js?v=20261029k' in page
+    assert 'style.css?v=20261029k' in page
+    assert 'experience.css?v=20261029k' in page
+    assert 'player-model.js?v=20261029k' in page
+    assert 'app.js?v=20261029k' in page
     assert '<a href="https://suno.com/">Suno v6-pro</a>' in page
 assert '↗' not in (main+records+app_source), 'decorative up-right arrows remain'
 assert 'simulated reviews' not in main.lower(), 'review terminology must stay emulated'
@@ -158,6 +161,16 @@ assert 'id="lyric-stage"' in main and 'id="lyric-stage"' in records
 assert 'id="lyric-share"' in main and 'id="lyric-share"' in records, 'song links need a visible control in the lyrics header'
 assert 'Copy link to “${track.title}”' in app_source, 'song-link control needs a title-specific accessible label'
 assert 'copy song link' not in app_source.lower(), 'song-link control should not be buried in notes and credits'
+share_track_source=re.search(r'async function shareTrack\(id\) \{.*?\n  \}',app_source,re.S).group()
+route_source=re.search(r'async function route\(\) \{.*?\n  \}',app_source,re.S).group()
+open_lyrics_source=re.search(r'async function openLyrics\(id,.*?\n  \}',app_source,re.S).group()
+assert 'songRoutePath' in player_model_source, 'player model must expose canonical song paths'
+assert 'songRouteId' in player_model_source, 'player model must recognize generated song paths'
+assert 'model.songRoutePath' in share_track_source, 'shared song links must use the canonical static route'
+assert '.hash' not in share_track_source and '#track=' not in share_track_source, 'shared song links must not use crawler-invisible fragments'
+assert 'model.songRouteId' in route_source, 'generated song paths must open their matching track'
+assert 'openLyrics' in route_source, 'generated song paths must open the full inner sleeve'
+assert 'selectTrack(id, { play: false' in open_lyrics_source, 'direct song routes must arrive paused'
 assert 'class="round-play lyric-primary-play"' in app_source, 'direct song links need a prominent play control on the artwork'
 assert 'Play “${track.title}” by ${track.artist}' in app_source, 'prominent play control needs a song-specific accessible name'
 assert '.lyric-stage:not(.is-direct-entry) .lyric-primary-play' in experience_source, 'prominent play belongs only to the initial direct-link state'

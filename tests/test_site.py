@@ -1,3 +1,4 @@
+import json
 from xml.etree import ElementTree
 
 import pytest
@@ -12,7 +13,28 @@ def _new_sincerity_fixture(tmp_path):
     staging_meta = '<meta name="robots" content="noindex,nofollow">'
     (source_dir / "index.html").write_text(f"<head>{staging_meta}</head>")
     (source_dir / "records/index.html").write_text(
-        f"<head>{staging_meta}</head>"
+        f"""<!doctype html>
+<html lang="en">
+<head>
+{staging_meta}
+<meta name="description" content="The records fixture.">
+<meta property="og:title" content="the records — a new sincerity">
+<meta property="og:description" content="The records fixture.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://himbodhisattva.com/a-new-sincerity/records/">
+<meta property="og:image" content="https://himbodhisattva.com/a-new-sincerity/assets/album-cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://himbodhisattva.com/a-new-sincerity/assets/album-cover.webp">
+<base href="../">
+<title>the records · a new sincerity</title>
+</head>
+<body data-page="records">
+<section id="lyric-stage" data-mode="closed" hidden></section>
+<section class="player" aria-label="Audio player"></section>
+<audio id="audio" preload="none"></audio>
+</body>
+</html>
+"""
     )
     for filename in (
         "style.css",
@@ -24,10 +46,53 @@ def _new_sincerity_fixture(tmp_path):
         "favicon.ico",
     ):
         (source_dir / filename).write_bytes(filename.encode())
-    (source_dir / "assets/cover.webp").write_bytes(b"cover")
-    (source_dir / "audio/track.mp3").write_bytes(b"audio")
+    catalog = {
+        "albums": [
+            {
+                "id": "revisionist",
+                "title": "Revisionist History (The Remixes)",
+                "artist": "A New Sincerity",
+                "art": "assets/album-cover.webp",
+                "tracks": ["revisionist-01", "revisionist-02"],
+            }
+        ],
+        "tracks": [
+            {
+                "id": "revisionist-01",
+                "title": "The Wicked and The Proud (a new sincerity remix)",
+                "artist": "A New Sincerity",
+                "album": "revisionist",
+                "audio": "audio/revisionist-01.mp3",
+            },
+            {
+                "id": "revisionist-02",
+                "title": "Like They Do In The Movies (a new sincerity remix)",
+                "artist": "A New Sincerity",
+                "album": "revisionist",
+                "art": "assets/movies.webp",
+                "audio": "audio/revisionist-02.mp3",
+            },
+        ],
+        "queue": ["revisionist-01", "revisionist-02"],
+        "defaultTrack": "revisionist-01",
+    }
+    (source_dir / "data.js").write_text(
+        f"window.ANS_DATA = {json.dumps(catalog)};"
+    )
+    (source_dir / "lyrics-sync.js").write_text("window.ANS_SYNC = {};")
+    (source_dir / "assets/album-cover.webp").write_bytes(b"album-cover")
+    (source_dir / "assets/movies.webp").write_bytes(b"movies-cover")
+    (source_dir / "audio/revisionist-01.mp3").write_bytes(b"instrumental")
+    (source_dir / "audio/revisionist-02.mp3").write_bytes(b"movies")
     (source_dir / "media-manifest.json").write_text(
-        '{"tracks":{"track":{"audio":"audio/track.mp3"}}}'
+        json.dumps(
+            {
+                "tracks": {
+                    track["id"]: {"audio": track["audio"]}
+                    for track in catalog["tracks"]
+                }
+            }
+        )
     )
     return source_dir, staging_meta
 
@@ -198,8 +263,8 @@ def test_publish_new_sincerity_copies_a_playable_canonical_site(tmp_path):
         '<link rel="canonical" href="https://himbodhisattva.com/'
         'a-new-sincerity/records/">' in records
     )
-    assert (published / "assets/cover.webp").read_bytes() == b"cover"
-    assert (published / "audio/track.mp3").read_bytes() == b"audio"
+    assert (published / "assets/album-cover.webp").read_bytes() == b"album-cover"
+    assert (published / "audio/revisionist-02.mp3").read_bytes() == b"movies"
     homepage = (output_dir / "index.html").read_text()
     assert '<h2>projects</h2>' in homepage
     assert '<a href="a-new-sincerity/">a new sincerity</a>' in homepage
@@ -222,6 +287,85 @@ def test_publish_new_sincerity_copies_a_playable_canonical_site(tmp_path):
     assert len(sitemap_urls) == len(set(sitemap_urls))
 
 
+def test_publish_new_sincerity_generates_song_share_pages(tmp_path):
+    import build
+
+    source_dir, staging_meta = _new_sincerity_fixture(tmp_path)
+    output_dir = tmp_path / "docs"
+    build.build_site(
+        output_dir=output_dir,
+        new_sincerity_source=source_dir,
+    )
+
+    published = output_dir / "a-new-sincerity"
+    song_url = (
+        "https://himbodhisattva.com/a-new-sincerity/records/revisionist-02/"
+    )
+    movies = (
+        published / "records/revisionist-02/index.html"
+    ).read_text()
+
+    assert staging_meta not in movies
+    assert (
+        "<title>Like They Do In The Movies (a new sincerity remix)"
+        " · A New Sincerity</title>"
+    ) in movies
+    assert (
+        '<meta property="og:title" content="Like They Do In The Movies '
+        '(a new sincerity remix)">'
+    ) in movies
+    assert (
+        '<meta property="og:description" content="A New Sincerity · '
+        'Revisionist History (The Remixes)">'
+    ) in movies
+    assert '<meta property="og:type" content="music.song">' in movies
+    assert f'<link rel="canonical" href="{song_url}">' in movies
+    assert f'<meta property="og:url" content="{song_url}">' in movies
+    movies_art = (
+        "https://himbodhisattva.com/a-new-sincerity/assets/movies.webp"
+    )
+    assert f'<meta property="og:image" content="{movies_art}">' in movies
+    assert (
+        '<meta property="og:image:alt" content="Like They Do In The Movies '
+        '(a new sincerity remix) artwork">'
+    ) in movies
+    assert '<meta name="twitter:card" content="summary_large_image">' in movies
+    assert (
+        '<meta name="twitter:title" content="Like They Do In The Movies '
+        '(a new sincerity remix)">'
+    ) in movies
+    assert (
+        '<meta name="twitter:description" content="A New Sincerity · '
+        'Revisionist History (The Remixes)">'
+    ) in movies
+    assert f'<meta name="twitter:image" content="{movies_art}">' in movies
+    assert (
+        '<meta name="twitter:image:alt" content="Like They Do In The Movies '
+        '(a new sincerity remix) artwork">'
+    ) in movies
+    assert '<base href="../../">' in movies
+    assert '<body data-page="records">' in movies
+    assert 'id="lyric-stage"' in movies
+    assert '<audio id="audio" preload="none"></audio>' in movies
+    assert "autoplay" not in movies
+
+    fallback = (
+        published / "records/revisionist-01/index.html"
+    ).read_text()
+    album_art = (
+        "https://himbodhisattva.com/a-new-sincerity/assets/album-cover.webp"
+    )
+    assert f'<meta property="og:image" content="{album_art}">' in fallback
+    assert f'<meta name="twitter:image" content="{album_art}">' in fallback
+
+    sitemap = (output_dir / "sitemap.xml").read_text()
+    assert song_url in sitemap
+    assert (
+        "https://himbodhisattva.com/a-new-sincerity/records/revisionist-01/"
+        in sitemap
+    )
+
+
 def test_new_sincerity_preflight_preserves_previous_build(tmp_path):
     import build
 
@@ -230,9 +374,57 @@ def test_new_sincerity_preflight_preserves_previous_build(tmp_path):
     output_dir.mkdir()
     sentinel = output_dir / "existing-publication"
     sentinel.write_text("keep me")
-    (source_dir / "audio/track.mp3").unlink()
+    (source_dir / "audio/revisionist-02.mp3").unlink()
 
-    with pytest.raises(FileNotFoundError, match="audio/track.mp3"):
+    with pytest.raises(FileNotFoundError, match="audio/revisionist-02.mp3"):
+        build.build_site(
+            output_dir=output_dir,
+            new_sincerity_source=source_dir,
+        )
+
+    assert sentinel.read_text() == "keep me"
+
+
+def test_new_sincerity_preflight_rejects_catalog_manifest_audio_drift(tmp_path):
+    import build
+
+    source_dir, _ = _new_sincerity_fixture(tmp_path)
+    output_dir = tmp_path / "docs"
+    output_dir.mkdir()
+    sentinel = output_dir / "existing-publication"
+    sentinel.write_text("keep me")
+    catalog = build.load_new_sincerity_catalog(source_dir)
+    replacement_audio = "audio/revisionist-02-alternate.mp3"
+    (source_dir / replacement_audio).write_bytes(b"alternate")
+    catalog["tracks"][1]["audio"] = replacement_audio
+    (source_dir / "data.js").write_text(
+        f"window.ANS_DATA = {json.dumps(catalog)};"
+    )
+
+    with pytest.raises(ValueError, match="does not match the media manifest"):
+        build.build_site(
+            output_dir=output_dir,
+            new_sincerity_source=source_dir,
+        )
+
+    assert sentinel.read_text() == "keep me"
+
+
+def test_new_sincerity_preflight_rejects_missing_catalog_audio(tmp_path):
+    import build
+
+    source_dir, _ = _new_sincerity_fixture(tmp_path)
+    output_dir = tmp_path / "docs"
+    output_dir.mkdir()
+    sentinel = output_dir / "existing-publication"
+    sentinel.write_text("keep me")
+    catalog = build.load_new_sincerity_catalog(source_dir)
+    catalog["tracks"][1]["audio"] = "audio/revisionist-02-missing.mp3"
+    (source_dir / "data.js").write_text(
+        f"window.ANS_DATA = {json.dumps(catalog)};"
+    )
+
+    with pytest.raises(FileNotFoundError, match="revisionist-02-missing.mp3"):
         build.build_site(
             output_dir=output_dir,
             new_sincerity_source=source_dir,

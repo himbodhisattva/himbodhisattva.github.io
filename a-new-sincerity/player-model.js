@@ -35,6 +35,19 @@
     return `${pathname}${search}#${kind}=${encodeURIComponent(id)}`;
   }
 
+  function songRoutePath(recordsPath, id) {
+    const base = recordsPath.endsWith('/') ? recordsPath : `${recordsPath}/`;
+    return `${base}${encodeURIComponent(id)}/`;
+  }
+
+  function songRouteId(pathname, recordsPath) {
+    const base = recordsPath.endsWith('/') ? recordsPath : `${recordsPath}/`;
+    if (!pathname.startsWith(base)) return null;
+    const remainder = pathname.slice(base.length).replace(/\/$/, '');
+    if (!remainder || remainder.includes('/')) return null;
+    try { return decodeURIComponent(remainder); } catch { return null; }
+  }
+
   function escapeLayer(dialogOpen, lyricsOpen) {
     if (dialogOpen) return 'dialog';
     if (lyricsOpen) return 'lyrics';
@@ -57,10 +70,12 @@
     return mode;
   }
 
-  function lyricRouteAction(event, { mode = 'closed', ownsEntry = false, hash = '' } = {}) {
+  function lyricRouteAction(event, {
+    mode = 'closed', ownsEntry = false, hash = '', directTrack = false,
+  } = {}) {
     if (event === 'track-change') return mode === 'full' ? 'replace' : null;
     if (event === 'close' && ownsEntry) return 'back';
-    if (event === 'close' && /^#track=/.test(hash)) return 'replace';
+    if (event === 'close' && (directTrack || /^#track=/.test(hash))) return 'replace';
     return null;
   }
 
@@ -109,6 +124,8 @@
     nextPlayable,
     activeCueIndex,
     routePath,
+    songRoutePath,
+    songRouteId,
     escapeLayer,
     playPresentation,
     playbackLyricEvent,

@@ -15,6 +15,9 @@
   const philosophyDialog = document.getElementById('philosophy-dialog');
   const philosophyTrigger = document.querySelector('.philosophy-trigger');
   const recordsPage = document.body.dataset.page === 'records';
+  const recordsUrl = new URL('records/', document.baseURI);
+  const publicRecordsUrl = new URL('https://himbodhisattva.com/a-new-sincerity/records/');
+  const recordsDocumentTitle = 'the records · a new sincerity';
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const defaultAlbumId = D.albums[0]?.id || 'unfortunately';
 
@@ -45,6 +48,14 @@
   const artFor = track => asset(track.art || albums.get(track.album)?.art);
   const albumArt = album => asset(album.art);
   const canPlay = id => Boolean(tracks.get(id)?.audio);
+
+  function songUrl(id) {
+    const url = new URL(recordsUrl.href);
+    url.pathname = model.songRoutePath(recordsUrl.pathname, id);
+    url.search = '';
+    url.hash = '';
+    return url;
+  }
 
   function emptyPlayerAction(action) {
     return model.emptyPlayerAction(action, {
@@ -197,7 +208,7 @@
     });
     syncPlayButtons();
     if (updateHistory && recordsPage) {
-      const target = model.routePath(location.pathname, location.search, 'album', albumId);
+      const target = model.routePath(recordsUrl.pathname, recordsUrl.search, 'album', albumId);
       if (`${location.pathname}${location.search}${location.hash}` !== target) history.pushState({ ansAlbum: albumId }, '', target);
     }
   }
@@ -432,6 +443,7 @@
 
   function showLyrics(track, { mode = 'peek', historyAction = null, returnFocus = null, focus = false } = {}) {
     const wasClosed = state.lyricMode === 'closed';
+    if (recordsPage) document.title = `${track.title} · ${track.artist}`;
     lyricStage.dataset.presentation = model.playPresentation(track);
     if ($('#lyric-title').dataset.track !== track.id) renderLyrics(track);
     else {
@@ -444,8 +456,8 @@
     updateActiveLyrics(true);
     if (focus) $('#lyric-lines').focus({ preventScroll: true });
     if (historyAction) {
-      const url = new URL(location.href);
-      url.hash = `track=${encodeURIComponent(track.id)}`;
+      const url = recordsPage ? songUrl(track.id) : new URL(location.href);
+      if (!recordsPage) url.hash = `track=${encodeURIComponent(track.id)}`;
       if (historyAction === 'replace' || state.lyricHistoryEntry) {
         history.replaceState(history.state, '', url);
       } else {
@@ -475,7 +487,11 @@
       ? state.lyricReturnFocus
       : $('#player-lyrics');
     const routeAction = updateHistory
-      ? model.lyricRouteAction('close', { ownsEntry: state.lyricHistoryEntry, hash: location.hash })
+      ? model.lyricRouteAction('close', {
+        ownsEntry: state.lyricHistoryEntry,
+        hash: location.hash,
+        directTrack: recordsPage && Boolean(model.songRouteId(location.pathname, recordsUrl.pathname)),
+      })
       : null;
     setLyricsMode(nextMode);
     if (nextMode !== 'full') lyricStage.classList.remove('is-direct-entry');
@@ -484,17 +500,18 @@
       if (history.state?.ansLyrics) history.back();
       else {
         const destination = recordsPage && state.selectedAlbum
-          ? model.routePath(location.pathname, location.search, 'album', state.selectedAlbum)
+          ? model.routePath(recordsUrl.pathname, recordsUrl.search, 'album', state.selectedAlbum)
           : `${location.pathname}${location.search}`;
         history.replaceState(null, '', destination);
       }
     } else if (routeAction === 'replace') {
       state.lyricHistoryEntry = false;
       const destination = recordsPage && state.selectedAlbum
-        ? model.routePath(location.pathname, location.search, 'album', state.selectedAlbum)
+        ? model.routePath(recordsUrl.pathname, recordsUrl.search, 'album', state.selectedAlbum)
         : `${location.pathname}${location.search}`;
       history.replaceState(null, '', destination);
     }
+    if (recordsPage && routeAction) document.title = recordsDocumentTitle;
     if (!updateHistory) state.lyricHistoryEntry = false;
     if ((wasFull || nextMode === 'closed') && returnTarget?.isConnected) returnTarget.focus({ preventScroll: true });
     state.lyricReturnFocus = nextMode === 'peek' ? returnTarget : null;
@@ -551,8 +568,8 @@
   async function shareTrack(id) {
     const track = tracks.get(id);
     if (!track) return;
-    const url = new URL('records/', document.baseURI);
-    url.hash = `track=${encodeURIComponent(id)}`;
+    const url = new URL(publicRecordsUrl.href);
+    url.pathname = model.songRoutePath(publicRecordsUrl.pathname, id);
     try {
       await navigator.clipboard.writeText(url.href);
       toast('song link copied');
@@ -569,6 +586,7 @@
   }
 
   async function route() {
+    const songRoute = recordsPage ? model.songRouteId(location.pathname, recordsUrl.pathname) : null;
     const trackMatch = location.hash.match(/^#track=(.+)$/);
     const albumMatch = location.hash.match(/^#album=(.+)$/);
     const philosophyRoute = !recordsPage && location.hash === '#philosophy';
@@ -578,9 +596,10 @@
       return;
     }
     if (philosophyDialog?.open) closePhilosophy({ updateHistory: false, restoreFocus: false });
-    if (trackMatch) {
-      const id = decodeRouteId(trackMatch[1]);
+    if (songRoute || trackMatch) {
+      const id = songRoute || decodeRouteId(trackMatch[1]);
       if (tracks.has(id)) {
+        if (recordsPage && trackMatch) history.replaceState(history.state, '', songUrl(id));
         lyricStage.classList.toggle('is-direct-entry', !history.state?.ansLyrics);
         state.lyricHistoryEntry = Boolean(history.state?.ansLyrics);
         await openLyrics(id, { updateHistory: false });
@@ -593,6 +612,7 @@
     } else {
       if (state.lyricMode === 'full') closeLyrics({ updateHistory: false });
       if (recordsPage) {
+        document.title = recordsDocumentTitle;
         const id = albumMatch ? decodeRouteId(albumMatch[1]) : defaultAlbumId;
         const stage = $('#album-stage');
         if (albums.has(id) && (state.selectedAlbum !== id || !stage?.childElementCount)) renderAlbumStage(id);

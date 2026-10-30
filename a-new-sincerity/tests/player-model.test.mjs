@@ -16,6 +16,8 @@ const {
   albumScrollBehavior,
   initialPlayback,
   emptyPlayerAction,
+  songRouteId,
+  songRoutePath,
 } = window.ANS_PLAYER_MODEL;
 
 const available = new Set(['album-01', 'album-02', 'album-04']);
@@ -49,6 +51,37 @@ assert.equal(
   routePath('/a-new-sincerity/records/', '?from=site', 'track', 'song & one'),
   '/a-new-sincerity/records/?from=site#track=song%20%26%20one',
 );
+assert.equal(
+  songRouteId(
+    '/a-new-sincerity/records/revisionist-02/',
+    '/a-new-sincerity/records/',
+  ),
+  'revisionist-02',
+  'a generated song path identifies the track to open',
+);
+assert.equal(
+  songRouteId('/a-new-sincerity/records/', '/a-new-sincerity/records/'),
+  null,
+  'the records index is not mistaken for a song',
+);
+assert.equal(
+  songRouteId(
+    '/a-new-sincerity/records/revisionist-02/extra/',
+    '/a-new-sincerity/records/',
+  ),
+  null,
+  'only one path segment may identify a song',
+);
+assert.equal(
+  songRoutePath('/a-new-sincerity/records/', 'revisionist-02'),
+  '/a-new-sincerity/records/revisionist-02/',
+  'shared song links use a crawlable path instead of a fragment',
+);
+assert.equal(
+  songRoutePath('/a-new-sincerity/records/', 'song & one'),
+  '/a-new-sincerity/records/song%20%26%20one/',
+  'song paths encode route identifiers',
+);
 assert.equal(escapeLayer(true, true), 'dialog', 'Escape closes the topmost dialog first');
 assert.equal(escapeLayer(false, true), 'lyrics');
 assert.equal(escapeLayer(false, false), null);
@@ -60,6 +93,11 @@ assert.equal(nextLyricMode('closed', 'play', true), 'peek', 'play opens the comp
 assert.equal(nextLyricMode('closed', 'autoplay', true), 'closed', 'autoplay respects a listener-closed lyric panel');
 assert.equal(nextLyricMode('peek', 'autoplay', true), 'peek', 'autoplay keeps an open lyric panel following the queue');
 assert.equal(nextLyricMode('peek', 'open', true), 'full', 'the lyrics control expands the panel');
+assert.equal(
+  nextLyricMode('closed', 'open', false),
+  'full',
+  'a direct song route opens the full sleeve while playback remains paused',
+);
 assert.equal(nextLyricMode('full', 'close', true), 'peek', 'closing full lyrics returns to the playing peek');
 assert.equal(nextLyricMode('peek', 'close', true), 'closed', 'closing the peek hides it');
 assert.equal(nextLyricMode('full', 'close', false), 'closed', 'paused full lyrics close completely');
@@ -67,6 +105,7 @@ assert.equal(lyricRouteAction('track-change', { mode: 'full' }), 'replace', 'ful
 assert.equal(lyricRouteAction('track-change', { mode: 'peek' }), null, 'compact lyrics do not add a track URL');
 assert.equal(lyricRouteAction('close', { ownsEntry: true, hash: '#track=one' }), 'back', 'an internally opened track returns through history');
 assert.equal(lyricRouteAction('close', { ownsEntry: false, hash: '#track=one' }), 'replace', 'a direct track link clears when closed');
+assert.equal(lyricRouteAction('close', { directTrack: true }), 'replace', 'a static song route clears when closed');
 assert.equal(lyricRouteAction('close', { ownsEntry: false, hash: '#album=one' }), null);
 assert.equal(lyricCloseLabel('full'), 'Collapse lyrics');
 assert.equal(lyricCloseLabel('peek'), 'Close lyrics');

@@ -2,12 +2,11 @@ from __future__ import annotations
 
 import html
 import json
+import re
 import shutil
 from dataclasses import dataclass
 from pathlib import Path
-
-import markdown
-
+from urllib.parse import quote
 
 ROOT = Path(__file__).parent
 CONTENT_DIR = ROOT / "content"
@@ -31,6 +30,9 @@ NEW_SINCERITY_CANONICALS = {
     "index.html": f"{SITE_URL}/a-new-sincerity/",
     "records/index.html": f"{SITE_URL}/a-new-sincerity/records/",
 }
+NEW_SINCERITY_BASE_URL = f"{SITE_URL}/a-new-sincerity"
+NEW_SINCERITY_ID = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+NEW_SINCERITY_METADATA_MARKER = "<!-- ans-song-metadata -->"
 LICENSE_URL = "https://creativecommons.org/publicdomain/zero/1.0/"
 PROOF_DISCLAIMER = (
     "> **Authorship disclaimer:** This proof was written primarily by GPT-5.6-sol."
@@ -116,6 +118,8 @@ def local_markdown_path(page: Page) -> str:
 
 
 def parse_markdown(path: Path) -> Page:
+    import markdown
+
     raw = path.read_text()
     metadata: dict[str, str] = {}
     body = raw
@@ -216,6 +220,7 @@ def write_static_files(
     output_dir: Path,
     pages: list[Page],
     include_new_sincerity: bool = False,
+    new_sincerity_song_urls: tuple[str, ...] = (),
 ) -> None:
     (output_dir / "CNAME").write_text("himbodhisattva.com\n")
 
@@ -350,6 +355,7 @@ The content is licensed under CC0 1.0 Universal unless a page says otherwise. Cr
     ]
     if include_new_sincerity:
         sitemap_entries[1:1] = NEW_SINCERITY_CANONICALS.values()
+        sitemap_entries[3:3] = new_sincerity_song_urls
     sitemap_entries = list(dict.fromkeys(sitemap_entries))
     sitemap_urls = "\n".join(
         f"  <url><loc>{url}</loc></url>" for url in sitemap_entries
@@ -392,7 +398,197 @@ def mirror_to_root(output_dir: Path) -> None:
             shutil.copyfile(source, target)
 
 
-def preflight_new_sincerity(source_dir: Path) -> None:
+def _new_sincerity_asset(source_dir: Path, value: object, owner: str) -> str:
+    if not isinstance(value, str) or not value:
+        raise ValueError(f"{owner} has no artwork")
+    relative = Path(value)
+    if relative.is_absolute() or ".." in relative.parts or relative.parts[:1] != ("assets",):
+        raise ValueError(f"{owner} has unsafe artwork path: {value!r}")
+    candidate = source_dir / relative
+    if not candidate.is_file():
+        raise FileNotFoundError(f"{owner} artwork does not exist: {candidate}")
+    return value
+
+
+def load_new_sincerity_catalog(source_dir: Path) -> dict[str, object]:
+    data_path = source_dir / "data.js"
+    source = data_path.read_text()
+    match = re.fullmatch(
+        r"\s*window\.ANS_DATA\s*=\s*(\{.*\})\s*;\s*",
+        source,
+        flags=re.DOTALL,
+    )
+    if match is None:
+        raise ValueError(f"could not parse A New Sincerity catalog: {data_path}")
+    catalog = json.loads(match.group(1))
+    albums = catalog.get("albums")
+    tracks = catalog.get("tracks")
+    if not isinstance(albums, list) or not isinstance(tracks, list):
+        raise ValueError("A New Sincerity catalog needs album and track lists")
+
+    album_by_id: dict[str, dict[str, object]] = {}
+    for album in albums:
+        if not isinstance(album, dict):
+            raise ValueError("A New Sincerity album entries must be objects")
+        album_id = album.get("id")
+        if not isinstance(album_id, str) or NEW_SINCERITY_ID.fullmatch(album_id) is None:
+            raise ValueError(f"unsafe A New Sincerity album ID: {album_id!r}")
+        if album_id in album_by_id:
+            raise ValueError(f"duplicate A New Sincerity album ID: {album_id}")
+        if not isinstance(album.get("title"), str) or not album["title"]:
+            raise ValueError(f"album {album_id} has no title")
+        if not isinstance(album.get("artist"), str) or not album["artist"]:
+            raise ValueError(f"album {album_id} has no artist")
+        _new_sincerity_asset(source_dir, album.get("art"), f"album {album_id}")
+        album_by_id[album_id] = album
+
+    track_by_id: dict[str, dict[str, object]] = {}
+    for track in tracks:
+        if not isinstance(track, dict):
+            raise ValueError("A New Sincerity track entries must be objects")
+        track_id = track.get("id")
+        if not isinstance(track_id, str) or NEW_SINCERITY_ID.fullmatch(track_id) is None:
+            raise ValueError(f"unsafe A New Sincerity track ID: {track_id!r}")
+        if track_id in track_by_id:
+            raise ValueError(f"duplicate A New Sincerity track ID: {track_id}")
+        album_id = track.get("album")
+        if album_id not in album_by_id:
+            raise ValueError(f"track {track_id} references unknown album: {album_id!r}")
+        if not isinstance(track.get("title"), str) or not track["title"]:
+            raise ValueError(f"track {track_id} has no title")
+        artist = track.get("artist", album_by_id[album_id]["artist"])
+        if not isinstance(artist, str) or not artist:
+            raise ValueError(f"track {track_id} has no artist")
+        if track.get("art") is not None:
+            _new_sincerity_asset(source_dir, track["art"], f"track {track_id}")
+        track_by_id[track_id] = track
+
+    listed_tracks: set[str] = set()
+    for album_id, album in album_by_id.items():
+        album_tracks = album.get("tracks")
+        if not isinstance(album_tracks, list):
+            raise ValueError(f"album {album_id} has no track list")
+        for track_id in album_tracks:
+            if track_id not in track_by_id:
+                raise ValueError(f"album {album_id} references unknown track: {track_id!r}")
+            if track_id in listed_tracks:
+                raise ValueError(f"track {track_id} appears in more than one album track list")
+            if track_by_id[track_id]["album"] != album_id:
+                raise ValueError(f"track {track_id} is listed under the wrong album")
+            listed_tracks.add(track_id)
+    unlisted = set(track_by_id) - listed_tracks
+    if unlisted:
+        raise ValueError(f"tracks missing from album track lists: {', '.join(sorted(unlisted))}")
+
+    return catalog
+
+
+def new_sincerity_song_urls(catalog: dict[str, object]) -> tuple[str, ...]:
+    return tuple(
+        f"{NEW_SINCERITY_BASE_URL}/records/{quote(track['id'], safe='')}/"
+        for track in catalog["tracks"]
+    )
+
+
+def _remove_share_metadata(page: str) -> str:
+    def remove_meta(match: re.Match[str]) -> str:
+        tag = match.group(0)
+        key = re.search(r"\b(?:name|property)=[\"']([^\"']+)[\"']", tag, re.I)
+        if key and (
+            key.group(1).lower() in {"description", "robots"}
+            or key.group(1).lower().startswith("og:")
+            or key.group(1).lower().startswith("twitter:")
+        ):
+            return ""
+        return tag
+
+    page = re.sub(r"<meta\b[^>]*>", remove_meta, page, flags=re.I)
+    page = re.sub(
+        r"<link\b(?=[^>]*\brel=[\"']canonical[\"'])[^>]*>",
+        "",
+        page,
+        flags=re.I,
+    )
+    page, base_count = re.subn(
+        r"<base\b[^>]*>",
+        NEW_SINCERITY_METADATA_MARKER,
+        page,
+        flags=re.I,
+    )
+    if base_count != 1:
+        raise ValueError("A New Sincerity records page needs exactly one base tag")
+    return re.sub(r"<title\b[^>]*>.*?</title>", "", page, flags=re.I | re.S)
+
+
+def render_new_sincerity_song_page(
+    records_shell: str,
+    track: dict[str, object],
+    album: dict[str, object],
+    *,
+    publish: bool,
+) -> str:
+    track_id = track["id"]
+    title = track["title"]
+    artist = track.get("artist", album["artist"])
+    description = f"{artist} · {album['title']}"
+    image_alt = f"{title} artwork"
+    art = track.get("art") or album["art"]
+    song_url = f"{NEW_SINCERITY_BASE_URL}/records/{quote(track_id, safe='')}/"
+    art_url = f"{NEW_SINCERITY_BASE_URL}/{quote(art, safe='/')}"
+    visibility = (
+        f'<link rel="canonical" href="{html.escape(song_url, quote=True)}">'
+        if publish
+        else '<meta name="robots" content="noindex,nofollow">'
+    )
+    metadata = f"""
+<meta name="description" content="{html.escape(description, quote=True)}">
+{visibility}
+<meta property="og:title" content="{html.escape(title, quote=True)}">
+<meta property="og:description" content="{html.escape(description, quote=True)}">
+<meta property="og:type" content="music.song">
+<meta property="og:url" content="{html.escape(song_url, quote=True)}">
+<meta property="og:image" content="{html.escape(art_url, quote=True)}">
+<meta property="og:image:alt" content="{html.escape(image_alt, quote=True)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{html.escape(title, quote=True)}">
+<meta name="twitter:description" content="{html.escape(description, quote=True)}">
+<meta name="twitter:image" content="{html.escape(art_url, quote=True)}">
+<meta name="twitter:image:alt" content="{html.escape(image_alt, quote=True)}">
+<base href="../../">
+<title>{html.escape(title)} · {html.escape(artist)}</title>
+""".strip()
+    page = _remove_share_metadata(records_shell)
+    page = page.replace(NEW_SINCERITY_METADATA_MARKER, metadata, 1)
+    head, separator, body = page.partition("</head>")
+    if not separator:
+        raise ValueError("A New Sincerity records page has no closing head tag")
+    head = re.sub(r"\n{3,}", "\n\n", head)
+    return f"{head}{separator}{body}"
+
+
+def write_new_sincerity_song_pages(
+    source_dir: Path,
+    target_dir: Path,
+    catalog: dict[str, object],
+    *,
+    publish: bool,
+) -> None:
+    shell = (source_dir / "records" / "index.html").read_text()
+    albums = {album["id"]: album for album in catalog["albums"]}
+    for track in catalog["tracks"]:
+        destination = target_dir / "records" / track["id"] / "index.html"
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(
+            render_new_sincerity_song_page(
+                shell,
+                track,
+                albums[track["album"]],
+                publish=publish,
+            )
+        )
+
+
+def preflight_new_sincerity(source_dir: Path) -> dict[str, object]:
     """Validate every input needed to publish the listening site."""
     manifest_path = source_dir / "media-manifest.json"
     if not manifest_path.is_file():
@@ -426,10 +622,51 @@ def preflight_new_sincerity(source_dir: Path) -> None:
         if page.read_text().count(staging_meta) != 1:
             raise ValueError(f"expected one staging robots tag in {page}")
 
+    catalog = load_new_sincerity_catalog(source_dir)
+    manifest_tracks = manifest.get("tracks")
+    if not isinstance(manifest_tracks, dict):
+        raise ValueError("A New Sincerity manifest needs a track map")
+    for track in catalog["tracks"]:
+        track_id = track["id"]
+        audio_path = track.get("audio")
+        if not isinstance(audio_path, str) or not audio_path:
+            raise ValueError(f"track {track_id} has no audio path")
+        relative_audio = Path(audio_path)
+        if (
+            relative_audio.is_absolute()
+            or ".." in relative_audio.parts
+            or relative_audio.parts[:1] != ("audio",)
+        ):
+            raise ValueError(f"track {track_id} has unsafe audio path: {audio_path!r}")
+        if not (source_dir / relative_audio).is_file():
+            raise FileNotFoundError(
+                f"track {track_id} audio does not exist: {source_dir / relative_audio}"
+            )
+        manifest_track = manifest_tracks.get(track_id)
+        if not isinstance(manifest_track, dict) or manifest_track.get("audio") != audio_path:
+            raise ValueError(
+                f"track {track_id} audio does not match the media manifest: "
+                f"{audio_path!r}"
+            )
+    records_shell = (source_dir / "records" / "index.html").read_text()
+    albums = {album["id"]: album for album in catalog["albums"]}
+    for track in catalog["tracks"]:
+        render_new_sincerity_song_page(
+            records_shell,
+            track,
+            albums[track["album"]],
+            publish=True,
+        )
+    return catalog
 
-def publish_new_sincerity(source_dir: Path, output_dir: Path) -> None:
+
+def publish_new_sincerity(
+    source_dir: Path,
+    output_dir: Path,
+    catalog: dict[str, object] | None = None,
+) -> None:
     """Copy the reviewed listening site into the GitHub Pages output tree."""
-    preflight_new_sincerity(source_dir)
+    catalog = catalog or preflight_new_sincerity(source_dir)
 
     target_dir = output_dir / "a-new-sincerity"
     if target_dir.exists():
@@ -451,14 +688,24 @@ def publish_new_sincerity(source_dir: Path, output_dir: Path) -> None:
         canonical = f'<link rel="canonical" href="{canonical_url}">'
         page.write_text(html_text.replace(staging_meta, canonical))
 
+    write_new_sincerity_song_pages(
+        source_dir,
+        target_dir,
+        catalog,
+        publish=True,
+    )
+
 
 def build_site(
     output_dir: Path = DEFAULT_OUTPUT_DIR,
     mirror_root: bool = False,
     new_sincerity_source: Path | None = None,
 ) -> None:
+    import markdown
+
+    new_sincerity_catalog = None
     if new_sincerity_source is not None:
-        preflight_new_sincerity(new_sincerity_source)
+        new_sincerity_catalog = preflight_new_sincerity(new_sincerity_source)
 
     output_dir.mkdir(parents=True, exist_ok=True)
     for path in output_dir.iterdir():
@@ -499,10 +746,19 @@ def build_site(
         output_dir,
         pages,
         include_new_sincerity=new_sincerity_source is not None,
+        new_sincerity_song_urls=(
+            new_sincerity_song_urls(new_sincerity_catalog)
+            if new_sincerity_catalog is not None
+            else ()
+        ),
     )
 
     if new_sincerity_source is not None:
-        publish_new_sincerity(new_sincerity_source, output_dir)
+        publish_new_sincerity(
+            new_sincerity_source,
+            output_dir,
+            catalog=new_sincerity_catalog,
+        )
 
     if mirror_root:
         mirror_to_root(output_dir)

@@ -55,8 +55,9 @@ should read as part of the essay rather than imitate X's interface.
   homepage starts at the top of its story queue.
 - Artist filters and search preserve titles and versions. Do not invent
   recommendations.
-- Share links open a song in the records-page full lyric view without playback.
-  The copy-link control sits beside Close in the lyric header.
+- Each shared song has a static `/records/<track-id>/` page so link previews use
+  that song's title and artwork. The page opens the full lyric view paused. The
+  copy-link control sits beside Close in the lyric header.
 - When a listener opens a direct song link, the site places a large Play control
   over the linked artwork. The control disappears after playback starts. The
   persistent player remains compact.

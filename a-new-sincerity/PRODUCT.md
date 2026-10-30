@@ -97,8 +97,9 @@ or pressing Next opens the compact lyrics. If the listener closes lyrics,
 automatic continuation to the next song respects that choice and leaves them
 closed.
 
-The lyric header copies a direct link to the current song. Opening that link
-selects the song and reveals its lyrics or sleeve without starting playback.
+The lyric header copies a static `/records/<track-id>/` link. Its preview uses
+the song title and artwork. Opening it selects the song and reveals its lyrics
+or sleeve without starting playback.
 When a listener opens that link, the site places a large Play control over the
 linked artwork until playback begins.
 
