@@ -71,8 +71,12 @@ assert 'href="records/my-art-machine-01/"' in main, 'the Art Machine cover shoul
 assert 'src="assets/user/my-art-machine-1254.webp"' in main, 'the Art Machine section should use its full-resolution cover'
 art_machine_play=re.search(r'<button[^>]+data-play="my-art-machine-01"[^>]*>',main).group()
 assert 'data-queue="album"' in art_machine_play and 'data-album-context="my-art-machine"' in art_machine_play, 'Art Machine playback should retain its one-song album context'
+art_machine_copy=re.search(r'<div class="art-machine-copy">(.*?)<a class="philosophy-trigger',main,re.S).group(1)
+art_machine_prose=' '.join(re.findall(r'<p>(.*?)</p>',art_machine_copy,re.S))
+art_machine_word_count=len(re.findall(r"\b[\w’'-]+\b",re.sub(r'<[^>]+>',' ',art_machine_prose)))
+assert art_machine_word_count<=89, f'Art Machine body should stay at half the original length, found {art_machine_word_count} words'
 assert "the songs aren't the art" in main.lower(), 'the Art Machine section lost its central claim'
-assert 'intermediate state in the optimization process' in main.lower(), 'the Art Machine section must distinguish songs from the process'
+assert 'each song records an intermediate state' in main.lower(), 'the Art Machine section must distinguish songs from the process'
 assert 'before morning' in main.lower(), 'the Art Machine section should make the speed of the feedback loop concrete'
 assert 'kept making pop-punk' in main
 assert 'data-album-embed="unfortunately"' in main
