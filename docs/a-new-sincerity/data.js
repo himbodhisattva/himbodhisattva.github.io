@@ -1014,8 +1014,9 @@ window.ANS_DATA = {
       "note": ""
     }
   ],
-  "defaultTrack": "unfortunately-01",
+  "defaultTrack": "my-art-machine-01",
   "queue": [
+    "my-art-machine-01",
     "unfortunately-01",
     "victory-lap-01",
     "unfortunately-08",
