@@ -321,10 +321,13 @@
   function syncPlayButtons() {
     $$('button[data-play]').forEach(button => {
       const active = state.current === button.dataset.play && !audio.paused;
+      const buttonTrack = tracks.get(button.dataset.play);
       const iconNode = button.classList.contains('round-play') ? button : button.querySelector('.icon');
       if (iconNode) iconNode.innerHTML = icon(active ? 'pause' : 'play');
       button.classList.toggle('is-playing', active);
-      button.setAttribute('aria-label', `${active ? 'Pause' : 'Play'} ${tracks.get(button.dataset.play)?.title || 'recording'}`);
+      button.setAttribute('aria-label', button.classList.contains('lyric-primary-play') && buttonTrack
+        ? `${active ? 'Pause' : 'Play'} “${buttonTrack.title}” by ${buttonTrack.artist}`
+        : `${active ? 'Pause' : 'Play'} ${buttonTrack?.title || 'recording'}`);
     });
     const toggle = $('#play-pause');
     if (toggle) {
@@ -407,7 +410,9 @@
     $('#lyric-title').textContent = track.title.toLowerCase();
     $('#lyric-title').dataset.track = track.id;
     $('#lyric-artist').textContent = `${track.artist} · ${albums.get(track.album).title}`;
-    $('#lyric-art').innerHTML = image ? `<img src="${escape(image)}" alt="${escape(track.title)} artwork" width="1080" height="1080">` : '<span aria-hidden="true">♫</span>';
+    const artwork = image ? `<img src="${escape(image)}" alt="${escape(track.title)} artwork" width="1080" height="1080">` : '<span aria-hidden="true">♫</span>';
+    const primaryPlay = `<button type="button" class="round-play lyric-primary-play" data-play="${track.id}" data-queue="album" data-album-context="${track.album}" aria-label="${escape(`Play “${track.title}” by ${track.artist}`)}">${icon('play')}</button>`;
+    $('#lyric-art').innerHTML = artwork + primaryPlay;
     $('#lyric-backdrop').style.backgroundImage = image ? `url("${String(image).replace(/["\\]/g, '\\$&')}")` : '';
     const lines = $('#lyric-lines');
     $('#lyric-stage-label').textContent = track.instrumental ? 'inner sleeve / instrumental' : 'inner sleeve / timed lyrics';
@@ -422,6 +427,7 @@
     lines.scrollTop = 0;
     $('#lyric-follow').hidden = true;
     updateActiveLyrics(true);
+    syncPlayButtons();
   }
 
   function showLyrics(track, { mode = 'peek', historyAction = null, returnFocus = null, focus = false } = {}) {
@@ -472,6 +478,7 @@
       ? model.lyricRouteAction('close', { ownsEntry: state.lyricHistoryEntry, hash: location.hash })
       : null;
     setLyricsMode(nextMode);
+    if (nextMode !== 'full') lyricStage.classList.remove('is-direct-entry');
     if (routeAction === 'back') {
       state.lyricHistoryEntry = false;
       if (history.state?.ansLyrics) history.back();
@@ -574,9 +581,11 @@
     if (trackMatch) {
       const id = decodeRouteId(trackMatch[1]);
       if (tracks.has(id)) {
+        lyricStage.classList.toggle('is-direct-entry', !history.state?.ansLyrics);
         state.lyricHistoryEntry = Boolean(history.state?.ansLyrics);
         await openLyrics(id, { updateHistory: false });
       } else {
+        lyricStage.classList.remove('is-direct-entry');
         closeLyrics({ updateHistory: false });
         const stage = $('#album-stage');
         if (recordsPage && !stage?.childElementCount) renderAlbumStage(state.selectedAlbum);
@@ -744,7 +753,13 @@
     if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closePhilosophy();
   });
 
-  audio.addEventListener('play', updatePlayer);
+  audio.addEventListener('play', () => {
+    const primaryPlay = $('.lyric-primary-play', lyricStage);
+    const restoreFocus = lyricStage.classList.contains('is-direct-entry') && document.activeElement === primaryPlay;
+    lyricStage.classList.remove('is-direct-entry');
+    updatePlayer();
+    if (restoreFocus) $('#play-pause').focus({ preventScroll: true });
+  });
   ['pause', 'loadedmetadata', 'durationchange'].forEach(name => audio.addEventListener(name, updatePlayer));
   audio.addEventListener('timeupdate', updateTime);
   audio.addEventListener('ended', () => advance(1, false, { automatic: true }));

@@ -28,6 +28,11 @@ Run against the local range server on the homepage and the records page.
    - The `#track=` URL changes to the active track.
    - Closing the full view collapses to the compact panel and clears the track URL.
 9. Load a `#track=` URL directly and close it.
+   - The full sleeve opens paused with a prominent Play button over the linked
+     song's artwork.
+   - Activating that button plays the linked song without changing the URL.
+   - The prominent control disappears after playback starts, and keyboard focus
+     moves to the persistent Pause control.
    - The track URL is replaced by the record URL and does not reopen on refresh.
 10. Close the compact panel by keyboard.
    - Focus returns to the control that started playback, or to the persistent lyrics control if that control is gone.

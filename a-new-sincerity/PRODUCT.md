@@ -99,6 +99,8 @@ closed.
 
 The lyric header copies a direct link to the current song. Opening that link
 selects the song and reveals its lyrics or sleeve without starting playback.
+When a listener opens that link, the site places a large Play control over the
+linked artwork until playback begins.
 
 Keep the persistent player compact and information-dense. Its art, metadata,
 play control, and lyrics control remain comfortably readable and tappable. Do

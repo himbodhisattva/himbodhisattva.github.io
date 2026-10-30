@@ -57,6 +57,9 @@ should read as part of the essay rather than imitate X's interface.
   recommendations.
 - Share links open a song in the records-page full lyric view without playback.
   The copy-link control sits beside Close in the lyric header.
+- When a listener opens a direct song link, the site places a large Play control
+  over the linked artwork. The control disappears after playback starts. The
+  persistent player remains compact.
 - Keyboard focus, Escape, arrow keys for tabs, visible focus indicators, reduced
   motion, safe-area spacing. Desktop seeking is always in the mini-player.
 - Link affordances come from clear language and underlines. Color and focus

@@ -132,16 +132,17 @@ assert 'platform.twitter.com/widgets.js' not in main
 for album_id in ('unfortunately', 'revisionist', 'friday-girls'):
  assert f'href="records/#album={album_id}"' in main, f'{album_id} cover should open its record'
 app_source=(ROOT/'app.js').read_text()
+experience_source=(ROOT/'experience.css').read_text()
 assert 'album page' not in app_source.lower(), 'story track lists should rely on their clickable album covers'
 assert 'open the album' not in main.lower(), 'album covers should carry record navigation without an instruction label'
 assert 'openPhilosophy({ returnFocus: null });' in app_source, 'direct philosophy links must not restore focus to an off-screen trigger'
 assert 'openPhilosophy({ returnFocus: event.currentTarget });' in app_source, 'click-opened philosophy notes should restore focus to the activating link'
 for page in (main, records):
-    assert 'data.js?v=20261029g' in page
-    assert 'style.css?v=20261029g' in page
-    assert 'experience.css?v=20261029g' in page
-    assert 'player-model.js?v=20261029g' in page
-    assert 'app.js?v=20261029g' in page
+    assert 'data.js?v=20261029h' in page
+    assert 'style.css?v=20261029h' in page
+    assert 'experience.css?v=20261029h' in page
+    assert 'player-model.js?v=20261029h' in page
+    assert 'app.js?v=20261029h' in page
     assert '<a href="https://suno.com/">Suno v6-pro</a>' in page
 assert '↗' not in (main+records+app_source), 'decorative up-right arrows remain'
 assert 'simulated reviews' not in main.lower(), 'review terminology must stay emulated'
@@ -157,6 +158,10 @@ assert 'id="lyric-stage"' in main and 'id="lyric-stage"' in records
 assert 'id="lyric-share"' in main and 'id="lyric-share"' in records, 'song links need a visible control in the lyrics header'
 assert 'Copy link to “${track.title}”' in app_source, 'song-link control needs a title-specific accessible label'
 assert 'copy song link' not in app_source.lower(), 'song-link control should not be buried in notes and credits'
+assert 'class="round-play lyric-primary-play"' in app_source, 'direct song links need a prominent play control on the artwork'
+assert 'Play “${track.title}” by ${track.artist}' in app_source, 'prominent play control needs a song-specific accessible name'
+assert '.lyric-stage:not(.is-direct-entry) .lyric-primary-play' in experience_source, 'prominent play belongs only to the initial direct-link state'
+assert '.lyric-stage[data-mode="peek"] .lyric-primary-play' in experience_source, 'compact lyrics must not gain a second play control'
 assert main.index('id="unfortunately"') < main.index('id="counterfactual"'), '(unfortunately) must precede Revisionist History'
 assert main.index('id="self-awareness"') < main.index('data-album-embed="unfortunately"'), 'the self-awareness argument belongs directly under the first album description'
 assert main.index('id="self-awareness"') < main.index('id="counterfactual"'), 'the self-awareness argument belongs with (Unfortunately), not at the end'
