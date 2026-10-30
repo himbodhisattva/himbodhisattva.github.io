@@ -27,8 +27,8 @@ assert track_by_id['my-art-machine-01']['originalUrl']=='https://suno.com/song/5
 assert all(manifest['albums'][a['id']]['art']==a['art'] for a in data['albums']), 'album artwork paths disagree with the media manifest'
 assert all(manifest['tracks'][t['id']]['art']==t['art'] and manifest['tracks'][t['id']]['audio']==t['audio'] for t in data['tracks']), 'track media paths disagree with the media manifest'
 assert all(t['group']==album_by_id[t['album']]['group'] for t in data['tracks']), 'track and album groups disagree'
-assert data['defaultTrack']=='unfortunately-01', 'The untouched player should begin with the top track'
-assert data['queue'][0]=='unfortunately-01', 'The story queue should begin with the top track'
+assert data['defaultTrack']=='my-art-machine-01', 'The untouched player should begin with the homepage release'
+assert data['queue'][0]=='my-art-machine-01', 'The story queue should begin with the homepage release'
 for obj in data['albums']+data['tracks']:
  for key in ['art','audio']:
   value=obj.get(key)
@@ -40,6 +40,10 @@ canonical_urls={
  documents[0]:'https://himbodhisattva.com/a-new-sincerity/',
  documents[1]:'https://himbodhisattva.com/a-new-sincerity/records/',
 }
+social_images={
+ documents[0]:'https://himbodhisattva.com/a-new-sincerity/assets/user/my-art-machine-1254.webp',
+ documents[1]:'https://himbodhisattva.com/a-new-sincerity/assets/user/victory-lap-1254.webp',
+}
 for document in documents:
  html=document.read_text()
  assert 'noindex,nofollow' in html, f'{document.name}: staging copy must remain noindex until explicitly published'
@@ -50,77 +54,69 @@ for document in documents:
  wordmark=re.search(r'<a class="site-wordmark".*?</a>',html,re.S).group()
  assert 'himbodhisattva' not in wordmark.lower(), f'{document.name}: project should not carry the parent-site brand'
  assert f'<meta property="og:url" content="{canonical_urls[document]}">' in html
- assert '<meta property="og:image" content="https://himbodhisattva.com/a-new-sincerity/assets/user/victory-lap-1254.webp">' in html
+ assert f'<meta property="og:image" content="{social_images[document]}">' in html
+ assert f'<meta name="twitter:image" content="{social_images[document]}">' in html
  assert '<meta name="twitter:card" content="summary_large_image">' in html
  for path in re.findall(r'(?:src|href)="(assets/[^\"]+)"',html):assert (ROOT/path).is_file(),path
 main=documents[0].read_text()
 records=documents[1].read_text()
 public_copy=(main+records).lower()
+main_markup=re.search(r'<main>(.*?)</main>',main,re.S).group(1)
+main_prose_blocks=re.findall(r'<(?:p|blockquote)(?:\s[^>]*)?>(.*?)</(?:p|blockquote)>',main_markup,re.S)
+main_prose=' '.join(re.sub(r'<[^>]+>',' ',block) for block in main_prose_blocks)
+main_prose_word_count=len(re.findall(r"\b[\w’'-]+\b",main_prose))
+assert main_prose_word_count<=205, f'homepage prose should be at least 75% shorter than the 820-word explainer, found {main_prose_word_count} words'
+release_hero=re.search(r'<section class="release-hero".*?</section>',main_markup,re.S).group()
+assert main_markup.index(release_hero) < main_markup.index('id="about-project"'), 'the homepage must open with the release'
+assert release_hero.index('class="art-button release-hero-art"') < release_hero.index('class="release-hero-copy"'), 'release artwork should lead the hero in reading order'
+assert main_markup.index('data-play="my-art-machine-01"') < main_markup.index('id="about-project"'), 'visitors should reach a playable song before project explanation'
+assert main_markup.count('class="philosophy-trigger"')==1, 'the homepage should keep exactly one quiet path to the long philosophy note'
+assert 'my art machine has the right aesthetics' in main_markup.lower()
+assert "that's how you know i'm so authentic" in main_markup.lower()
+assert "the songs aren't the art" not in main_markup.lower(), 'the old thesis should not lead the release page'
+for stale_surface in ('class="reading-line"', 'class="album-theory"', 'class="chapter-rail"', 'class="postmodernism-thread"'):
+ assert stale_surface not in main, f'old explainer surface remains: {stale_surface}'
+assert main_markup.count('class="release-card"')>=5, 'the homepage should foreground at least five release covers'
+assert len(re.findall(r'<button\b[^>]*\bdata-play=',main_markup))>=5, 'the homepage should expose at least five immediate play controls'
+for lyric_fragment in (
+ 'every crack is intentional',
+ "and i don't want a medal",
+ 'but da da does it mean anything at all?',
+ 'wait, you like me too?!',
+ 'i made the whole thing up',
+ 'but god, does this sound good tonight.',
+):
+ assert lyric_fragment in main_markup.lower(), f'missing original lyric voice: {lyric_fragment}'
 assert 'Seven records and forty-nine tracks' in records, 'records metadata must match the seven-album, forty-nine-track catalog'
 assert 'Seven records, forty-nine tracks' in records, 'records share description must match the current catalog'
-assert '<details' not in main and '<summary' not in main, 'story should avoid stacked accordions'
-assert 'Minima' not in main and 'minima' not in main, 'Minima should remain in the catalog, not the essay focus'
-assert 'Like They Do In The Movies' in main
-assert 'somehow both a victory lap and a cry for help' in main.lower()
-assert 'emulated stereogum' in main.lower()
-assert 'data-play="victory-lap-01"' in main
-assert 'id="art-machine"' in main, 'Art Machine needs its own shareable homepage section'
-assert 'href="#art-machine"' in main, 'the chapter rail should reach Art Machine'
-assert 'id="art-machine" data-chapter="05"' in main, 'Art Machine should follow Victory Lap as chapter 05'
-assert 'href="records/my-art-machine-01/"' in main, 'the Art Machine cover should open the direct song page'
-assert 'src="assets/user/my-art-machine-1254.webp"' in main, 'the Art Machine section should use its full-resolution cover'
-art_machine_play=re.search(r'<button[^>]+data-play="my-art-machine-01"[^>]*>',main).group()
+assert '<details' not in main and '<summary' not in main, 'homepage should avoid stacked accordions'
+assert 'Minima' not in main_markup and 'minima' not in main_markup, 'Minima should remain in the catalog, not the homepage focus'
+assert 'Like They Do In The Movies' in main_markup
+assert 'somehow both a victory lap and a cry for help' in main_markup.lower()
+assert 'emulated stereogum' in main_markup.lower()
+assert 'simulated reviews' not in main_markup.lower(), 'review terminology must stay emulated'
+assert 'data-play="victory-lap-01"' in main_markup
+assert 'id="art-machine"' in main_markup, 'Art Machine needs its own shareable homepage section'
+assert 'href="records/my-art-machine-01/"' in release_hero, 'the Art Machine cover should open the direct song page'
+assert 'src="assets/user/my-art-machine-1254.webp"' in release_hero, 'the Art Machine section should use its full-resolution cover'
+art_machine_play=re.search(r'<button[^>]+data-play="my-art-machine-01"[^>]*>',release_hero).group()
 assert 'data-queue="album"' in art_machine_play and 'data-album-context="my-art-machine"' in art_machine_play, 'Art Machine playback should retain its one-song album context'
-art_machine_copy=re.search(r'<div class="art-machine-copy">(.*?)<a class="philosophy-trigger',main,re.S).group(1)
-art_machine_prose=' '.join(re.findall(r'<p>(.*?)</p>',art_machine_copy,re.S))
-art_machine_word_count=len(re.findall(r"\b[\w’'-]+\b",re.sub(r'<[^>]+>',' ',art_machine_prose)))
-assert art_machine_word_count<=89, f'Art Machine body should stay at half the original length, found {art_machine_word_count} words'
-assert "the songs aren't the art" in main.lower(), 'the Art Machine section lost its central claim'
-assert 'each song records an intermediate state' in main.lower(), 'the Art Machine section must distinguish songs from the process'
-assert 'before morning' in main.lower(), 'the Art Machine section should make the speed of the feedback loop concrete'
-assert 'kept making pop-punk' in main
-assert 'data-album-embed="unfortunately"' in main
-assert 'data-album-embed="revisionist"' in main
-assert 'data-album-embed="friday-girls"' in main
-assert 'Friday Girls sit outside the self-awareness thing' in main
-assert "literally, the best songs I've ever made" in main
-assert 'Now I can animate the ghosts' in main
-assert 'My ghosts write songs.' in main
-assert 'multiple songs per day' in main
-assert 'emulated-review' in main and 'not published by' in main.lower()
-assert 'AI reconstruction from a recording where the original performance is barely audible' in main
-assert 'what is “a new sincerity”?' in main.lower()
-assert 'attempt at infinite ironic detachment' in main.lower()
-assert "knowing what you're doing is not the same as being able to do otherwise" in main.lower()
-assert main.lower().index("knowing what you're doing is not the same as being able to do otherwise") < main.index('id="unfortunately"'), 'the central discovery belongs in the opening definition'
-assert 'The Narrator would also like credit for recognizing this.' not in main
-assert "chasing praise for being self-aware" in main
-assert 'The Protagonist' not in main
-assert 'keep going' not in main
-assert 'id="self-awareness"' in main
-assert 'class="old-song-note"' not in main
-assert 'class="feedback-loop"' not in main
-assert 'the creation changed its creator' not in main.lower()
-assert 'the map modifies the territory' not in main.lower()
-tweet_sources=(
- main.count('class="friday-post"')
- +main.count('class="hero-post"')
- +main.count('class="postmodernism-thread"')
-)
-assert tweet_sources==3, f'homepage should contain exactly three tweet-derived items, found {tweet_sources}'
-assert 'class="twitter-tweet"' not in main, 'Friday Girls should use designed linked text, not an embedded X widget'
-assert 'class="friday-post"' in main
-assert '<blockquote>then my daughters complained' in main, 'the Friday Girls account must remain readable prose'
-assert 'class="friday-post-source" href="https://x.com/himbodhisattva/status/2115229386890994060"' in main, 'the Friday Girls prose should carry its own source link'
-assert 'view the post on X' not in main, 'narrated X source links should be removed'
-assert main.count('data-flourish=')==2, 'homepage should contain exactly two intentional decorative asides'
-assert '2115229386890994060' in main, 'the Friday Girls chronology tweet is missing'
-assert '2115224311409901920' in main, 'the linked postmodernism post is missing'
-assert 'Now it is our turn to solve postmodernism.' in main
-assert 'your completely valid philosophical objections are now promotional material' in main
-assert '<strong>Now it is our turn to solve postmodernism.</strong>' in main
-assert main.count('philosophy-trigger') >= 2, 'Art Machine should lead into the philosophy without an instructional link label'
-assert 'open the philosophy liner note' not in main.lower(), 'the philosophy link should not explain itself'
+for album_id in ('unfortunately', 'revisionist', 'friday-girls'):
+ assert f'data-album-embed="{album_id}"' in main_markup, f'{album_id} should retain its playable track list'
+for album_id in ('unfortunately', 'revisionist', 'friday-girls', 'victory-lap'):
+ assert f'href="records/#album={album_id}"' in main_markup, f'{album_id} cover should open its record'
+assert 'AI reconstruction from a recording where the original performance is barely audible' not in main_markup, 'album theory should stay out of the release page'
+assert 'The Narrator would also like credit for recognizing this.' not in main_markup
+assert 'The Protagonist' not in main_markup
+assert 'keep going' not in main_markup
+assert 'class="old-song-note"' not in main_markup
+assert 'class="feedback-loop"' not in main_markup
+assert 'class="intelligence-arc"' not in main_markup
+assert 'the creation changed its creator' not in main_markup.lower()
+assert 'the map modifies the territory' not in main_markup.lower()
+assert 'view the post on X' not in main_markup, 'narrated X source links should be removed'
+assert 'class="twitter-tweet"' not in main_markup, 'release page should not embed X widgets'
+assert 'platform.twitter.com/widgets.js' not in main
 assert 'id="philosophy-dialog"' in main
 for strand_id in ('philosophy-postmodernism', 'philosophy-medium', 'philosophy-legibility'):
  assert f'id="{strand_id}"' in main, f'missing philosophy strand: {strand_id}'
@@ -150,10 +146,7 @@ for cut_copy in (
  'Self-awareness never becomes self-control.',
  'the reviews did not miss.',
 ):
- assert cut_copy not in main, f'cut copy remains: {cut_copy}'
-assert 'platform.twitter.com/widgets.js' not in main
-for album_id in ('unfortunately', 'revisionist', 'friday-girls'):
- assert f'href="records/#album={album_id}"' in main, f'{album_id} cover should open its record'
+ assert cut_copy not in main_markup, f'cut copy remains: {cut_copy}'
 app_source=(ROOT/'app.js').read_text()
 experience_source=(ROOT/'experience.css').read_text()
 player_model_source=(ROOT/'player-model.js').read_text()
@@ -163,21 +156,17 @@ assert 'openPhilosophy({ returnFocus: null });' in app_source, 'direct philosoph
 assert 'openPhilosophy({ returnFocus: event.currentTarget });' in app_source, 'click-opened philosophy notes should restore focus to the activating link'
 assert "document.querySelectorAll('.philosophy-trigger')" in app_source, 'every philosophy link must be bound, not only the first one'
 for page in (main, records):
-    assert 'data.js?v=20261030a' in page
-    assert 'style.css?v=20261030a' in page
-    assert 'experience.css?v=20261030a' in page
-    assert 'player-model.js?v=20261030a' in page
-    assert 'app.js?v=20261030a' in page
+    assert 'data.js?v=20261030b' in page
+    assert 'style.css?v=20261030b' in page
+    assert 'experience.css?v=20261030b' in page
+    assert 'player-model.js?v=20261030b' in page
+    assert 'app.js?v=20261030b' in page
+    assert '20261030a' not in page, 'stale asset cache key remains'
     assert '<a href="https://suno.com/">Suno v6-pro</a>' in page
 assert '↗' not in (main+records+app_source), 'decorative up-right arrows remain'
-assert 'simulated reviews' not in main.lower(), 'review terminology must stay emulated'
-assert 'Annoyingly, he improved the songs.' in main
-assert "Who's the real one now?" in main
 assert 'id="liner-notes"' not in main and 'review-centerpiece' not in main and 'current-status' not in main
-assert main.count('class="records-door"') == 1
-assert 'get in loser, we\'re subverting postmodernism from the inside' in main
 assert 'attached' not in (main+records+app_source).lower(), 'stale attachment copy remains'
-assert 'id="records"' not in main, 'the full catalog belongs on its own page'
+assert 'id="records"' in main, 'the homepage should expose a scrollable release sequence'
 assert 'id="records"' in records and 'id="album-stage"' in records
 assert 'id="lyric-stage"' in main and 'id="lyric-stage"' in records
 assert 'id="lyric-share"' in main and 'id="lyric-share"' in records, 'song links need a visible control in the lyrics header'
@@ -197,13 +186,8 @@ assert 'class="round-play lyric-primary-play"' in app_source, 'direct song links
 assert 'Play “${track.title}” by ${track.artist}' in app_source, 'prominent play control needs a song-specific accessible name'
 assert '.lyric-stage:not(.is-direct-entry) .lyric-primary-play' in experience_source, 'prominent play belongs only to the initial direct-link state'
 assert '.lyric-stage[data-mode="peek"] .lyric-primary-play' in experience_source, 'compact lyrics must not gain a second play control'
-assert main.index('id="unfortunately"') < main.index('id="counterfactual"'), '(unfortunately) must precede Revisionist History'
-assert main.index('id="self-awareness"') < main.index('data-album-embed="unfortunately"'), 'the self-awareness argument belongs directly under the first album description'
-assert main.index('id="self-awareness"') < main.index('id="counterfactual"'), 'the self-awareness argument belongs with (Unfortunately), not at the end'
-assert main.index('id="victory-lap"') < main.index('class="postmodernism-thread"'), 'the postmodernism link should remain the closing coda'
-assert main.index('id="victory-lap"') < main.index('id="art-machine"') < main.index('class="postmodernism-thread"'), 'Art Machine should bridge Victory Lap into the philosophy coda'
-assert 'class="intelligence-arc"' not in main, 'the abstract intelligence-arrow diagram should be removed'
-assert 'class="self-awareness-listening"' in main, 'the album argument needs a visual, playable break'
+assert main_markup.index('id="art-machine"') < main_markup.index('id="about-project"') < main_markup.index('id="unfortunately"'), 'the release should lead, followed by one short artist note and the records'
+assert main_markup.index('id="unfortunately"') < main_markup.index('id="counterfactual"') < main_markup.index('id="friday-girls"') < main_markup.index('id="victory-lap"'), 'featured releases should retain their intended sequence'
 assert 'assets/favicon-parenthetical.svg' in main and 'assets/favicon-parenthetical.svg' in records, 'both pages must use the self-awareness favicon'
 for recommendation in ('our favorite', 'start with', 'places to start', 'save this one for later', 'funniest song'):
  assert recommendation not in public_copy, f'recommendation copy remains: {recommendation}'
@@ -226,4 +210,4 @@ for track_id,entry in sync.items():
 low_confidence=sorted(track_id for track_id,entry in sync.items() if entry.get('confidence',1)<.4)
 if low_confidence:print('WARN: listen-check low-confidence lyric alignment:',', '.join(low_confidence))
 assert (ROOT/'player-model.js').is_file()
-print('PASS: catalog ownership, standalone records route, Victory Lap focus, player sources, cue maps and staging visibility.')
+print('PASS: catalog ownership, release-first homepage, standalone records route, player sources, cue maps and staging visibility.')

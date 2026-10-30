@@ -1,4 +1,4 @@
-/* A New Sincerity: one player for the essay, records room and timed inner sleeve. */
+/* A New Sincerity: one player for the releases, records room and timed inner sleeve. */
 (() => {
   'use strict';
 

@@ -1,140 +1,63 @@
-# Product truth
+# Product contract
 
 ## Purpose
 
-A New Sincerity is a writing and listening project about using AI to continue a
-counterfactual music career. The homepage traces the records through emulated
-criticism, fictional performers, family listening, and public posts. Its central
-argument concerns the limits of self-awareness: understanding a defense or a
-failure does not produce the ability to act differently.
+A New Sincerity is an artist site and playable release catalog. The homepage
+leads with a cover and a playable song. An account of how the music was made
+comes later.
 
-## Public identity
+## Homepage
 
-The project identifies itself as A New Sincerity. The parent site's persona is
-not a wordmark, byline, or subject inside this section. Do not add a legal name,
-employer, family names, location, private relationship biographies, clinical
-labels, or private transcripts to the essay.
+- Keep the existing typography, palette, album artwork, and visual direction.
+- Give album art and music most of the page. Show release covers, useful play
+  controls, and compact track lists.
+- Keep visible homepage prose at 205 words or fewer. Lyric fragments provide
+  most of the page's voice.
+- Use the line “my art machine has the right aesthetics / that's how you know
+  i'm so authentic.” Do not add a thesis about what the work proves or how a
+  listener should receive it.
+- Preserve the unresolved questions about authorship, artificial performers,
+  audience feedback, and what counts as real.
+- Include one small link to the longer philosophy essay. The full essay remains
+  available only when a visitor chooses to open it.
+- Exclude reading progress, a chapter rail, explanatory diagrams, theory cards,
+  favorite badges, and listening instructions.
+- Credit production in the footer as “all songs made with Suno v6-pro,” with
+  “Suno v6-pro” linked to `https://suno.com/`.
 
-## Homepage structure
+The public identity is A New Sincerity. Do not add private family details,
+clinical labels, employer information, or material from private transcripts.
 
-- Lead with the counterfactual-musician post and define A New Sincerity as the
-  character the author wrote from the life he might have had as a musician.
-- Present *(Unfortunately) I Know Exactly What I'm Doing* first. Pair it with an
-  obviously emulated review collage and state that the quoted outlets did not
-  publish those lines. Place the “sorry for the self-awareness.” argument under
-  this album's description. Three playable song-title rows break up the prose;
-  do not use an intelligence-to-salvation diagram.
-- Present *Revisionist History* as the next A New Sincerity record. “Like They
-  Do In The Movies” compares two AI reconstructions: the first was recovered
-  from a recording where the performance is barely audible, and the later
-  version brings forward the high, harmonized guitar parts.
-- Present Friday Girls after the daughters' request for happy love songs. Set
-  the author's account of that turn as a designed prose block with a source link,
-  without embedding an X widget. Keep “wait, you like me too?!” as a small aside
-  rather than the section heading.
-- Present *Somehow Both a Victory Lap and a Cry for Help* after Friday Girls.
-  Its title comes from the emulated Stereogum review of *(Unfortunately)*. Its
-  copy closes the recursive sequence. The author invents A New Sincerity, who
-  reconstructs barely audible recordings of the author's older songs and
-  improves them. Friday Girls becomes part of real family life before A New
-  Sincerity remixes those songs too. The resulting attachment makes ironic
-  distance harder to maintain.
-- Present “My Art Machine” directly after Victory Lap and before the philosophy
-  coda. Give it a shareable `#art-machine` chapter, its full-resolution cover,
-  a direct song-page link, and one-song album playback. Its central claim is
-  that each song captures an intermediate state while the author revises the
-  process in response. Make the speed concrete. The author can make a song in
-  the evening and hear criticism that night, then apply it before morning.
-  Keep the risk unresolved. The system may support self-transformation, or it
-  may become a solipsistic substitute for contact with the world.
-- Show the complete track lists for *(Unfortunately)*, *Revisionist History*,
-  and the Friday Girls album inside their story sections.
-- Use only three tweet-derived story beats: the opening counterfactual-musician
-  premise, the Friday Girls turn, and the postmodernism post with its reply
-  exchange. The visible essay ends its postmodernism coda with “Now it is our
-  turn to solve postmodernism.” The sentence itself opens a first-person note at
-  `#philosophy`, which preserves the full post and supplied reply screenshot.
-  The note has three strands. One synthesizes four responses to postmodernism.
-  Another describes AI art as an accelerated feedback loop. Each song records
-  an intermediate state while the author revises the process in response.
-  The last explains how songwriting makes the self legible while also changing
-  it. The first strand names Wallace's response “The New Sincerity” and links
-  its sources.
-  Do not load an embedded X widget for that material or add a separate tweet
-  wall.
-- Use a single records link. Its large label is “the records.” and its smaller line
-  is “get in loser, we're subverting postmodernism from the inside.”
+## Records
 
-The homepage has no liner-card section, detached quote cards, intelligence arc,
-song rankings, favorite badges, or instructions about where to start listening.
+`/records/` is a standalone, scannable catalog. Its album shelf stays above the
+selected release. Selecting an album updates the URL, scrolls to its full track
+list, and creates an album queue. A direct album URL reveals the same detail.
+Reduced-motion settings replace smooth scrolling with an immediate jump.
 
-Keep decorative asides to two: “wait, you like me too?!” and “get in loser,
-we're subverting postmodernism from the inside.” Labels, navigation, credits,
-track counts, and disclosures remain factual or functional.
+Album artwork links to the corresponding release. Song titles and version
+labels remain exact. The catalog does not invent recommendations or rankings.
 
-## Content rules
+## Playback and song links
 
-- Omit The Entertainment.
-- Keep individual Lock Haven and System of the World songs out of the lead.
-- *(Unfortunately) I Know Exactly What I'm Doing* came first. It imagines what
-  the counterfactual author would write after pushing pop-punk toward hyperpop.
-  Its lyrics heighten both sincerity and self-absorption.
-- *Revisionist History* follows the first record and remakes older Lock Haven
-  and System of the World songs. A New Sincerity inherits recordings the author
-  left behind, including barely audible files, then reconstructs and improves
-  the songs.
-- Keep Minima in the catalog and out of the essay.
-- Friday Girls sits outside A New Sincerity's recursive self-awareness. The
-  songs draw on the author's marriage while leaving room for his daughters to
-  inhabit them. Loving the songs expands the counterfactual project beyond one
-  alternate self and gives the author other characters to interact with. Do not
-  claim that the generated performers are conscious or independently living.
-- Do not turn the project into a redemption story or state a final therapeutic,
-  developmental, or metaphysical verdict.
-- Use finished lyrics, supplied disclosures, source posts, and local recordings
-  as evidence. Do not invent dates or treat rejected drafts as canon.
-- Credit the production plainly in both page footers: “all songs made with
-  Suno v6-pro,” with “Suno v6-pro” linked to `https://suno.com/`.
+The homepage and records page share one catalog and one persistent player.
+Starting an album plays its tracks in order. Before a listener chooses a song,
+every player control uses the same default: the selected record on `/records/`,
+or the first playable homepage track.
 
-## Listening behavior
+Playing or explicitly selecting a song opens a compact lyric view. The active
+lines follow playback and scroll into view. A listener can expand the full
+lyrics, seek from a lyric line, or close the panel. Automatic queue changes do
+not reopen lyrics after the listener closes them.
 
-The homepage and `/records/` use the same catalog and player. Starting an album
-creates an album queue and advances through every track. Playback opens a
-compact lyric view that follows the recording, scrolls the active lines into
-view, and keeps full lyrics and credits available. Explicitly choosing a track
-or pressing Next opens the compact lyrics. If the listener closes lyrics,
-automatic continuation to the next song respects that choice and leaves them
-closed.
+Each song has a static `/records/<track-id>/` page with its own title, artwork,
+and share metadata. A direct song link opens the song paused with its lyrics or
+sleeve visible and a large Play control over the artwork. Player controls remain
+compact, readable, keyboard accessible, and comfortable to tap. Playback never
+starts on page load.
 
-The lyric header copies a static `/records/<track-id>/` link. Its preview uses
-the song title and artwork. Opening it selects the song and reveals its lyrics
-or sleeve without starting playback.
-When a listener opens that link, the site places a large Play control over the
-linked artwork until playback begins.
+## Delivery
 
-Keep the persistent player compact and information-dense. Its art, metadata,
-play control, and lyrics control remain comfortably readable and tappable. Do
-not create empty height around undersized controls.
-
-Before a song has been chosen, every player control resolves from the same
-starting point: the selected record on `/records/`, or the first playable track
-at the top of the homepage queue. The controls must never establish different
-first tracks.
-
-The records page keeps the album shelf above the detail view. Choosing an album
-updates the URL, renders its full track list, and scrolls the selected detail
-into view. A direct album URL performs the same reveal. Reduced-motion settings
-replace smooth scrolling with an immediate jump.
-
-All controls must work by touch and keyboard. No action may require hovering.
-The philosophy liner note opens from its sentence or a direct `#philosophy`
-URL. Visitors can dismiss it without disturbing playback. The close button and
-backdrop support pointer input. Escape and browser Back support navigation.
-
-## Scope of v1
-
-The project is a static site with a portable local preview. The story and
-records pages share one player and one catalog. Timed lyrics use cue data aligned
-to local recordings and fall back to untimed lines when cue data is unavailable.
-Tweet-derived passages remain ordinary HTML and links, without X's widget
-script. Do not deploy without author review.
+The site is static and supports a portable local preview. Local audio and timed
+lyric cues power the player; songs without cue data fall back to untimed lines.
+The site does not load X's widget script.

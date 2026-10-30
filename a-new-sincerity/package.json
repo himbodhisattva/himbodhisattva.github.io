@@ -1,8 +1,8 @@
 {
-  "name": "a-new-sincerity-listening-essay",
+  "name": "a-new-sincerity-artist-site",
   "version": "0.1.0",
   "private": true,
-  "description": "A framework-free multimedia essay and listening room for A New Sincerity.",
+  "description": "A framework-free artist site and listening room for A New Sincerity.",
   "scripts": {
     "start": "uv run --no-project python tools/serve.py",
     "test": "node --check player-model.js && node --check app.js && uv run --no-project python tools/validate.py && node tests/player-model.test.mjs && uv run --no-project python tests/sync-store.test.py && uv run --no-project python tests/range-server.test.py",

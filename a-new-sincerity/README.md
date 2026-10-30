@@ -1,8 +1,8 @@
 # A New Sincerity
 
-This static site combines a multimedia essay with a separate catalog at
-`/a-new-sincerity/records/`. Both pages use the same audio player, album queues,
-artwork, track data and timed lyrics. The working copy retains
+This static artist site pairs a release-first homepage with a separate catalog
+at `/a-new-sincerity/records/`. Both pages use the same audio player, album
+queues, artwork, track data and timed lyrics. The working copy retains
 `noindex,nofollow`; the parent site's build creates the canonical public copy.
 
 ## Local media
@@ -13,8 +13,8 @@ with metadata for its album context. Every album has a cover. The source masters
 
 ## Pages
 
-- `index.html` contains the essay, featured tracks and one shared liner-note
-  deck for optional context.
+- `index.html` contains the current release, featured records and one optional
+  philosophy note.
 - `records/index.html` contains the direct-linkable album catalog. Selecting an
   album updates one album stage instead of opening a modal.
 - `records/<track-id>/` pages are generated with song-specific link-preview
@@ -27,7 +27,7 @@ not appear as the section's brand or byline.
 ## Player and lyrics
 
 `app.js` owns one `HTMLAudioElement`. Each play action supplies an explicit
-queue context. An album row, album button or album-linked story feature keeps
+queue context. An album row, album button or album-linked homepage feature keeps
 the album order even after the listener opens lyrics. Natural completion stops
 after the final album track; manual previous and next controls may wrap.
 
@@ -79,6 +79,6 @@ but does not upload or deploy anything.
 
 Run `scripts/publish.sh` from the parent repository. Its builder copies this
 site and its audio into `docs/a-new-sincerity/`, replaces the staging robots
-tags with canonical links, and adds the story, records and song routes to the
+tags with canonical links, and adds the homepage, records and song routes to the
 sitemap. The source pages keep their staging metadata so local drafts are never
 mistaken for the public build.
