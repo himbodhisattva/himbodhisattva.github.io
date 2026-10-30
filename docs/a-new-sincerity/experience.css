@@ -22,68 +22,6 @@
 .hero-deck { max-width: 34rem; }
 .hero-actions .button { max-width: 30rem; text-align: left; }
 
-.version-feature {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, .78fr);
-  gap: clamp(24px, 5vw, 62px);
-  margin: clamp(48px, 8vw, 90px) 0;
-  padding: clamp(26px, 5vw, 54px);
-  color: var(--ans-ink);
-  background:
-    radial-gradient(circle at 12% 10%, color-mix(in oklch, var(--ans-cyan) 75%, transparent) 0 10%, transparent 42%),
-    var(--ans-pink);
-  border: 1px solid color-mix(in oklch, var(--ans-ink) 18%, transparent);
-  box-shadow: 10px 12px 0 color-mix(in oklch, var(--ans-plum) 18%, transparent);
-  isolation: isolate;
-}
-.version-copy { align-self: end; }
-.version-copy h3 {
-  margin: 0 0 18px;
-  font: 400 clamp(42px, 6vw, 74px)/.92 var(--serif);
-  letter-spacing: -.045em;
-}
-.version-copy > p:last-child { max-width: 34ch; font-size: 18px; line-height: 1.55; }
-.version-art { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
-.version-art img { width: 100%; aspect-ratio: 1; object-fit: cover; box-shadow: 0 24px 60px color-mix(in oklch, var(--ans-plum) 35%, transparent); }
-
-.version-compact {
-  grid-template-columns: minmax(0, 1fr) 190px;
-  gap: 30px;
-  margin-top: 52px;
-  padding: 30px;
-  box-shadow: 7px 8px 0 color-mix(in oklch, var(--ans-plum) 18%, transparent);
-}
-.version-compact .version-copy h3 { font-size: clamp(38px, 5vw, 58px); }
-.version-compact .version-copy > p:last-child { font-size: 16px; }
-.version-compact .version-switch { grid-column: 1 / -1; margin-top: 0; }
-.version-compact .version-switch button { min-height: 78px; }
-
-.version-switch {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  margin-top: 34px;
-  background: color-mix(in oklch, var(--ans-ink) 28%, transparent);
-  border: 1px solid color-mix(in oklch, var(--ans-ink) 28%, transparent);
-}
-.version-switch button {
-  position: relative;
-  min-height: 100px;
-  padding: 17px 52px 17px 17px;
-  border: 0;
-  border-radius: 0;
-  text-align: left;
-  color: var(--ans-ink);
-  background: color-mix(in oklch, var(--ans-milk) 74%, var(--ans-pink));
-  transition: background .25s var(--ans-ease), transform .25s var(--ans-ease);
-}
-.version-switch button:hover,
-.version-switch button:focus-visible { background: var(--ans-milk); transform: translateY(-3px); }
-.version-switch .version-label { display: block; margin-bottom: 8px; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-.version-switch button > span:nth-child(2) { font: 400 19px/1.15 var(--serif); }
-.version-switch .icon { position: absolute; right: 16px; bottom: 16px; width: 24px; }
-
 .album-embed {
   margin: clamp(38px, 6vw, 66px) 0 clamp(58px, 8vw, 92px);
   border-block: 1px solid color-mix(in oklch, var(--ans-ink) 18%, transparent);
@@ -474,9 +412,6 @@ body.lyrics-open { overflow: hidden; }
 dialog { z-index: 120; }
 
 @media (max-width: 900px) {
-  .version-feature { grid-template-columns: 1fr; }
-  .version-art { grid-column: 1; grid-row: auto; width: min(100%, 520px); }
-  .version-compact .version-switch { grid-column: 1; }
   .postmodernism-exchange { width: min(100%, 310px); }
   .album-stage { grid-template-columns: minmax(190px, .52fr) minmax(0, 1fr); gap: 42px; }
   .lyric-stage[data-mode="full"] .lyric-sleeve { grid-template-columns: minmax(170px, .48fr) minmax(0, 1fr); gap: 36px; }
@@ -495,8 +430,6 @@ dialog { z-index: 120; }
 
 @media (max-width: 680px) {
   .hero-actions .button { max-width: 100%; }
-  .version-feature { margin-inline: -2px; padding: 24px; box-shadow: 6px 7px 0 color-mix(in oklch, var(--ans-plum) 18%, transparent); }
-  .version-switch { grid-template-columns: 1fr; }
   .story-album-head { align-items: flex-start; min-height: 50px; }
   .story-track-list .track-row { min-height: 62px; }
   .story-track-list .track-row > .text-button { display: none; }
@@ -906,7 +839,6 @@ dialog { z-index: 120; }
   .friday-story > p { font-size: 15px; line-height: 1.58; }
   .review-bridge { padding-inline: 22px; }
   .release-note-victory { gap: 28px; padding-left: 20px; }
-  .version-feature { margin-top: 58px; }
   .release-friday .release-card,
   .release-victory .release-card { grid-row: 1; }
   .philosophy-door { padding-inline: 22px; }
