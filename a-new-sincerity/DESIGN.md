@@ -13,15 +13,16 @@ the strongest color. Avoid generic beige surfaces and dashboard styling.
 
 ## Homepage composition
 
-Open with a large release cover beside the title and lyric. Put a Play control
-next to the song. On phones, the cover appears before the copy. Follow with a
-short artist note and a sequence of releases. Covers and track lists should
-occupy more space than prose.
+Open on the first release cover and its Play control. Keep the
+counterfactual-musician post directly beneath that first release, then let the
+remaining covers carry the chronology. On phones, each cover appears before
+its copy. Covers and track lists should occupy more space than prose.
 
 Give each step in the story one compact transition after its cover and Play
 control: a shallow liner note, a linked personal post, or a single review
 scrap. Vary these treatments so they feel like artifacts from the records,
-not a stack of explanatory cards. Keep each mobile transition under one screen.
+not a stack of explanatory cards. The final transition leads from *Cry for
+Help* into the full-bleed *My Art Machine* release.
 
 Use original lyric fragments as display copy. Keep captions and release index
 labels short and factual. Do not add a reading-progress line, chapter

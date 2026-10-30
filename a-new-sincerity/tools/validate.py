@@ -37,8 +37,9 @@ assert track_by_id['my-art-machine-03']['art']=='assets/user/my-art-machine-03-1
 assert all(manifest['albums'][a['id']]['art']==a['art'] for a in data['albums']), 'album artwork paths disagree with the media manifest'
 assert all(manifest['tracks'][t['id']]['art']==t['art'] and manifest['tracks'][t['id']]['audio']==t['audio'] for t in data['tracks']), 'track media paths disagree with the media manifest'
 assert all(t['group']==album_by_id[t['album']]['group'] for t in data['tracks']), 'track and album groups disagree'
-assert data['defaultTrack']=='my-art-machine-01', 'The untouched player should begin with the homepage release'
-assert data['queue'][:3]==['my-art-machine-01','my-art-machine-02','my-art-machine-03'], 'The story queue should begin with the complete Art Machine album'
+assert data['defaultTrack']=='unfortunately-01', 'The untouched player should begin with the first homepage release'
+assert data['queue'][:4]==['unfortunately-01','unfortunately-08','unfortunately-02','unfortunately-10'], 'The story queue should begin with the first homepage album'
+assert data['queue'].index('victory-lap-01') < data['queue'].index('my-art-machine-01'), 'the story queue should place Art Machine after Cry for Help'
 for obj in data['albums']+data['tracks']:
  for key in ['art','audio']:
   value=obj.get(key)
@@ -51,7 +52,7 @@ canonical_urls={
  documents[1]:'https://himbodhisattva.com/a-new-sincerity/records/',
 }
 social_images={
- documents[0]:'https://himbodhisattva.com/a-new-sincerity/assets/user/my-art-machine-1254.webp',
+ documents[0]:'https://himbodhisattva.com/a-new-sincerity/assets/user/victory-lap-1254.webp',
  documents[1]:'https://himbodhisattva.com/a-new-sincerity/assets/user/victory-lap-1254.webp',
 }
 for document in documents:
@@ -70,16 +71,33 @@ for document in documents:
  for path in re.findall(r'(?:src|href)="(assets/[^\"]+)"',html):assert (ROOT/path).is_file(),path
 main=documents[0].read_text()
 records=documents[1].read_text()
+assert '<title>a new sincerity</title>' in main, 'homepage title should describe the whole project rather than the latest release'
+assert '<meta property="og:title" content="a new sincerity">' in main, 'homepage share title should describe the whole project'
 public_copy=(main+records).lower()
 main_markup=re.search(r'<main>(.*?)</main>',main,re.S).group(1)
+assert re.findall(r'data-chapter="([^"]+)"',main_markup)==['01','02','03','04','05'], 'release chapters should match the five-step homepage sequence'
+assert '<s aria-hidden="true">me</s><span class="sr-only">The Narrator</span><span aria-hidden="true"> The Narrator</span>' in main_markup, 'the struck-word joke needs an unambiguous accessible reading'
 main_prose_blocks=re.findall(r'<(?:p|blockquote)(?:\s[^>]*)?>(.*?)</(?:p|blockquote)>',main_markup,re.S)
 main_prose=' '.join(re.sub(r'<[^>]+>',' ',block) for block in main_prose_blocks)
 main_prose_word_count=len(re.findall(r"\b[\w’'-]+\b",main_prose))
-assert 300<=main_prose_word_count<=450, f'homepage prose should add narrative without returning to the 820-word explainer, found {main_prose_word_count} words'
+assert 450<=main_prose_word_count<=650, f'homepage prose should carry the release story without returning to the 820-word explainer, found {main_prose_word_count} words'
 release_hero=re.search(r'<section class="release-hero".*?</section>',main_markup,re.S).group()
-assert main_markup.index(release_hero) < main_markup.index('id="about-project"'), 'the homepage must open with the release'
 assert release_hero.index('class="art-button release-hero-art"') < release_hero.index('class="release-hero-copy"'), 'release artwork should lead the hero in reading order'
-assert main_markup.index('data-play="my-art-machine-01"') < main_markup.index('id="about-project"'), 'visitors should reach a playable song before project explanation'
+homepage_sequence=(
+ 'id="unfortunately"',
+ 'id="about-project"',
+ 'id="counterfactual"',
+ 'id="friday-girls"',
+ 'class="review-bridge"',
+ 'id="victory-lap"',
+ 'id="art-machine"',
+ 'class="philosophy-door"',
+ 'class="records-door"',
+)
+sequence_positions=[main_markup.index(marker) for marker in homepage_sequence]
+assert sequence_positions==sorted(sequence_positions), 'homepage should tell the release story in chronological order, ending with Art Machine after Cry for Help'
+assert main_markup.index('data-play="unfortunately-01"') < main_markup.index('id="about-project"') < main_markup.index('class="release-note release-note-dark"'), 'visitors should reach the first album before its explanation'
+assert main_markup.index('id="victory-lap"') < main_markup.index(release_hero) < main_markup.index('class="philosophy-door"'), 'Art Machine should follow Cry for Help and lead into the philosophy note'
 assert main_markup.count('class="philosophy-trigger"')==1, 'the homepage should keep exactly one quiet path to the long philosophy note'
 assert 'my art machine has the right aesthetics' in main_markup.lower()
 assert "that's how you know i'm so authentic" in main_markup.lower()
@@ -113,7 +131,7 @@ art_machine_play=re.search(r'<button[^>]+data-play="my-art-machine-01"[^>]*>',re
 assert 'data-queue="album"' in art_machine_play and 'data-album-context="my-art-machine"' in art_machine_play, 'Art Machine playback should retain its album context'
 for album_id in ('unfortunately', 'revisionist', 'friday-girls'):
  assert f'data-album-embed="{album_id}"' in main_markup, f'{album_id} should retain its playable track list'
-assert main_markup.index('data-album-context="unfortunately"') < main_markup.index('class="release-note release-note-dark"') < main_markup.index('data-album-embed="unfortunately"'), 'Unfortunately context should follow its Play control and precede its track list'
+assert main_markup.index('data-album-context="unfortunately"') < main_markup.index('class="release-note release-note-dark"') < main_markup.index('class="self-awareness-turn"') < main_markup.index('data-album-embed="unfortunately"'), 'Unfortunately context should follow its Play control and use two distinct narrative beats before its track list'
 assert main_markup.index('data-album-context="revisionist"') < main_markup.index('class="release-note release-note-history"') < main_markup.index('data-album-embed="revisionist"'), 'Revisionist context should follow its Play control and precede its track list'
 assert main_markup.index('data-album-context="friday-girls"') < main_markup.index('class="friday-story"') < main_markup.index('data-album-embed="friday-girls"'), 'Friday Girls context should follow its Play control and precede its track list'
 assert main_markup.index('class="review-bridge"') < main_markup.index('id="victory-lap"'), 'the emulated review should lead into the song it named'
@@ -123,9 +141,16 @@ assert 'records/#album=' not in main_markup, 'homepage album links must be crawl
 for narrative_turn in (
  'what would counterfactual me be writing if i\'d kept making pop-punk?',
  'the narrator is me when i\'m chasing praise for being self-aware',
+ 'an attempt at infinite ironic detachment',
+ 'self-awareness points straight at whatever it was meant to hide',
  'then i gave counterfactual me the songs i had already written.',
  'friday girls sit outside the self-awareness thing.',
  'the fake band is part of my daughters\' actual childhood now.',
+ 'now i can animate the ghosts.',
+ 'my ghosts write songs.',
+ "i can run this self-transformative process at multiple songs per day. it's fucked up.",
+ 'the fiction is part of our real family life.',
+ 'then the next track turned the process itself into material.',
  "who's the real one now?",
 ):
  assert narrative_turn in main_markup.lower(), f'missing release narrative: {narrative_turn}'
@@ -179,13 +204,13 @@ assert 'openPhilosophy({ returnFocus: null });' in app_source, 'direct philosoph
 assert 'openPhilosophy({ returnFocus: event.currentTarget });' in app_source, 'click-opened philosophy notes should restore focus to the activating link'
 assert "document.querySelectorAll('.philosophy-trigger')" in app_source, 'every philosophy link must be bound, not only the first one'
 for page in (main, records):
-    assert 'data.js?v=20261030g' in page
-    assert 'style.css?v=20261030g' in page
-    assert 'experience.css?v=20261030g' in page
-    assert 'player-model.js?v=20261030g' in page
-    assert 'app.js?v=20261030g' in page
-    assert 'lyrics-sync.js?v=20261030g' in page
-    assert not any(version in page for version in ('20261030a', '20261030b', '20261030c', '20261030d', '20261030e', '20261030f')), 'stale asset cache key remains'
+    assert 'data.js?v=20261030h' in page
+    assert 'style.css?v=20261030h' in page
+    assert 'experience.css?v=20261030h' in page
+    assert 'player-model.js?v=20261030h' in page
+    assert 'app.js?v=20261030h' in page
+    assert 'lyrics-sync.js?v=20261030h' in page
+    assert not any(version in page for version in ('20261030a', '20261030b', '20261030c', '20261030d', '20261030e', '20261030f', '20261030g')), 'stale asset cache key remains'
     assert '<a href="https://suno.com/">Suno v6-pro</a>' in page
 assert '↗' not in (main+records+app_source), 'decorative up-right arrows remain'
 assert 'id="liner-notes"' not in main and 'review-centerpiece' not in main and 'current-status' not in main
@@ -212,8 +237,8 @@ assert 'class="round-play lyric-primary-play"' in app_source, 'direct song links
 assert 'Play “${track.title}” by ${track.artist}' in app_source, 'prominent play control needs a song-specific accessible name'
 assert '.lyric-stage:not(.is-direct-entry) .lyric-primary-play' in experience_source, 'prominent play belongs only to the initial direct-link state'
 assert '.lyric-stage[data-mode="peek"] .lyric-primary-play' in experience_source, 'compact lyrics must not gain a second play control'
-assert main_markup.index('id="art-machine"') < main_markup.index('id="about-project"') < main_markup.index('id="unfortunately"'), 'the release should lead, followed by one short artist note and the records'
-assert main_markup.index('id="unfortunately"') < main_markup.index('id="counterfactual"') < main_markup.index('id="friday-girls"') < main_markup.index('id="victory-lap"'), 'featured releases should retain their intended sequence'
+assert main_markup.index('id="unfortunately"') < main_markup.index('id="about-project"') < main_markup.index('id="counterfactual"'), 'the opening note should follow the first record and precede Revisionist History'
+assert main_markup.index('id="unfortunately"') < main_markup.index('id="counterfactual"') < main_markup.index('id="friday-girls"') < main_markup.index('id="victory-lap"') < main_markup.index('id="art-machine"'), 'featured releases should retain their chronological sequence'
 assert 'assets/favicon-parenthetical.svg' in main and 'assets/favicon-parenthetical.svg' in records, 'both pages must use the self-awareness favicon'
 for recommendation in ('our favorite', 'start with', 'places to start', 'save this one for later', 'funniest song'):
  assert recommendation not in public_copy, f'recommendation copy remains: {recommendation}'
@@ -236,4 +261,4 @@ for track_id,entry in sync.items():
 low_confidence=sorted(track_id for track_id,entry in sync.items() if entry.get('confidence',1)<.4)
 if low_confidence:print('WARN: listen-check low-confidence lyric alignment:',', '.join(low_confidence))
 assert (ROOT/'player-model.js').is_file()
-print('PASS: catalog ownership, release-first homepage, standalone records route, player sources, cue maps and staging visibility.')
+print('PASS: catalog ownership, chronological release homepage, standalone records route, player sources, cue maps and staging visibility.')

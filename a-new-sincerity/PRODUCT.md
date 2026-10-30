@@ -3,17 +3,21 @@
 ## Purpose
 
 A New Sincerity is an artist site and playable release catalog. The homepage
-leads with a cover and a playable song. An account of how the music was made
-comes later.
+opens on the first release and presents the records chronologically. The
+writing stays attached to those releases instead of becoming a separate
+explanation.
 
 ## Homepage
 
 - Keep the existing typography, palette, album artwork, and visual direction.
 - Give album art and music most of the page. Show release covers, useful play
   controls, and compact track lists.
-- Keep visible homepage prose between roughly 300 and 450 words. Each bit of
+- Keep visible homepage prose between roughly 450 and 650 words. Each bit of
   context follows its release cover and Play control, so the story accumulates
   without becoming a freestanding explainer.
+- Keep the release sequence chronological: *(Unfortunately)*, *Revisionist
+  History*, Friday Girls, *Somehow Both a Victory Lap and a Cry for Help*, then
+  *My Art Machine*.
 - Use the line “my art machine has the right aesthetics / that's how you know
   i'm so authentic.” Do not add a thesis about what the work proves or how a
   listener should receive it.

@@ -1052,20 +1052,20 @@ window.ANS_DATA = {
       "note": ""
     }
   ],
-  "defaultTrack": "my-art-machine-01",
+  "defaultTrack": "unfortunately-01",
   "queue": [
-    "my-art-machine-01",
-    "my-art-machine-02",
-    "my-art-machine-03",
     "unfortunately-01",
-    "victory-lap-01",
     "unfortunately-08",
     "unfortunately-02",
     "unfortunately-10",
     "unfortunately-07",
     "revisionist-02",
+    "system-03",
     "friday-girls-02",
     "friday-girls-05",
-    "system-03"
+    "victory-lap-01",
+    "my-art-machine-01",
+    "my-art-machine-02",
+    "my-art-machine-03"
   ]
 };
