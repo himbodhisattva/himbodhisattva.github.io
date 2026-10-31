@@ -40,6 +40,7 @@ def _new_sincerity_fixture(tmp_path):
     for filename in (
         "style.css",
         "experience.css",
+        "unslop-preview.css",
         "app.js",
         "player-model.js",
         "data.js",
@@ -266,6 +267,7 @@ def test_publish_new_sincerity_copies_a_playable_canonical_site(tmp_path):
     )
     assert (published / "assets/album-cover.webp").read_bytes() == b"album-cover"
     assert (published / "audio/revisionist-02.mp3").read_bytes() == b"movies"
+    assert (published / "unslop-preview.css").read_bytes() == b"unslop-preview.css"
     homepage = (output_dir / "index.html").read_text()
     assert '<h2>projects</h2>' in homepage
     assert '<a href="a-new-sincerity/">a new sincerity</a>' in homepage
