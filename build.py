@@ -19,7 +19,7 @@ NEW_SINCERITY_FILES = (
     "index.html",
     "style.css",
     "experience.css",
-    "unslop-preview.css",
+    "hybrid-preview.css",
     "app.js",
     "player-model.js",
     "data.js",

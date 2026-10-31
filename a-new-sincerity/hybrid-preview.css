@@ -1,0 +1,190 @@
+/*
+ * 75% original A New Sincerity, 25% Unslop restraint.
+ * Keeps the original identity while tightening repeated geometry and controls.
+ * The counterfactual began with Unslop by Damir Sokolovsky, CC BY 4.0.
+ * https://github.com/heydamir/unslop
+ */
+
+:root { --player-height: 72px; }
+
+:where(a, button, summary, input, select):focus-visible,
+.lyric-lines:focus-visible {
+  outline: 2px solid var(--ans-rose-ink);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Keep the original scale and color, but make the frame less ceremonial. */
+.site-header {
+  min-height: 68px;
+  padding-block: 11px;
+  padding-inline: max(24px, calc((100vw - 1180px) / 2));
+}
+.site-header nav { gap: 24px; }
+.button:hover { transform: none; }
+.button:active { transform: scale(.98); }
+
+.records-heading { padding-top: clamp(52px, 7vw, 88px); }
+.release-chapter { padding: clamp(68px, 8vw, 108px) var(--gutter); }
+.release-focus { gap: clamp(44px, 6vw, 76px); }
+.release-card figcaption {
+  margin-top: 17px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .03em;
+  text-transform: none;
+}
+.release-copy .section-kicker { margin-bottom: 24px; }
+.release-copy h2 { margin-bottom: 28px; }
+.release-lyric { margin-bottom: 28px; }
+
+/* The first release is the entrance, so its listening action stays visible. */
+#unfortunately { padding-top: 36px; }
+#unfortunately .release-focus { align-items: start; }
+#unfortunately .release-copy h2 {
+  font-size: clamp(50px, 5.8vw, 76px);
+  line-height: .9;
+}
+#unfortunately .release-lyric { font-size: clamp(20px, 1.95vw, 24px); }
+
+/* Let a few artifacts stay loud. Repeated sleeves sit more quietly. */
+.release-reverse .release-card .art-button {
+  transform: none;
+  box-shadow: 0 12px 32px color-mix(in oklch, var(--ans-plum) 13%, transparent);
+}
+.release-friday .release-card .art-button {
+  transform: rotate(-.65deg);
+  box-shadow: 8px 10px 0 color-mix(in oklch, var(--ans-rose) 60%, transparent);
+}
+.release-victory .release-card .art-button {
+  transform: none;
+  box-shadow: 0 12px 32px color-mix(in oklch, var(--ans-plum) 13%, transparent);
+}
+.release-hero-art {
+  transform: rotate(.45deg);
+  box-shadow: 9px 11px 0 var(--ans-pink);
+}
+.release-note-dark,
+.release-note-history,
+.self-awareness-turn,
+.release-note-victory,
+.friday-story > blockquote { transform: none; }
+.release-note-dark,
+.friday-story > blockquote { box-shadow: none; }
+.release-note-victory { border-left: 0; }
+.single-review { transform: none; }
+
+.album-embed { margin-block: clamp(48px, 6vw, 72px); }
+.story-album-head { min-height: 50px; }
+.story-track-list .track-row { min-height: 58px; }
+
+/* Keep the original dark record room; calm its repeated sleeve interactions. */
+.records-hero {
+  padding-top: clamp(96px, 12vw, 150px);
+  padding-bottom: clamp(46px, 6vw, 72px);
+}
+.album-shelf { gap: clamp(20px, 2.6vw, 32px); }
+.album-shelf .album-open:hover .album-cover,
+.album-shelf .album-open:focus-visible .album-cover,
+.album-shelf .album-open.is-selected .album-cover {
+  transform: none;
+}
+.album-shelf .album-meta {
+  font-size: 11px;
+  letter-spacing: .03em;
+  text-transform: none;
+}
+.album-stage {
+  gap: clamp(48px, 7vw, 96px);
+  padding-block: clamp(68px, 8vw, 104px);
+}
+.album-stage-art .album-cover {
+  box-shadow: 0 14px 38px color-mix(in oklch, var(--ans-plum) 16%, transparent);
+}
+.album-stage-art > p { margin-top: 22px; }
+.album-stage .track-list { margin-top: 32px; }
+
+/* Shorter destination beats, same original palette and personality. */
+.release-hero {
+  min-height: auto;
+  padding-block: clamp(68px, 8vw, 104px);
+}
+.records-door {
+  min-height: clamp(300px, 36vw, 420px);
+  padding-block: clamp(64px, 8vw, 96px);
+}
+
+/* Compact player geometry, original periwinkle chrome and circular controls. */
+.player-inner {
+  max-width: 1180px;
+  min-height: var(--player-height);
+  gap: 12px;
+  padding-block: 8px;
+}
+.player-art { width: 52px; height: 52px; }
+.player-track { max-width: 320px; }
+.player-track p:first-child { font-size: 14px; }
+.player-track p:last-child { font-size: 12px; }
+.icon-button { width: 40px; height: 40px; }
+.play-button { width: 46px; height: 46px; }
+.lyric-line.is-active::before { animation: none; }
+
+/* Keep the first listening action inside a laptop-height first fold. */
+@media (min-width: 801px) and (max-height: 820px) {
+  .records-heading { padding-top: 28px; }
+  .records-heading span { font-size: clamp(58px, 7vw, 86px); }
+  #unfortunately { padding-top: 24px; padding-bottom: 64px; }
+  #unfortunately .release-focus { align-items: start; }
+  #unfortunately .release-card { max-width: 430px; }
+  #unfortunately .release-copy h2 {
+    margin-bottom: 18px;
+    font-size: clamp(45px, 5.2vw, 66px);
+  }
+  #unfortunately .release-copy .section-kicker { margin-bottom: 18px; }
+  #unfortunately .release-lyric {
+    margin-bottom: 18px;
+    font-size: clamp(19px, 1.8vw, 24px);
+  }
+}
+
+@media (max-width: 800px) {
+  :root { --gutter: 24px; --player-height: 70px; }
+  .site-header { padding-inline: 24px; }
+  .records-heading { padding: 52px 24px 0; }
+  .release-chapter { padding: 64px 24px 80px; }
+  .release-focus { gap: 42px; }
+  .release-reverse .release-card .art-button,
+  .release-victory .release-card .art-button { transform: none; }
+  .release-friday .release-card .art-button { transform: none; }
+  .release-hero-art { transform: none; }
+  .album-stage { gap: 48px; }
+  .player-inner { padding-inline: 16px; }
+}
+
+@media (max-width: 600px) {
+  :root { --gutter: 20px; --player-height: 68px; }
+  .site-header { min-height: 60px; padding: 8px 20px; }
+  .site-header nav { gap: 16px; }
+  .records-heading { padding: 42px 20px 0; }
+  .records-heading span { font-size: 52px; }
+  .release-chapter { padding: 52px 20px 72px; }
+  .release-focus { gap: 36px; }
+  .release-card figcaption { margin-top: 14px; font-size: 10px; }
+  .records-hero { padding: 72px 20px 38px; }
+  .record-browser { padding-inline: 20px; }
+  .album-shelf { grid-auto-columns: 76vw; gap: 20px; }
+  .album-stage { padding: 60px 20px; }
+  .records-door { min-height: 260px; padding: 52px 20px; }
+  .player-inner { gap: 8px; padding-inline: 10px; }
+  .player-art { width: 48px; height: 48px; }
+  .player-controls .icon-button { width: 34px; }
+  .player-controls .play-button { width: 44px; height: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

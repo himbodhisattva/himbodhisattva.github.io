@@ -47,7 +47,7 @@ for obj in data['albums']+data['tracks']:
   assert not value.startswith(('blob:','javascript:','data:')), f'non-publishable {key}: {value}'
   if not value.startswith(('https://','/')):assert (ROOT/value).is_file(), f'missing asset {value}'
 documents=[ROOT/'index.html',ROOT/'records'/'index.html']
-assert (ROOT/'unslop-preview.css').is_file(), 'the wholesale Unslop preview stylesheet is missing'
+assert (ROOT/'hybrid-preview.css').is_file(), 'the 75/25 hybrid preview stylesheet is missing'
 canonical_urls={
  documents[0]:'https://himbodhisattva.com/a-new-sincerity/',
  documents[1]:'https://himbodhisattva.com/a-new-sincerity/records/',
@@ -56,11 +56,12 @@ social_images={
  documents[0]:'https://himbodhisattva.com/a-new-sincerity/assets/user/victory-lap-1254.webp',
  documents[1]:'https://himbodhisattva.com/a-new-sincerity/assets/user/victory-lap-1254.webp',
 }
+theme_colors={documents[0]:'#edf0ff',documents[1]:'#211b27'}
 for document in documents:
  html=document.read_text()
- assert '<link rel="stylesheet" href="unslop-preview.css?v=20261031a">' in html, f'{document.name}: wholesale Unslop preview is not active'
- assert '<meta name="theme-color" content="#f7f4ee">' in html, f'{document.name}: browser chrome should match the warm neutral preview'
- assert '<span aria-hidden="true">( )</span>' in html, f'{document.name}: player empty state should use the project signature'
+ assert '<link rel="stylesheet" href="hybrid-preview.css?v=20261031a">' in html, f'{document.name}: 75/25 hybrid preview is not active'
+ assert f'<meta name="theme-color" content="{theme_colors[document]}">' in html, f'{document.name}: browser chrome should retain the original palette'
+ assert '<span aria-hidden="true">♫</span>' in html, f'{document.name}: player empty state should retain the original music mark'
  assert 'noindex,nofollow' in html, f'{document.name}: staging copy must remain noindex until explicitly published'
  assert 'autoplay' not in re.search(r'<audio.*?>',html).group(), f'{document.name}: audio must not autoplay on arrival'
  external_runtime_urls=re.findall(r'<(?:script|link)[^>]+(?:src|href)="(https?://[^"]+)"',html)
