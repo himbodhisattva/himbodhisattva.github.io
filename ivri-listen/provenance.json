@@ -1,0 +1,54 @@
+{
+  "model": {
+    "baseLicense": "Apache-2.0",
+    "baseModel": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+    "g2pModel": "notmax123/RenikudPlus",
+    "g2pModelLicense": "Apache-2.0",
+    "g2pRevision": "679c56ca449d41873fb8ff7711ddf7563d28198f",
+    "g2pRuntime": "RenikudPlus 0.6.0",
+    "g2pRuntimeLicense": "MIT",
+    "g2pRuntimeSourceRevision": "93a82fad122207f9dc38105ceb5068e98d00f092",
+    "synthesisRuntime": "qwentts.cpp",
+    "synthesisRuntimeLicense": "MIT",
+    "synthesisRuntimeSourceRevision": "f1a6924789883bd92eeb59176793a94af55730b3",
+    "teacherCard": "https://huggingface.co/notmax123/QwenTTS-he-1.7B-GGUF",
+    "teacherLicense": "Apache-2.0",
+    "teacherModel": "notmax123/QwenTTS-he-1.7B-GGUF",
+    "teacherRevision": "2b01f8797400c04cb4bc9b62a94a0e6f8866b1b9"
+  },
+  "files": {
+    "codec": {
+      "bytes": 254974752,
+      "name": "qwen-tokenizer-12hz-Q4_K_M.gguf",
+      "sha256": "6e0346a58b6f197963a0fb639434a7f96c9bb9600e39fd476e7b30a6718f928b"
+    },
+    "g2p": {
+      "bytes": 311605741,
+      "name": "model_int8.onnx",
+      "sha256": "0337468fad56eadf5ecc7becfdf21648a4d668de41de5bc27e860141b5afcadd"
+    },
+    "g2pRuntime": {
+      "name": "renikud_onnx/__init__.py",
+      "sha256": "77bdf9224ad31c73d45623e97c6651eff6d2718854dd2348da383a268bb0e400"
+    },
+    "g2pSource": {
+      "name": "RenikudPlus",
+      "revision": "93a82fad122207f9dc38105ceb5068e98d00f092"
+    },
+    "runtime": {
+      "name": "qwen-tts",
+      "sha256": "f883f3d0bfcf5e324c0e56ac2c5fffcd75de3d4e529eda180040db2dead3807e"
+    },
+    "runtimeSource": {
+      "name": "qwentts.cpp",
+      "revision": "f1a6924789883bd92eeb59176793a94af55730b3"
+    },
+    "talker": {
+      "bytes": 1219245248,
+      "name": "qwen-talker-1.7b-base-Q4_K_M.gguf",
+      "sha256": "a8aeb8f7aba9263d18756bc5deba7dbf701c52b3955f62d794808ecae19e5ef0"
+    }
+  },
+  "reviewVersion": "ivri-stress-2026-11-17-v1",
+  "audioModifiedForReview": false
+}

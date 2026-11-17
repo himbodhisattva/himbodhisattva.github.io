@@ -99,6 +99,23 @@ def _new_sincerity_fixture(tmp_path):
     return source_dir, staging_meta
 
 
+def test_build_copies_unlisted_ivri_listening_page_on_rebuild(tmp_path):
+    import build
+
+    source = tmp_path / "ivri-listen"
+    (source / "audio").mkdir(parents=True)
+    (source / "index.html").write_text('<meta name="robots" content="noindex,nofollow">')
+    (source / "audio" / "sample.mp3").write_bytes(b"sample")
+    output = tmp_path / "docs"
+
+    for _ in range(2):
+        build.build_site(output_dir=output, ivri_listen_source=source)
+        assert (output / "ivri-listen" / "index.html").read_text() == (source / "index.html").read_text()
+        assert (output / "ivri-listen" / "audio" / "sample.mp3").read_bytes() == b"sample"
+        assert "ivri-listen" not in (output / "index.html").read_text()
+        assert "ivri-listen" not in (output / "sitemap.xml").read_text()
+
+
 def test_build_outputs_llm_friendly_static_site(tmp_path):
     import build
 

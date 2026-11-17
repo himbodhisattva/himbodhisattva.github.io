@@ -34,6 +34,10 @@ git add \
   style.css \
   tests
 
+if [[ -d ivri-listen ]]; then
+  git add ivri-listen
+fi
+
 if git diff --cached --quiet; then
   echo "No staged changes to commit."
 else

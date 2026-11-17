@@ -1,0 +1,107 @@
+{
+  "version": "ivri-stress-2026-11-17-v1",
+  "pairs": [
+    {
+      "id": "oshb:2Sam.23.4",
+      "reference": "2 Samuel 23:4",
+      "hebrew": "וּכְאוֹר בֹּקֶר יִזְרַח שָׁמֶשׁ בֹּקֶר לֹא עָבוֹת מִנֹּגַהּ מִמָּטָר דֶּשֶׁא מֵאָרֶץ",
+      "targetIndex": 1,
+      "set": "1",
+      "clips": {
+        "original": {
+          "src": "audio/08ec434ad00941f0.wav",
+          "sha256": "08ec434ad00941f0613ab98827b43e4c12c0d11740166baec799b0fedfe7d634"
+        },
+        "changed": {
+          "src": "audio/db32182fc3665a76.wav",
+          "sha256": "db32182fc3665a763a5e7ec58fdb1761cd6cb04d952c93c527d590d20a00a279"
+        }
+      }
+    },
+    {
+      "id": "oshb:Hos.7.6",
+      "reference": "Hosea 7:6",
+      "hebrew": "כִּי קֵרְבוּ כַתַּנּוּר לִבָּם בְּאָרְבָּם כָּל הַלַּיְלָה יָשֵׁן אֹפֵהֶם בֹּקֶר הוּא בֹעֵר כְּאֵשׁ לֶהָבָה",
+      "targetIndex": 9,
+      "set": "2",
+      "clips": {
+        "original": {
+          "src": "audio/19468867362353c5.wav",
+          "sha256": "19468867362353c5e78610174d58fc9086e3de570feb4d4a1681be3b6b495aa0"
+        },
+        "changed": {
+          "src": "audio/7c17cbd86464eff5.wav",
+          "sha256": "7c17cbd86464eff59ad729835b6ee11350d6761aafa287598191e826c385b62f"
+        }
+      }
+    },
+    {
+      "id": "oshb:Isa.6.13",
+      "reference": "Isaiah 6:13",
+      "hebrew": "וְעוֹד בָּהּ עֲשִׂרִיָּה וְשָׁבָה וְהָיְתָה לְבָעֵר כָּאֵלָה וְכָאַלּוֹן אֲשֶׁר בְּשַׁלֶּכֶת מַצֶּבֶת בָּם זֶרַע קֹדֶשׁ מַצַּבְתָּהּ",
+      "targetIndex": 13,
+      "set": "2",
+      "clips": {
+        "original": {
+          "src": "audio/2a25a482f984da2b.wav",
+          "sha256": "2a25a482f984da2b792da066b8e89a73a00eb65e68d909a750b03cb0c3616554"
+        },
+        "changed": {
+          "src": "audio/234b81e24563d64a.wav",
+          "sha256": "234b81e24563d64ae1fdd4327179c0fa79d802bbe860931d538f306b3890479e"
+        }
+      }
+    },
+    {
+      "id": "oshb:Lev.7.1",
+      "reference": "Leviticus 7:1",
+      "hebrew": "וְזֹאת תּוֹרַת הָאָשָׁם קֹדֶשׁ קָדָשִׁים הוּא",
+      "targetIndex": 3,
+      "set": "1",
+      "clips": {
+        "original": {
+          "src": "audio/d5f9c90592c09a27.wav",
+          "sha256": "d5f9c90592c09a2761792d7b336b00842d5f4094176c2a1fc50f6a6598b01101"
+        },
+        "changed": {
+          "src": "audio/d3fddce09a927bf5.wav",
+          "sha256": "d3fddce09a927bf57696bb93995ec8712b65b5f1bcaadeb34139d739ba5bb9d3"
+        }
+      }
+    },
+    {
+      "id": "oshb:Num.18.10",
+      "reference": "Numbers 18:10",
+      "hebrew": "בְּקֹדֶשׁ הַקֳּדָשִׁים תֹּאכֲלֶנּוּ כָּל זָכָר יֹאכַל אֹתוֹ קֹדֶשׁ יִהְיֶה לָּךְ",
+      "targetIndex": 7,
+      "set": "1",
+      "clips": {
+        "original": {
+          "src": "audio/62c6b6e7c4739ac9.wav",
+          "sha256": "62c6b6e7c4739ac9172b946c48178bfb3ec01e413b1f9dce2b9231ab9d0796de"
+        },
+        "changed": {
+          "src": "audio/fc17a88b6f939f8b.wav",
+          "sha256": "fc17a88b6f939f8bacd57ca3177707fd5609561e4c7cc069b1ad68bc8dce1099"
+        }
+      }
+    },
+    {
+      "id": "oshb:Num.18.9",
+      "reference": "Numbers 18:9",
+      "hebrew": "זֶה יִהְיֶה לְךָ מִקֹּדֶשׁ הַקֳּדָשִׁים מִן הָאֵשׁ כָּל קָרְבָּנָם לְכָל מִנְחָתָם וּלְכָל חַטָּאתָם וּלְכָל אֲשָׁמָם אֲשֶׁר יָשִׁיבוּ לִי קֹדֶשׁ קָדָשִׁים לְךָ הוּא וּלְבָנֶיךָ",
+      "targetIndex": 18,
+      "set": "2",
+      "clips": {
+        "original": {
+          "src": "audio/f8ea2b3851f96b23.wav",
+          "sha256": "f8ea2b3851f96b234d3ef85cca0857ba76d5249cdbf415a0669142519bf6aead"
+        },
+        "changed": {
+          "src": "audio/a968c17835467dad.wav",
+          "sha256": "a968c17835467dadab282148de4e01cdd941611e98b73cc92d41a6375184e5b3"
+        }
+      }
+    }
+  ]
+}

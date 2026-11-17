@@ -793,6 +793,7 @@ def build_site(
     output_dir: Path = DEFAULT_OUTPUT_DIR,
     mirror_root: bool = False,
     new_sincerity_source: Path | None = None,
+    ivri_listen_source: Path | None = None,
 ) -> None:
     import markdown
 
@@ -853,6 +854,9 @@ def build_site(
             catalog=new_sincerity_catalog,
         )
 
+    if ivri_listen_source is not None and ivri_listen_source.is_dir():
+        shutil.copytree(ivri_listen_source, output_dir / "ivri-listen")
+
     if mirror_root:
         mirror_to_root(output_dir)
 
@@ -861,4 +865,5 @@ if __name__ == "__main__":
     build_site(
         mirror_root=True,
         new_sincerity_source=NEW_SINCERITY_SOURCE_DIR,
+        ivri_listen_source=ROOT / "ivri-listen",
     )
