@@ -13,7 +13,7 @@ For local QA, serve the parent directory on LAN port 4311 and run the collector 
 ## Opening sound review
 
 The `sounds/` directory prepares three sets of four single-sound judgments at
-`sounds/?set=1`, `sounds/?set=2` and `sounds/?set=3`. These pages are not published.
+`sounds/?set=1`, `sounds/?set=2` and `sounds/?set=3`.
 The twelve unchanged teacher WAVs use their full SHA-256 in their filenames.
 The matching collector route is `/api/sound-reviews`; its frozen manifest binds
 each answer to the audio, synthesis request and authored course target.
@@ -24,8 +24,14 @@ retry, conflict and rejection behavior. Local browser checks cover the first
 sound, a labeled synthetic save to SQLite and resume at the second sound after
 reload. The phone layout fits at 390 by 844 CSS pixels. The test tab is closed.
 
-Browser checks for interrupted saves, conflicting responses, skipped items,
-all three sets and desktop layout remain open. Independent product critique,
-the static site build and deployment also remain open. Preserve old stress
-reviews when completing this work. Keep synthetic checks separate from fluent
-judgments; feedback does not create a teaching approval receipt.
+The browser checks cover interrupted saves, reload and identical retry, conflicting
+responses, skips, all three sets, and revisiting skipped sounds. The first answer
+remained unchanged after a conflict. Phone and desktop layouts were inspected.
+The static build, fifteen site tests, artist-site checks and thirteen collector
+tests pass. Independent source review found no current blocking defect.
+
+Collector version 2 serves the new route at the existing public Site. The old
+stress-review endpoint and responses remain available. Synthetic checks carry
+an explicit QA note and must be excluded from pronunciation judgments. Feedback
+does not create a teaching approval receipt. Physical iPhone and VoiceOver checks
+remain open.

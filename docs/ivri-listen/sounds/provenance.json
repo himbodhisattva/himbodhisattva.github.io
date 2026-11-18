@@ -1,0 +1,60 @@
+{
+  "renderer": {
+    "baseLicense": "Apache-2.0",
+    "baseModel": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+    "files": {
+      "binary": {
+        "name": "qwen-tts",
+        "sha256": "f883f3d0bfcf5e324c0e56ac2c5fffcd75de3d4e529eda180040db2dead3807e"
+      },
+      "codec": {
+        "bytes": 254974752,
+        "name": "qwen-tokenizer-12hz-Q4_K_M.gguf",
+        "sha256": "6e0346a58b6f197963a0fb639434a7f96c9bb9600e39fd476e7b30a6718f928b"
+      },
+      "source": {
+        "name": "qwentts.cpp",
+        "revision": "f1a6924789883bd92eeb59176793a94af55730b3"
+      },
+      "talker": {
+        "bytes": 1219245248,
+        "name": "qwen-talker-1.7b-base-Q4_K_M.gguf",
+        "sha256": "a8aeb8f7aba9263d18756bc5deba7dbf701c52b3955f62d794808ecae19e5ef0"
+      }
+    },
+    "generation": {
+      "device": "MTL0",
+      "durationCapSeconds": 4,
+      "greedy": true,
+      "language": "auto",
+      "maxNew": 50,
+      "reference": {
+        "audioSha256": "f5881bdbc3955df4d2d5c05fd6bd9711c2703703c281564da61cbf9c444b851c",
+        "mode": "xvector",
+        "origin": "synthetic_teacher_candidate",
+        "recordedRender": {
+          "hebrew": "מוֹדֶה אֲנִי",
+          "ipa": "modˈe ʔanˈi",
+          "ipaBasis": "RenikudPlus int8 niqqud=use prediction, NOT approved gold",
+          "manifestSha256": "6532abb62bb8bb5c66ad88bce05ae0c75c822f6d04f9c6e204201242586e5157",
+          "model": "notmax123/QwenTTS-he-1.7B-GGUF@2b01f87",
+          "rowId": "modeh",
+          "runtimeSourceRevision": "f1a6924789883bd92eeb59176793a94af55730b3"
+        }
+      },
+      "seed": 17,
+      "timeoutSeconds": 45,
+      "wavFormat": "wav16"
+    },
+    "license": "Apache-2.0",
+    "model": "notmax123/QwenTTS-he-1.7B-GGUF",
+    "modelCard": "https://huggingface.co/notmax123/QwenTTS-he-1.7B-GGUF",
+    "modelRevision": "2b01f8797400c04cb4bc9b62a94a0e6f8866b1b9",
+    "provider": "qwen-local",
+    "runtime": "qwentts.cpp",
+    "runtimeLicense": "MIT"
+  },
+  "sourceRevision": "ec24f8b",
+  "manifestSha256": "5198b594c5d27730598f3d7aceac64eb0e5c77780d31f1c484bf6c3dbb181041",
+  "status": "generated candidates; pronunciation review pending"
+}
