@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Ivri listening review</title>
+<link rel="stylesheet" href="review.css">
+<main>
+  <header>
+    <h1>Ivri listening review</h1>
+    <button id="download" class="quiet" disabled>Download review</button>
+  </header>
+  <p id="intro">Does the recording say exactly what’s written? Listen for vowels, stress, and clipped or extra sounds. For the divine name, expect <span lang="he" dir="rtl">הַשֵּׁם</span>.</p>
+  <p id="checkpoint" role="status">Loading the clips…</p>
+  <section id="review" aria-labelledby="lesson" hidden>
+    <div class="pulse">
+      <h2 id="lesson" tabindex="-1"></h2>
+      <span id="position"></span>
+    </div>
+    <progress id="progress" aria-label="Section progress"></progress>
+    <p id="hebrew" lang="he" dir="rtl"></p>
+    <div class="playback">
+      <button class="primary" id="play">Play</button>
+      <button class="quiet" id="alternate" hidden>Try alternate</button>
+    </div>
+    <p id="playback-status" role="status"></p>
+    <details id="notes">
+      <summary>Add a note</summary>
+      <textarea id="note" rows="2" aria-label="What sounded off?" placeholder="What sounded off?" maxlength="500"></textarea>
+    </details>
+    <div class="judgments">
+      <button id="approve" disabled>Sounds right</button>
+      <button id="fix" disabled>Needs a fix</button>
+      <button id="unsure" disabled>Unsure</button>
+    </div>
+    <nav aria-label="Clips">
+      <button id="back" class="quiet">Back</button>
+      <button id="skip" class="quiet">Skip</button>
+    </nav>
+  </section>
+  <section id="break" hidden>
+    <h2 id="break-title" tabindex="-1"></h2>
+    <p id="break-copy"></p>
+    <div class="break-actions">
+      <button id="finish" class="primary">Download review</button>
+      <button id="continue" class="quiet">Keep listening</button>
+      <button id="return" class="quiet">Back</button>
+    </div>
+  </section>
+  <p id="save-status" role="status">Your progress stays in this browser. Send back the downloaded file when you’re done.</p>
+  <footer>
+    <details>
+      <summary>Audio credits</summary>
+      <p>These candidates use QwenTTS Hebrew 1.7B with a synthetic voice reference. Type is DM Sans and Noto Serif Hebrew.</p>
+    </details>
+  </footer>
+</main>
+<script type="module" src="review.js"></script>
+</html>
