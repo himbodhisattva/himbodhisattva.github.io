@@ -13,10 +13,20 @@ const outcomes = [
   [get('unsure'), 'unsure', 'Unsure'],
 ];
 
+async function loadJson(path) {
+  const response = await fetch(path);
+  if (!response.ok) throw new Error(`Unavailable: ${path}`);
+  return response.json();
+}
+
 async function start() {
-  const response = await fetch('queue.json');
-  if (!response.ok) throw new Error('Queue unavailable');
-  const { id, coreCount, groups } = await response.json();
+  const [{ id, coreCount, groups }, { queueId, byGroup }] = await Promise.all([
+    loadJson('queue.json'),
+    loadJson('pronunciations.json'),
+  ]);
+  if (queueId !== id || groups.some(({ id: groupId }) => !byGroup?.[groupId])) {
+    throw new Error('Pronunciations do not match the clips');
+  }
   const storageKey = `ivri-listening-review:${id}`;
   const positions = [...groups.slice(0, coreCount), null, ...groups.slice(coreCount), null];
   let state = { position: 0, judgments: {} };
@@ -117,6 +127,7 @@ async function start() {
     get('progress').max = count;
     get('progress').value = number - 1;
     get('hebrew').textContent = current.text;
+    get('pronunciation').textContent = byGroup[current.id];
     checkpoint.textContent = inCore ? '' : 'More Hebrew Reading and Prayers';
     get('back').disabled = state.position === 0;
     get('skip').textContent = saved()?.clips[current.primary] || saved()?.clips[current.alternate] ? 'Next' : 'Skip';

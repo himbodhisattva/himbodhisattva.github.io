@@ -4,13 +4,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>Ivri listening review</title>
-<link rel="stylesheet" href="review.css">
+<link rel="stylesheet" href="review.css?v=2">
 <main>
   <header>
     <h1>Ivri listening review</h1>
     <button id="download" class="quiet" disabled>Download review</button>
   </header>
-  <p id="intro">Does the recording say exactly what’s written? Listen for vowels, stress, and clipped or extra sounds. For the divine name, expect <span lang="he" dir="rtl">הַשֵּׁם</span>.</p>
+  <p id="intro">Does the clip match the pronunciation below the Hebrew? Listen for missing or extra sounds.</p>
   <p id="checkpoint" role="status">Loading the clips…</p>
   <section id="review" aria-labelledby="lesson" hidden>
     <div class="pulse">
@@ -19,6 +19,7 @@
     </div>
     <progress id="progress" aria-label="Section progress"></progress>
     <p id="hebrew" lang="he" dir="rtl"></p>
+    <p id="pronunciation" dir="ltr"></p>
     <div class="playback">
       <button class="primary" id="play">Play</button>
       <button class="quiet" id="alternate" hidden>Try alternate</button>
@@ -55,5 +56,5 @@
     </details>
   </footer>
 </main>
-<script type="module" src="review.js"></script>
+<script type="module" src="review.js?v=2"></script>
 </html>
