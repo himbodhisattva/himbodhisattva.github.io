@@ -20,9 +20,9 @@ async function loadJson(path) {
 }
 
 async function start() {
-  const [{ id, coreCount, groups }, { queueId, byGroup }] = await Promise.all([
-    loadJson('queue.json'),
-    loadJson('pronunciations.json'),
+  const [{ id, coreCount, groups }, { queueId, previousQueueId, byGroup, stressByGroup }] = await Promise.all([
+    loadJson('queue.json?v=3'),
+    loadJson('pronunciations.json?v=3'),
   ]);
   if (queueId !== id || groups.some(({ id: groupId }) => !byGroup?.[groupId])) {
     throw new Error('Pronunciations do not match the clips');
@@ -32,10 +32,17 @@ async function start() {
   let state = { position: 0, judgments: {} };
   let storageAvailable = true;
   try {
-    const restored = JSON.parse(localStorage.getItem(storageKey));
+    const savedQueue = localStorage.getItem(storageKey);
+    const olderQueue = !savedQueue && previousQueueId
+      ? localStorage.getItem(`ivri-listening-review:${previousQueueId}`) : null;
+    const restored = JSON.parse(savedQueue ?? olderQueue);
     if (Number.isInteger(restored?.position) && restored.position >= 0 &&
         restored.position < positions.length && restored.judgments) {
-      state = restored;
+      state = olderQueue ? {
+        position: restored.position,
+        judgments: Object.fromEntries(groups.filter(({ id }) => Object.hasOwn(restored.judgments, id))
+          .map(({ id }) => [id, restored.judgments[id]])),
+      } : restored;
     }
   } catch {
     storageAvailable = false;
@@ -127,7 +134,15 @@ async function start() {
     get('progress').max = count;
     get('progress').value = number - 1;
     get('hebrew').textContent = current.text;
-    get('pronunciation').textContent = byGroup[current.id];
+    const guide = get('pronunciation');
+    const stress = stressByGroup?.[current.id];
+    guide.textContent = stress ? '' : byGroup[current.id];
+    if (stress) for (const [word, accent] of stress) {
+      if (guide.childNodes.length) guide.append(' ');
+      const vowel = document.createElement('strong');
+      vowel.textContent = word[accent];
+      guide.append(word.slice(0, accent), vowel, word.slice(accent + 1));
+    }
     checkpoint.textContent = inCore ? '' : 'More Hebrew Reading and Prayers';
     get('back').disabled = state.position === 0;
     get('skip').textContent = saved()?.clips[current.primary] || saved()?.clips[current.alternate] ? 'Next' : 'Skip';

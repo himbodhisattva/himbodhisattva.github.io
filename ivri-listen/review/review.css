@@ -39,7 +39,8 @@ progress::-webkit-progress-value { background: var(--green); }
 progress::-moz-progress-bar { background: var(--green); }
 [lang="he"] { font-family: "Noto Serif Hebrew", serif; }
 #hebrew { margin: .8rem 0 .15rem; text-align: center; font-size: clamp(1.9rem, 7vw, 3rem); line-height: 1.5; overflow-wrap: anywhere; }
-#pronunciation { margin-bottom: 1rem; text-align: center; font-size: 1.125rem; font-weight: 700; overflow-wrap: anywhere; }
+#pronunciation { margin-bottom: 1rem; text-align: center; font-size: 1.125rem; font-weight: 500; overflow-wrap: anywhere; }
+#pronunciation strong { font-weight: 800; text-decoration: underline; text-underline-offset: .18em; }
 button { padding: .55rem .75rem; min-height: 44px; background: white; border: 1px solid var(--line); border-radius: 10px; color: #184e56; font: inherit; font-weight: 700; cursor: pointer; }
 button:hover:not(:disabled) { background: #e4f2ec; }
 button:disabled { color: #4d6265; background: #f1f4ef; cursor: default; }
